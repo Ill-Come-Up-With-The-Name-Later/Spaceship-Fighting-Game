@@ -7,13 +7,13 @@ public abstract partial class WarpDrive : ShipPart
     [Export]
     public WarpDriveData WarpDriveStats;
 
-    public bool WarpActive;
+    public WarpDriveState WarpDriveState;
 
     public override void _Ready()
     {
         base._Ready();
-        
-        WarpActive = false;
+
+        WarpDriveState = WarpDriveState.Inactive;
     }
 
     public override void _PhysicsProcess(double delta)
