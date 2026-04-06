@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b15tp7k4xl8jq"]
+
+[ext_resource type="Texture2D" uid="uid://dv158k37mij23" path="res://Sprites/icon.svg" id="1_2opgj"]
+[ext_resource type="PackedScene" uid="uid://b28vrjkh228m3" path="res://Scenes/Controllers/PlayerController.tscn" id="2_i1rsg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
+radius = 1.0
+
+[node name="Ship" type="CharacterBody2D" unique_id=1450576114]
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
+shape = SubResource("CircleShape2D_2b61m")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1715419656]
+texture = ExtResource("1_2opgj")
+
+[node name="PlayerController" parent="." unique_id=660101535 instance=ExtResource("2_i1rsg")]
