@@ -12,6 +12,8 @@ public partial class WarpDrive : ShipPart
     public Timer AccelerationTimer;
     public Timer DecelerationTimer;
 
+    public Ship ParentShip;
+
     public bool Active => WarpDriveState != WarpDriveState.Inactive;
 
     public override void _Ready()
@@ -31,6 +33,8 @@ public partial class WarpDrive : ShipPart
         DecelerationTimer = GetNode<Timer>("DecelerationTimer");
         DecelerationTimer.WaitTime = WarpDriveStats.DecelerationTime;
         DecelerationTimer.Timeout += ExitWarpState;
+        
+        ParentShip = GetParent() as Ship;
     }
 
     public override void _ExitTree()
@@ -44,6 +48,7 @@ public partial class WarpDrive : ShipPart
     {
         WarpDriveState = WarpDriveState.Accelerating;
         AccelerationTimer.Start();
+        ParentShip.CanMove = false;
     }
 
     public virtual void TransitionToWarping()
@@ -55,12 +60,14 @@ public partial class WarpDrive : ShipPart
     public virtual void TransitionToDeceleration()
     {
         WarpDriveState = WarpDriveState.Decelerating;
+        AccelerationTimer.Stop();
         DecelerationTimer.Start();
     }
 
     public virtual void ExitWarpState()
     {
         WarpDriveState = WarpDriveState.Inactive;
+        ParentShip.CanMove = true;
     }
 
     public override void _PhysicsProcess(double delta)
