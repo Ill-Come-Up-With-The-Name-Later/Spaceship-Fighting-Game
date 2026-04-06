@@ -2,13 +2,13 @@ using Godot;
 
 public partial class PlayerController : Node2D
 {
-	public CharacterBody2D parentShip;
+	public Ship ParentShip;
 	
 	public override void _Ready()
 	{
-		parentShip = GetParent() as CharacterBody2D;
+		ParentShip = GetParent() as Ship;
 
-		if (parentShip is null)
+		if (ParentShip is null)
 			GD.PrintErr("PlayerController: no parent ship");
 		else
 			GD.Print("PlayerController: player ship found");
@@ -18,18 +18,18 @@ public partial class PlayerController : Node2D
 	{
 		if (Input.IsActionPressed("accelerate"))
 		{
-			parentShip.Velocity = (Vector2.Up * 5).Rotated(parentShip.GlobalRotation);
-			GD.Print("Player is moving: " + parentShip.Velocity);
+			ParentShip.Velocity = (Vector2.Up * (float)ParentShip.Engine.TrueMoveSpeed()).Rotated(ParentShip.GlobalRotation);
+			GD.Print("Player is moving: " + ParentShip.Velocity);
 		}
 
 		if (Input.IsActionPressed("turn_left"))
 		{
-			parentShip.GlobalRotation -= Mathf.DegToRad(1);
+			ParentShip.GlobalRotation -= Mathf.DegToRad(1);
 		}
 
 		if (Input.IsActionPressed("turn_right"))
 		{
-			parentShip.GlobalRotation += Mathf.DegToRad(1);
+			ParentShip.GlobalRotation += Mathf.DegToRad(1);
 		}
 	}
 }

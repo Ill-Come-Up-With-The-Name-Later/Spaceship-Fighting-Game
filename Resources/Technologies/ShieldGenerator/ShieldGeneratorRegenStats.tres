@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://wduiwq5ll47r"]
+
+[ext_resource type="Script" uid="uid://bpsjgw7t2o3qd" path="res://Scripts/Resources/RegenerationData.cs" id="1_e2ndr"]
+
+[resource]
+script = ExtResource("1_e2ndr")
+PerSecondRate = 1000.0

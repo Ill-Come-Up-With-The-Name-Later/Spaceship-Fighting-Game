@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://duguttrlk0e7y"]
+
+[ext_resource type="Script" uid="uid://bpsjgw7t2o3qd" path="res://Scripts/Resources/RegenerationData.cs" id="1_vim63"]
+
+[resource]
+script = ExtResource("1_vim63")
+PerSecondRate = 2500.0

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b3fko4a7w6hgi"]
+
+[ext_resource type="Script" uid="uid://wkpvtd4gi41x" path="res://Scripts/ShipTech/Technology/FusionReactor.cs" id="1_qbkpu"]
+
+[node name="FusionReactor" type="Node2D" unique_id=854488899]
+script = ExtResource("1_qbkpu")

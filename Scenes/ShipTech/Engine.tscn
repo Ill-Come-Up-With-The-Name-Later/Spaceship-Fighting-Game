@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c427n2d7xonmv"]
+
+[ext_resource type="Script" uid="uid://b64ps8jt48way" path="res://Scripts/ShipTech/Technology/Engine.cs" id="1_yh8qf"]
+[ext_resource type="Resource" uid="uid://cedjwudw23bcd" path="res://Resources/Technologies/Engine/EngineStats.tres" id="2_qht62"]
+
+[node name="Engine" type="Node2D" unique_id=512023654]
+script = ExtResource("1_yh8qf")
+Stats = ExtResource("2_qht62")

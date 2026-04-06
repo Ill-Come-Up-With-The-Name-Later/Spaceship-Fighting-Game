@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://uvvdt3wtu4w2"]
+
+[ext_resource type="Script" uid="uid://dd7f6aru0fw72" path="res://Scripts/ShipTech/Technology/ShieldGenerator.cs" id="1_toyd0"]
+
+[node name="ShieldGenerator" type="Node2D" unique_id=769759841]
+script = ExtResource("1_toyd0")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ba521m501oaf"]
+
+[ext_resource type="Script" uid="uid://cid4kbfiarb6g" path="res://Scripts/ShipTech/Technology/Hull.cs" id="1_1r7h2"]
+
+[node name="Hul" type="Node2D" unique_id=463253017]
+script = ExtResource("1_1r7h2")

@@ -1,12 +1,32 @@
 [gd_scene format=3 uid="uid://b15tp7k4xl8jq"]
 
 [ext_resource type="Texture2D" uid="uid://dv158k37mij23" path="res://Sprites/icon.svg" id="1_2opgj"]
+[ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_i1rsg"]
 [ext_resource type="PackedScene" uid="uid://b28vrjkh228m3" path="res://Scenes/Controllers/PlayerController.tscn" id="2_i1rsg"]
+[ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="4_2b61m"]
+[ext_resource type="Resource" uid="uid://dp82wutsjfhmc" path="res://Resources/Technologies/Engine/EngineHealthStats.tres" id="5_e34b4"]
+[ext_resource type="Resource" uid="uid://bex88fme55dk2" path="res://Resources/Technologies/Engine/EngineStats.tres" id="5_jtdrl"]
+[ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="7_o5i31"]
+[ext_resource type="Resource" uid="uid://bygb82304hxxv" path="res://Resources/Technologies/FusionReactor/ReactorStats.tres" id="8_272pc"]
+[ext_resource type="Resource" uid="uid://duguttrlk0e7y" path="res://Resources/Technologies/FusionReactor/ReactorRegenStats.tres" id="9_qub6j"]
+[ext_resource type="Resource" uid="uid://flaxxet7o2au" path="res://Resources/Technologies/FusionReactor/ReactorHealthStats.tres" id="10_ps4lq"]
+[ext_resource type="Resource" uid="uid://bmt0cewt6jyj4" path="res://Resources/Technologies/FusionReactor/ReactorConsumptionData.tres" id="10_qub6j"]
+[ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="11_qub6j"]
+[ext_resource type="Resource" uid="uid://b5i4v0c652yt1" path="res://Resources/Technologies/Hull/HullMaterialStats.tres" id="12_ct73h"]
+[ext_resource type="Resource" uid="uid://d04mh72jdtuyv" path="res://Resources/Technologies/Hull/HullHealthStats.tres" id="13_oyhsx"]
+[ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="14_oyhsx"]
+[ext_resource type="Resource" uid="uid://ca26v1r6eypok" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorStats.tres" id="16_a5wf6"]
+[ext_resource type="Resource" uid="uid://wduiwq5ll47r" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorRegenStats.tres" id="17_uspqv"]
+[ext_resource type="Resource" uid="uid://c4ecsgtubcpqw" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorHealthStats.tres" id="18_2kcsj"]
+[ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="19_7smpd"]
+[ext_resource type="Resource" uid="uid://d3kvv70o3x126" path="res://Resources/Technologies/AlcubierreWarpDrive/AlcubierreDriveStats.tres" id="20_w0x81"]
+[ext_resource type="Resource" uid="uid://edojmubepvhv" path="res://Resources/Technologies/AlcubierreWarpDrive/WarpDriveHealthStats.tres" id="21_3084q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
 radius = 1.0
 
 [node name="Ship" type="CharacterBody2D" unique_id=1450576114]
+script = ExtResource("1_i1rsg")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
 shape = SubResource("CircleShape2D_2b61m")
@@ -15,3 +35,27 @@ shape = SubResource("CircleShape2D_2b61m")
 texture = ExtResource("1_2opgj")
 
 [node name="PlayerController" parent="." unique_id=660101535 instance=ExtResource("2_i1rsg")]
+
+[node name="Engine" parent="." unique_id=512023654 instance=ExtResource("4_2b61m")]
+position = Vector2(-150, -193)
+EngineStats = ExtResource("5_jtdrl")
+GenericStats = ExtResource("5_e34b4")
+
+[node name="FusionReactor" parent="." unique_id=854488899 instance=ExtResource("7_o5i31")]
+ReactorStats = ExtResource("8_272pc")
+RegenerationRate = ExtResource("9_qub6j")
+ConsumptionRate = ExtResource("10_qub6j")
+GenericStats = ExtResource("10_ps4lq")
+
+[node name="Hull" parent="." unique_id=463253017 instance=ExtResource("11_qub6j")]
+HullStats = ExtResource("12_ct73h")
+GenericStats = ExtResource("13_oyhsx")
+
+[node name="ShieldGenerator" parent="." unique_id=769759841 instance=ExtResource("14_oyhsx")]
+DefenseGeneratorStats = ExtResource("16_a5wf6")
+RegenerationRate = ExtResource("17_uspqv")
+GenericStats = ExtResource("18_2kcsj")
+
+[node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("19_7smpd")]
+WarpDriveStats = ExtResource("20_w0x81")
+GenericStats = ExtResource("21_3084q")
