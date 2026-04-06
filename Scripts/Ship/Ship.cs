@@ -8,6 +8,9 @@ public partial class Ship : CharacterBody2D
 	public DefenseGenerator DefenseSystem;
 	public WarpDrive WarpDrive;
 	
+	public bool CanMove;
+	public bool CanTurn;
+	
 	public override void _Ready()
 	{
 		Engine = GetNode<Engine>("Engine");
@@ -38,6 +41,9 @@ public partial class Ship : CharacterBody2D
 		
 		if(WarpDrive is null)
 			GD.PrintErr("Warp Drive not found");
+
+		CanMove = true;
+		CanTurn = true;
 	}
 	
 	public override void _Process(double delta)

@@ -3,14 +3,10 @@ using Godot;
 public partial class PlayerController : Node2D
 {
 	public Ship ParentShip;
-	public bool CanMove;
-	public bool CanTurn;
 	
 	public override void _Ready()
 	{
 		ParentShip = GetParent() as Ship;
-		CanMove = true;
-		CanTurn = true;
 
 		if (ParentShip is null)
 			GD.PrintErr("PlayerController: no parent ship");
@@ -20,20 +16,32 @@ public partial class PlayerController : Node2D
 	
 	public override void _Process(double delta)
 	{
-		if (CanMove)
+		if (ParentShip.CanMove)
 		{
 			if (Input.IsActionPressed("accelerate"))
 				ParentShip.Velocity =
 					(Vector2.Up * (float)ParentShip.Engine.TrueMoveSpeed()).Rotated(ParentShip.GlobalRotation);
 		}
 
-		if (CanTurn)
+		if (ParentShip.CanTurn)
 		{
 			if (Input.IsActionPressed("turn_left"))
-				ParentShip.GlobalRotation -= Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius);
+			{
+				if (ParentShip.WarpDrive.Active)
+					ParentShip.GlobalRotation -= Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius
+																* (float) ParentShip.WarpDrive.WarpDriveStats.TurnRate);
+				else
+					ParentShip.GlobalRotation -= Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius);
+			}
 
 			if (Input.IsActionPressed("turn_right"))
-				ParentShip.GlobalRotation += Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius);
+			{
+				if (ParentShip.WarpDrive.Active)
+					ParentShip.GlobalRotation += Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius
+					                                            * (float) ParentShip.WarpDrive.WarpDriveStats.TurnRate);
+				else
+					ParentShip.GlobalRotation += Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius);
+			}
 		}
 	}
 }
