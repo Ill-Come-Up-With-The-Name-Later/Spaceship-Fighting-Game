@@ -4,3 +4,12 @@
 
 [node name="AlcubierreWarpDrive" type="Node2D" unique_id=1280896902]
 script = ExtResource("1_v0s5l")
+
+[node name="DriveTimer" type="Timer" parent="." unique_id=196391210]
+one_shot = true
+
+[node name="AccelerationTimer" type="Timer" parent="." unique_id=701595543]
+one_shot = true
+
+[node name="DecelerationTimer" type="Timer" parent="." unique_id=217691203]
+one_shot = true
