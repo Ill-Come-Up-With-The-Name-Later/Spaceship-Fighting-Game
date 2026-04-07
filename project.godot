@@ -15,6 +15,10 @@ run/main_scene="uid://cmvkih6fr2gv8"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 
+[autoload]
+
+Eventbus="*uid://c7cxgsj33acdg"
+
 [dotnet]
 
 project/assembly_name="Spaceship FightingGame"

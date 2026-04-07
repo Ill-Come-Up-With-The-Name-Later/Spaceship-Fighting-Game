@@ -32,3 +32,7 @@ texture = ExtResource("1_2opgj")
 [node name="ShieldGenerator" parent="." unique_id=769759841 instance=ExtResource("14_oyhsx")]
 
 [node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("19_7smpd")]
+
+[node name="Technology" type="Node2D" parent="." unique_id=1603245376]
+
+[node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
