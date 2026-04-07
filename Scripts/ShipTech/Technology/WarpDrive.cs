@@ -94,7 +94,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         {
             double speedMultiplier = 1;
             
-            if(!ConsumePowerIfAvailable(ParentShip, delta) || ParentShip.CurrentPower() < CurrentConsumption * 1.5)
+            if(!(ConsumePowerIfAvailable(ParentShip, delta) && CanActivate()))
                 TransitionToDeceleration();
 
             if (WarpDriveState == WarpDriveState.Accelerating || WarpDriveState == WarpDriveState.Decelerating)
@@ -124,6 +124,11 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         {
             Toggle();
         }
+    }
+
+    public virtual bool CanActivate()
+    {
+        return ParentShip.CurrentPower() >= CurrentConsumption * 1.5;
     }
 
     public virtual void ActivateWarp()
@@ -158,7 +163,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         if (Active)
             DeactivateWarp();
         else
-            if (ParentShip.CurrentPower() >= CurrentConsumption * 1.5) 
+            if (CanActivate()) 
                 ActivateWarp();
     }
 }
