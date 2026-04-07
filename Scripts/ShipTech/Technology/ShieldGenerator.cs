@@ -1,5 +1,4 @@
 ﻿using Godot;
-using SpaceshipFightingGame.Scripts.ShipTech;
 
 public partial class ShieldGenerator : DefenseGenerator
 {
@@ -13,7 +12,7 @@ public partial class ShieldGenerator : DefenseGenerator
         base._PhysicsProcess(delta);
         ConsumingPower = DefenseActive;
         
-        if(ConsumingPower)
+        if(ConsumingPower && CurrentDefenseHealth < DefenseGeneratorStats.DefenseHealth)
             if(ConsumePowerIfAvailable(ParentShip, delta))
                 if(Regenerating)
                     Regenerate(delta);
