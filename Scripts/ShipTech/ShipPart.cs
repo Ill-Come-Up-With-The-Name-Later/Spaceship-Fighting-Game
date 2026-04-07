@@ -5,7 +5,7 @@ namespace SpaceshipFightingGame.Scripts.ShipTech;
 public partial class ShipPart : Technology
 {
     [Export]
-    public ShipPartData GenericStats;
+    public GenericShipPartData GenericStats;
 
     public Ship ParentShip;
 

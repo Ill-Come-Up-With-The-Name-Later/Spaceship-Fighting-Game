@@ -33,9 +33,17 @@ public partial class FusionReactor : ShipPart, IRegenerator, IConsumer
 
     public override void _PhysicsProcess(double delta)
     {
+        if (CurrentFuel == 0)
+        {
+            Regenerating = false;
+            Active = false;
+        }
+
         if(Regenerating)
             if(Active && Regenerate(delta))
                 Consume(delta);
+
+        GD.Print("Reactor Fuel: " + CurrentFuel);
     }
 
     public bool Regenerate(double delta)

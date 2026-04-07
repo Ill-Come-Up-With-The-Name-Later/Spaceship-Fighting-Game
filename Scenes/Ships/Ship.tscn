@@ -18,9 +18,11 @@
 [ext_resource type="Resource" uid="uid://ca26v1r6eypok" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorStats.tres" id="16_a5wf6"]
 [ext_resource type="Resource" uid="uid://wduiwq5ll47r" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorRegenStats.tres" id="17_uspqv"]
 [ext_resource type="Resource" uid="uid://c4ecsgtubcpqw" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorHealthStats.tres" id="18_2kcsj"]
+[ext_resource type="Resource" uid="uid://b8vlpuar8j82y" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorPowerConsumption.tres" id="18_w0x81"]
 [ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="19_7smpd"]
 [ext_resource type="Resource" uid="uid://d3kvv70o3x126" path="res://Resources/Technologies/AlcubierreWarpDrive/AlcubierreDriveStats.tres" id="20_w0x81"]
-[ext_resource type="Resource" uid="uid://edojmubepvhv" path="res://Resources/Technologies/AlcubierreWarpDrive/WarpDriveHealthStats.tres" id="21_3084q"]
+[ext_resource type="Resource" uid="uid://edojmubepvhv" path="res://Resources/WarpDriveHealthStats.tres" id="21_3084q"]
+[ext_resource type="Resource" uid="uid://by0c5dk3v5qgf" path="res://Resources/Technologies/AlcubierreWarpDrive/AlcubierreDrivePowerConsumption.tres" id="22_3084q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
 radius = 1.0
@@ -54,8 +56,10 @@ GenericStats = ExtResource("13_oyhsx")
 [node name="ShieldGenerator" parent="." unique_id=769759841 instance=ExtResource("14_oyhsx")]
 DefenseGeneratorStats = ExtResource("16_a5wf6")
 RegenerationRate = ExtResource("17_uspqv")
+PowerConsumption = ExtResource("18_w0x81")
 GenericStats = ExtResource("18_2kcsj")
 
 [node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("19_7smpd")]
 WarpDriveStats = ExtResource("20_w0x81")
+PowerConsumption = ExtResource("22_3084q")
 GenericStats = ExtResource("21_3084q")

@@ -2,15 +2,27 @@
 using SpaceshipFightingGame.Scripts.Resources.Technology;
 using SpaceshipFightingGame.Scripts.ShipTech;
 
-public partial class WarpDrive : ShipPart
+public partial class WarpDrive : ShipPart, IPowerConsumer
 {
     [Export]
     public WarpDriveData WarpDriveStats;
+
+    [Export]
+    public PowerConsumptionData PowerConsumption { get; set; }
+
+    public double CurrentConsumption { get; set; }
+    
+    public bool ConsumingPower { get; set; }
 
     public WarpDriveState WarpDriveState;
     public Timer WarpDriveTimer;
     public Timer AccelerationTimer;
     public Timer DecelerationTimer;
+
+    protected int Counter;
+
+    protected int AccelerationFrames;
+    protected int DecelerationFrames;
 
     public Ship ParentShip;
 
@@ -35,6 +47,13 @@ public partial class WarpDrive : ShipPart
         DecelerationTimer.Timeout += ExitWarpState;
         
         ParentShip = GetParent() as Ship;
+
+        CurrentConsumption = PowerConsumption.Amount;
+        ConsumingPower = false;
+        
+        Counter = 0;
+        AccelerationFrames = (int)(60 * WarpDriveStats.AccelerationTime);
+        DecelerationFrames = (int)(60 * WarpDriveStats.DecelerationTime);
     }
 
     public override void _ExitTree()
@@ -49,6 +68,7 @@ public partial class WarpDrive : ShipPart
         WarpDriveState = WarpDriveState.Accelerating;
         AccelerationTimer.Start();
         ParentShip.CanMove = false;
+        ConsumingPower = true;
     }
 
     public virtual void TransitionToWarping()
@@ -67,11 +87,66 @@ public partial class WarpDrive : ShipPart
     public virtual void ExitWarpState()
     {
         WarpDriveState = WarpDriveState.Inactive;
+        ParentShip.Velocity = Vector2.Zero;
         ParentShip.CanMove = true;
+        ConsumingPower = false;
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        if (Active)
+        {
+            double speedMultiplier = 1;
+            
+            if(!ConsumePowerIfAvailable(ParentShip, delta) || ParentShip.CurrentPower() < CurrentConsumption * 1.5)
+                TransitionToDeceleration();
+
+            if (WarpDriveState == WarpDriveState.Accelerating || WarpDriveState == WarpDriveState.Decelerating)
+            {
+                Counter++;
+                CurrentConsumption = PowerConsumption.Amount *  0.2;
+            }
+
+            if (WarpDriveState == WarpDriveState.Accelerating)
+                speedMultiplier = Mathf.Pow(WarpDriveStats.SpeedMultiplier, 
+                    (double)Counter / AccelerationFrames);
+            else if (WarpDriveState == WarpDriveState.Decelerating)
+                speedMultiplier = Mathf.Pow(1 / WarpDriveStats.SpeedMultiplier, 
+                    (double)Counter / AccelerationFrames);
+            else if (WarpDriveState == WarpDriveState.Warping)
+            {
+                speedMultiplier = WarpDriveStats.SpeedMultiplier;
+                CurrentConsumption = PowerConsumption.Amount;
+            }
+
+            ParentShip.Velocity =
+                (Vector2.Up * (float)ParentShip.Engine.TrueMoveSpeed() * (float)speedMultiplier).Rotated(ParentShip
+                    .GlobalRotation);
+            
+            GD.Print("Warp Velocity: " + ParentShip.Velocity + " Warp Multiplier: " + speedMultiplier);
+            GD.Print("Power: " + ParentShip.CurrentPower() + " Consumption: " + CurrentConsumption);
+        }
+
+        if (Input.IsActionJustPressed("toggle_warp_drive"))
+        {
+            if (Active)
+            {
+                DeactivateWarp();
+                GD.Print("Warp drive deactivated");
+            }
+            else
+            {
+                if (ParentShip.CurrentPower() >= CurrentConsumption * 1.5)
+                {
+                    ActivateWarp();
+                    GD.Print("Warp drive activated");
+                }
+                else
+                {
+                    GD.Print("Insufficient power to activate warp");
+                }
+            }
+        }
     }
 
     public virtual void ActivateWarp()
@@ -79,12 +154,25 @@ public partial class WarpDrive : ShipPart
         WarpDriveTimer.WaitTime = WarpDriveStats.MaxDuration;
         AccelerationTimer.WaitTime = WarpDriveStats.AccelerationTime;
         DecelerationTimer.WaitTime = WarpDriveStats.DecelerationTime;
+        Counter = 0;
         
         EnterAcceleration();
     }
 
     public virtual void DeactivateWarp()
     {
+        Counter = 0;
+        
         TransitionToDeceleration();
+    }
+    
+    public bool ConsumePowerIfAvailable(Ship ship, double delta)
+    {
+        if (CurrentConsumption > ship.CurrentPower())
+            return false;
+        
+        ship.FusionReactor.CurrentPower -= CurrentConsumption * delta;
+
+        return true;
     }
 }

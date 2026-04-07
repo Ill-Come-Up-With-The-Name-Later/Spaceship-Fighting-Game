@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_oqyjj")
 PowerCapacity = 60000.0
-Fuel = 10000.0
+Fuel = 500.0

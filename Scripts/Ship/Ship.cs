@@ -27,8 +27,12 @@ public partial class Ship : CharacterBody2D
 		
 		if(FusionReactor is null)
 			GD.PrintErr("Fusion Reactor not found");
+
+		DefenseSystem = null;
 		
-		DefenseSystem = GetNode<DefenseGenerator>("ShieldGenerator");
+		foreach(Node child in GetChildren())
+			if(child is DefenseGenerator defenseGenerator)
+				DefenseSystem = defenseGenerator;
 		
 		if(DefenseSystem is null)
 			GD.PrintErr("Defense System not found");
@@ -48,5 +52,10 @@ public partial class Ship : CharacterBody2D
 	
 	public override void _Process(double delta)
 	{
+	}
+
+	public double CurrentPower()
+	{
+		return FusionReactor.CurrentPower;
 	}
 }

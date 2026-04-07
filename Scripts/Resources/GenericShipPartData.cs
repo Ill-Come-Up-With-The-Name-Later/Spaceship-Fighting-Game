@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ShipPartData : Resource
+public partial class GenericShipPartData : Resource
 {
     [Export]
     public double Health;
