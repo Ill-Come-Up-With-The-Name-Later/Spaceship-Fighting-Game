@@ -2,9 +2,13 @@
 
 public partial class AblativeArmor : DefenseGenerator
 {
+    public double DefensePercentage;
+    
     public override void _Ready()
     {
         base._Ready();
+
+        DefensePercentage = DefenseGeneratorStats.DamageReductionPercent;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -12,6 +16,8 @@ public partial class AblativeArmor : DefenseGenerator
         if(ConsumingPower && CurrentDefenseHealth < DefenseGeneratorStats.DefenseHealth)
             if(!DefenseActive && ConsumePowerIfAvailable(ParentShip, delta))
                 Regenerate(delta);
+        
+        DefensePercentage = Mathf.Min(0.9, CurrentDefenseHealth / DefenseGeneratorStats.DefenseHealth);
     }
 
     public override bool Regenerate(double delta)

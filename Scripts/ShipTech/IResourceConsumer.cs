@@ -3,12 +3,12 @@ using SpaceshipFightingGame.Scripts.Resources;
 
 namespace SpaceshipFightingGame.Scripts.ShipTech;
 
-public interface IConsumer
+public interface IResourceConsumer
 {
     [Export]
     public ConsumptionData ConsumptionRate { get; set; }
     
-    public bool Active { get; set; }
+    public bool Consuming { get; set; }
     
     public bool Consume(double delta);
 }

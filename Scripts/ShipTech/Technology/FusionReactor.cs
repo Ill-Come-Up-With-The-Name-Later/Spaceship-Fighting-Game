@@ -3,7 +3,7 @@ using SpaceshipFightingGame.Scripts.Resources;
 using SpaceshipFightingGame.Scripts.Resources.Technology;
 using SpaceshipFightingGame.Scripts.ShipTech;
 
-public partial class FusionReactor : ShipPart, IRegenerator, IConsumer
+public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer
 {
     [Export]
     public FusionReactorData ReactorStats;
@@ -17,7 +17,7 @@ public partial class FusionReactor : ShipPart, IRegenerator, IConsumer
     public double CurrentPower;
     public double CurrentFuel;
 
-    public bool Active { get; set; }
+    public bool Consuming { get; set; }
     public bool Regenerating { get; set; }
 
     public override void _Ready()
@@ -27,7 +27,7 @@ public partial class FusionReactor : ShipPart, IRegenerator, IConsumer
         CurrentPower = ReactorStats.PowerCapacity;
         CurrentFuel = ReactorStats.Fuel;
         
-        Active = true;
+        Consuming = true;
         Regenerating = true;
     }
 
@@ -36,11 +36,11 @@ public partial class FusionReactor : ShipPart, IRegenerator, IConsumer
         if (CurrentFuel == 0)
         {
             Regenerating = false;
-            Active = false;
+            Consuming = false;
         }
 
         if(Regenerating)
-            if(Active && Regenerate(delta))
+            if(Consuming && Regenerate(delta))
                 Consume(delta);
     }
 
