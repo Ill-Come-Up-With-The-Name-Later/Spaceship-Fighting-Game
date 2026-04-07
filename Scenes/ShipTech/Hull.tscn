@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://ba521m501oaf"]
 
 [ext_resource type="Script" uid="uid://cid4kbfiarb6g" path="res://Scripts/ShipTech/Technology/Hull.cs" id="1_1r7h2"]
+[ext_resource type="Resource" uid="uid://b5i4v0c652yt1" path="res://Resources/Technologies/Hull/HullMaterialStats.tres" id="2_bvb42"]
+[ext_resource type="Resource" uid="uid://d04mh72jdtuyv" path="res://Resources/Technologies/Hull/HullHealthStats.tres" id="3_axvo0"]
 
-[node name="Hul" type="Node2D" unique_id=463253017]
+[node name="Hull" type="Node2D" unique_id=463253017]
 script = ExtResource("1_1r7h2")
+HullStats = ExtResource("2_bvb42")
+GenericStats = ExtResource("3_axvo0")

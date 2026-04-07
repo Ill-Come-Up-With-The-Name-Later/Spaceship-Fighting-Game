@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://b3fko4a7w6hgi"]
 
 [ext_resource type="Script" uid="uid://wkpvtd4gi41x" path="res://Scripts/ShipTech/Technology/FusionReactor.cs" id="1_qbkpu"]
+[ext_resource type="Resource" uid="uid://bygb82304hxxv" path="res://Resources/Technologies/FusionReactor/ReactorStats.tres" id="2_iwnm8"]
+[ext_resource type="Resource" uid="uid://duguttrlk0e7y" path="res://Resources/Technologies/FusionReactor/ReactorRegenStats.tres" id="3_6gymf"]
+[ext_resource type="Resource" uid="uid://bmt0cewt6jyj4" path="res://Resources/Technologies/FusionReactor/ReactorConsumptionData.tres" id="4_k3mu6"]
+[ext_resource type="Resource" uid="uid://flaxxet7o2au" path="res://Resources/Technologies/FusionReactor/ReactorHealthStats.tres" id="5_gwdrg"]
 
 [node name="FusionReactor" type="Node2D" unique_id=854488899]
 script = ExtResource("1_qbkpu")
+ReactorStats = ExtResource("2_iwnm8")
+RegenerationRate = ExtResource("3_6gymf")
+ConsumptionRate = ExtResource("4_k3mu6")
+GenericStats = ExtResource("5_gwdrg")

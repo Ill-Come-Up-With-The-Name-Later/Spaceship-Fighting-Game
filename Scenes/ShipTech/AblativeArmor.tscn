@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://1t35au06htep"]
+
+[ext_resource type="Script" uid="uid://dngrm7p8pqhul" path="res://Scripts/ShipTech/Technology/AblativeArmor.cs" id="1_a66on"]
+[ext_resource type="Resource" uid="uid://oa500m4o257v" path="res://Resources/Technologies/AblativeArmor/AblativeArmorStats.tres" id="2_p4equ"]
+[ext_resource type="Resource" uid="uid://dag3sqkupnnod" path="res://Resources/Technologies/AblativeArmor/AblativeArmorRegenStats.tres" id="3_r0wbl"]
+[ext_resource type="Resource" uid="uid://cu6vwu6ksggh1" path="res://Resources/Technologies/AblativeArmor/AblativeArmorPowerConsumption.tres" id="4_ykbsw"]
+[ext_resource type="Resource" uid="uid://cqorbim5yqwjw" path="res://Resources/Technologies/AblativeArmor/AblativeArmorHealthStats.tres" id="5_ykbd2"]
+
+[node name="AblativeArmor" type="Node2D" unique_id=240673768]
+script = ExtResource("1_a66on")
+DefenseGeneratorStats = ExtResource("2_p4equ")
+RegenerationRate = ExtResource("3_r0wbl")
+PowerConsumption = ExtResource("4_ykbsw")
+GenericStats = ExtResource("5_ykbd2")

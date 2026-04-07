@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://cw2iv13byneef"]
 
 [ext_resource type="Script" uid="uid://cmlgvmxh3jygd" path="res://Scripts/ShipTech/Technology/WarpDrives/AlcubierreWarpDrive.cs" id="1_v0s5l"]
+[ext_resource type="Resource" uid="uid://d3kvv70o3x126" path="res://Resources/Technologies/AlcubierreWarpDrive/AlcubierreDriveStats.tres" id="2_ui7im"]
+[ext_resource type="Resource" uid="uid://by0c5dk3v5qgf" path="res://Resources/Technologies/AlcubierreWarpDrive/AlcubierreDrivePowerConsumption.tres" id="3_6ibs1"]
+[ext_resource type="Resource" uid="uid://edojmubepvhv" path="res://Resources/WarpDriveHealthStats.tres" id="4_gunm8"]
 
 [node name="AlcubierreWarpDrive" type="Node2D" unique_id=1280896902]
 script = ExtResource("1_v0s5l")
+WarpDriveStats = ExtResource("2_ui7im")
+PowerConsumption = ExtResource("3_6ibs1")
+GenericStats = ExtResource("4_gunm8")
 
 [node name="DriveTimer" type="Timer" parent="." unique_id=196391210]
 one_shot = true

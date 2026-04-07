@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://cqorbim5yqwjw"]
+
+[ext_resource type="Script" uid="uid://bw881dck88l76" path="res://Scripts/Resources/GenericShipPartData.cs" id="1_eip0l"]
+
+[resource]
+script = ExtResource("1_eip0l")
+Health = 10000.0
