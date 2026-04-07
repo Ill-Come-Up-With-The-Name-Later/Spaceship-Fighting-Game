@@ -24,8 +24,6 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     protected int AccelerationFrames;
     protected int DecelerationFrames;
 
-    public Ship ParentShip;
-
     public bool Active => WarpDriveState != WarpDriveState.Inactive;
 
     public override void _Ready()
@@ -45,8 +43,6 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         DecelerationTimer = GetNode<Timer>("DecelerationTimer");
         DecelerationTimer.WaitTime = WarpDriveStats.DecelerationTime;
         DecelerationTimer.Timeout += ExitWarpState;
-        
-        ParentShip = GetParent() as Ship;
 
         CurrentConsumption = PowerConsumption.Amount;
         ConsumingPower = false;
