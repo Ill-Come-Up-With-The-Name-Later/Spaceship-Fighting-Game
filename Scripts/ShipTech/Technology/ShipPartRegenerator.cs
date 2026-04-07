@@ -2,7 +2,7 @@
 using SpaceshipFightingGame.Scripts.Resources;
 using SpaceshipFightingGame.Scripts.ShipTech;
 
-public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsumer
+public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsumer, IToggleable
 {
     [Export]
     public RegenerationData RegenerationRate { get; set; }
@@ -28,17 +28,6 @@ public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsum
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-
-        if (ParentPart.CurrentHealth < ParentPart.GenericStats.Health && ParentPart.ParentShip.Materials > 0)
-        {
-            Regenerating = true;
-            Consuming = true;
-        }
-        else
-        {
-            Regenerating = false;
-            Consuming = false;
-        }
         
         if(Regenerating && Consuming)
             if(Consume(delta))
@@ -63,5 +52,11 @@ public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsum
         ParentPart.CurrentHealth = Mathf.Min(ParentPart.GenericStats.Health, 
             ParentPart.CurrentHealth + RegenerationRate.PerSecondRate * delta);
         return true;
+    }
+
+    public void Toggle()
+    {
+        Regenerating = !Regenerating;
+        Consuming = Regenerating;
     }
 }
