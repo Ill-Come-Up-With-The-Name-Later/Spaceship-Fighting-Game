@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://uvvdt3wtu4w2"]
 
-[ext_resource type="Script" uid="uid://dd7f6aru0fw72" path="res://Scripts/ShipTech/Technology/ShieldGenerator.cs" id="1_toyd0"]
+[ext_resource type="Script" path="res://Scripts/ShipTech/Technology/Shields/ShieldGenerator.cs" id="1_ce0bj"]
 [ext_resource type="Resource" uid="uid://ca26v1r6eypok" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorStats.tres" id="2_ce0bj"]
 [ext_resource type="Resource" uid="uid://wduiwq5ll47r" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorRegenStats.tres" id="3_epuxq"]
 [ext_resource type="Resource" uid="uid://b8vlpuar8j82y" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorPowerConsumption.tres" id="4_5jbjj"]
 [ext_resource type="Resource" uid="uid://c4ecsgtubcpqw" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorHealthStats.tres" id="5_oik76"]
 
 [node name="ShieldGenerator" type="Node2D" unique_id=769759841]
-script = ExtResource("1_toyd0")
+script = ExtResource("1_ce0bj")
 DefenseGeneratorStats = ExtResource("2_ce0bj")
 RegenerationRate = ExtResource("3_epuxq")
 PowerConsumption = ExtResource("4_5jbjj")
