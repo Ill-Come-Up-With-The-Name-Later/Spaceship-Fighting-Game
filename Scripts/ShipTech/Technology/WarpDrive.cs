@@ -128,7 +128,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
 
     public virtual bool CanActivate()
     {
-        return ParentShip.CurrentPower >= CurrentConsumption * 1.5;
+        return ParentShip.CurrentPower >= CurrentConsumption * 1.5 && CurrentHealth > 0;
     }
 
     public virtual void ActivateWarp()
