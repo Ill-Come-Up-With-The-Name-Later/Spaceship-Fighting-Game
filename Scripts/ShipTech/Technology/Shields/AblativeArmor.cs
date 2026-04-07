@@ -13,6 +13,8 @@ public partial class AblativeArmor : DefenseGenerator
 
     public override void _PhysicsProcess(double delta)
     {
+        ConsumingPower = !DefenseActive;
+        
         if(ConsumingPower && CurrentDefenseHealth < DefenseGeneratorStats.DefenseHealth)
             if(!DefenseActive && ConsumePowerIfAvailable(ParentShip, delta))
                 Regenerate(delta);

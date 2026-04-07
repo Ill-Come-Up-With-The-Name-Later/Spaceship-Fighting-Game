@@ -3,7 +3,7 @@ using SpaceshipFightingGame.Scripts.Resources;
 using SpaceshipFightingGame.Scripts.Resources.Technology;
 using SpaceshipFightingGame.Scripts.ShipTech;
 
-public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerConsumer
+public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerConsumer, IToggleable
 {
     [Export]
     public DefenseGeneratorData DefenseGeneratorStats;
@@ -40,6 +40,11 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
     {
         if(Regenerating)
             Regenerate(delta);
+    }
+
+    public void Toggle()
+    {
+        DefenseActive = !DefenseActive;
     }
 
     public abstract bool Regenerate(double delta);

@@ -2,7 +2,7 @@
 using SpaceshipFightingGame.Scripts.Resources.Technology;
 using SpaceshipFightingGame.Scripts.ShipTech;
 
-public partial class WarpDrive : ShipPart, IPowerConsumer
+public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
 {
     [Export]
     public WarpDriveData WarpDriveStats;
@@ -126,11 +126,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer
 
         if (Input.IsActionJustPressed("toggle_warp_drive"))
         {
-            if (Active)
-                DeactivateWarp();
-            else
-                if (ParentShip.CurrentPower() >= CurrentConsumption * 1.5)
-                    ActivateWarp();
+            Toggle();
         }
     }
 
@@ -159,5 +155,14 @@ public partial class WarpDrive : ShipPart, IPowerConsumer
         ship.FusionReactor.CurrentPower -= CurrentConsumption * delta;
 
         return true;
+    }
+
+    public void Toggle()
+    {
+        if (Active)
+            DeactivateWarp();
+        else
+            if (ParentShip.CurrentPower() >= CurrentConsumption * 1.5) 
+                ActivateWarp();
     }
 }

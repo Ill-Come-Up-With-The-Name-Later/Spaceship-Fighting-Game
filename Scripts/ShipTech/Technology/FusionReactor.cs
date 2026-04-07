@@ -3,7 +3,7 @@ using SpaceshipFightingGame.Scripts.Resources;
 using SpaceshipFightingGame.Scripts.Resources.Technology;
 using SpaceshipFightingGame.Scripts.ShipTech;
 
-public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer
+public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, IToggleable
 {
     [Export]
     public FusionReactorData ReactorStats;
@@ -38,10 +38,17 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer
             Regenerating = false;
             Consuming = false;
         }
+        
+        Consuming = Regenerating;
 
         if(Regenerating)
             if(Consuming && Regenerate(delta))
                 Consume(delta);
+    }
+    
+    public void Toggle()
+    {
+        Regenerating = !Regenerating;
     }
 
     public bool Regenerate(double delta)
