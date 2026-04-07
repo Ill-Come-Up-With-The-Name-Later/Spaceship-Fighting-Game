@@ -2,6 +2,9 @@ using Godot;
 
 public partial class PlayerController : Node2D
 {
+	/// <summary>
+	/// The parent ship of this node
+	/// </summary>
 	public Ship ParentShip;
 	
 	public override void _Ready()

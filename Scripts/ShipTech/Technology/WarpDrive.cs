@@ -59,6 +59,9 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         DecelerationTimer.Timeout -= ExitWarpState;
     }
 
+    /// <summary>
+    /// Starts the warp drive's acceleration
+    /// </summary>
     public virtual void EnterAcceleration()
     {
         WarpDriveState = WarpDriveState.Accelerating;
@@ -67,12 +70,19 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         ConsumingPower = true;
     }
 
+    /// <summary>
+    /// Changes the warp drive to its main
+    /// warping
+    /// </summary>
     public virtual void TransitionToWarping()
     {
         WarpDriveState = WarpDriveState.Warping;
         WarpDriveTimer.Start();
     }
 
+    /// <summary>
+    /// Changes the warp drive into decelerating
+    /// </summary>
     public virtual void TransitionToDeceleration()
     {
         WarpDriveState = WarpDriveState.Decelerating;
@@ -80,6 +90,9 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         DecelerationTimer.Start();
     }
 
+    /// <summary>
+    /// Ends the warping and deceleration
+    /// </summary>
     public virtual void ExitWarpState()
     {
         WarpDriveState = WarpDriveState.Inactive;
@@ -126,11 +139,20 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         }
     }
 
+    /// <summary>
+    /// If the warp drive can be activated
+    /// </summary>
+    /// <returns>
+    /// If the warp drive can be activated
+    /// </returns>
     public virtual bool CanActivate()
     {
         return ParentShip.CurrentPower >= CurrentConsumption * 1.5 && CurrentHealth > 0;
     }
 
+    /// <summary>
+    /// Activates warp and starts acceleration
+    /// </summary>
     public virtual void ActivateWarp()
     {
         WarpDriveTimer.WaitTime = WarpDriveStats.MaxDuration;

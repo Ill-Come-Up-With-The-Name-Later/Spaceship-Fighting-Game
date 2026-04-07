@@ -18,6 +18,12 @@ public partial class Engine : ShipPart
 	{
 	}
 
+	/// <summary>
+	/// The ship's actual movement speed
+	/// </summary>
+	/// <returns>
+	/// The ship's actual movement speed
+	/// </returns>
 	public double TrueMoveSpeed()
 	{
 		return EngineStats.Speed * GetHealthPercentage();

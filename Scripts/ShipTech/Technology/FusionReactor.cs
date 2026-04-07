@@ -5,6 +5,9 @@ using SpaceshipFightingGame.Scripts.ShipTech;
 
 public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, IToggleable
 {
+    /// <summary>
+    /// The reactor's fuel and power capacity
+    /// </summary>
     [Export]
     public FusionReactorData ReactorStats;
 

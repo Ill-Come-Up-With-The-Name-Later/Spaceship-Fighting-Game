@@ -4,12 +4,12 @@ using SpaceshipFightingGame.Scripts.ShipTech;
 
 public partial class Hull : ShipPart
 {
+    /// <summary>
+    /// The hull's health and how many
+    /// resources are stored
+    /// </summary>
     [Export]
     public HullData HullStats;
-    
-    public bool Active { get; set; }
-
-    public bool Regenerating { get; set; }
     
     public double CurrentMaterials;
     public double CurrentScraps;

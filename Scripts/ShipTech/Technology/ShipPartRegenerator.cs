@@ -2,6 +2,10 @@
 using SpaceshipFightingGame.Scripts.Resources;
 using SpaceshipFightingGame.Scripts.ShipTech;
 
+/// <summary>
+/// Attached as a child of ship parts, used to allow
+/// them to regenerate health by consuming materials
+/// </summary>
 public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsumer, IToggleable
 {
     [Export]

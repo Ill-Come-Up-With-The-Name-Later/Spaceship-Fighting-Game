@@ -12,9 +12,15 @@ public partial class Ship : CharacterBody2D
 	public bool CanMove;
 	public bool CanTurn;
 	
+	/// <summary>
+	/// Amount of materials the ship has
+	/// </summary>
 	public double Materials { get => Hull.CurrentMaterials; 
 		set => Hull.CurrentMaterials = value; } 
 	
+	/// <summary>
+	/// The ship's current power amount
+	/// </summary>
 	public double CurrentPower { get => FusionReactor.CurrentPower; 
 		set => FusionReactor.CurrentPower = value; }
 	

@@ -5,6 +5,10 @@ using SpaceshipFightingGame.Scripts.ShipTech;
 
 public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerConsumer, IToggleable
 {
+    /// <summary>
+    /// The amount of health the defense has and how much
+    /// damage reduction it provides
+    /// </summary>
     [Export]
     public DefenseGeneratorData DefenseGeneratorStats;
 
@@ -17,7 +21,10 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
     public double CurrentConsumption { get; set; }
 
     public bool ConsumingPower { get; set; }
-
+    
+    /// <summary>
+    /// If the defense generator is active
+    /// </summary>
     public bool DefenseActive { get; set; }
 
     public bool Regenerating { get; set; }
