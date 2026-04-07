@@ -1,4 +1,5 @@
 using Godot;
+using SpaceshipFightingGame.Scripts.Controllers;
 
 public partial class Ship : CharacterBody2D
 {
@@ -7,10 +8,11 @@ public partial class Ship : CharacterBody2D
 	public FusionReactor FusionReactor;
 	public DefenseGenerator DefenseSystem;
 	public WarpDrive WarpDrive;
-	public Eventbus Eventbus;
 	
 	public bool CanMove;
 	public bool CanTurn;
+	
+	public Controllers Controller;
 	
 	/// <summary>
 	/// Amount of materials the ship has
@@ -23,14 +25,14 @@ public partial class Ship : CharacterBody2D
 	/// </summary>
 	public double CurrentPower { get => FusionReactor.CurrentPower; 
 		set => FusionReactor.CurrentPower = value; }
-	
+
+	public override void _EnterTree()
+	{
+		Controller = Controllers.Computer;
+	}
+
 	public override void _Ready()
 	{
-		Eventbus = GetNode<Eventbus>("/root/Eventbus");
-		
-		if(Eventbus is null)
-			GD.PrintErr("Eventbus not found");
-		
 		Engine = GetNode<Engine>("Engine");
 		
 		if(Engine is null)
