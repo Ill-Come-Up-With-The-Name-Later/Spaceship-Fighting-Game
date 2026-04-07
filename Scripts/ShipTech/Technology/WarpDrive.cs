@@ -122,30 +122,15 @@ public partial class WarpDrive : ShipPart, IPowerConsumer
             ParentShip.Velocity =
                 (Vector2.Up * (float)ParentShip.Engine.TrueMoveSpeed() * (float)speedMultiplier).Rotated(ParentShip
                     .GlobalRotation);
-            
-            GD.Print("Warp Velocity: " + ParentShip.Velocity + " Warp Multiplier: " + speedMultiplier);
-            GD.Print("Power: " + ParentShip.CurrentPower() + " Consumption: " + CurrentConsumption);
         }
 
         if (Input.IsActionJustPressed("toggle_warp_drive"))
         {
             if (Active)
-            {
                 DeactivateWarp();
-                GD.Print("Warp drive deactivated");
-            }
             else
-            {
                 if (ParentShip.CurrentPower() >= CurrentConsumption * 1.5)
-                {
                     ActivateWarp();
-                    GD.Print("Warp drive activated");
-                }
-                else
-                {
-                    GD.Print("Insufficient power to activate warp");
-                }
-            }
         }
     }
 
