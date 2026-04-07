@@ -9,6 +9,8 @@ public partial class Ship : CharacterBody2D
 	public DefenseGenerator DefenseSystem;
 	public WarpDrive WarpDrive;
 	
+	public Eventbus Eventbus;
+	
 	public bool CanMove;
 	public bool CanTurn;
 	
@@ -33,6 +35,11 @@ public partial class Ship : CharacterBody2D
 
 	public override void _Ready()
 	{
+		Eventbus = GetNode<Eventbus>("/root/Eventbus");
+		
+		if(Eventbus is null)
+			GD.PrintErr("Eventbus not found");
+		
 		Engine = GetNode<Engine>("Engine");
 		
 		if(Engine is null)
