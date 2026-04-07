@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://uvvdt3wtu4w2"]
 
-[ext_resource type="Script" path="res://Scripts/ShipTech/Technology/Shields/ShieldGenerator.cs" id="1_ce0bj"]
+[ext_resource type="Script" uid="uid://dd7f6aru0fw72" path="res://Scripts/ShipTech/Technology/Shields/ShieldGenerator.cs" id="1_ce0bj"]
 [ext_resource type="Resource" uid="uid://ca26v1r6eypok" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorStats.tres" id="2_ce0bj"]
 [ext_resource type="Resource" uid="uid://wduiwq5ll47r" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorRegenStats.tres" id="3_epuxq"]
 [ext_resource type="Resource" uid="uid://b8vlpuar8j82y" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorPowerConsumption.tres" id="4_5jbjj"]
 [ext_resource type="Resource" uid="uid://c4ecsgtubcpqw" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorHealthStats.tres" id="5_oik76"]
+[ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="6_epuxq"]
+[ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="7_oik76"]
+[ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="8_05exr"]
 
 [node name="ShieldGenerator" type="Node2D" unique_id=769759841]
 script = ExtResource("1_ce0bj")
@@ -12,3 +15,7 @@ DefenseGeneratorStats = ExtResource("2_ce0bj")
 RegenerationRate = ExtResource("3_epuxq")
 PowerConsumption = ExtResource("4_5jbjj")
 GenericStats = ExtResource("5_oik76")
+
+[node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("6_epuxq")]
+RegenerationRate = ExtResource("7_oik76")
+ConsumptionRate = ExtResource("8_05exr")

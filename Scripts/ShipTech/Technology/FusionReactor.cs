@@ -66,7 +66,7 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, 
 
     public bool Consume(double delta)
     {
-        if (CurrentFuel > 0)
+        if (CurrentFuel >= ConsumptionRate.PerSecondRate * delta)
         {
             CurrentFuel = Mathf.Max(0, CurrentFuel - (ConsumptionRate.PerSecondRate * delta));
             return true;

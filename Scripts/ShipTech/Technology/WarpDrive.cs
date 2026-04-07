@@ -128,7 +128,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
 
     public virtual bool CanActivate()
     {
-        return ParentShip.CurrentPower() >= CurrentConsumption * 1.5;
+        return ParentShip.CurrentPower >= CurrentConsumption * 1.5;
     }
 
     public virtual void ActivateWarp()
@@ -150,7 +150,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     
     public bool ConsumePowerIfAvailable(Ship ship, double delta)
     {
-        if (CurrentConsumption > ship.CurrentPower())
+        if (CurrentConsumption > ship.CurrentPower)
             return false;
         
         ship.FusionReactor.CurrentPower -= CurrentConsumption * delta;

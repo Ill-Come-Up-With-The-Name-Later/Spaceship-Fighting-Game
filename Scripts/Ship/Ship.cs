@@ -11,6 +11,12 @@ public partial class Ship : CharacterBody2D
 	public bool CanMove;
 	public bool CanTurn;
 	
+	public double Materials { get => Hull.CurrentMaterials; 
+		set => Hull.CurrentMaterials = value; } 
+	
+	public double CurrentPower { get => FusionReactor.CurrentPower; 
+		set => FusionReactor.CurrentPower = value; }
+	
 	public override void _Ready()
 	{
 		Engine = GetNode<Engine>("Engine");
@@ -52,10 +58,5 @@ public partial class Ship : CharacterBody2D
 	
 	public override void _Process(double delta)
 	{
-	}
-
-	public double CurrentPower()
-	{
-		return FusionReactor.CurrentPower;
 	}
 }

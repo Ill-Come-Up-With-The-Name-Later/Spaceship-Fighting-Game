@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c3gkvmakpow7"]
+
+[ext_resource type="Script" uid="uid://c56eqhslu3s3a" path="res://Scripts/ShipTech/Technology/ShipPartRegenerator.cs" id="1_0sr0j"]
+
+[node name="ShipPartRegenerator" type="Node2D" unique_id=1712902516]
+script = ExtResource("1_0sr0j")
