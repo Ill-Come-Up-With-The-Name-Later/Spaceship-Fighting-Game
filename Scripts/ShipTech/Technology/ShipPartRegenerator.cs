@@ -24,6 +24,9 @@ public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsum
     {
         base._Ready();
         ParentPart = GetParent<ShipPart>();
+
+        if (ParentPart is null)
+            GD.PrintErr("Part regenerator has no target.");
         
         Regenerating = false;
         Consuming = false;
