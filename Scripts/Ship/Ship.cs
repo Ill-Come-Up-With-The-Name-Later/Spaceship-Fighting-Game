@@ -93,17 +93,13 @@ public partial class Ship : CharacterBody2D
 
 		DefenseSystem.DefenseActive = true;
 	}
-
-	/// <summary>
-	/// Gets the ship's active weapon
-	/// </summary>
-	/// <returns>
-	/// The ship's active weapon
-	/// </returns>
-	public Weapon ActiveWeapon()
+	
+	public Weapon ActiveWeapon
 	{
-		return Weapons.ActiveWeapon;
+		get { return Weapons.ActiveWeapon; }
+		set { Weapons.ActiveWeapon = value; }
 	}
+
 
 	/// <summary>
 	/// If the ship has shields/armor

@@ -90,17 +90,19 @@ public partial class PlayerController : Node2D
 	public void TriggerAttack(Vector2 position)
 	{
 		GD.Print("Player clicked " + position);
-
-		Vector2 mousePosition = GetGlobalMousePosition();
-		// This sucks
-		Vector2 shipDirection = Vector2.Up.Rotated(ParentShip.Rotation).Normalized();
 		
 		if (!CanFireAt(position))
 			return;
-		
-		if(ParentShip.ActiveWeapon() is not null)
-			if(ParentShip.ActiveWeapon().CanFire)
-				ParentShip.ActiveWeapon().Fire(position);
+
+		if (ParentShip.ActiveWeapon is not null)
+		{
+			if (!ParentShip.ActiveWeapon.CanFire)
+				ParentShip.ActiveWeapon =
+					ParentShip.Weapons.NextAvailableOfType(ParentShip.Weapons.ActiveWeaponTypeIndex);
+
+			if (ParentShip.ActiveWeapon.CanFire)
+				ParentShip.ActiveWeapon.Fire(position);
+		}
 	}
 	
 	public bool CanFireAt(Vector2 targetGlobalPosition)
