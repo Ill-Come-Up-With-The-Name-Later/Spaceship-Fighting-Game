@@ -30,8 +30,8 @@ public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsum
         if (ParentPart is null)
             GD.PrintErr("Part regenerator has no target.");
         
-        Regenerating = false;
-        Consuming = false;
+        Regenerating = true;
+        Consuming = true;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -40,6 +40,12 @@ public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsum
             CanToggle = false;
         else
             CanToggle = true;
+
+        if (ParentPart.CurrentHealth >= ParentPart.GenericStats.Health)
+            Consuming = false;
+
+        if (ParentPart.CurrentHealth < ParentPart.GenericStats.Health && Regenerating)
+            Consuming = true;
         
         if(Regenerating && Consuming)
             if(Consume(delta))

@@ -8,6 +8,7 @@
 [node name="Phaser" type="Node2D" unique_id=189030110]
 script = ExtResource("1_44mus")
 Range = 1000.0
+HitEffectRadius = 60.0
 WeaponStats = ExtResource("2_kkhta")
 PowerConsumption = ExtResource("3_44mus")
 Weights = ExtResource("4_44mus")

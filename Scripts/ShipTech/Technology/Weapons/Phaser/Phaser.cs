@@ -1,9 +1,13 @@
 ﻿using Godot;
+using Godot.Collections;
 
 public partial class Phaser : Weapon
 {
     [Export]
     public double Range;
+
+    [Export]
+    public double HitEffectRadius;
     
     public Line2D Line;
     public RayCast2D Ray;
@@ -31,6 +35,25 @@ public partial class Phaser : Weapon
         Line.Visible = true;
         
         EffectTimer.Start();
+        HitTargetsNear(targetPosition);
+    }
+
+    public void HitTargetsNear(Vector2 targetPosition)
+    {
+        Array<Node> nodes = GetTree().GetNodesInGroup("Ship");
+
+        foreach (Node node in nodes)
+        {
+            if (node is Ship ship)
+            {
+                if (ship.GlobalPosition.DistanceTo(targetPosition) <= HitEffectRadius)
+                {
+                    if (ship != ParentShip)
+                        ship.Hurtbox.ApplyDamage(ship, ParentShip, WeaponStats.Damage,
+                            WeaponStats.ShieldDamage, WeaponStats.PenetratingDamage);
+                }
+            }
+        }
     }
 
     public void HideLine()

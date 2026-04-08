@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ygqdmjrt3bdx" path="res://Scenes/Ships/PlayerShip.tscn" id="1_r150o"]
 [ext_resource type="PackedScene" uid="uid://b15tp7k4xl8jq" path="res://Scenes/Ships/Ship.tscn" id="2_idj7w"]
+[ext_resource type="PackedScene" uid="uid://ww00ggous1cm" path="res://Scenes/Ships/ShipAblativeArmorTest.tscn" id="3_kln2b"]
 
 [node name="Main" type="Node2D" unique_id=1968216983]
 
@@ -10,3 +11,6 @@ position = Vector2(145, 426)
 
 [node name="Ship" parent="." unique_id=572524178 instance=ExtResource("2_idj7w")]
 position = Vector2(490, 296)
+
+[node name="AblativeArmorShip" parent="." unique_id=740789421 instance=ExtResource("3_kln2b")]
+position = Vector2(-654, 723)

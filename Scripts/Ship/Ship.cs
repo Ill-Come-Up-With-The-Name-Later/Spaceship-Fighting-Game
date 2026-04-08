@@ -9,6 +9,8 @@ public partial class Ship : CharacterBody2D
 	public DefenseGenerator DefenseSystem;
 	public WarpDrive WarpDrive;
 	
+	public Hurtbox Hurtbox;
+	
 	public Eventbus Eventbus;
 
 	public WeaponSystem Weapons;
@@ -37,6 +39,8 @@ public partial class Ship : CharacterBody2D
 
 	public override void _Ready()
 	{
+		AddToGroup("Ship");
+		
 		Eventbus = GetNode<Eventbus>("/root/Eventbus");
 		
 		if(Eventbus is null)
@@ -79,9 +83,15 @@ public partial class Ship : CharacterBody2D
 		
 		if(Weapons is null)
 			GD.PrintErr("Weapons not found");
+		
+		Hurtbox = GetNode<Hurtbox>("Hurtbox");
+		if(Hurtbox is null)
+			GD.PrintErr("Hurtbox not found");
 
 		CanMove = true;
 		CanTurn = true;
+
+		DefenseSystem.DefenseActive = true;
 	}
 
 	/// <summary>
@@ -104,6 +114,17 @@ public partial class Ship : CharacterBody2D
 	public bool HasShield()
 	{
 		return DefenseSystem.DefenseActive;
+	}
+
+	/// <summary>
+	/// The amount of power the ship has
+	/// </summary>
+	/// <returns>
+	/// The amount of power the ship has
+	/// </returns>
+	public double AvailablePower()
+	{
+		return FusionReactor.CurrentPower;
 	}
 
 	/// <summary>
@@ -154,6 +175,17 @@ public partial class Ship : CharacterBody2D
 	public void DamageEngine(double damage)
 	{
 		Engine.CurrentHealth = Mathf.Max(0, Engine.CurrentHealth - damage);
+	}
+
+	/// <summary>
+	/// The ship's health
+	/// </summary>
+	/// <returns>
+	/// The ship's health
+	/// </returns>
+	public double Health()
+	{
+		return Hull.CurrentHealth;
 	}
 	
 	public override void _Process(double delta)

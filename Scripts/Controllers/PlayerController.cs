@@ -95,10 +95,24 @@ public partial class PlayerController : Node2D
 		// This sucks
 		Vector2 shipDirection = Vector2.Up.Rotated(ParentShip.Rotation).Normalized();
 		
-		if (shipDirection.AngleTo(mousePosition) > Mathf.DegToRad(ParentShip.Weapons.AttackFOV))
+		if (!CanFireAt(position))
 			return;
 		
 		if(ParentShip.ActiveWeapon() is not null)
-			ParentShip.ActiveWeapon().Fire(position);
+			if(ParentShip.ActiveWeapon().CanFire)
+				ParentShip.ActiveWeapon().Fire(position);
+	}
+	
+	public bool CanFireAt(Vector2 targetGlobalPosition)
+	{
+		Vector2 forward = -Transform.Y.Normalized().Rotated(ParentShip.Rotation);
+		Vector2 toTarget = (targetGlobalPosition - GlobalPosition).Normalized();
+
+		float dot = forward.Dot(toTarget);
+		
+		float halfFovRad = Mathf.DegToRad((float)ParentShip.Weapons.AttackFOV * 0.5f);
+		float threshold = Mathf.Cos(halfFovRad);
+
+		return dot >= threshold;
 	}
 }

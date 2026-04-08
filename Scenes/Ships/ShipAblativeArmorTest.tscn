@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ww00ggous1cm"]
+
+[ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_f56ct"]
+[ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="2_ciqmc"]
+[ext_resource type="Texture2D" uid="uid://dv158k37mij23" path="res://Sprites/icon.svg" id="3_6qrhx"]
+[ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="4_3axdy"]
+[ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="5_488wr"]
+[ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="6_xc3de"]
+[ext_resource type="PackedScene" uid="uid://1t35au06htep" path="res://Scenes/ShipTech/AblativeArmor.tscn" id="7_f56ct"]
+[ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="8_1jddn"]
+[ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="9_je780"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
+radius = 1.0
+
+[node name="Ship" type="CharacterBody2D" unique_id=1450576114]
+script = ExtResource("1_f56ct")
+
+[node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_ciqmc")]
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
+shape = SubResource("CircleShape2D_2b61m")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1715419656]
+texture = ExtResource("3_6qrhx")
+
+[node name="Hull" parent="." unique_id=463253017 instance=ExtResource("4_3axdy")]
+
+[node name="FusionReactor" parent="." unique_id=854488899 instance=ExtResource("5_488wr")]
+
+[node name="Engine" parent="." unique_id=512023654 instance=ExtResource("6_xc3de")]
+
+[node name="AblativeArmor" parent="." unique_id=240673768 instance=ExtResource("7_f56ct")]
+
+[node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("8_1jddn")]
+
+[node name="Technology" type="Node2D" parent="." unique_id=1603245376]
+editor_description = "The parent node for ship technologies that aren't standard ship parts."
+
+[node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
+editor_description = "The parent node for all of a ship's weapons."
+script = ExtResource("9_je780")

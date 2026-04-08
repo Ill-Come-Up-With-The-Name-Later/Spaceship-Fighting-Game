@@ -100,14 +100,15 @@ public partial class Weapon : Technology, IPowerConsumer
     /// </param>
     public virtual void Fire(Vector2 targetPosition)
     {
-        if (!ConsumePowerIfAvailable(ParentShip, 0))
-            return;
-
         if (!CanFire)
             return;
         
-        FiringCooldownTimer.Start();
+        if (!ConsumePowerIfAvailable(ParentShip, 0))
+            return;
+        
         CanFire = false;
+        FiringCooldownTimer.Start();
+        
         
         GD.Print("Weapon fired");
     }
@@ -139,6 +140,7 @@ public partial class Weapon : Technology, IPowerConsumer
     public virtual void SetupProjectile(Projectile projectile)
     {
         GetParent().GetTree().Root.AddChild(projectile);
+        
         projectile.ParentWeapon = this;
         projectile.ParentWeaponStats = WeaponStats;
     }

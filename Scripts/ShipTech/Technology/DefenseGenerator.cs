@@ -50,6 +50,15 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
     
     public override void _PhysicsProcess(double delta)
     {
+        if (CurrentHealth <= 0)
+        {
+            DefenseActive = false;
+            CurrentDefenseHealth = 0;
+        }
+        
+        if(CurrentDefenseHealth <= 0)
+            DefenseActive = false;
+
         if(Regenerating)
             Regenerate(delta);
     }

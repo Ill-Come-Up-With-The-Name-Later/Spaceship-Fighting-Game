@@ -67,5 +67,18 @@ public partial class Hurtbox : Area2D
 			damaged.DamageReactor(damage * 0.1);
 			damaged.DamageEngine(damage * 0.2);
 		}
+		
+		GD.Print("Hull health: " + damaged.Hull.CurrentHealth);
+		GD.Print("Shield Generator Health: " + damaged.DefenseSystem.CurrentHealth + " Shield Up: " + damaged.DefenseSystem.DefenseActive);
+		GD.Print("Shield Health: " + damaged.DefenseSystem.CurrentDefenseHealth);
+		GD.Print("Engine health: " + damaged.Engine.CurrentHealth);
+		GD.Print("Reactor health: " + damaged.FusionReactor.CurrentHealth + " Reactor Fuel: " + damaged.FusionReactor.CurrentFuel);
+		GD.Print("Power: " + ParentShip.AvailablePower() + " Materials: " + damaged.Materials);
+
+		if(damaged.Health() <= 0)
+		{
+			// Replace this with a die method
+			damaged.QueueFree();
+		}
 	}
 }

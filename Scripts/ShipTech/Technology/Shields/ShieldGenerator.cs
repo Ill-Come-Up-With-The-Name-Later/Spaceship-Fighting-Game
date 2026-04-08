@@ -5,6 +5,10 @@ public partial class ShieldGenerator : DefenseGenerator
     public override void _Ready()
     {
         base._Ready();
+        
+        DefenseActive = true;
+        Regenerating = true;
+        ConsumingPower = true;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -12,10 +16,15 @@ public partial class ShieldGenerator : DefenseGenerator
         base._PhysicsProcess(delta);
         ConsumingPower = DefenseActive;
         
-        if(ConsumingPower && CurrentDefenseHealth < DefenseGeneratorStats.DefenseHealth)
+        if(ConsumingPower)
             if(ConsumePowerIfAvailable(ParentShip, delta))
                 if(Regenerating)
                     Regenerate(delta);
+    }
+    
+    public new void Toggle()
+    {
+        DefenseActive = !DefenseActive;
     }
 
     public override bool Regenerate(double delta)
