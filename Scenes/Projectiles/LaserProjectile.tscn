@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bfs6byknnvn2b"]
+
+[ext_resource type="Script" uid="uid://xpocc10hah2" path="res://Scripts/ShipTech/Technology/Projectiles/LaserCannonProjectile.cs" id="1_kv6ed"]
+[ext_resource type="Resource" uid="uid://cs8mc6gmwsd6y" path="res://Resources/Weapons/LaserCannon/LaserCannonProjectileStats.tres" id="2_36xy1"]
+[ext_resource type="PackedScene" uid="uid://cf8clhua5hocf" path="res://Scenes/Helper/Hitbox.tscn" id="2_iale8"]
+[ext_resource type="Texture2D" uid="uid://l41bq4unypfb" path="res://Sprites/Projectiles/LaserCannonProjectile.png" id="4_36xy1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36xy1"]
+
+[node name="LaserProjectile" type="CharacterBody2D" unique_id=436161286]
+script = ExtResource("1_kv6ed")
+ProjectileStats = ExtResource("2_36xy1")
+
+[node name="Hitbox" parent="." unique_id=1252924844 instance=ExtResource("2_iale8")]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=985900745]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_36xy1")
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=796148450]
+shape = SubResource("CircleShape2D_36xy1")
+
+[node name="LifespanTimer" type="Timer" parent="." unique_id=1355311429]
+one_shot = true

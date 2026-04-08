@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://l7jsbwnqqvny"]
+
+[ext_resource type="Script" uid="uid://bk5dutfrkqslb" path="res://Scripts/Resources/Weapons/WeaponData.cs" id="1_4v8h3"]
+
+[resource]
+script = ExtResource("1_4v8h3")
+Damage = 350.0
+FiringCooldown = 0.2

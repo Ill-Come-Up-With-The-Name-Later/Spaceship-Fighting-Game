@@ -65,8 +65,10 @@ public partial class PlayerController : Node2D
 			}
 		}
 
-		if (ParentShip.Velocity.Length() > 0)
-			GD.Print(ParentShip.Velocity);
+		ParentShip.ActiveWeapon = ParentShip.Weapons
+			.NextAvailableOfType(ParentShip.Weapons.ActiveWeaponTypeIndex);
+		
+		WeaponSelection();
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -79,6 +81,30 @@ public partial class PlayerController : Node2D
 		if (@event is InputEventMouseButton mouseEvent)
 			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
 				Eventbus.EmitSignal("MouseClick", GetGlobalMousePosition());
+	}
+
+	public void WeaponSelection()
+	{
+		if (Input.IsActionJustPressed("select_weapon_0"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 0;
+		else if (Input.IsActionJustPressed("select_weapon_1"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 1;
+		else if (Input.IsActionJustPressed("select_weapon_2"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 2;
+		else if (Input.IsActionJustPressed("select_weapon_3"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 3;
+		else if (Input.IsActionJustPressed("select_weapon_4"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 4;
+		else if (Input.IsActionJustPressed("select_weapon_5"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 5;
+		else if (Input.IsActionJustPressed("select_weapon_6"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 6;
+		else if (Input.IsActionJustPressed("select_weapon_7"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 7;
+		else if (Input.IsActionJustPressed("select_weapon_8"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 8;
+		else if (Input.IsActionJustPressed("select_weapon_9"))
+			ParentShip.Weapons.ActiveWeaponTypeIndex = 9;
 	}
 
 	/// <summary>

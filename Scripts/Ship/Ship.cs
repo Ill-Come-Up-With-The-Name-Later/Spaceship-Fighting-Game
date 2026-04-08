@@ -1,6 +1,5 @@
 using Godot;
 using SpaceshipFightingGame.Scripts.Controllers;
-using SpaceshipFightingGame.Scripts.Resources.Technology;
 
 public partial class Ship : CharacterBody2D
 {

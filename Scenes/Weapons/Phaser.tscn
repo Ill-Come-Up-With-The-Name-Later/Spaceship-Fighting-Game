@@ -17,6 +17,7 @@ Weights = ExtResource("4_44mus")
 wait_time = 0.2
 
 [node name="FiringTimer" type="Timer" parent="." unique_id=894285623]
+one_shot = true
 
 [node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
 

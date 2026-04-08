@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://cs8mc6gmwsd6y"]
+
+[ext_resource type="Script" uid="uid://b61umkbyn34mq" path="res://Scripts/Resources/Weapons/ProjectileData.cs" id="1_ouhl6"]
+
+[resource]
+script = ExtResource("1_ouhl6")
+Lifespan = 3.0
+Speed = 50.0

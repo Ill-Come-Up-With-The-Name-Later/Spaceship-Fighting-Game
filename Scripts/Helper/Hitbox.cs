@@ -17,6 +17,8 @@ public partial class Hitbox : Area2D
 		
 		if(ParentProjectile is null)
 			GD.PrintErr("Parent projectile is null");
+
+		ParentShip = ParentProjectile.ParentShip;
 		
 		Collider = GetNode<CollisionShape2D>("Collision");
 		
@@ -44,9 +46,10 @@ public partial class Hitbox : Area2D
 	/// </param>
 	public void OnEntered(Area2D area)
 	{
-		if (area.GetParent() is Hurtbox hurtbox)
+		GD.Print(area.Name);
+		if (area is Hurtbox hurtbox)
 		{
-			if (hurtbox.ParentShip == ParentShip)
+			if (hurtbox.ParentShip == ParentProjectile.ParentShip)
 				return;
 			
 			Eventbus.EmitSignal("ShipDamaged", hurtbox.ParentShip, ParentShip, 

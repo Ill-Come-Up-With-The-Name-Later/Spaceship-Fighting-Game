@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://donwana8rbid6"]
+
+[ext_resource type="Script" uid="uid://c75vx26v7gi8n" path="res://Scripts/ShipTech/Technology/Weapons/LaserCannon/LaserCannon.cs" id="1_opwbd"]
+[ext_resource type="Resource" uid="uid://l7jsbwnqqvny" path="res://Resources/Weapons/LaserCannon/LaserCannonStats.tres" id="2_dv520"]
+[ext_resource type="Resource" uid="uid://dwvb2win7tntc" path="res://Resources/Weapons/LaserCannon/LaserCannonPowerConsumption.tres" id="3_ynq1b"]
+[ext_resource type="Resource" uid="uid://cnm80vtlrej2x" path="res://Resources/Weapons/LaserCannon/LaserCannonWeights.tres" id="4_bx4l5"]
+[ext_resource type="PackedScene" uid="uid://bfs6byknnvn2b" path="res://Scenes/Projectiles/LaserProjectile.tscn" id="4_dv520"]
+
+[node name="LaserCannon" type="Node2D" unique_id=1826866972 node_paths=PackedStringArray("ProjectileSource")]
+script = ExtResource("1_opwbd")
+WeaponStats = ExtResource("2_dv520")
+PowerConsumption = ExtResource("3_ynq1b")
+ProjectileSource = NodePath("ProjectileSource")
+ProjectileScene = ExtResource("4_dv520")
+Weights = ExtResource("4_bx4l5")
+
+[node name="ProjectileSource" type="Marker2D" parent="." unique_id=1048220781]
+
+[node name="FiringTimer" type="Timer" parent="." unique_id=1793119475]
+one_shot = true

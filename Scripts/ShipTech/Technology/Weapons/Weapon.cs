@@ -109,8 +109,25 @@ public partial class Weapon : Technology, IPowerConsumer
         CanFire = false;
         FiringCooldownTimer.Start();
         
-        
         GD.Print("Weapon fired");
+    }
+
+    public virtual void FireProjectile(Vector2 targetPosition)
+    {
+        if (!CanFire)
+            return;
+        
+        if (!ConsumePowerIfAvailable(ParentShip, 0))
+            return;
+
+        if (ProjectileSource is null)
+            return;
+
+        if (ProjectileSource is null)
+            return;
+
+        Projectile proj = (Projectile)ProjectileScene.Instantiate();
+        SetupProjectile(proj, targetPosition);
     }
 
     /// <summary>
@@ -130,18 +147,23 @@ public partial class Weapon : Technology, IPowerConsumer
 
     /// <summary>
     /// Sets up a projectile's basic properties.
-    /// Velocity/facing direction not included.
     /// Override this if you need a homing projectile
     /// and you have to set the target.
     /// </summary>
     /// <param name="projectile">
     /// The projectile
     /// </param>
-    public virtual void SetupProjectile(Projectile projectile)
+    public virtual void SetupProjectile(Projectile projectile, Vector2 targetPosition)
     {
         GetParent().GetTree().Root.AddChild(projectile);
         
         projectile.ParentWeapon = this;
+        projectile.ParentShip = ParentShip;
         projectile.ParentWeaponStats = WeaponStats;
+        projectile.GlobalPosition = ProjectileSource.GlobalPosition + ((targetPosition - projectile.GlobalPosition).Normalized() * 20);
+        
+        projectile.LookAt(targetPosition);
+        projectile.Velocity = (targetPosition - projectile.GlobalPosition).Normalized()
+                        * (float)projectile.ProjectileStats.Speed;
     }
 }

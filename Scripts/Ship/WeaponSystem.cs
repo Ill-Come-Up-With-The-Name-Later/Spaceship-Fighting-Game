@@ -44,7 +44,7 @@ public partial class WeaponSystem : Node2D
             }
         }
         
-        GD.Print("Weapons: " + WeaponCount());
+        GD.Print("Weapons: " + WeaponCount() + " Weapon Types: " + Weapons.Count);
         
         if (Weapons.Count > 0)
             ActiveWeapon = Weapons[ActiveWeaponTypeIndex][0];

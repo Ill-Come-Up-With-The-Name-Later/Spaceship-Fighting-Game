@@ -6,29 +6,23 @@ using SpaceshipFightingGame.Scripts.Resources.Weapons;
 /// </summary>
 public partial class Projectile : CharacterBody2D
 {
+    public Weapon ParentWeapon;
+    
     public WeaponData ParentWeaponStats;
     
     [Export]
     public ProjectileData ProjectileStats;
     
-    public Weapon ParentWeapon;
+    public Ship ParentShip;
 
     public Timer LifespanTimer;
     
     public Hitbox Hitbox;
 
+    public Sprite2D Sprite;
+
     public override void _Ready()
     {
-        ParentWeapon = GetParent() as Weapon;
-        
-        if(ParentWeapon is null)
-            GD.PrintErr("No parent weapon found");
- 
-        ParentWeaponStats = ParentWeapon.WeaponStats;
-        
-        if(ParentWeaponStats is null)
-            GD.PrintErr("Parent weapon stats not found");
-        
         Hitbox = GetNode<Hitbox>("Hitbox");
         
         if(Hitbox is null)
@@ -38,6 +32,8 @@ public partial class Projectile : CharacterBody2D
         
         if(LifespanTimer is null)
             GD.PrintErr("Lifespan timer not found");
+        
+        Sprite = GetNode<Sprite2D>("Sprite");
 
         LifespanTimer.Start();
         LifespanTimer.Timeout += OnLifespanEnded;
@@ -63,7 +59,7 @@ public partial class Projectile : CharacterBody2D
     /// </param>
     public virtual void Travel(double delta)
     {
-        MoveAndSlide();
+        MoveAndCollide(Velocity);
     }
 
     /// <summary>
