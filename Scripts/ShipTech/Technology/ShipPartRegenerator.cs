@@ -18,6 +18,8 @@ public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsum
 
     public bool Consuming { get; set; }
 
+    public bool CanToggle { get; set; }
+
     public ShipPart ParentPart;
     
     public override void _Ready()
@@ -34,7 +36,10 @@ public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsum
 
     public override void _PhysicsProcess(double delta)
     {
-        base._PhysicsProcess(delta);
+        if (ParentPart.ParentShip.Materials < ConsumptionRate.PerSecondRate * delta)
+            CanToggle = false;
+        else
+            CanToggle = true;
         
         if(Regenerating && Consuming)
             if(Consume(delta))
@@ -63,6 +68,9 @@ public partial class ShipPartRegenerator : Node2D, IRegenerator, IResourceConsum
 
     public void Toggle()
     {
+        if (!CanToggle)
+            return;
+        
         Regenerating = !Regenerating;
         Consuming = Regenerating;
     }

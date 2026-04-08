@@ -23,6 +23,8 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, 
     public bool Consuming { get; set; }
     public bool Regenerating { get; set; }
 
+    public bool CanToggle { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -40,9 +42,12 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, 
         {
             Regenerating = false;
             Consuming = false;
+            CanToggle = false;
+            return;
         }
         
         Consuming = Regenerating;
+        CanToggle = true;
 
         if(Regenerating)
             if(Consuming && Regenerate(delta))
@@ -51,6 +56,9 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, 
     
     public void Toggle()
     {
+        if (!CanToggle)
+            return;
+        
         Regenerating = !Regenerating;
     }
 

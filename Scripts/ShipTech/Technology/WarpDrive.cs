@@ -26,6 +26,10 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
 
     public bool Active => WarpDriveState != WarpDriveState.Inactive;
 
+    public bool CanToggle { get; set; }
+    
+    public Eventbus Eventbus;
+
     public override void _Ready()
     {
         base._Ready();
@@ -50,6 +54,11 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         Counter = 0;
         AccelerationFrames = (int)(60 * WarpDriveStats.AccelerationTime);
         DecelerationFrames = (int)(60 * WarpDriveStats.DecelerationTime);
+        
+        Eventbus = GetNode<Eventbus>("/root/Eventbus");
+        
+        if(Eventbus is null)
+            GD.PrintErr("Eventbus was not found");
     }
 
     public override void _ExitTree()
@@ -99,10 +108,14 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         ParentShip.Velocity = Vector2.Zero;
         ParentShip.CanMove = true;
         ConsumingPower = false;
+        
+        Eventbus.EmitSignal("ShipLeaveWarp", ParentShip);
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        CanToggle = CanActivate();
+        
         if (Active)
         {
             double speedMultiplier = 1;
@@ -141,7 +154,9 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     }
 
     /// <summary>
-    /// If the warp drive can be activated
+    /// If the warp drive can be activated.
+    /// Override if the drive needs some special condition
+    /// like a separate resource or some health amount
     /// </summary>
     /// <returns>
     /// If the warp drive can be activated
@@ -162,6 +177,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         Counter = 0;
         
         EnterAcceleration();
+        Eventbus.EmitSignal("ShipEnterWarp", ParentShip);
     }
 
     public virtual void DeactivateWarp()
@@ -183,6 +199,9 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
 
     public void Toggle()
     {
+        if (!CanToggle)
+            return;
+        
         if (Active)
             DeactivateWarp();
         else

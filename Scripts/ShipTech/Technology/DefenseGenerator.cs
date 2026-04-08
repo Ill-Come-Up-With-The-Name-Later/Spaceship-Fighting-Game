@@ -18,6 +18,8 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
     [Export]
     public PowerConsumptionData PowerConsumption { get; set; }
 
+    public bool CanToggle { get; set; }
+
     public double CurrentConsumption { get; set; }
 
     public bool ConsumingPower { get; set; }
@@ -54,6 +56,9 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
 
     public void Toggle()
     {
+        if (!CanToggle)
+            return;
+        
         DefenseActive = !DefenseActive;
     }
 

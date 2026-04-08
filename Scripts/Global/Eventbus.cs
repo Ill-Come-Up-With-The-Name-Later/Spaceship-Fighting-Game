@@ -8,4 +8,10 @@ public partial class Eventbus : Node
     [Signal]
     public delegate void ShipDamagedEventHandler(Ship damaged, Ship damager,
         double damage, double shieldDamage, double penetrationDamage);
+    
+    [Signal]
+    public delegate void ShipEnterWarpEventHandler(Ship ship);
+    
+    [Signal]
+    public delegate void ShipLeaveWarpEventHandler(Ship ship);
 }
