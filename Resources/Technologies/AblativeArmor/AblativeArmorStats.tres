@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource("1_4x6ad")
 DefenseHealth = 50000.0
-DamageReductionPercent = 0.9
+DamageReductionPercent = 0.85

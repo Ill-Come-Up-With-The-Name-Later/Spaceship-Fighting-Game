@@ -21,7 +21,7 @@ public partial class AblativeArmor : DefenseGenerator
             if(!DefenseActive && ConsumePowerIfAvailable(ParentShip, delta))
                 Regenerate(delta);
         
-        DefensePercentage = Mathf.Min(0.9, CurrentDefenseHealth / DefenseGeneratorStats.DefenseHealth);
+        DefensePercentage = Mathf.Min(DefenseGeneratorStats.DamageReductionPercent, CurrentDefenseHealth / DefenseGeneratorStats.DefenseHealth);
     }
 
     public new void Toggle()
