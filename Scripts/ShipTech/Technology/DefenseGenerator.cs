@@ -29,6 +29,9 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
 
     public bool Regenerating { get; set; }
 
+    /// <summary>
+    /// The health on the defense system, not the part itself
+    /// </summary>
     public double CurrentDefenseHealth;
 
     public override void _Ready()

@@ -15,6 +15,12 @@ public partial class Weapon : Technology, IPowerConsumer
     
     [Export]
     public PowerConsumptionData PowerConsumption { get; set; }
+
+    [Export]
+    public Marker2D ProjectileSource;
+    
+    [Export]
+    public PackedScene ProjectileScene;
     
     public bool ConsumingPower { get; set; }
 
@@ -39,6 +45,9 @@ public partial class Weapon : Technology, IPowerConsumer
         
         if(FiringCooldownTimer is null)
             GD.PrintErr("No firing cooldown timer");
+        
+        if(ProjectileScene is not null && ProjectileSource is null)
+            GD.PrintErr("No projectile source");
         
         FiringCooldownTimer.Timeout += EndFiringCooldown;
     }
@@ -84,6 +93,8 @@ public partial class Weapon : Technology, IPowerConsumer
         
         FiringCooldownTimer.Start();
         CanFire = false;
+        
+        GD.Print("Weapon fired");
     }
 
     /// <summary>

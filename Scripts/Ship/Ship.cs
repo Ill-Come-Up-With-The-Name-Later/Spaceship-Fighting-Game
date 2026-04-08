@@ -94,6 +94,67 @@ public partial class Ship : CharacterBody2D
 	{
 		return Weapons.ActiveWeapon;
 	}
+
+	/// <summary>
+	/// If the ship has shields/armor
+	/// </summary>
+	/// <returns>
+	/// If the ship has shields/armor
+	/// </returns>
+	public bool HasShield()
+	{
+		return DefenseSystem.DefenseActive;
+	}
+
+	/// <summary>
+	/// Damage the hull
+	/// </summary>
+	/// <param name="damage">
+	/// The damage to deal
+	/// </param>
+	public void DamageHull(double damage)
+	{
+		Hull.CurrentHealth = Mathf.Max(0, Hull.CurrentHealth - damage);
+	}
+
+	/// <summary>
+	/// Damages the fusion reactor
+	/// </summary>
+	/// <param name="damage">
+	/// The amount of damage to deal
+	/// </param>
+	public void DamageReactor(double damage)
+	{
+		FusionReactor.CurrentHealth = Mathf.Max(0, FusionReactor.CurrentHealth - damage);
+	}
+
+	/// <summary>
+	/// Damages the shields/armor
+	/// </summary>
+	/// <param name="damage">
+	/// The amount of damage to deal
+	/// </param>
+	public void DamageShield(double damage)
+	{
+		if (DefenseSystem.DefenseActive)
+		{
+			DefenseSystem.CurrentDefenseHealth = Mathf.Max(0, DefenseSystem.CurrentDefenseHealth - damage);
+			DefenseSystem.CurrentHealth = Mathf.Max(0, DefenseSystem.CurrentHealth - (damage * 0.1));
+		}
+		else
+			DefenseSystem.CurrentHealth = Mathf.Max(0, DefenseSystem.CurrentHealth - damage);
+	}
+
+	/// <summary>
+	/// Damages the engine
+	/// </summary>
+	/// <param name="damage">
+	/// The amount of damage to deal
+	/// </param>
+	public void DamageEngine(double damage)
+	{
+		Engine.CurrentHealth = Mathf.Max(0, Engine.CurrentHealth - damage);
+	}
 	
 	public override void _Process(double delta)
 	{

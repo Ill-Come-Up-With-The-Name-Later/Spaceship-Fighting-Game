@@ -16,6 +16,9 @@ public partial class ShipPart : Technology
 
     public Ship ParentShip;
 
+    /// <summary>
+    /// The health of the part itself
+    /// </summary>
     public double CurrentHealth;
 
     public override void _Ready()

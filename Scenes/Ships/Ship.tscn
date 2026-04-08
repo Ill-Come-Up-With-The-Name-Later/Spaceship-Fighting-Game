@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dv158k37mij23" path="res://Sprites/icon.svg" id="1_2opgj"]
 [ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_i1rsg"]
+[ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="2_272pc"]
 [ext_resource type="PackedScene" uid="uid://b28vrjkh228m3" path="res://Scenes/Controllers/PlayerController.tscn" id="2_i1rsg"]
 [ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="4_2b61m"]
 [ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="7_o5i31"]
@@ -15,6 +16,8 @@ radius = 1.0
 
 [node name="Ship" type="CharacterBody2D" unique_id=1450576114]
 script = ExtResource("1_i1rsg")
+
+[node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_272pc")]
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
 shape = SubResource("CircleShape2D_2b61m")

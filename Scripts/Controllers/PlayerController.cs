@@ -71,6 +71,12 @@ public partial class PlayerController : Node2D
 				Eventbus.EmitSignal("MouseClick", mouseEvent.Position);
 	}
 
+	/// <summary>
+	/// Attacks with the active weapon
+	/// </summary>
+	/// <param name="position">
+	/// The position clicked by the player
+	/// </param>
 	public void TriggerAttack(Vector2 position)
 	{
 		GD.Print("Player clicked " + position);
