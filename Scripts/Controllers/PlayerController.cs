@@ -40,6 +40,8 @@ public partial class PlayerController : Node2D
 			if (Input.IsActionPressed("accelerate"))
 				ParentShip.Velocity =
 					(Vector2.Up * (float)ParentShip.Engine.TrueMoveSpeed()).Rotated(ParentShip.GlobalRotation);
+			else
+				ParentShip.Velocity = Vector2.Zero;
 		}
 
 		if (ParentShip.CanTurn)
@@ -62,6 +64,14 @@ public partial class PlayerController : Node2D
 					ParentShip.GlobalRotation += Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius);
 			}
 		}
+
+		if (ParentShip.Velocity.Length() > 0)
+			GD.Print(ParentShip.Velocity);
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		ParentShip.MoveAndSlide();
 	}
 
 	public override void _Input(InputEvent @event)
