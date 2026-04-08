@@ -26,3 +26,5 @@ one_shot = true
 
 [node name="DecelerationTimer" type="Timer" parent="." unique_id=217691203]
 one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1895495104]

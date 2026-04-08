@@ -18,4 +18,7 @@ public partial class WarpDriveData : Resource
 
     [Export]
     public double TurnRate;
+
+    [Export] 
+    public double Cooldown;
 }

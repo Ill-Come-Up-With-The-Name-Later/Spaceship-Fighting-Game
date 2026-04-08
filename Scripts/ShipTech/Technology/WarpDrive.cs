@@ -19,6 +19,8 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     public Timer AccelerationTimer;
     public Timer DecelerationTimer;
 
+    public Timer CooldownTimer;
+
     protected int Counter;
 
     protected int AccelerationFrames;
@@ -47,6 +49,10 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         DecelerationTimer = GetNode<Timer>("DecelerationTimer");
         DecelerationTimer.WaitTime = WarpDriveStats.DecelerationTime;
         DecelerationTimer.Timeout += ExitWarpState;
+        
+        CooldownTimer = GetNode<Timer>("CooldownTimer");
+        CooldownTimer.WaitTime = WarpDriveStats.Cooldown;
+        CooldownTimer.Timeout += EndCooldown;
 
         CurrentConsumption = PowerConsumption.Amount;
         ConsumingPower = false;
@@ -59,6 +65,13 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         
         if(Eventbus is null)
             GD.PrintErr("Eventbus was not found");
+
+        CanToggle = true;
+    }
+
+    public void EndCooldown()
+    {
+        CanToggle = true;
     }
 
     public override void _ExitTree()
@@ -66,6 +79,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         WarpDriveTimer.Timeout -= TransitionToDeceleration;
         AccelerationTimer.Timeout -= TransitionToWarping;
         DecelerationTimer.Timeout -= ExitWarpState;
+        CooldownTimer.Timeout -= EndCooldown;
     }
 
     /// <summary>
@@ -110,12 +124,12 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         ConsumingPower = false;
         
         Eventbus.EmitSignal("ShipLeaveWarp", ParentShip);
+        CanToggle = false;
+        CooldownTimer.Start();
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        CanToggle = CanActivate();
-        
         if (Active)
         {
             double speedMultiplier = 1;
@@ -126,21 +140,21 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
             if (WarpDriveState == WarpDriveState.Accelerating || WarpDriveState == WarpDriveState.Decelerating)
             {
                 Counter++;
-                CurrentConsumption = PowerConsumption.Amount *  0.2;
+                CurrentConsumption = PowerConsumption.Amount * 0.2;
             }
 
             if (WarpDriveState == WarpDriveState.Accelerating)
                 speedMultiplier = Mathf.Pow(WarpDriveStats.SpeedMultiplier, 
                     (double)Counter / AccelerationFrames);
             else if (WarpDriveState == WarpDriveState.Decelerating)
-                speedMultiplier = Mathf.Pow(1 / WarpDriveStats.SpeedMultiplier, 
+                speedMultiplier = Mathf.Pow(1.0 / WarpDriveStats.SpeedMultiplier, 
                     (double)Counter / AccelerationFrames);
             else if (WarpDriveState == WarpDriveState.Warping)
             {
                 speedMultiplier = WarpDriveStats.SpeedMultiplier;
                 CurrentConsumption = PowerConsumption.Amount;
             }
-
+            
             ParentShip.Velocity =
                 (Vector2.Up * (float)ParentShip.Engine.TrueMoveSpeed() * (float)speedMultiplier).Rotated(ParentShip
                     .GlobalRotation);
