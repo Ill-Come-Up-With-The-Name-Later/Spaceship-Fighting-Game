@@ -6,7 +6,7 @@
 [node name="Main" type="Node2D" unique_id=1968216983]
 
 [node name="PlayerShip" parent="." unique_id=1450576114 instance=ExtResource("1_r150o")]
-position = Vector2(258, 368)
+position = Vector2(145, 426)
 
 [node name="Ship" parent="." unique_id=572524178 instance=ExtResource("2_idj7w")]
 position = Vector2(490, 296)
