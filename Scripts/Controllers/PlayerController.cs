@@ -74,5 +74,8 @@ public partial class PlayerController : Node2D
 	public void TriggerAttack(Vector2 position)
 	{
 		GD.Print("Player clicked " + position);
+		
+		if(ParentShip.ActiveWeapon() is not null)
+			ParentShip.ActiveWeapon().Fire(position);
 	}
 }

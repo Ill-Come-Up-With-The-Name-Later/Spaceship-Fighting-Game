@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b28vrjkh228m3" path="res://Scenes/Controllers/PlayerController.tscn" id="2_i1rsg"]
 [ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="4_2b61m"]
 [ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="7_o5i31"]
+[ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="9_hh1ih"]
 [ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="11_qub6j"]
 [ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="14_oyhsx"]
 [ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="19_7smpd"]
@@ -34,5 +35,8 @@ texture = ExtResource("1_2opgj")
 [node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("19_7smpd")]
 
 [node name="Technology" type="Node2D" parent="." unique_id=1603245376]
+editor_description = "The parent node for ship technologies that aren't standard ship parts."
 
 [node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
+editor_description = "The parent node for all of a ship's weapons."
+script = ExtResource("9_hh1ih")

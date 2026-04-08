@@ -55,7 +55,7 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
     }
 
     public abstract bool Regenerate(double delta);
-    
+
     public bool ConsumePowerIfAvailable(Ship ship, double delta)
     {
         if (CurrentConsumption > ship.FusionReactor.CurrentPower)

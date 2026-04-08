@@ -10,6 +10,8 @@ public partial class Ship : CharacterBody2D
 	public WarpDrive WarpDrive;
 	
 	public Eventbus Eventbus;
+
+	public WeaponSystem Weapons;
 	
 	public bool CanMove;
 	public bool CanTurn;
@@ -73,8 +75,24 @@ public partial class Ship : CharacterBody2D
 		if(WarpDrive is null)
 			GD.PrintErr("Warp Drive not found");
 
+		Weapons = GetNode<WeaponSystem>("WeaponSystem");
+		
+		if(Weapons is null)
+			GD.PrintErr("Weapons not found");
+
 		CanMove = true;
 		CanTurn = true;
+	}
+
+	/// <summary>
+	/// Gets the ship's active weapon
+	/// </summary>
+	/// <returns>
+	/// The ship's active weapon
+	/// </returns>
+	public Weapon ActiveWeapon()
+	{
+		return Weapons.ActiveWeapon;
 	}
 	
 	public override void _Process(double delta)

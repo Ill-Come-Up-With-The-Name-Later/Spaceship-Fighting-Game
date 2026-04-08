@@ -35,5 +35,5 @@ public interface IPowerConsumer
     /// <returns>
     /// If the ship was able to consume power
     /// </returns>
-    public bool ConsumePowerIfAvailable(Ship ship, double delta);
+    public bool ConsumePowerIfAvailable(global::Ship ship, double delta);
 }
