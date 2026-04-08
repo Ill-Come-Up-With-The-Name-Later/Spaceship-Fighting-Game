@@ -13,12 +13,24 @@ public partial class Weapon : Technology, IPowerConsumer
     [Export]
     public WeaponData WeaponStats { get; set; }
     
+    /// <summary>
+    /// For weapons, the power consumption
+    /// is not per second, it is per shot
+    /// </summary>
     [Export]
     public PowerConsumptionData PowerConsumption { get; set; }
-
+    
+    /// <summary>
+    /// Optional, use if the weapon shoots
+    /// a projectile
+    /// </summary>
     [Export]
     public Marker2D ProjectileSource;
     
+    /// <summary>
+    /// Optional, use with ProjectileSource
+    /// if the weapon shoots a projectile
+    /// </summary>
     [Export]
     public PackedScene ProjectileScene;
     
@@ -110,5 +122,21 @@ public partial class Weapon : Technology, IPowerConsumer
     public virtual void Fire(Ship target)
     {
         Fire(target.GlobalPosition);
+    }
+
+    /// <summary>
+    /// Sets up a projectile's basic properties.
+    /// Velocity/facing direction not included.
+    /// Override this if you need a homing projectile
+    /// and you have to set the target.
+    /// </summary>
+    /// <param name="projectile">
+    /// The projectile
+    /// </param>
+    public virtual void SetupProjectile(Projectile projectile)
+    {
+        GetParent().GetTree().Root.AddChild(projectile);
+        projectile.ParentWeapon = this;
+        projectile.ParentWeaponStats = WeaponStats;
     }
 }

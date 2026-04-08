@@ -44,7 +44,7 @@ public partial class Hitbox : Area2D
 	/// </param>
 	public void OnEntered(Area2D area)
 	{
-		if (area is Hurtbox hurtbox)
+		if (area.GetParent() is Hurtbox hurtbox)
 		{
 			if (hurtbox.ParentShip == ParentShip)
 				return;

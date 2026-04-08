@@ -135,7 +135,8 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
 
         if (Input.IsActionJustPressed("toggle_warp_drive"))
         {
-            Toggle();
+            if(WarpDriveState is not (WarpDriveState.Accelerating or WarpDriveState.Decelerating))
+                Toggle();
         }
     }
 
