@@ -31,7 +31,7 @@ public partial class ShieldGenerator : DefenseGenerator
     {
         if (CurrentDefenseHealth < DefenseGeneratorStats.DefenseHealth)
         {
-            CurrentDefenseHealth = Mathf.Max(DefenseGeneratorStats.DefenseHealth,
+            CurrentDefenseHealth = Mathf.Min(DefenseGeneratorStats.DefenseHealth,
                 CurrentDefenseHealth + (RegenerationRate.PerSecondRate * delta));
 
             return true;

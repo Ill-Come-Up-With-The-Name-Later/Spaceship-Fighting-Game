@@ -58,7 +58,8 @@ public partial class Hurtbox : Area2D
 		if (damaged.HasShield())
 		{
 			damaged.DamageShield(damage + shieldDamage);
-			damaged.DamageHull(penetratingDamage * 0.5);
+			damaged.DamageHull(penetratingDamage * 0.5 + 
+			                   (damage * (1 - damaged.DefenseSystem.DefensePercentage)));
 		}
 		else
 		{

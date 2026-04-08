@@ -66,7 +66,7 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, 
     {
         if (CurrentPower < ReactorStats.PowerCapacity)
         {
-            CurrentPower = Mathf.Max(ReactorStats.PowerCapacity,
+            CurrentPower = Mathf.Min(ReactorStats.PowerCapacity,
                 CurrentPower + (RegenerationRate.PerSecondRate * delta));
             
             return true;

@@ -35,6 +35,12 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
     /// The health on the defense system, not the part itself
     /// </summary>
     public double CurrentDefenseHealth;
+    
+    /// <summary>
+    /// The percent of damage reduction being
+    /// provided
+    /// </summary>
+    public double DefensePercentage;
 
     public override void _Ready()
     {
@@ -46,6 +52,8 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
         DefenseActive = false;
         Regenerating = true;
         ConsumingPower = false;
+
+        DefensePercentage = DefenseGeneratorStats.DamageReductionPercent;
     }
     
     public override void _PhysicsProcess(double delta)
@@ -58,9 +66,6 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
         
         if(CurrentDefenseHealth <= 0)
             DefenseActive = false;
-
-        if(Regenerating)
-            Regenerate(delta);
     }
 
     public void Toggle()

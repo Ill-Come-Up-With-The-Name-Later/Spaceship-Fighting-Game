@@ -1,5 +1,6 @@
 using Godot;
 using SpaceshipFightingGame.Scripts.Controllers;
+using SpaceshipFightingGame.Scripts.Resources.Technology;
 
 public partial class Ship : CharacterBody2D
 {
@@ -23,14 +24,29 @@ public partial class Ship : CharacterBody2D
 	/// <summary>
 	/// Amount of materials the ship has
 	/// </summary>
-	public double Materials { get => Hull.CurrentMaterials; 
-		set => Hull.CurrentMaterials = value; } 
+	public double Materials 
+	{
+		get => Hull.CurrentMaterials; 
+		set => Hull.CurrentMaterials = value;
+	} 
 	
 	/// <summary>
 	/// The ship's current power amount
 	/// </summary>
-	public double CurrentPower { get => FusionReactor.CurrentPower; 
-		set => FusionReactor.CurrentPower = value; }
+	public double CurrentPower
+	{ 
+		get => FusionReactor.CurrentPower; 
+		set => FusionReactor.CurrentPower = value; 
+	}
+
+	/// <summary>
+	/// The ship's active weapon
+	/// </summary>
+	public Weapon ActiveWeapon
+	{
+		get => Weapons.ActiveWeapon;
+		set => Weapons.ActiveWeapon = value;
+	}
 
 	public override void _EnterTree()
 	{
@@ -94,13 +110,10 @@ public partial class Ship : CharacterBody2D
 		DefenseSystem.DefenseActive = true;
 	}
 	
-	public Weapon ActiveWeapon
+	public override void _Process(double delta)
 	{
-		get { return Weapons.ActiveWeapon; }
-		set { Weapons.ActiveWeapon = value; }
 	}
-
-
+	
 	/// <summary>
 	/// If the ship has shields/armor
 	/// </summary>
@@ -182,9 +195,5 @@ public partial class Ship : CharacterBody2D
 	public double Health()
 	{
 		return Hull.CurrentHealth;
-	}
-	
-	public override void _Process(double delta)
-	{
 	}
 }
