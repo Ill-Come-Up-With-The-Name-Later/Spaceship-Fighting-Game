@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="7_6bx23"]
 [ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="8_hhqjx"]
 [ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="9_qclkc"]
+[ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="11_od1sp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
 radius = 1.0
@@ -46,3 +47,7 @@ editor_description = "The parent node for ship technologies that aren't standard
 [node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
 editor_description = "The parent node for all of a ship's weapons."
 script = ExtResource("9_qclkc")
+AttackFOV = 90.0
+
+[node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("11_od1sp")]
+Range = 0.0

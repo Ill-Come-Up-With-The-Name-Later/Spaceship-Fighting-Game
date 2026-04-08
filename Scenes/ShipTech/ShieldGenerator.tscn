@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://wduiwq5ll47r" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorRegenStats.tres" id="3_epuxq"]
 [ext_resource type="Resource" uid="uid://b8vlpuar8j82y" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorPowerConsumption.tres" id="4_5jbjj"]
 [ext_resource type="Resource" uid="uid://c4ecsgtubcpqw" path="res://Resources/Technologies/ShieldGenerator/ShieldGeneratorHealthStats.tres" id="5_oik76"]
+[ext_resource type="Resource" uid="uid://cv4k05hwld4hp" path="res://Resources/Technologies/ShipPartWeightData.tres" id="6_05exr"]
 [ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="6_epuxq"]
 [ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="7_oik76"]
 [ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="8_05exr"]
@@ -15,6 +16,7 @@ DefenseGeneratorStats = ExtResource("2_ce0bj")
 RegenerationRate = ExtResource("3_epuxq")
 PowerConsumption = ExtResource("4_5jbjj")
 GenericStats = ExtResource("5_oik76")
+Weights = ExtResource("6_05exr")
 
 [node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("6_epuxq")]
 RegenerationRate = ExtResource("7_oik76")

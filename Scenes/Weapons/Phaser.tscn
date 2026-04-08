@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://btufjt3b5at2k"]
+
+[ext_resource type="Script" uid="uid://crel553vdsxfo" path="res://Scripts/ShipTech/Technology/Weapons/Phaser/Phaser.cs" id="1_44mus"]
+[ext_resource type="Resource" uid="uid://n57wuvken05k" path="res://Resources/Weapons/Phaser/PhaserStats.tres" id="2_kkhta"]
+[ext_resource type="Resource" uid="uid://d2rmaqgxqfoub" path="res://Resources/Weapons/Phaser/PhaserPowerConsumption.tres" id="3_44mus"]
+[ext_resource type="Resource" uid="uid://6v6e83n2xun7" path="res://Resources/Weapons/Phaser/PhaserWeights.tres" id="4_44mus"]
+
+[node name="Phaser" type="Node2D" unique_id=189030110]
+script = ExtResource("1_44mus")
+Range = 1000.0
+WeaponStats = ExtResource("2_kkhta")
+PowerConsumption = ExtResource("3_44mus")
+Weights = ExtResource("4_44mus")
+
+[node name="EffectTimer" type="Timer" parent="." unique_id=530172594]
+wait_time = 0.2
+
+[node name="FiringTimer" type="Timer" parent="." unique_id=894285623]
+
+[node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
+
+[node name="Line" type="Line2D" parent="." unique_id=565697137]

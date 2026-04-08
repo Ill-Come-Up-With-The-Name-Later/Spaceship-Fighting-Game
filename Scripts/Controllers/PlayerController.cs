@@ -78,7 +78,7 @@ public partial class PlayerController : Node2D
 	{
 		if (@event is InputEventMouseButton mouseEvent)
 			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
-				Eventbus.EmitSignal("MouseClick", mouseEvent.Position);
+				Eventbus.EmitSignal("MouseClick", GetGlobalMousePosition());
 	}
 
 	/// <summary>
@@ -90,6 +90,13 @@ public partial class PlayerController : Node2D
 	public void TriggerAttack(Vector2 position)
 	{
 		GD.Print("Player clicked " + position);
+
+		Vector2 mousePosition = GetGlobalMousePosition();
+		// This sucks
+		Vector2 shipDirection = Vector2.Up.Rotated(ParentShip.Rotation).Normalized();
+		
+		if (shipDirection.AngleTo(mousePosition) > Mathf.DegToRad(ParentShip.Weapons.AttackFOV))
+			return;
 		
 		if(ParentShip.ActiveWeapon() is not null)
 			ParentShip.ActiveWeapon().Fire(position);

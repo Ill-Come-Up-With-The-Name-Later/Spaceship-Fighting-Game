@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b64ps8jt48way" path="res://Scripts/ShipTech/Technology/Engine.cs" id="1_yh8qf"]
 [ext_resource type="Resource" uid="uid://bex88fme55dk2" path="res://Resources/Technologies/Engine/EngineStats.tres" id="2_qht62"]
 [ext_resource type="Resource" uid="uid://dp82wutsjfhmc" path="res://Resources/Technologies/Engine/EngineHealthStats.tres" id="3_ckhtv"]
+[ext_resource type="Resource" uid="uid://cv4k05hwld4hp" path="res://Resources/Technologies/ShipPartWeightData.tres" id="4_44lhh"]
 [ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="4_fvd4m"]
 [ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="5_ck4jd"]
 [ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="6_44lhh"]
@@ -11,6 +12,7 @@
 script = ExtResource("1_yh8qf")
 EngineStats = ExtResource("2_qht62")
 GenericStats = ExtResource("3_ckhtv")
+Weights = ExtResource("4_44lhh")
 
 [node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("4_fvd4m")]
 RegenerationRate = ExtResource("5_ck4jd")

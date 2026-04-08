@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://dag3sqkupnnod" path="res://Resources/Technologies/AblativeArmor/AblativeArmorRegenStats.tres" id="3_r0wbl"]
 [ext_resource type="Resource" uid="uid://cu6vwu6ksggh1" path="res://Resources/Technologies/AblativeArmor/AblativeArmorPowerConsumption.tres" id="4_ykbsw"]
 [ext_resource type="Resource" uid="uid://cqorbim5yqwjw" path="res://Resources/Technologies/AblativeArmor/AblativeArmorHealthStats.tres" id="5_ykbd2"]
+[ext_resource type="Resource" uid="uid://gblj8ugbnpgu" path="res://Resources/Technologies/AblativeArmor/AblativeArmorWeights.tres" id="6_3ifo5"]
 [ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="6_ykbd2"]
 [ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="7_3ifo5"]
 [ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="8_d2ceq"]
@@ -15,6 +16,7 @@ DefenseGeneratorStats = ExtResource("2_p4equ")
 RegenerationRate = ExtResource("3_r0wbl")
 PowerConsumption = ExtResource("4_ykbsw")
 GenericStats = ExtResource("5_ykbd2")
+Weights = ExtResource("6_3ifo5")
 
 [node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("6_ykbd2")]
 RegenerationRate = ExtResource("7_3ifo5")

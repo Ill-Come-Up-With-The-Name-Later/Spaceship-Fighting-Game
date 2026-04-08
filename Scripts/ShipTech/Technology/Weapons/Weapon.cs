@@ -50,10 +50,12 @@ public partial class Weapon : Technology, IPowerConsumer
         CanFire = true;
         
         ParentShip = GetParent().GetParent() as Ship;
-        FiringCooldownTimer = GetNode<Timer>("FiringTimer");
         
         if(ParentShip is null)
             GD.PrintErr("No owner");
+        
+        FiringCooldownTimer = GetNode<Timer>("FiringTimer");
+        FiringCooldownTimer.WaitTime = WeaponStats.FiringCooldown;
         
         if(FiringCooldownTimer is null)
             GD.PrintErr("No firing cooldown timer");
@@ -82,6 +84,7 @@ public partial class Weapon : Technology, IPowerConsumer
         if (CurrentConsumption > ship.FusionReactor.CurrentPower)
             return false;
 
+        ship.FusionReactor.CurrentPower -= CurrentConsumption;
         return true;
     }
 

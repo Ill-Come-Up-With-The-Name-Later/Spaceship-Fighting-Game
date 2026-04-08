@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cid4kbfiarb6g" path="res://Scripts/ShipTech/Technology/Hull.cs" id="1_1r7h2"]
 [ext_resource type="Resource" uid="uid://b5i4v0c652yt1" path="res://Resources/Technologies/Hull/HullMaterialStats.tres" id="2_bvb42"]
 [ext_resource type="Resource" uid="uid://d04mh72jdtuyv" path="res://Resources/Technologies/Hull/HullHealthStats.tres" id="3_axvo0"]
+[ext_resource type="Resource" uid="uid://cv4k05hwld4hp" path="res://Resources/Technologies/ShipPartWeightData.tres" id="4_38ytm"]
 [ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="4_axvo0"]
 [ext_resource type="Resource" uid="uid://v2psukr5dpg8" path="res://Resources/Technologies/ShipPartRegenerator/HullRegenRate.tres" id="5_cpokc"]
 [ext_resource type="Resource" uid="uid://pehirrrlqntl" path="res://Resources/Technologies/ShipPartRegenerator/HullMaterialConsumption.tres" id="6_h6vqt"]
@@ -11,6 +12,7 @@
 script = ExtResource("1_1r7h2")
 HullStats = ExtResource("2_bvb42")
 GenericStats = ExtResource("3_axvo0")
+Weights = ExtResource("4_38ytm")
 
 [node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("4_axvo0")]
 RegenerationRate = ExtResource("5_cpokc")

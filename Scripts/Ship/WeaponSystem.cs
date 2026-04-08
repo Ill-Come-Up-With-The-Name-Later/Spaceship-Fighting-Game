@@ -8,6 +8,9 @@ public partial class WeaponSystem : Node2D
 {
     public List<Weapon> Weapons;
     public Weapon ActiveWeapon;
+
+    [Export]
+    public double AttackFOV;
     
     public override void _Ready()
     {
