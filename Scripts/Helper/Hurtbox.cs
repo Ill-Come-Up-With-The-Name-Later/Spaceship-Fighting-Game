@@ -58,6 +58,7 @@ public partial class Hurtbox : Area2D
 		if (damaged.HasShield())
 		{
 			damaged.DamageShield(damage + shieldDamage);
+			damaged.CurrentPower = Mathf.Max(0, damaged.CurrentPower - damage + shieldDamage);
 			damaged.DamageHull(penetratingDamage * 0.5 + 
 			                   (damage * (1 - damaged.DefenseSystem.DefensePercentage)));
 		}

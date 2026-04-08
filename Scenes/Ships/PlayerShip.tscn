@@ -57,3 +57,5 @@ Range = 0.0
 Range = 0.0
 
 [node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("12_46e37")]
+
+[node name="LaserCannon2" parent="WeaponSystem" unique_id=534786323 instance=ExtResource("12_46e37")]
