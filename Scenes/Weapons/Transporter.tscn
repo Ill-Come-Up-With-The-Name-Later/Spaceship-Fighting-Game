@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c0ngvh1te2qlp"]
+
+[ext_resource type="Script" uid="uid://d2d8nsgs0bxcv" path="res://Scripts/ShipTech/Technology/Weapons/Transporter/Transporter.cs" id="1_oqbmr"]
+[ext_resource type="Resource" uid="uid://ciigtftxnvtjn" path="res://Resources/Weapons/Transporter/TransporterStats.tres" id="2_ruse4"]
+[ext_resource type="Resource" uid="uid://82yb2php5bry" path="res://Resources/Weapons/Transporter/TransporterPowerConsumption.tres" id="3_rod8o"]
+[ext_resource type="Resource" uid="uid://biufjac5lpiu1" path="res://Resources/Weapons/Transporter/TransporterWeights.tres" id="4_baecc"]
+
+[node name="Transporter" type="Node2D" unique_id=189030110]
+script = ExtResource("1_oqbmr")
+HitEffectRadius = 100.0
+Color = Color(0, 1, 0.8980392, 1)
+WeaponStats = ExtResource("2_ruse4")
+PowerConsumption = ExtResource("3_rod8o")
+Weights = ExtResource("4_baecc")
+
+[node name="EffectTimer" type="Timer" parent="." unique_id=530172594]
+wait_time = 0.2
+
+[node name="FiringTimer" type="Timer" parent="." unique_id=894285623]
+one_shot = true
+
+[node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
+
+[node name="TransporterBeam" type="Line2D" parent="." unique_id=565697137]
+width = 30.0

@@ -148,7 +148,7 @@ public partial class PlayerController : Node2D
 	/// </param>
 	public void TriggerAttack(Vector2 position)
 	{
-		GD.Print("Player clicked " + position);
+		//GD.Print("Player clicked " + position);
 		
 		if (!CanFireAt(position))
 			return;

@@ -107,7 +107,7 @@ public partial class Weapon : Technology, IPowerConsumer
     /// </param>
     public virtual void Fire(Vector2 targetPosition)
     {
-        if (!CanFire)
+        if (!CanFireWeapon())
             return;
         
         if (!ConsumePowerIfAvailable(ParentShip, 0))
@@ -128,7 +128,7 @@ public partial class Weapon : Technology, IPowerConsumer
 
     public virtual Projectile FireProjectile(Vector2 targetPosition)
     {
-        if (!CanFire)
+        if (!CanFireWeapon())
             return null;
         
         if (!ConsumePowerIfAvailable(ParentShip, 0))
@@ -171,6 +171,17 @@ public partial class Weapon : Technology, IPowerConsumer
         Fire(target.GlobalPosition);
     }
 
+    /// <summary>
+    /// If the weapon can fire
+    /// </summary>
+    /// <returns>
+    /// If the weapon can fire
+    /// </returns>
+    public virtual bool CanFireWeapon()
+    {
+        return CanFire;
+    }
+    
     /// <summary>
     /// Sets up a projectile's basic properties.
     /// Override this if you need a homing projectile

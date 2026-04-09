@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cmvkih6fr2gv8"]
 
-[ext_resource type="PackedScene" uid="uid://bkgq05udmufd8" path="res://Scenes/Ships/PlayerShipTests/PlayerShipEMPTest.tscn" id="1_kln2b"]
+[ext_resource type="PackedScene" uid="uid://bpjffcfg62q2p" path="res://Scenes/Ships/PlayerShipTests/PlayerShipTransporterTest.tscn" id="1_kln2b"]
 [ext_resource type="PackedScene" uid="uid://b15tp7k4xl8jq" path="res://Scenes/Ships/Ship.tscn" id="2_idj7w"]
 [ext_resource type="PackedScene" uid="uid://ww00ggous1cm" path="res://Scenes/Ships/ShipAblativeArmorTest.tscn" id="3_kln2b"]
 
