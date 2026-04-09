@@ -120,19 +120,19 @@ public partial class Weapon : Technology, IPowerConsumer
         Eventbus.EmitSignal("WeaponFired", ParentShip.GlobalPosition, ParentShip, this);
     }
 
-    public virtual void FireProjectile(Vector2 targetPosition)
+    public virtual Projectile FireProjectile(Vector2 targetPosition)
     {
         if (!CanFire)
-            return;
+            return null;
         
         if (!ConsumePowerIfAvailable(ParentShip, 0))
-            return;
+            return null;
         
         if (ProjectileSource is null)
-            return;
+            return null;
 
         if (ProjectileSource is null)
-            return;
+            return null;
         
         CanFire = false;
         FiringCooldownTimer.Start();
@@ -140,6 +140,8 @@ public partial class Weapon : Technology, IPowerConsumer
         Projectile proj = (Projectile)ProjectileScene.Instantiate();
         SetupProjectile(proj, targetPosition);
         Eventbus.EmitSignal("WeaponFired", ParentShip.GlobalPosition, ParentShip, this);
+
+        return proj;
     }
 
     /// <summary>
@@ -172,7 +174,8 @@ public partial class Weapon : Technology, IPowerConsumer
         projectile.ParentWeapon = this;
         projectile.ParentShip = ParentShip;
         projectile.ParentWeaponStats = WeaponStats;
-        projectile.GlobalPosition = ProjectileSource.GlobalPosition + ((targetPosition - projectile.GlobalPosition).Normalized() * 20);
+        projectile.GlobalPosition = ProjectileSource.GlobalPosition 
+                                    + (targetPosition - projectile.GlobalPosition).Normalized() * 25;
         
         projectile.LookAt(targetPosition);
         projectile.Velocity = (targetPosition - projectile.GlobalPosition).Normalized()

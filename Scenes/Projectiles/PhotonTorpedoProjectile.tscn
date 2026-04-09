@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dyy3ap622xyav"]
+
+[ext_resource type="Script" uid="uid://cipko3lfipxyr" path="res://Scripts/ShipTech/Technology/Projectiles/PhotonTorpedoProjectile.cs" id="1_5a2x1"]
+[ext_resource type="Resource" uid="uid://mb5anw2q4h1f" path="res://Resources/Weapons/PhotonTorpedo/PhotonTorpedoProjectileStats.tres" id="2_hqy7h"]
+[ext_resource type="PackedScene" uid="uid://cf8clhua5hocf" path="res://Scenes/Helper/Hitbox.tscn" id="3_yhuyo"]
+[ext_resource type="Texture2D" uid="uid://buapv504idkgd" path="res://Sprites/Projectiles/PhotonTorpedoProjectile.png" id="4_hqy7h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36xy1"]
+
+[node name="PhotonTorpedoProjectile" type="CharacterBody2D" unique_id=436161286]
+script = ExtResource("1_5a2x1")
+ProjectileStats = ExtResource("2_hqy7h")
+
+[node name="Hitbox" parent="." unique_id=1252924844 instance=ExtResource("3_yhuyo")]
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=985900745]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("4_hqy7h")
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=796148450]
+shape = SubResource("CircleShape2D_36xy1")
+
+[node name="LifespanTimer" type="Timer" parent="." unique_id=1355311429]
+one_shot = true

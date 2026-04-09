@@ -33,12 +33,14 @@ public partial class Projectile : CharacterBody2D
         if(LifespanTimer is null)
             GD.PrintErr("Lifespan timer not found");
         
+        LifespanTimer.WaitTime = ProjectileStats.Lifespan;
+        
         Sprite = GetNode<Sprite2D>("Sprite");
 
-        LifespanTimer.Start();
-        LifespanTimer.Timeout += OnLifespanEnded;
-
         Hitbox.AreaEntered += OnHit;
+        
+        LifespanTimer.Timeout += OnLifespanEnded;
+        LifespanTimer.Start();
     }
 
     public override void _ExitTree()
@@ -72,9 +74,11 @@ public partial class Projectile : CharacterBody2D
     /// </param>
     public virtual void OnHit(Area2D area)
     {
-        if (area.GetParent() is Hurtbox hurtbox)
-            if (hurtbox.ParentShip == ParentWeapon.ParentShip)
+        if (area is Hurtbox hurtbox)
+        {
+            if (hurtbox.ParentShip == ParentShip)
                 return;
+        }
     }
 
     /// <summary>
@@ -82,6 +86,5 @@ public partial class Projectile : CharacterBody2D
     /// </summary>
     public virtual void OnLifespanEnded()
     {
-        QueueFree();
     }
 }

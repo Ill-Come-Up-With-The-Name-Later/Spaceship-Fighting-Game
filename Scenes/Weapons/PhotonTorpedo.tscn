@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bx6cbcls4d6n1"]
+
+[ext_resource type="Script" uid="uid://crllf2ejn2qk8" path="res://Scripts/ShipTech/Technology/Weapons/PhotonTorpedo/PhotonTorpedo.cs" id="1_mnwh1"]
+[ext_resource type="Resource" uid="uid://o61mnt8ief38" path="res://Resources/Weapons/PhotonTorpedo/PhotonTorpedoStats.tres" id="2_gl2gc"]
+[ext_resource type="Resource" uid="uid://d3np4wu8dc4c5" path="res://Resources/Weapons/PhotonTorpedo/PhotonTorpedoPowerConsumption.tres" id="3_a02c8"]
+[ext_resource type="PackedScene" uid="uid://dyy3ap622xyav" path="res://Scenes/Projectiles/PhotonTorpedoProjectile.tscn" id="4_a02c8"]
+[ext_resource type="Resource" uid="uid://bq3i7suhcqkwd" path="res://Resources/Weapons/PhotonTorpedo/PhotonTorpedoWeights.tres" id="4_gl2gc"]
+
+[node name="PhotonTorpedo" type="Node2D" unique_id=1826866972 node_paths=PackedStringArray("ProjectileSource")]
+script = ExtResource("1_mnwh1")
+InitialTargetingRadius = 75.0
+WeaponStats = ExtResource("2_gl2gc")
+PowerConsumption = ExtResource("3_a02c8")
+ProjectileSource = NodePath("ProjectileSource")
+ProjectileScene = ExtResource("4_a02c8")
+Weights = ExtResource("4_gl2gc")
+
+[node name="ProjectileSource" type="Marker2D" parent="." unique_id=1048220781]
+
+[node name="FiringTimer" type="Timer" parent="." unique_id=1793119475]
+one_shot = true

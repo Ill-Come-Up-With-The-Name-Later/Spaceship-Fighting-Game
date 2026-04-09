@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cmvkih6fr2gv8"]
 
-[ext_resource type="PackedScene" uid="uid://863j7i2rd6y5" path="res://Scenes/Ships/PlayerShipPlasmaCannonTest.tscn" id="1_kln2b"]
+[ext_resource type="PackedScene" uid="uid://kc2c2cfcd5pf" path="res://Scenes/Ships/PlayerShipPhotonTorpedoTest.tscn" id="1_kln2b"]
 [ext_resource type="PackedScene" uid="uid://b15tp7k4xl8jq" path="res://Scenes/Ships/Ship.tscn" id="2_idj7w"]
 [ext_resource type="PackedScene" uid="uid://ww00ggous1cm" path="res://Scenes/Ships/ShipAblativeArmorTest.tscn" id="3_kln2b"]
 
@@ -9,7 +9,7 @@
 [node name="PlayerShip" parent="." unique_id=1450576114 instance=ExtResource("1_kln2b")]
 
 [node name="Ship" parent="." unique_id=572524178 instance=ExtResource("2_idj7w")]
-position = Vector2(100, 357)
+position = Vector2(-532, 323)
 
 [node name="AblativeArmorShip" parent="." unique_id=740789421 instance=ExtResource("3_kln2b")]
-position = Vector2(974, 346)
+position = Vector2(389, 346)

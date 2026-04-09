@@ -46,7 +46,6 @@ public partial class Hitbox : Area2D
 	/// </param>
 	public void OnEntered(Area2D area)
 	{
-		GD.Print(area.Name);
 		if (area is Hurtbox hurtbox)
 		{
 			if (hurtbox.ParentShip == ParentProjectile.ParentShip)
