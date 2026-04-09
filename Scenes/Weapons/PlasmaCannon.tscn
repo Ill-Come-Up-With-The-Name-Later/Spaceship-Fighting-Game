@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d2iutew7v6wpv"]
+
+[ext_resource type="Script" uid="uid://cqrkv1h37otfv" path="res://Scripts/ShipTech/Technology/Weapons/PlasmaCannon/PlasmaCannon.cs" id="1_ofl1w"]
+[ext_resource type="Resource" uid="uid://ckxlcsskceqgf" path="res://Resources/Weapons/PlasmaCannon/PlasmaCannonStats.tres" id="2_n4cpt"]
+[ext_resource type="Resource" uid="uid://b4mo1ou12alia" path="res://Resources/Weapons/PlasmaCannon/PlasmaCannonPowerConsumption.tres" id="3_2wmfl"]
+[ext_resource type="PackedScene" uid="uid://fywpeube8oos" path="res://Scenes/Projectiles/PlasmaProjectile.tscn" id="4_n4cpt"]
+[ext_resource type="Resource" uid="uid://crjogaa0lufff" path="res://Resources/Weapons/PlasmaCannon/PlasmaCannonWeights.tres" id="4_yrale"]
+
+[node name="PlasmaCannon" type="Node2D" unique_id=1826866972 node_paths=PackedStringArray("ProjectileSource")]
+script = ExtResource("1_ofl1w")
+WeaponStats = ExtResource("2_n4cpt")
+PowerConsumption = ExtResource("3_2wmfl")
+ProjectileSource = NodePath("ProjectileSource")
+ProjectileScene = ExtResource("4_n4cpt")
+Weights = ExtResource("4_yrale")
+
+[node name="ProjectileSource" type="Marker2D" parent="." unique_id=1048220781]
+
+[node name="FiringTimer" type="Timer" parent="." unique_id=1793119475]
+one_shot = true

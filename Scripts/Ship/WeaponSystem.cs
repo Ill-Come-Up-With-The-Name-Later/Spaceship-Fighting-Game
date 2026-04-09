@@ -68,6 +68,9 @@ public partial class WeaponSystem : Node2D
 
     public Weapon NextAvailableOfType(int typeIndex)
     {
+        if (typeIndex >= Weapons.Count)
+            typeIndex = 0;
+        
         foreach (Weapon weapon in Weapons[typeIndex])
         {
             if (weapon.CanFire)

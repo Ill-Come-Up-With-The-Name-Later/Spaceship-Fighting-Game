@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://863j7i2rd6y5"]
+
+[ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_i5hnk"]
+[ext_resource type="PackedScene" uid="uid://b28vrjkh228m3" path="res://Scenes/Controllers/PlayerController.tscn" id="2_51shi"]
+[ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="3_2mj6e"]
+[ext_resource type="Texture2D" uid="uid://dv158k37mij23" path="res://Sprites/icon.svg" id="4_7vq87"]
+[ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="5_nm6te"]
+[ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="6_nnlvr"]
+[ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="7_3us5m"]
+[ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="8_8u7cm"]
+[ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="9_l6xaq"]
+[ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="10_sqe63"]
+[ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="11_ru7md"]
+[ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="12_7kiwb"]
+[ext_resource type="PackedScene" uid="uid://d2iutew7v6wpv" path="res://Scenes/Weapons/PlasmaCannon.tscn" id="13_51shi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
+radius = 1.0
+
+[node name="PlayerShip" type="CharacterBody2D" unique_id=1450576114]
+script = ExtResource("1_i5hnk")
+
+[node name="PlayerController" parent="." unique_id=660101535 instance=ExtResource("2_51shi")]
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=2140110726]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("3_2mj6e")]
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
+shape = SubResource("CircleShape2D_2b61m")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1715419656]
+texture = ExtResource("4_7vq87")
+
+[node name="Hull" parent="." unique_id=463253017 instance=ExtResource("5_nm6te")]
+
+[node name="FusionReactor" parent="." unique_id=854488899 instance=ExtResource("6_nnlvr")]
+
+[node name="Engine" parent="." unique_id=512023654 instance=ExtResource("7_3us5m")]
+
+[node name="ShieldGenerator" parent="." unique_id=769759841 instance=ExtResource("8_8u7cm")]
+
+[node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("9_l6xaq")]
+
+[node name="Technology" type="Node2D" parent="." unique_id=1603245376]
+editor_description = "The parent node for ship technologies that aren't standard ship parts."
+
+[node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
+editor_description = "The parent node for all of a ship's weapons."
+script = ExtResource("10_sqe63")
+AttackFOV = 90.0
+
+[node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("11_ru7md")]
+Range = 0.0
+
+[node name="Phaser2" parent="WeaponSystem" unique_id=2129313817 instance=ExtResource("11_ru7md")]
+Range = 0.0
+
+[node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("12_7kiwb")]
+
+[node name="LaserCannon2" parent="WeaponSystem" unique_id=534786323 instance=ExtResource("12_7kiwb")]
+
+[node name="PlasmaCannon" parent="WeaponSystem" unique_id=1182531501 instance=ExtResource("13_51shi")]
+
+[node name="PlasmaCannon2" parent="WeaponSystem" unique_id=1070972399 instance=ExtResource("13_51shi")]
