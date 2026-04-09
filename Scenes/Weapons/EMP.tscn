@@ -8,6 +8,7 @@
 [node name="EMP" type="Node2D" unique_id=1826866972 node_paths=PackedStringArray("ProjectileSource")]
 script = ExtResource("1_jqrho")
 HitEffectRadius = 400.0
+PowerDrainHit = 20000.0
 WeaponStats = ExtResource("2_uqkqp")
 PowerConsumption = ExtResource("3_2n237")
 ProjectileSource = NodePath("ProjectileSource")

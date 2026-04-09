@@ -6,6 +6,9 @@ public partial class EMP : Weapon
     [Export]
     public double HitEffectRadius;
 
+    [Export]
+    public double PowerDrainHit;
+
     public Timer ChargeTimer;
 
     public override void _Ready()
@@ -45,7 +48,7 @@ public partial class EMP : Weapon
                 {
                     if (ship != ParentShip)
                     {
-                        ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.FusionReactor.CurrentPower - 20000);
+                        ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.FusionReactor.CurrentPower - PowerDrainHit);
                         ship.Hurtbox.ApplyDamage(ship, ParentShip, WeaponStats.Damage,
                             WeaponStats.ShieldDamage, WeaponStats.PenetratingDamage);
                         
