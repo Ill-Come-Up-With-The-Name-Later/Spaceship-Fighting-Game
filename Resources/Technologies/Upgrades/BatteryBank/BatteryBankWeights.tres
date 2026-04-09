@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://dtgth1es5bi03"]
+
+[ext_resource type="Script" uid="uid://dyrgecp50vcvf" path="res://Scripts/Resources/TechWeightData.cs" id="1_70j21"]
+
+[resource]
+script = ExtResource("1_70j21")
+StrengthWeight = 0.2

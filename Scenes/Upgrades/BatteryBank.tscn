@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://xk8g2tn0j338"]
 
 [ext_resource type="Script" uid="uid://rudpeogydlnv" path="res://Scripts/ShipTech/Technology/Upgrades/BatteryBank/BatteryBank.cs" id="1_ors6w"]
+[ext_resource type="Resource" uid="uid://dtgth1es5bi03" path="res://Resources/Technologies/Upgrades/BatteryBank/BatteryBankWeights.tres" id="2_0shu7"]
 
 [node name="BatteryBank" type="Node2D" unique_id=687813223]
 script = ExtResource("1_ors6w")
+PowerBonus = 60000.0
+Weights = ExtResource("2_0shu7")

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Godot;
+using SpaceshipFightingGame.Scripts.ShipTech;
 
-public partial class Upgrade : Node2D
+public partial class Upgrade : Technology
 {
     public HashSet<Ship> Applied;
 
