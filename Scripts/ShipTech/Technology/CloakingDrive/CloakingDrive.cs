@@ -108,6 +108,8 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		var selfMod = ParentShip.Sprite.SelfModulate;
 		selfMod.A = 1;
 		ParentShip.Sprite.SelfModulate = selfMod;
+		CooldownTimer.Start();
+		CanToggle = false;
 	}
 
 	public void Toggle()
@@ -126,8 +128,6 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 
 		if (!Active)
 		{
-			CooldownTimer.Start();
-			CanToggle = false;
 			Disable(ParentShip);
 		}
 	}
