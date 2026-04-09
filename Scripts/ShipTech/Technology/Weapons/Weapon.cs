@@ -152,6 +152,7 @@ public partial class Weapon : Technology, IPowerConsumer
         Projectile proj = (Projectile)ProjectileScene.Instantiate();
         SetupProjectile(proj, targetPosition);
         Eventbus.EmitSignal("WeaponFired", ParentShip.GlobalPosition, ParentShip, this);
+        GD.Print("Fired projectile");
 
         return proj;
     }

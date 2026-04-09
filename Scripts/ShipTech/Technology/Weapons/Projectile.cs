@@ -54,7 +54,8 @@ public partial class Projectile : CharacterBody2D
     }
 
     /// <summary>
-    /// While the projectile is traveling
+    /// While the projectile is traveling.
+    /// Overrides should call base.Travel
     /// </summary>
     /// <param name="delta">
     /// Delta time

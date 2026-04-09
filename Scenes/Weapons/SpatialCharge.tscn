@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://hlxbe4lcjjl4"]
+
+[ext_resource type="Script" uid="uid://8sgn13u0dijf" path="res://Scripts/ShipTech/Technology/Weapons/SpatialCharge/SpatialCharge.cs" id="1_0q758"]
+[ext_resource type="Resource" uid="uid://cjjb0q80qm3nq" path="res://Resources/Weapons/SpatialCharge/SpatialChargeStats.tres" id="2_amj0p"]
+[ext_resource type="Resource" uid="uid://c1ld3sao24fiv" path="res://Resources/Weapons/SpatialCharge/SpatialChargePowerConsumption.tres" id="3_klsta"]
+[ext_resource type="PackedScene" uid="uid://xi27nr1yei4i" path="res://Scenes/Projectiles/SpatialChargeProjectile.tscn" id="4_klsta"]
+[ext_resource type="Resource" uid="uid://clh4dnhjdccmw" path="res://Resources/Weapons/SpatialCharge/SpatialChargeWeights.tres" id="4_nra13"]
+
+[node name="SpatialCharge" type="Node2D" unique_id=1826866972 node_paths=PackedStringArray("ProjectileSource")]
+script = ExtResource("1_0q758")
+WeaponStats = ExtResource("2_amj0p")
+PowerConsumption = ExtResource("3_klsta")
+ProjectileSource = NodePath("ProjectileSource")
+ProjectileScene = ExtResource("4_klsta")
+Weights = ExtResource("4_nra13")
+
+[node name="ProjectileSource" type="Marker2D" parent="." unique_id=1048220781]
+
+[node name="FiringTimer" type="Timer" parent="." unique_id=1793119475]
+one_shot = true
