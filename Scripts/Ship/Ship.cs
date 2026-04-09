@@ -1,6 +1,8 @@
 using Godot;
 using Godot.Collections;
 using SpaceshipFightingGame.Scripts.Controllers;
+using SpaceshipFightingGame.Scripts.Controllers.EnemyController;
+using SpaceshipFightingGame.Scripts.Global;
 using SpaceshipFightingGame.Scripts.ShipTech;
 
 public partial class Ship : CharacterBody2D
@@ -14,6 +16,7 @@ public partial class Ship : CharacterBody2D
 	public Hurtbox Hurtbox;
 	
 	public Eventbus Eventbus;
+	public GameManager Manager;
 
 	public WeaponSystem Weapons;
 	
@@ -60,7 +63,9 @@ public partial class Ship : CharacterBody2D
 
 	public override void _Ready()
 	{
+		Manager =  GetNode<GameManager>("/root/GameManager");
 		AddToGroup("Ship");
+		Manager.Ships.Add(this);
 		
 		Eventbus = GetNode<Eventbus>("/root/Eventbus");
 		
@@ -127,6 +132,11 @@ public partial class Ship : CharacterBody2D
 		foreach (Upgrade upgrade in GetUpgrades())
 			if (!upgrade.Applied.Contains(this) && upgrade.GetParent().GetParent() == this)
 				upgrade.Apply(this);
+	}
+
+	public override void _ExitTree()
+	{
+		Manager.Ships.Remove(this);
 	}
 
 	/// <summary>

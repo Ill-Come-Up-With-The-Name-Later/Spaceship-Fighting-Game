@@ -18,6 +18,7 @@ config/icon="res://Sprites/icon.svg"
 [autoload]
 
 Eventbus="*uid://c7cxgsj33acdg"
+GameManager="*uid://dr4evt7na7vsd"
 
 [dotnet]
 
