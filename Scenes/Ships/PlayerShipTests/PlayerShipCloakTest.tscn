@@ -54,11 +54,13 @@ script = ExtResource("10_jbqxo")
 AttackFOV = 90.0
 
 [node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("11_xqjev")]
-Range = 0.0
 
 [node name="Phaser2" parent="WeaponSystem" unique_id=2129313817 instance=ExtResource("11_xqjev")]
-Range = 0.0
 
 [node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("12_cm2jn")]
 
 [node name="LaserCannon2" parent="WeaponSystem" unique_id=534786323 instance=ExtResource("12_cm2jn")]
+
+[node name="Upgrades" type="Node2D" parent="." unique_id=1825032031]
+
+[node name="Abilities" type="Node2D" parent="." unique_id=1358528701]

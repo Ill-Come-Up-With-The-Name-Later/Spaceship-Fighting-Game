@@ -42,3 +42,5 @@ editor_description = "The parent node for all of a ship's weapons."
 script = ExtResource("9_hh1ih")
 
 [node name="Upgrades" type="Node2D" parent="." unique_id=1621237522]
+
+[node name="Abilities" type="Node2D" parent="." unique_id=1831618945]

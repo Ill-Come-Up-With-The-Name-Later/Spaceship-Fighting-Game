@@ -113,6 +113,12 @@ public partial class Weapon : Technology, IPowerConsumer
         if (!ConsumePowerIfAvailable(ParentShip, 0))
             return;
         
+        if (ParentShip.Cloaked())
+        {
+            Eventbus.EmitSignal("WeaponFired", ParentShip.GlobalPosition, ParentShip, this);
+            return;
+        }
+        
         CanFire = false;
         FiringCooldownTimer.Start();
         
@@ -133,6 +139,12 @@ public partial class Weapon : Technology, IPowerConsumer
 
         if (ProjectileSource is null)
             return null;
+
+        if (ParentShip.Cloaked())
+        {
+            Eventbus.EmitSignal("WeaponFired", ParentShip.GlobalPosition, ParentShip, this);
+            return null;
+        }
         
         CanFire = false;
         FiringCooldownTimer.Start();
