@@ -19,6 +19,7 @@ texture = ExtResource("4_hqy7h")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=796148450]
 shape = SubResource("CircleShape2D_36xy1")
+disabled = true
 
 [node name="LifespanTimer" type="Timer" parent="." unique_id=1355311429]
 one_shot = true

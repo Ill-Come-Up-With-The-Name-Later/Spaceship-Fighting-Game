@@ -29,6 +29,7 @@ zoom = Vector2(0.5, 0.5)
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
 shape = SubResource("CircleShape2D_2b61m")
+disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1715419656]
 texture = ExtResource("4_q6tjb")

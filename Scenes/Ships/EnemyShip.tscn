@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://xf58wic0uscr"]
+
+[ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_kvqdo"]
+[ext_resource type="Script" uid="uid://cj2xo5j4nqo17" path="res://Scripts/Controllers/EnemyController/EnemyController.cs" id="2_5obky"]
+[ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="2_e6xtg"]
+[ext_resource type="Texture2D" uid="uid://dv158k37mij23" path="res://Sprites/icon.svg" id="3_5obky"]
+[ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="4_d6dxf"]
+[ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="5_cft70"]
+[ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="6_w8ckj"]
+[ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="7_7yw2p"]
+[ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="8_huokx"]
+[ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="9_psyiv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
+radius = 1.0
+
+[node name="EnemyShip" type="CharacterBody2D" unique_id=1450576114]
+script = ExtResource("1_kvqdo")
+
+[node name="EnemyController" type="Node2D" parent="." unique_id=1926634939]
+script = ExtResource("2_5obky")
+
+[node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_e6xtg")]
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
+shape = SubResource("CircleShape2D_2b61m")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1715419656]
+texture = ExtResource("3_5obky")
+
+[node name="Hull" parent="." unique_id=463253017 instance=ExtResource("4_d6dxf")]
+
+[node name="FusionReactor" parent="." unique_id=854488899 instance=ExtResource("5_cft70")]
+
+[node name="Engine" parent="." unique_id=512023654 instance=ExtResource("6_w8ckj")]
+
+[node name="ShieldGenerator" parent="." unique_id=769759841 instance=ExtResource("7_7yw2p")]
+
+[node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("8_huokx")]
+
+[node name="Technology" type="Node2D" parent="." unique_id=1603245376]
+editor_description = "The parent node for ship technologies that aren't standard ship parts."
+
+[node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
+editor_description = "The parent node for all of a ship's weapons."
+script = ExtResource("9_psyiv")
+
+[node name="Upgrades" type="Node2D" parent="." unique_id=1621237522]
+
+[node name="Abilities" type="Node2D" parent="." unique_id=1831618945]

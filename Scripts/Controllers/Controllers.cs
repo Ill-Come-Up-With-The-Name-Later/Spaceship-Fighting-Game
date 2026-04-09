@@ -6,5 +6,6 @@
 public enum Controllers
 {
     Player,
-    Computer
+    Computer,
+    None
 }

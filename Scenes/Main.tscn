@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://pukxscm7gex3" path="res://Scenes/Ships/PlayerShipTests/PlayerShipSpatialChargeTest.tscn" id="1_kln2b"]
 [ext_resource type="PackedScene" uid="uid://b15tp7k4xl8jq" path="res://Scenes/Ships/Ship.tscn" id="2_idj7w"]
 [ext_resource type="PackedScene" uid="uid://ww00ggous1cm" path="res://Scenes/Ships/ShipAblativeArmorTest.tscn" id="3_kln2b"]
+[ext_resource type="PackedScene" uid="uid://xf58wic0uscr" path="res://Scenes/Ships/EnemyShip.tscn" id="4_rgh2o"]
 
 [node name="Main" type="Node2D" unique_id=1968216983]
 
@@ -13,3 +14,6 @@ position = Vector2(-532, 323)
 
 [node name="AblativeArmorShip" parent="." unique_id=740789421 instance=ExtResource("3_kln2b")]
 position = Vector2(389, 346)
+
+[node name="EnemyShip" parent="." unique_id=761334852 instance=ExtResource("4_rgh2o")]
+position = Vector2(-156, 458)

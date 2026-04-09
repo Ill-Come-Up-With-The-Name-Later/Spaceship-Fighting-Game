@@ -55,7 +55,7 @@ public partial class Ship : CharacterBody2D
 
 	public override void _EnterTree()
 	{
-		Controller = Controllers.Computer;
+		Controller = Controllers.None;
 	}
 
 	public override void _Ready()
