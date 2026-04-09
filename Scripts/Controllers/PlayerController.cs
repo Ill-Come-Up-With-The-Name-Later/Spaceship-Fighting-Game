@@ -68,6 +68,8 @@ public partial class PlayerController : Node2D
 		ParentShip.ActiveWeapon = ParentShip.Weapons
 			.NextAvailableOfType(ParentShip.Weapons.ActiveWeaponTypeIndex);
 		
+		ListenForCloaking();
+		ListenForShieldToggle();
 		WeaponSelection();
 	}
 
@@ -76,11 +78,25 @@ public partial class PlayerController : Node2D
 		ParentShip.MoveAndSlide();
 	}
 
-	public override void _Input(InputEvent @event)
+	public void ListenForShieldToggle()
 	{
-		if (@event is InputEventMouseButton mouseEvent)
-			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
-				Eventbus.EmitSignal("MouseClick", GetGlobalMousePosition());
+		if (Input.IsActionJustPressed("toggle_shield"))
+		{
+			ParentShip.DefenseSystem.Toggle();
+		}
+	}
+
+	public void ListenForCloaking()
+	{
+		if (Input.IsActionJustPressed("toggle_cloak"))
+		{
+			CloakingDrive drive = ParentShip.GetTechnology<CloakingDrive>();
+
+			if (drive is not null)
+			{
+				drive.Toggle();
+			}
+		}
 	}
 
 	public void WeaponSelection()
@@ -105,6 +121,13 @@ public partial class PlayerController : Node2D
 			ParentShip.Weapons.ActiveWeaponTypeIndex = 8;
 		else if (Input.IsActionJustPressed("select_weapon_9"))
 			ParentShip.Weapons.ActiveWeaponTypeIndex = 9;
+	}
+	
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton mouseEvent)
+			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
+				Eventbus.EmitSignal("MouseClick", GetGlobalMousePosition());
 	}
 
 	/// <summary>

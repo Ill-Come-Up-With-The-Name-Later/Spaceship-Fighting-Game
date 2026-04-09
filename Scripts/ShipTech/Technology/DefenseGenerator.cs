@@ -53,6 +53,8 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
         Regenerating = true;
         ConsumingPower = false;
 
+        CanToggle = true;
+
         DefensePercentage = DefenseGeneratorStats.DamageReductionPercent;
     }
     
@@ -74,6 +76,7 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
             return;
         
         DefenseActive = !DefenseActive;
+        GD.Print("Defense active: " + DefenseActive);
     }
 
     public abstract bool Regenerate(double delta);

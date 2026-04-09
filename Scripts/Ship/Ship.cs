@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 using SpaceshipFightingGame.Scripts.Controllers;
+using SpaceshipFightingGame.Scripts.ShipTech;
 
 public partial class Ship : CharacterBody2D
 {
@@ -19,6 +22,10 @@ public partial class Ship : CharacterBody2D
 	public bool CanTurn;
 	
 	public Controllers Controller;
+
+	public Sprite2D Sprite;
+
+	public Array<Node> Technologies;
 	
 	/// <summary>
 	/// Amount of materials the ship has
@@ -102,6 +109,13 @@ public partial class Ship : CharacterBody2D
 		Hurtbox = GetNode<Hurtbox>("Hurtbox");
 		if(Hurtbox is null)
 			GD.PrintErr("Hurtbox not found");
+		
+		Sprite =  GetNode<Sprite2D>("Sprite");
+		
+		if(Sprite is null)
+			GD.PrintErr("Sprite not found");
+
+		Technologies = GetNode<Node2D>("Technology").GetChildren();
 
 		CanMove = true;
 		CanTurn = true;
@@ -111,6 +125,35 @@ public partial class Ship : CharacterBody2D
 	
 	public override void _Process(double delta)
 	{
+	}
+
+	/// <summary>
+	/// Gets a technology node if it exists
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of the technology
+	/// </typeparam>
+	/// <returns>
+	/// The node of the technology or null if absent
+	/// </returns>
+	public T GetTechnology<T>() where T : Technology
+	{
+		foreach(Node child in Technologies)
+			if(child is T technology)
+				return technology;
+		
+		return null;
+	}
+
+	/// <summary>
+	/// If the ship is in warp
+	/// </summary>
+	/// <returns>
+	/// If the ship is in warp
+	/// </returns>
+	public bool InWarp()
+	{
+		return WarpDrive.Active;
 	}
 	
 	/// <summary>

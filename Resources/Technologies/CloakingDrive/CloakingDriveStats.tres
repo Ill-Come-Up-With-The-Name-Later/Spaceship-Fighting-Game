@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://dtn85d2420h6o"]
+
+[ext_resource type="Script" uid="uid://sy4fqg6km660" path="res://Scripts/Resources/Technology/CloakingDriveStats.cs" id="1_nn1h8"]
+
+[resource]
+script = ExtResource("1_nn1h8")
+Cooldown = 60.0

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cwbq7flx436bf"]
+
+[ext_resource type="Script" uid="uid://b23a458nybtgt" path="res://Scripts/ShipTech/Technology/CloakingDrive/CloakingDrive.cs" id="1_chnwt"]
+[ext_resource type="Resource" uid="uid://86hmlj8p7oce" path="res://Resources/Technologies/CloakingDrive/CloakingDrivePowerConsumption.tres" id="2_bsa76"]
+[ext_resource type="Resource" uid="uid://dtn85d2420h6o" path="res://Resources/Technologies/CloakingDrive/CloakingDriveStats.tres" id="3_eqra2"]
+[ext_resource type="Resource" uid="uid://dtrg5s6qlsn5l" path="res://Resources/Technologies/CloakingDrive/CloakingDriveWeights.tres" id="4_ahy1y"]
+
+[node name="CloakingDrive" type="Node2D" unique_id=415304335]
+script = ExtResource("1_chnwt")
+PowerConsumption = ExtResource("2_bsa76")
+Stats = ExtResource("3_eqra2")
+Weights = ExtResource("4_ahy1y")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1484024122]
+one_shot = true

@@ -44,6 +44,8 @@ public partial class Weapon : Technology, IPowerConsumer
 
     public bool CanFire;
     
+    public Eventbus Eventbus;
+    
     public override void _Ready()
     {
         CurrentConsumption = PowerConsumption.Amount;
@@ -62,6 +64,11 @@ public partial class Weapon : Technology, IPowerConsumer
         
         if(ProjectileScene is not null && ProjectileSource is null)
             GD.PrintErr("No projectile source");
+        
+        Eventbus = GetNode<Eventbus>("/root/Eventbus");
+        
+        if(Eventbus is null)
+            GD.PrintErr("No eventbus");
         
         FiringCooldownTimer.Timeout += EndFiringCooldown;
     }
@@ -110,6 +117,7 @@ public partial class Weapon : Technology, IPowerConsumer
         FiringCooldownTimer.Start();
         
         GD.Print("Weapon fired");
+        Eventbus.EmitSignal("WeaponFired", ParentShip.GlobalPosition, ParentShip, this);
     }
 
     public virtual void FireProjectile(Vector2 targetPosition)
@@ -119,15 +127,19 @@ public partial class Weapon : Technology, IPowerConsumer
         
         if (!ConsumePowerIfAvailable(ParentShip, 0))
             return;
-
+        
         if (ProjectileSource is null)
             return;
 
         if (ProjectileSource is null)
             return;
+        
+        CanFire = false;
+        FiringCooldownTimer.Start();
 
         Projectile proj = (Projectile)ProjectileScene.Instantiate();
         SetupProjectile(proj, targetPosition);
+        Eventbus.EmitSignal("WeaponFired", ParentShip.GlobalPosition, ParentShip, this);
     }
 
     /// <summary>
