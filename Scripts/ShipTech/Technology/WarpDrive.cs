@@ -87,6 +87,8 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     /// </summary>
     public virtual void EnterAcceleration()
     {
+        GD.Print("Started warping with " + GetType());
+        
         WarpDriveState = WarpDriveState.Accelerating;
         AccelerationTimer.Start();
         ParentShip.CanMove = false;
@@ -99,6 +101,8 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     /// </summary>
     public virtual void TransitionToWarping()
     {
+        GD.Print("In main warp");
+        
         WarpDriveState = WarpDriveState.Warping;
         WarpDriveTimer.Start();
     }
@@ -108,6 +112,8 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     /// </summary>
     public virtual void TransitionToDeceleration()
     {
+        GD.Print("Decelerating");
+        
         WarpDriveState = WarpDriveState.Decelerating;
         AccelerationTimer.Stop();
         DecelerationTimer.Start();
@@ -118,6 +124,8 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     /// </summary>
     public virtual void ExitWarpState()
     {
+        GD.Print("Ended warp with " + GetType());
+        
         WarpDriveState = WarpDriveState.Inactive;
         ParentShip.Velocity = Vector2.Zero;
         ParentShip.CanMove = true;
@@ -153,6 +161,8 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
             {
                 speedMultiplier = WarpDriveStats.SpeedMultiplier;
                 CurrentConsumption = PowerConsumption.Amount;
+                
+                GD.Print("Warp velocity: " + ParentShip.Velocity.Length());
             }
             
             ParentShip.Velocity =

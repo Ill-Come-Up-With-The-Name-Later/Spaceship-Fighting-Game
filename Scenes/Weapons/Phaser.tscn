@@ -9,6 +9,7 @@
 script = ExtResource("1_44mus")
 Range = 1000.0
 HitEffectRadius = 75.0
+Color = Color(1, 1, 0, 1)
 WeaponStats = ExtResource("2_kkhta")
 PowerConsumption = ExtResource("3_44mus")
 Weights = ExtResource("4_44mus")
@@ -21,4 +22,4 @@ one_shot = true
 
 [node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
 
-[node name="Line" type="Line2D" parent="." unique_id=565697137]
+[node name="PhaserBeam" type="Line2D" parent="." unique_id=565697137]

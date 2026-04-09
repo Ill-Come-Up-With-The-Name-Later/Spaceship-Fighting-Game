@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://5nso24wt66e2"]
+
+[ext_resource type="Script" uid="uid://ckfuwvii8fy7m" path="res://Scripts/ShipTech/Technology/Weapons/MetaphasicDisruptor/MetaphasicDisruptor.cs" id="1_0m574"]
+[ext_resource type="Resource" uid="uid://d0ps8i82f62in" path="res://Resources/Weapons/MetaphasicDisruptor/MetaphasicDisruptorStats.tres" id="2_8m6xi"]
+[ext_resource type="Resource" uid="uid://drv3sks8dacvd" path="res://Resources/Weapons/MetaphasicDisruptor/MetaphasicDisruptorPowerConsumption.tres" id="3_0m574"]
+[ext_resource type="Resource" uid="uid://cwpgsbwmejdbc" path="res://Resources/Weapons/MetaphasicDisruptor/MetaphasicDisruptorWeights.tres" id="4_0m574"]
+
+[node name="MetaphasicDisruptor" type="Node2D" unique_id=189030110]
+script = ExtResource("1_0m574")
+HitEffectRadius = 75.0
+Color = Color(0.627451, 0, 1, 1)
+WeaponStats = ExtResource("2_8m6xi")
+PowerConsumption = ExtResource("3_0m574")
+Weights = ExtResource("4_0m574")
+
+[node name="EffectTimer" type="Timer" parent="." unique_id=530172594]
+wait_time = 0.2
+
+[node name="FiringTimer" type="Timer" parent="." unique_id=894285623]
+one_shot = true
+
+[node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
+
+[node name="DisruptorBeam" type="Line2D" parent="." unique_id=565697137]

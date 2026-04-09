@@ -4,10 +4,10 @@ using Godot.Collections;
 public partial class Phaser : Weapon
 {
     [Export]
-    public double Range;
-
-    [Export]
     public double HitEffectRadius;
+
+    [Export] 
+    public Color Color;
     
     public Line2D Line;
     public RayCast2D Ray;
@@ -18,10 +18,18 @@ public partial class Phaser : Weapon
     {
         base._Ready();
         
-        Line = GetNode<Line2D>("Line");
+        Line = GetNode<Line2D>("PhaserBeam");
+        
+        if(Line is null)
+            GD.PrintErr("Phaser Line is null");
+        
+        Line.DefaultColor = Color;
         Line.Visible = false;
         
         Ray = GetNode<RayCast2D>("RayCast");
+        
+        if(Ray is null)
+            GD.PrintErr("Ray cast is null");
         
         EffectTimer = GetNode<Timer>("EffectTimer");
         EffectTimer.Timeout += HideLine;

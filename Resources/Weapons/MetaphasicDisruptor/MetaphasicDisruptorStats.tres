@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://d0ps8i82f62in"]
+
+[ext_resource type="Script" uid="uid://bk5dutfrkqslb" path="res://Scripts/Resources/Weapons/WeaponData.cs" id="1_pgipl"]
+
+[resource]
+script = ExtResource("1_pgipl")
+PenetratingDamage = 6000.0
+FiringCooldown = 5.0

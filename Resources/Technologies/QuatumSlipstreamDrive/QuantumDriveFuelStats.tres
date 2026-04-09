@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://dtdlr5twiboae"]
+
+[ext_resource type="Script" uid="uid://cuqabqpylgnc5" path="res://Scripts/Resources/Technology/QuantumSlipstreamDriveStats.cs" id="1_es2ly"]
+
+[resource]
+script = ExtResource("1_es2ly")
+SlipstreamPower = 300000.0

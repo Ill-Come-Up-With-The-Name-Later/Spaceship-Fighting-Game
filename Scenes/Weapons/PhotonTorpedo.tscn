@@ -8,7 +8,7 @@
 
 [node name="PhotonTorpedo" type="Node2D" unique_id=1826866972 node_paths=PackedStringArray("ProjectileSource")]
 script = ExtResource("1_mnwh1")
-InitialTargetingRadius = 75.0
+InitialTargetingRadius = 110.0
 WeaponStats = ExtResource("2_gl2gc")
 PowerConsumption = ExtResource("3_a02c8")
 ProjectileSource = NodePath("ProjectileSource")

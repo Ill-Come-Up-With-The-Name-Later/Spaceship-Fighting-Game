@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bimqa1vr0q33y"]
+
+[ext_resource type="Script" uid="uid://cs2yxab7wd17y" path="res://Scripts/ShipTech/Technology/WarpDrives/TranswarpDrive.cs" id="1_co4u1"]
+[ext_resource type="Resource" uid="uid://v2l26liasjhn" path="res://Resources/Technologies/TranswarpDrive/TranswarpDriveStats.tres" id="2_bd628"]
+[ext_resource type="Resource" uid="uid://mck3lj8x62c6" path="res://Resources/Technologies/TranswarpDrive/TranswarpDrivePowerConsumption.tres" id="3_d5bhm"]
+[ext_resource type="Resource" uid="uid://edojmubepvhv" path="res://Resources/WarpDriveHealthStats.tres" id="4_cvf2t"]
+[ext_resource type="Resource" uid="uid://eiqeppwmxikr" path="res://Resources/Technologies/TranswarpDrive/TranswarpDriveWeights.tres" id="5_cvf2t"]
+[ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="6_pehj1"]
+[ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="7_jjg54"]
+[ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="8_qoj3r"]
+
+[node name="TranswarpDrive" type="Node2D" unique_id=1280896902]
+script = ExtResource("1_co4u1")
+WarpDriveStats = ExtResource("2_bd628")
+PowerConsumption = ExtResource("3_d5bhm")
+GenericStats = ExtResource("4_cvf2t")
+Weights = ExtResource("5_cvf2t")
+
+[node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("6_pehj1")]
+RegenerationRate = ExtResource("7_jjg54")
+ConsumptionRate = ExtResource("8_qoj3r")
+
+[node name="DriveTimer" type="Timer" parent="." unique_id=196391210]
+one_shot = true
+
+[node name="AccelerationTimer" type="Timer" parent="." unique_id=701595543]
+one_shot = true
+
+[node name="DecelerationTimer" type="Timer" parent="." unique_id=217691203]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1895495104]

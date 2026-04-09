@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cecq3cxua3xnv"]
+
+[ext_resource type="Script" uid="uid://gbwdplc0e6ph" path="res://Scripts/ShipTech/Technology/WarpDrives/CoaxialWarpDrive.cs" id="1_g6mqr"]
+[ext_resource type="Resource" uid="uid://1clc2lafh5s2" path="res://Resources/Technologies/CoaxialWarpDrive/CoaxialWarpDriveStats.tres" id="2_uly6n"]
+[ext_resource type="Resource" uid="uid://di7fq63b2nn3r" path="res://Resources/Technologies/CoaxialWarpDrive/CoaxialWarpDrivePowerConsumption.tres" id="3_pvmvr"]
+[ext_resource type="Resource" uid="uid://edojmubepvhv" path="res://Resources/WarpDriveHealthStats.tres" id="4_j4650"]
+[ext_resource type="Resource" uid="uid://5c0aqnrergmm" path="res://Resources/Technologies/CoaxialWarpDrive/CoaxialWarpDriveWeights.tres" id="5_n23gv"]
+[ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="6_yeqnt"]
+[ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="7_owey7"]
+[ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="8_ujuwb"]
+
+[node name="CoaxialWarpDrive" type="Node2D" unique_id=1280896902]
+script = ExtResource("1_g6mqr")
+WarpDriveStats = ExtResource("2_uly6n")
+PowerConsumption = ExtResource("3_pvmvr")
+GenericStats = ExtResource("4_j4650")
+Weights = ExtResource("5_n23gv")
+
+[node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("6_yeqnt")]
+RegenerationRate = ExtResource("7_owey7")
+ConsumptionRate = ExtResource("8_ujuwb")
+
+[node name="DriveTimer" type="Timer" parent="." unique_id=196391210]
+one_shot = true
+
+[node name="AccelerationTimer" type="Timer" parent="." unique_id=701595543]
+one_shot = true
+
+[node name="DecelerationTimer" type="Timer" parent="." unique_id=217691203]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1895495104]

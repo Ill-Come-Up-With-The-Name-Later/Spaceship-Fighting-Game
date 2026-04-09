@@ -1,0 +1,12 @@
+[gd_resource type="Resource" format=3 uid="uid://blueyg6qrn8hm"]
+
+[ext_resource type="Script" uid="uid://c40abdib20gjn" path="res://Scripts/Resources/Technology/WarpDriveData.cs" id="1_f0uic"]
+
+[resource]
+script = ExtResource("1_f0uic")
+SpeedMultiplier = 20.0
+MaxDuration = 60.0
+AccelerationTime = 5.0
+DecelerationTime = 1.5
+TurnRate = 0.2
+Cooldown = 30.0
