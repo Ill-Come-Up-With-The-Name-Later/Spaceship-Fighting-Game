@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c51njbvw7xtku"]
+
+[ext_resource type="Script" uid="uid://bfbg4lul48sml" path="res://Scripts/ShipTech/Technology/Upgrades/ElectromagneticInsulator/ElectromagneticInsulator.cs" id="1_v12gu"]
+
+[node name="ElectromagneticInsulator" type="Node2D" unique_id=375755822]
+script = ExtResource("1_v12gu")

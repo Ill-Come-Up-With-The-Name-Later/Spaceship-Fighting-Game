@@ -48,7 +48,11 @@ public partial class EMP : Weapon
                 {
                     if (ship != ParentShip)
                     {
-                        ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.FusionReactor.CurrentPower - PowerDrainHit);
+                        if(ship.HasUpgrade<ElectromagneticInsulator>())
+                            ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.FusionReactor.CurrentPower - (PowerDrainHit / 2));
+                        else
+                            ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.FusionReactor.CurrentPower - PowerDrainHit);
+                        
                         ship.Hurtbox.ApplyDamage(ship, ParentShip, WeaponStats.Damage,
                             WeaponStats.ShieldDamage, WeaponStats.PenetratingDamage);
                         
