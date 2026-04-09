@@ -53,12 +53,12 @@ public partial class Hurtbox : Area2D
 		if (damager == damaged)
 			return;
 		
-		GD.Print("Applying damage to " + damaged);
+		GD.Print("Applying damage to " + damaged.GetName());
 
 		if (damaged.HasShield())
 		{
 			damaged.DamageShield(damage + shieldDamage);
-			damaged.CurrentPower = Mathf.Max(0, damaged.CurrentPower - damage + shieldDamage);
+			damaged.CurrentPower = Mathf.Max(0, damaged.CurrentPower - (damage + shieldDamage));
 			damaged.DamageHull((penetratingDamage * 0.5) + Mathf.Max(0, damage - damaged.DefenseSystem.CurrentDefenseHealth) +
 			                   (damage * (1 - damaged.DefenseSystem.DefensePercentage)));
 		}
@@ -75,7 +75,7 @@ public partial class Hurtbox : Area2D
 		GD.Print("Shield Health: " + damaged.DefenseSystem.CurrentDefenseHealth);
 		GD.Print("Engine health: " + damaged.Engine.CurrentHealth);
 		GD.Print("Reactor health: " + damaged.FusionReactor.CurrentHealth + " Reactor Fuel: " + damaged.FusionReactor.CurrentFuel);
-		GD.Print("Power: " + ParentShip.AvailablePower() + " Materials: " + damaged.Materials);
+		GD.Print("Power: " + damaged.AvailablePower() + " Materials: " + damaged.Materials);
 
 		if(damaged.Health() <= 0)
 		{

@@ -17,6 +17,7 @@ script = ExtResource("1_p454g")
 Stats = ExtResource("2_dp7vj")
 RegenerationRate = ExtResource("3_l8rhb")
 ConsumptionRate = ExtResource("4_wa5ix")
+ShieldDamagingRadius = 200.0
 WarpDriveStats = ExtResource("2_mxjnf")
 PowerConsumption = ExtResource("3_4ijql")
 GenericStats = ExtResource("4_dp7vj")

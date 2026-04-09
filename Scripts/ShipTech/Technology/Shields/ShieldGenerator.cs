@@ -15,11 +15,16 @@ public partial class ShieldGenerator : DefenseGenerator
     {
         base._PhysicsProcess(delta);
         ConsumingPower = DefenseActive;
-        
-        if(ConsumingPower)
-            if(ConsumePowerIfAvailable(ParentShip, delta))
-                if(Regenerating)
+
+        if (ConsumingPower) {
+            if (ConsumePowerIfAvailable(ParentShip, delta))
+            {
+                if (Regenerating)
                     Regenerate(delta);
+            }
+            else
+                DefenseActive = false;
+        }
     }
     
     public new void Toggle()

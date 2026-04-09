@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 using SpaceshipFightingGame.Scripts.Resources;
 using SpaceshipFightingGame.Scripts.Resources.Technology;
 using SpaceshipFightingGame.Scripts.ShipTech;
@@ -15,6 +16,9 @@ public partial class QuantumSlipstreamDrive : WarpDrive, IResourceConsumer, IReg
 
     [Export]
     public ConsumptionData ConsumptionRate { get; set; }
+
+    [Export]
+    public double ShieldDamagingRadius;
 
     public bool Consuming { get; set; }
 
@@ -43,9 +47,34 @@ public partial class QuantumSlipstreamDrive : WarpDrive, IResourceConsumer, IReg
     public override void ExitWarpState()
     {
         base.ExitWarpState();
-        // Damage and deactivate nearby enemies' shields
         Consuming = false;
         Regenerating = true;
+
+        DamageNearbyShields();
+    }
+
+    public void DamageNearbyShields()
+    {
+        Array<Node> nodes = GetTree().GetNodesInGroup("Ship");
+
+        foreach (Node node in nodes)
+        {
+            if (node is Ship ship)
+            {
+                if (ship.GlobalPosition.DistanceTo(GlobalPosition) <= ShieldDamagingRadius)
+                {
+                    if (ship != ParentShip)
+                    {
+                        ship.DamageShield(ship.DefenseSystem.DefenseGeneratorStats.DefenseHealth * 0.95);
+                        
+                        if(ship.HasShield())
+                            ship.DefenseSystem.Toggle();
+                        
+                        GD.Print("Damaged shield of " + ship);
+                    }
+                }
+            }
+        }
     }
 
     public override void _PhysicsProcess(double delta)

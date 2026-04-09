@@ -57,3 +57,7 @@ AttackFOV = 90.0
 [node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("12_s1ucd")]
 
 [node name="LaserCannon2" parent="WeaponSystem" unique_id=534786323 instance=ExtResource("12_s1ucd")]
+
+[node name="Upgrades" type="Node2D" parent="." unique_id=1392655645]
+
+[node name="Abilities" type="Node2D" parent="." unique_id=7360442]

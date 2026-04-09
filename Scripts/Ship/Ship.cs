@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using SpaceshipFightingGame.Scripts.Controllers;
@@ -126,7 +125,7 @@ public partial class Ship : CharacterBody2D
 	public override void _Process(double delta)
 	{
 		foreach (Upgrade upgrade in GetUpgrades())
-			if(!upgrade.Applied.Contains(this))
+			if (!upgrade.Applied.Contains(this) && upgrade.GetParent().GetParent() == this)
 				upgrade.Apply(this);
 	}
 
@@ -163,6 +162,24 @@ public partial class Ship : CharacterBody2D
 				return true;
 		
 		return false;
+	}
+
+	/// <summary>
+	/// Gets a part on the ship if it exists
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of part
+	/// </typeparam>
+	/// <returns>
+	///	The part if it exists
+	/// </returns>
+	public T GetPart<T>() where T : ShipPart
+	{
+		foreach(Node child in GetChildren())
+			if(child is T part)
+				return part;
+
+		return null;
 	}
 
 	/// <summary>

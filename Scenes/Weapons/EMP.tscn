@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cdmp4ko7ct6ko"]
+
+[ext_resource type="Script" uid="uid://bdmnpi01sorxk" path="res://Scripts/ShipTech/Technology/Weapons/EMP/EMP.cs" id="1_jqrho"]
+[ext_resource type="Resource" uid="uid://c50vsoqn707dy" path="res://Resources/Weapons/EMP/EMPStats.tres" id="2_uqkqp"]
+[ext_resource type="Resource" uid="uid://o1rtvdy062jy" path="res://Resources/Weapons/EMP/EMPPowerConsumption.tres" id="3_2n237"]
+[ext_resource type="Resource" uid="uid://3axvdirhutmf" path="res://Resources/Weapons/EMP/EMPWeights.tres" id="4_asx8n"]
+
+[node name="EMP" type="Node2D" unique_id=1826866972 node_paths=PackedStringArray("ProjectileSource")]
+script = ExtResource("1_jqrho")
+HitEffectRadius = 400.0
+WeaponStats = ExtResource("2_uqkqp")
+PowerConsumption = ExtResource("3_2n237")
+ProjectileSource = NodePath("ProjectileSource")
+Weights = ExtResource("4_asx8n")
+
+[node name="ProjectileSource" type="Marker2D" parent="." unique_id=1048220781]
+
+[node name="FiringTimer" type="Timer" parent="." unique_id=1793119475]
+one_shot = true
+
+[node name="ChargeTimer" type="Timer" parent="." unique_id=22477256]
+wait_time = 5.0
+one_shot = true
