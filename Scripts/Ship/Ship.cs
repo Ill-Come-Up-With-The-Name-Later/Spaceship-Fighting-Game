@@ -168,6 +168,22 @@ public partial class Ship : CharacterBody2D
 	}
 
 	/// <summary>
+	/// If the ship is cloaked
+	/// </summary>
+	/// <returns>
+	/// If the ship is cloaked
+	/// </returns>
+	public bool Cloaked()
+	{
+		CloakingDrive drive = GetTechnology<CloakingDrive>();
+		
+		if(drive is null)
+			return false;
+		
+		return drive.Active;
+	}
+
+	/// <summary>
 	/// The amount of power the ship has
 	/// </summary>
 	/// <returns>

@@ -215,6 +215,9 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     {
         if (!CanToggle)
             return;
+
+        if (ParentShip.Cloaked())
+            return;
         
         if (Active)
             DeactivateWarp();
