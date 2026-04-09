@@ -40,3 +40,5 @@ editor_description = "The parent node for ship technologies that aren't standard
 [node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
 editor_description = "The parent node for all of a ship's weapons."
 script = ExtResource("9_je780")
+
+[node name="Upgrades" type="Node2D" parent="." unique_id=549748298]

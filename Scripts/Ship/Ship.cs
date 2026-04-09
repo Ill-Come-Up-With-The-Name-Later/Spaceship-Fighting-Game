@@ -125,6 +125,9 @@ public partial class Ship : CharacterBody2D
 	
 	public override void _Process(double delta)
 	{
+		foreach (Upgrade upgrade in GetUpgrades())
+			if(!upgrade.Applied.Contains(this))
+				upgrade.Apply(this);
 	}
 
 	/// <summary>
@@ -143,6 +146,72 @@ public partial class Ship : CharacterBody2D
 				return technology;
 		
 		return null;
+	}
+
+	/// <summary>
+	/// If the ship has an instance of a part
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// The type of part
+	/// <returns>
+	/// If the ship has an instance of a part
+	/// </returns>
+	public bool HasPart<T>() where T : ShipPart
+	{
+		foreach(Node child in GetChildren())
+			if(child is T part)
+				return true;
+		
+		return false;
+	}
+
+	/// <summary>
+	/// Gets an upgrade if the ship has it
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of the upgrade
+	/// </typeparam>
+	/// <returns>
+	/// The upgrade if the ship has it or null
+	/// </returns>
+	public T GetUpgrade<T>() where T : Upgrade
+	{
+		foreach(Node child in GetNode("Upgrades").GetChildren())
+			if(child is T upgrade)
+				return upgrade;
+		
+		return null;
+	}
+
+	/// <summary>
+	/// If the ship has an upgrade
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of upgrade
+	/// </typeparam>
+	/// <returns>
+	/// If the ship has the upgrade
+	/// </returns>
+	public bool HasUpgrade<T>() where T : Upgrade
+	{
+		return GetUpgrade<T>() != null;
+	}
+
+	/// <summary>
+	/// Gets all the upgrades on the ship
+	/// </summary>
+	/// <returns>
+	/// All the upgrades on the ship
+	/// </returns>
+	public Array<Upgrade> GetUpgrades()
+	{
+		Array<Upgrade> upgrades = new Array<Upgrade>();
+		
+		foreach(Node child in GetNode("Upgrades").GetChildren())
+			if(child is Upgrade upgrade)
+				upgrades.Add(upgrade);
+		
+		return upgrades;
 	}
 
 	/// <summary>

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://xk8g2tn0j338"]
+
+[ext_resource type="Script" uid="uid://rudpeogydlnv" path="res://Scripts/ShipTech/Technology/Upgrades/BatteryBank/BatteryBank.cs" id="1_ors6w"]
+
+[node name="BatteryBank" type="Node2D" unique_id=687813223]
+script = ExtResource("1_ors6w")

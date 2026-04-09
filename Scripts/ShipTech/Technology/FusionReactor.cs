@@ -16,7 +16,11 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, 
     
     [Export]
     public ConsumptionData ConsumptionRate { get; set; }
-    
+
+    /// <summary>
+    /// Useful for the Battery Bank upgrade
+    /// </summary>
+    public double PowerCapacity { get; set; }
     public double CurrentPower;
     public double CurrentFuel;
 
@@ -28,8 +32,8 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, 
     public override void _Ready()
     {
         base._Ready();
-        
-        CurrentPower = ReactorStats.PowerCapacity;
+        PowerCapacity = ReactorStats.PowerCapacity;
+        CurrentPower = PowerCapacity;
         CurrentFuel = ReactorStats.Fuel;
         
         Consuming = true;
@@ -64,9 +68,9 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, 
 
     public bool Regenerate(double delta)
     {
-        if (CurrentPower < ReactorStats.PowerCapacity)
+        if (CurrentPower < PowerCapacity)
         {
-            CurrentPower = Mathf.Min(ReactorStats.PowerCapacity,
+            CurrentPower = Mathf.Min(PowerCapacity,
                 CurrentPower + (RegenerationRate.PerSecondRate * delta));
             
             return true;
