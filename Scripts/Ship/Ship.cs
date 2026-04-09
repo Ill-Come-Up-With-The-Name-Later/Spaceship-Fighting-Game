@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using SpaceshipFightingGame.Scripts.Controllers;
@@ -137,6 +138,34 @@ public partial class Ship : CharacterBody2D
 	public override void _ExitTree()
 	{
 		Manager.Ships.Remove(this);
+	}
+
+	/// <summary>
+	/// Gets all technologies on the ship
+	/// </summary>
+	/// <returns>
+	/// All technologies on the ship
+	/// </returns>
+	public List<Technology> GetTechnologies()
+	{
+		List<Technology> technologies = new();
+		Stack<Node> nodes = new();
+    
+		nodes.Push(this);
+		
+		// DFS to the rescue
+		while (nodes.Count > 0)
+		{
+			Node node = nodes.Pop();
+
+			if (node is Technology technology)
+				technologies.Add(technology);
+
+			foreach (Node child in node.GetChildren())
+				nodes.Push(child);
+		}
+
+		return technologies;
 	}
 
 	/// <summary>

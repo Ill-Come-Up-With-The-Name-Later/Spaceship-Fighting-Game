@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://xf58wic0uscr"]
 
 [ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_kvqdo"]
-[ext_resource type="Script" uid="uid://cj2xo5j4nqo17" path="res://Scripts/Controllers/EnemyController/EnemyController.cs" id="2_5obky"]
+[ext_resource type="PackedScene" uid="uid://b6d1ryne65trw" path="res://Scenes/Controllers/EnemyController.tscn" id="2_5obky"]
 [ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="2_e6xtg"]
 [ext_resource type="Texture2D" uid="uid://dv158k37mij23" path="res://Sprites/icon.svg" id="3_5obky"]
 [ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="4_d6dxf"]
@@ -17,8 +17,7 @@ radius = 1.0
 [node name="EnemyShip" type="CharacterBody2D" unique_id=1450576114]
 script = ExtResource("1_kvqdo")
 
-[node name="EnemyController" type="Node2D" parent="." unique_id=1926634939]
-script = ExtResource("2_5obky")
+[node name="EnemyController" parent="." unique_id=1151074664 instance=ExtResource("2_5obky")]
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_e6xtg")]
 

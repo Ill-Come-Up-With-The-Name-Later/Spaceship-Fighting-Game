@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cxj5tn5boe2rr"]
+
+[ext_resource type="Script" uid="uid://bb3v1m4qnpref" path="res://Scripts/ShipTech/Technology/Upgrades/AntiCloakScanner/AntiCloakScanner.cs" id="1_r5ls6"]
+
+[node name="AntiCloakScanner" type="Node2D" unique_id=1952495609]
+script = ExtResource("1_r5ls6")
