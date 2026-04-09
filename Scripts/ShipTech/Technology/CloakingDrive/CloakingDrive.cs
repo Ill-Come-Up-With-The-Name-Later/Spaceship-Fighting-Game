@@ -110,6 +110,8 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		ParentShip.Sprite.SelfModulate = selfMod;
 		CooldownTimer.Start();
 		CanToggle = false;
+
+		Eventbus.EmitSignal("ShipDecloaked", ship);
 	}
 
 	public void Toggle()
@@ -125,6 +127,9 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		
 		Active = !Active;
 		GD.Print("Cloaking drive is active: " + Active);
+		
+		if(Active)
+			Eventbus.EmitSignal("ShipCloaked", ParentShip);
 
 		if (!Active)
 		{

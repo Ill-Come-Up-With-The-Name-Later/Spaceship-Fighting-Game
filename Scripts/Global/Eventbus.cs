@@ -20,4 +20,10 @@ public partial class Eventbus : Node
     
     [Signal]
     public delegate void ShipLeaveWarpEventHandler(Ship ship);
+    
+    [Signal]
+    public delegate void ShipCloakedEventHandler(Ship ship);
+    
+    [Signal]
+    public delegate void ShipDecloakedEventHandler(Ship ship);
 }
