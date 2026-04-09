@@ -159,12 +159,6 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
                 (Vector2.Up * (float)ParentShip.Engine.TrueMoveSpeed() * (float)speedMultiplier).Rotated(ParentShip
                     .GlobalRotation);
         }
-
-        if (Input.IsActionJustPressed("toggle_warp_drive"))
-        {
-            if(WarpDriveState is not (WarpDriveState.Accelerating or WarpDriveState.Decelerating))
-                Toggle();
-        }
     }
 
     /// <summary>
@@ -203,7 +197,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     
     public bool ConsumePowerIfAvailable(Ship ship, double delta)
     {
-        if (CurrentConsumption > ship.CurrentPower)
+        if (CurrentConsumption * delta > ship.CurrentPower)
             return false;
         
         ship.FusionReactor.CurrentPower -= CurrentConsumption * delta;

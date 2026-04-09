@@ -70,6 +70,7 @@ public partial class PlayerController : Node2D
 		
 		ListenForCloaking();
 		ListenForShieldToggle();
+		ListenForWarpDrive();
 		WeaponSelection();
 	}
 
@@ -78,6 +79,15 @@ public partial class PlayerController : Node2D
 		ParentShip.MoveAndSlide();
 	}
 
+	public void ListenForWarpDrive()
+	{
+		if (Input.IsActionJustPressed("toggle_warp_drive"))
+		{
+			if(ParentShip.WarpDrive.WarpDriveState is not (WarpDriveState.Accelerating or WarpDriveState.Decelerating))
+				ParentShip.WarpDrive.Toggle();
+		}
+	}
+	
 	public void ListenForShieldToggle()
 	{
 		if (Input.IsActionJustPressed("toggle_shield"))

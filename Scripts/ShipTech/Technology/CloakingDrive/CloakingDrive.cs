@@ -84,7 +84,7 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 
 	public bool ConsumePowerIfAvailable(Ship ship, double delta)
 	{
-		if (CurrentConsumption > ship.CurrentPower)
+		if (CurrentConsumption * delta > ship.CurrentPower)
 			return false;
         
 		ship.FusionReactor.CurrentPower -= CurrentConsumption * delta;
