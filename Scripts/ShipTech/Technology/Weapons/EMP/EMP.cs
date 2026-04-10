@@ -39,6 +39,7 @@ public partial class EMP : Weapon
     public void HitTargetsNear()
     {
         Array<Node> nodes = GetTree().GetNodesInGroup("Ship");
+        Eventbus.EmitSignal("EmpFired", ParentShip);
 
         foreach (Node node in nodes)
         {
@@ -65,6 +66,7 @@ public partial class EMP : Weapon
                         }
                         
                         GD.Print("EMP Hit " + ship.GetName());
+                        Eventbus.EmitSignal("EmpHitShip", ship, ParentShip);
                         
                         // Todo: Halving distress beacon range
                     }

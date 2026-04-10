@@ -3,6 +3,9 @@ using SpaceshipFightingGame.Scripts.Controllers.EnemyController;
 
 public partial class AIState : Resource
 {
+    [Export]
+    public AIStateType Type;
+    
     /// <summary>
     /// Triggers when the state is entered
     /// </summary>

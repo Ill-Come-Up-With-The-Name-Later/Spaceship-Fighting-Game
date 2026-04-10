@@ -5,7 +5,4 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>SpaceshipFightingGame</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\Controllers\EnemyBehavior\" />
-  </ItemGroup>
 </Project>

@@ -11,6 +11,12 @@ public partial class Eventbus : Node
     [Signal]
     public delegate void ShipDamagedEventHandler(Ship damaged, Ship damager,
         double damage, double shieldDamage, double penetrationDamage);
+    
+    [Signal]
+    public delegate void EmpFiredEventHandler(Ship user);
+    
+    [Signal]
+    public delegate void EmpHitShipEventHandler(Ship hit, Ship user);
 
     [Signal]
     public delegate void SimplifiedShipDamagedEventHandler(Ship damaged);
@@ -29,4 +35,10 @@ public partial class Eventbus : Node
     
     [Signal]
     public delegate void ShipDestroyedEventHandler(Ship ship, Ship killer);
+
+    [Signal]
+    public delegate void DistressBeaconUsedEventHandler(Ship user);
+    
+    [Signal]
+    public delegate void TranswarpExitedEventHandler(Ship user);
 }

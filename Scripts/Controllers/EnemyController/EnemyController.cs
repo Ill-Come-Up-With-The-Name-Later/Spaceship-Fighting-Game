@@ -23,7 +23,10 @@ public partial class EnemyController : Controller
     
     public double TimeInState { get; set; }
 
-    public AIState CurrentState { get; set; }
+    [Export]
+    public AIProfile Profile;
+    
+    public AIState CurrentState { get; private set; }
 	
     public override void _Ready()
     {
@@ -42,17 +45,43 @@ public partial class EnemyController : Controller
             GD.Print("Enemy Controller: ship found");
             ParentShip.Controller = Controllers.Computer;
         }
+        
+        Profile.Initialize();
+        ChangeState(Profile.InitialState);
     }
 
     public override void _Process(double delta)
     {
-        CurrentState?.Process(this, delta);
         TimeInState += delta;
+        CurrentState?.Process(this, delta);
+        EvaluateTransitions(delta);
     }
 
     public override void _PhysicsProcess(double delta)
     {
         CurrentState?.PhysicsProcess(this, delta);
+    }
+
+    /// <summary>
+    /// Evaluates state transition conditions and
+    /// triggers a state transition when needed
+    /// </summary>
+    /// <param name="delta">
+    /// Delta time
+    /// </param>
+    public void EvaluateTransitions(double delta)
+    {
+        foreach (StateTransition transition in Profile.Transitions)
+        {
+            if(transition.From != CurrentState)
+                continue;
+            
+            if (transition.ShouldTransition(this, delta))
+            {
+                ChangeState(transition.To);
+                break;
+            }
+        }
     }
 
     /// <summary>
