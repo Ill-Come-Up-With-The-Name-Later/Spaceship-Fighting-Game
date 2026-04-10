@@ -208,6 +208,32 @@ public partial class Ship : CharacterBody2D
 		AbilityNode.AddChild(ability);
 		AllTechnologies.Add(ability);
 	}
+
+	/// <summary>
+	/// Adds a ship part to the ship.
+	/// Likely will end up only used for
+	/// warp drives.
+	/// </summary>
+	/// <param name="part">
+	/// The part to add to the ship
+	/// </param>
+	public void AddShipPart(ShipPart part)
+	{
+		AddChild(part);
+		AllTechnologies.Add(part);
+	}
+
+	/// <summary>
+	/// Removes a part from the ship
+	/// </summary>
+	/// <param name="part">
+	/// The part to remove from the ship
+	/// </param>
+	public void RemovePart(ShipPart part)
+	{
+		RemoveChild(part);
+		AllTechnologies.Remove(part);
+	}
 	
 	/// <summary>
 	/// Gets all technologies on the ship
