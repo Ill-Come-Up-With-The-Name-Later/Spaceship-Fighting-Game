@@ -26,12 +26,8 @@ public partial class GameManager : Node
         
         foreach (Ship ship in Ships)
         {
-            if (ship.Controller is Controllers.Controllers.Computer)
-            {
-                EnemyController controller = ship.GetNode<EnemyController>("EnemyController");
-                if(controller.Faction == faction)
-                    ships.Add(ship);
-            }
+            if (ship.ControlNode.Faction == faction)
+                ships.Add(ship);
         }
         
         return ships;

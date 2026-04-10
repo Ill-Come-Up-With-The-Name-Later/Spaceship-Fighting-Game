@@ -423,6 +423,10 @@ public partial class Ship : CharacterBody2D
 				
 			return enemyController.Faction != otherController.Faction;
 		}
+
+		if(ControlNode.Faction is Faction.Player)
+			if (other.ControlNode.Faction == Faction.Player)
+				return false;
 		
 		return true;
 	}

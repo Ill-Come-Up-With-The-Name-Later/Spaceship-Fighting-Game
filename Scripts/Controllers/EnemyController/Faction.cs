@@ -8,6 +8,7 @@
 public enum Faction
 {
     None,
+    Player,
     Collective,
     Hunter
 }

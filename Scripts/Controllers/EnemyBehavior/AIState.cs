@@ -1,11 +1,15 @@
 using Godot;
 using SpaceshipFightingGame.Scripts.Controllers.EnemyController;
 
-public partial class AIState : Resource
+/// <summary>
+/// An AI state. Must be extended from
+/// to use.
+/// </summary>
+public abstract partial class AIState : Resource
 {
     [Export]
     public AIStateType Type;
-    
+
     /// <summary>
     /// Triggers when the state is entered
     /// </summary>
@@ -15,9 +19,7 @@ public partial class AIState : Resource
     /// <param name="previousState">
     /// The previous AIState
     /// </param>
-    public virtual void EnterState(EnemyController controller, AIState previousState)
-    {
-    }
+    public abstract void EnterState(EnemyController controller, AIState previousState);
 
     /// <summary>
     /// Equivalent of _Process but fo AI states
@@ -28,9 +30,7 @@ public partial class AIState : Resource
     /// <param name="delta">
     /// Delta time
     /// </param>
-    public virtual void Process(EnemyController controller, double delta)
-    {
-    }
+    public abstract void Process(EnemyController controller, double delta);
 
     /// <summary>
     /// Equivalent of _PhysicsProcess for AI states
@@ -41,9 +41,7 @@ public partial class AIState : Resource
     /// <param name="delta">
     /// Delta time
     /// </param>
-    public virtual void PhysicsProcess(EnemyController controller, double delta)
-    {
-    }
+    public abstract void PhysicsProcess(EnemyController controller, double delta);
 
     /// <summary>
     /// Triggers when the state is exited
@@ -54,7 +52,5 @@ public partial class AIState : Resource
     /// <param name="nextState">
     /// The state being transitioned to
     /// </param>
-    public virtual void ExitState(EnemyController controller, AIState nextState)
-    {
-    }
+    public abstract void ExitState(EnemyController controller, AIState nextState);
 }

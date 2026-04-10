@@ -1,5 +1,6 @@
 using Godot;
 using SpaceshipFightingGame.Scripts.Controllers;
+using SpaceshipFightingGame.Scripts.Controllers.EnemyController;
 using SpaceshipFightingGame.Scripts.Global;
 
 public partial class PlayerController : Controller
@@ -36,6 +37,8 @@ public partial class PlayerController : Controller
 
 			Eventbus.MouseClick += TriggerAttack;
 		}
+
+		Faction = Faction.Player;
 	}
 
 	public override void _ExitTree()

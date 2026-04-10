@@ -3,5 +3,10 @@
 /// </summary>
 public enum AIStateType
 {
-    
+    Roam,
+    Approach,
+    Attack,
+    Flee,
+    WarpIn,
+    Rescue
 }

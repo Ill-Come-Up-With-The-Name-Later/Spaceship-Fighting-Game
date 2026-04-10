@@ -14,9 +14,6 @@ public partial class EnemyController : Controller
     public Eventbus Eventbus;
     
     public GameManager Manager;
-    
-    [Export]
-    public Faction Faction;
 
     [Export]
     public double DetectionRange;

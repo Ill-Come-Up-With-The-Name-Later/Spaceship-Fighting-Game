@@ -5,4 +5,9 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>SpaceshipFightingGame</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\Controllers\EnemyBehavior\AIProfiles\" />
+    <Folder Include="Scripts\Controllers\EnemyBehavior\AIStates\" />
+    <Folder Include="Scripts\Controllers\EnemyBehavior\StateTransitions\" />
+  </ItemGroup>
 </Project>
