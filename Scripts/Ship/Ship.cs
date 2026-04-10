@@ -29,7 +29,13 @@ public partial class Ship : CharacterBody2D
 
 	public Sprite2D Sprite;
 
-	public Array<Node> Technologies;
+	public Array<Node> MiscTechnologies;
+	
+	public List<Technology> AllTechnologies { get; private set; }
+
+	public Node2D TechnologyNode;
+	public Node2D UpgradeNode;
+	public Node2D AbilityNode;
 	
 	/// <summary>
 	/// Amount of materials the ship has
@@ -120,18 +126,25 @@ public partial class Ship : CharacterBody2D
 		
 		if(Sprite is null)
 			GD.PrintErr("Sprite not found");
-
-		Technologies = GetNode<Node2D>("Technology").GetChildren();
+		
+		TechnologyNode = GetNode<Node2D>("Technology");
+		MiscTechnologies = TechnologyNode.GetChildren();
 		
 		ControlNode = GetNode<Controller>("ControlNode");
 		
 		if(ControlNode is null)
 			GD.Print("Ship has no controller");
 
+		UpgradeNode = GetNode<Node2D>("Upgrades");
+		
+		AbilityNode = GetNode<Node2D>("Abilities");
+
 		CanMove = true;
 		CanTurn = true;
 
 		DefenseSystem.DefenseActive = true;
+
+		AllTechnologies = GetAllTechnologies();
 	}
 	
 	public override void _Process(double delta)
@@ -147,12 +160,62 @@ public partial class Ship : CharacterBody2D
 	}
 
 	/// <summary>
+	/// Adds a weapon to the ship
+	/// </summary>
+	/// <param name="weapon">
+	/// The weapon to add
+	/// </param>
+	public void AddWeapon(Weapon weapon)
+	{
+		Weapons.AddChild(weapon);
+		AllTechnologies.Add(weapon);
+	}
+
+	/// <summary>
+	/// Adds a technology to the ship
+	/// </summary>
+	/// <param name="technology">
+	/// The technology to add
+	/// </param>
+	public void AddTechnology(Technology technology)
+	{
+		TechnologyNode.AddChild(technology);
+		AllTechnologies.Add(technology);
+		MiscTechnologies.Add(technology);
+	}
+
+	/// <summary>
+	/// Adds an upgrade to the ship
+	/// </summary>
+	/// <param name="upgrade">
+	/// The upgrade to add to the ship
+	/// </param>
+	public void AddUpgrade(Upgrade upgrade)
+	{
+		UpgradeNode.AddChild(upgrade);
+		AllTechnologies.Add(upgrade);
+	}
+
+	/// <summary>
+	/// Adds an ability to the ship
+	/// </summary>
+	/// <param name="ability">
+	/// The ability to add to the ship
+	/// </param>
+	public void AddAbility(Technology ability)
+	{
+		// Todo: Implement Ability base class and change the parameter type
+		AbilityNode.AddChild(ability);
+		AllTechnologies.Add(ability);
+	}
+	
+	/// <summary>
 	/// Gets all technologies on the ship
 	/// </summary>
 	/// <returns>
 	/// All technologies on the ship
 	/// </returns>
-	public List<Technology> GetTechnologies()
+	public List<Technology> GetAllTechnologies()
 	{
 		List<Technology> technologies = new();
 		Stack<Node> nodes = new();
@@ -185,7 +248,7 @@ public partial class Ship : CharacterBody2D
 	/// </returns>
 	public T GetTechnology<T>() where T : Technology
 	{
-		foreach(Node child in Technologies)
+		foreach(Node child in MiscTechnologies)
 			if(child is T technology)
 				return technology;
 		
@@ -269,7 +332,7 @@ public partial class Ship : CharacterBody2D
 	{
 		Array<Upgrade> upgrades = new Array<Upgrade>();
 		
-		foreach(Node child in GetNode("Upgrades").GetChildren())
+		foreach(Node child in UpgradeNode.GetChildren())
 			if(child is Upgrade upgrade)
 				upgrades.Add(upgrade);
 		

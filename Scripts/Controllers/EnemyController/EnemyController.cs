@@ -18,7 +18,12 @@ public partial class EnemyController : Controller
     [Export]
     public Faction Faction;
 
+    [Export]
     public double detectionRange;
+    
+    public double TimeInState { get; set; }
+
+    public AIState CurrentState { get; set; }
 	
     public override void _Ready()
     {
@@ -39,16 +44,53 @@ public partial class EnemyController : Controller
         }
     }
 
+    public override void _Process(double delta)
+    {
+        CurrentState?.Process(this, delta);
+        TimeInState += delta;
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        CurrentState?.PhysicsProcess(this, delta);
+    }
+
+    /// <summary>
+    /// Changes the enemy's state
+    /// </summary>
+    /// <param name="newState">
+    /// The next state to change to
+    /// </param>
+    /// <param name="forceChange">
+    /// If the state should be forced to change
+    /// </param>
+    /// <returns>
+    /// If the state has changed
+    /// </returns>
+    public bool ChangeState(AIState newState, bool forceChange = false)
+    {
+        if (newState is null)
+            return false;
+        
+        if (newState == CurrentState && !forceChange)
+            return false;
+        
+        AIState oldState = CurrentState;
+        CurrentState?.ExitState(this, newState);
+        
+        CurrentState = newState;
+        TimeInState = 0;
+        CurrentState.EnterState(this, oldState);
+        return true;
+    }
+
     /// <summary>
     /// Creates the enemy's targeting priorities
     /// </summary>
-    /// <param name="detectionRange">
-    /// The range of the enemy's detection
-    /// </param>
     /// <returns>
     /// The targeting priorities
     /// </returns>
-    public PriorityQueue<Ship, double> TargetPriorities(double detectionRange)
+    public PriorityQueue<Ship, double> TargetPriorities()
     {
         PriorityQueue<Ship, double> queue = new PriorityQueue<Ship, double>();
 
@@ -73,14 +115,13 @@ public partial class EnemyController : Controller
             
             double priority = 0;
             
-            foreach (Technology technology in ship.GetTechnologies())
+            foreach (Technology technology in ship.AllTechnologies)
                 priority += technology.Weights.StrengthWeight;
 
             priority += ship.GetMissingHealthPercentage() * 5;
             priority += ship.GetMissingShieldPercentage() * 2;
             
-            priority = -priority;
-            queue.Enqueue(ship, priority);
+            queue.Enqueue(ship, -priority);
         }
 
         return queue;
