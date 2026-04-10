@@ -46,7 +46,6 @@ public partial class EnemyController : Controller
             ParentShip.Controller = Controllers.Computer;
         }
         
-        Profile.Initialize();
         ChangeState(Profile.InitialState);
     }
 
