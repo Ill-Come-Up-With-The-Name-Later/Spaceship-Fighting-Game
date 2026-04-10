@@ -34,7 +34,8 @@ public partial class QuantumSlipstreamDrive : WarpDrive, IResourceConsumer, IReg
     {
         return ParentShip.CurrentPower >=
                CurrentConsumption * 1.5 && CurrentHealth > 0 &&
-               ParentShip.Hull.GetHealthPercentage() >= 0.6;
+               ParentShip.Hull.GetHealthPercentage() >= 0.6
+               && ParentShip.Engine.CurrentHealth > 0;
     }
 
     public override void ActivateWarp()
