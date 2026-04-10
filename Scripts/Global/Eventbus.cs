@@ -37,6 +37,9 @@ public partial class Eventbus : Node
     public delegate void ShipDestroyedEventHandler(Ship ship, Ship killer);
 
     [Signal]
+    public delegate void AbilityUsedEventHandler(Ability ability, Ship user);
+    
+    [Signal]
     public delegate void DistressBeaconUsedEventHandler(Ship user);
     
     [Signal]

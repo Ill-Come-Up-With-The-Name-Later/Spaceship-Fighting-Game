@@ -172,7 +172,10 @@ public partial class Ship : CharacterBody2D
 	}
 
 	/// <summary>
-	/// Adds a technology to the ship
+	/// Adds a technology to the ship.
+	/// The technology will be added under the ship's
+	/// "Technology" node. Do not add weapons, upgrades, abilities,
+	/// or ship parts here, use their appropriate methods.
 	/// </summary>
 	/// <param name="technology">
 	/// The technology to add
@@ -202,9 +205,8 @@ public partial class Ship : CharacterBody2D
 	/// <param name="ability">
 	/// The ability to add to the ship
 	/// </param>
-	public void AddAbility(Technology ability)
+	public void AddAbility(Ability ability)
 	{
-		// Todo: Implement Ability base class and change the parameter type
 		AbilityNode.AddChild(ability);
 		AllTechnologies.Add(ability);
 	}
