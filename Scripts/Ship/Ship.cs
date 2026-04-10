@@ -366,6 +366,17 @@ public partial class Ship : CharacterBody2D
 		
 		return upgrades;
 	}
+
+	/// <summary>
+	/// All weapons on the ship
+	/// </summary>
+	/// <returns>
+	/// All weapons on the ship
+	/// </returns>
+	public List<Weapon> GetWeapons()
+	{
+		return Weapons.WeaponList;
+	}
 	
 	/// <summary>
 	/// Gets all weapons of a type
@@ -380,7 +391,7 @@ public partial class Ship : CharacterBody2D
 	{
 		List<T> weapons = new List<T>();
 		
-		foreach (Node child in GetNode("Weapons").GetChildren())
+		foreach (Node child in Weapons.GetChildren())
 		{ 
 			if (child is T weapon)
 				weapons.Add(weapon);		

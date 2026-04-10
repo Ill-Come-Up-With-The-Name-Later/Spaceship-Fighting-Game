@@ -9,6 +9,7 @@ public partial class WeaponSystem : Node2D
     public Ship ParentShip;
     
     public List<List<Weapon>> Weapons;
+    public List<Weapon> WeaponList;
     public Weapon ActiveWeapon;
 
     [Export]
@@ -24,12 +25,14 @@ public partial class WeaponSystem : Node2D
             GD.PrintErr("Parent ship is null");
         
         Weapons = new List<List<Weapon>>();
+        WeaponList = new List<Weapon>();
         ActiveWeaponTypeIndex = 0;
 
         foreach (Node child in GetChildren())
         {
             if (child is Weapon weapon)
             {
+                WeaponList.Add(weapon);
                 bool added = false;
                 
                 foreach (List<Weapon> bucket in Weapons)

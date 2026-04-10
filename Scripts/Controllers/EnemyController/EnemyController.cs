@@ -32,7 +32,6 @@ public partial class EnemyController : Controller
 	
     public override void _Ready()
     {
-        
         ParentShip = GetParent() as Ship;
         Eventbus = GetNode<Eventbus>("/root/Eventbus");
         
@@ -176,6 +175,28 @@ public partial class EnemyController : Controller
             priority += ship.GetMissingShieldPercentage() * 2;
             
             queue.Enqueue(ship, -priority);
+        }
+
+        return queue;
+    }
+
+    /// <summary>
+    /// Creates the enemy's weapon firing priorities
+    /// </summary>
+    /// <returns>
+    /// The weapon firing priority for the enemy
+    /// </returns>
+    public PriorityQueue<Weapon, double> WeaponPriorities()
+    {
+        PriorityQueue<Weapon, double> queue = new PriorityQueue<Weapon, double>();
+        
+        foreach(Weapon weapon in ParentShip.GetWeapons())
+        {
+            if (!weapon.CanFire)
+                continue;
+
+            double priority = weapon.WeaponStats.Damage / weapon.WeaponStats.FiringCooldown;
+            queue.Enqueue(weapon, -priority);
         }
 
         return queue;
