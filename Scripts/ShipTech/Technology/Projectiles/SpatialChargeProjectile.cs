@@ -40,7 +40,7 @@ public partial class SpatialChargeProjectile : Projectile
             {
                 if (ship.GlobalPosition.DistanceTo(GlobalPosition) <= TargetingRadius)
                 {
-                    if (ship != ParentShip)
+                    if (ship != ParentShip && ParentShip.CanTarget(ship))
                         return ship;
                 }
             }

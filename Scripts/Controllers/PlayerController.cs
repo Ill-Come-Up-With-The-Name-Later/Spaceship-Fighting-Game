@@ -1,7 +1,8 @@
 using Godot;
 using SpaceshipFightingGame.Scripts.Controllers;
+using SpaceshipFightingGame.Scripts.Global;
 
-public partial class PlayerController : Node2D
+public partial class PlayerController : Controller
 {
 	/// <summary>
 	/// The parent ship of this node
@@ -9,10 +10,19 @@ public partial class PlayerController : Node2D
 	public Ship ParentShip;
 	public Eventbus Eventbus;
 	
+	public GameManager GameManager;
+	
 	public override void _Ready()
 	{
 		ParentShip = GetParent() as Ship;
 		Eventbus = GetNode<Eventbus>("/root/Eventbus");
+		
+		GameManager = GetNode<GameManager>("/root/GameManager");
+		
+		if(GameManager.PlayerShip is null)
+			GameManager.PlayerShip = ParentShip;
+		else
+			GD.PrintErr("The player ship is already present");
 		
 		if(Eventbus is null)
 			GD.PrintErr("No Eventbus found");

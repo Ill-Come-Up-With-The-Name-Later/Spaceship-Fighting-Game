@@ -9,6 +9,8 @@ public partial class GameManager : Node
 {
     public List<Ship> Ships = new List<Ship>();
 
+    public Ship PlayerShip;
+
     /// <summary>
     /// Finds all ships of a faction
     /// </summary>

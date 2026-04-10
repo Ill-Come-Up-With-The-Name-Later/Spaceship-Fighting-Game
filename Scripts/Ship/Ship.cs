@@ -25,6 +25,7 @@ public partial class Ship : CharacterBody2D
 	public bool CanTurn;
 	
 	public Controllers Controller;
+	public Controller ControlNode;
 
 	public Sprite2D Sprite;
 
@@ -121,6 +122,11 @@ public partial class Ship : CharacterBody2D
 			GD.PrintErr("Sprite not found");
 
 		Technologies = GetNode<Node2D>("Technology").GetChildren();
+		
+		ControlNode = GetNode<Controller>("ControlNode");
+		
+		if(ControlNode is null)
+			GD.Print("Ship has no controller");
 
 		CanMove = true;
 		CanTurn = true;
@@ -269,6 +275,55 @@ public partial class Ship : CharacterBody2D
 		
 		return upgrades;
 	}
+	
+	/// <summary>
+	/// Gets all weapons of a type
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of weapon
+	/// </typeparam>
+	/// <returns>
+	/// All weapons of a type
+	/// </returns>
+	public List<T> GetWeaponsOfType<T>() where T : Weapon
+	{
+		List<T> weapons = new List<T>();
+		
+		foreach (Node child in GetNode("Weapons").GetChildren())
+		{ 
+			if (child is T weapon)
+				weapons.Add(weapon);		
+		}
+		
+		return weapons;
+	}
+
+	/// <summary>
+	/// If a ship can target another. Used by
+	/// enemies
+	/// </summary>
+	/// <param name="other">
+	/// The other ship
+	/// </param>
+	/// <returns>
+	/// If this ship can target another
+	/// </returns>
+	public bool CanTarget(Ship other)
+	{
+		if (other == this)
+			return false;
+
+		if (ControlNode is EnemyController enemyController 
+		    && other.ControlNode is EnemyController otherController)
+		{
+			if (enemyController.Faction == Faction.None)
+				return true;
+				
+			return enemyController.Faction != otherController.Faction;
+		}
+		
+		return true;
+	}
 
 	/// <summary>
 	/// If the ship is in warp
@@ -378,5 +433,27 @@ public partial class Ship : CharacterBody2D
 	public double Health()
 	{
 		return Hull.CurrentHealth;
+	}
+
+	/// <summary>
+	/// The percentage of health missing on the ship's hull
+	/// </summary>
+	/// <returns>
+	/// The percentage of health missing on the ship's hull
+	/// </returns>
+	public double GetMissingHealthPercentage()
+	{
+		return Hull.GetMissingHealthPercentage();
+	}
+
+	/// <summary>
+	/// The percentage of health missing on the ship's shield
+	/// </summary>
+	/// <returns>
+	/// The percentage of health missing on the ship's shield
+	/// </returns>
+	public double GetMissingShieldPercentage()
+	{
+		return DefenseSystem.GetMissingDefenseHealthPercentage();
 	}
 }

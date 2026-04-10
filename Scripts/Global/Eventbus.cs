@@ -26,4 +26,7 @@ public partial class Eventbus : Node
     
     [Signal]
     public delegate void ShipDecloakedEventHandler(Ship ship);
+    
+    [Signal]
+    public delegate void ShipDestroyedEventHandler(Ship ship, Ship killer);
 }

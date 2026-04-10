@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cmvkih6fr2gv8"]
 
-[ext_resource type="PackedScene" uid="uid://pukxscm7gex3" path="res://Scenes/Ships/PlayerShipTests/PlayerShipSpatialChargeTest.tscn" id="1_kln2b"]
+[ext_resource type="PackedScene" uid="uid://ygqdmjrt3bdx" path="res://Scenes/Ships/PlayerShip.tscn" id="1_idj7w"]
 [ext_resource type="PackedScene" uid="uid://xf58wic0uscr" path="res://Scenes/Ships/EnemyShip.tscn" id="4_rgh2o"]
 
 [node name="Main" type="Node2D" unique_id=1968216983]
 
-[node name="PlayerShip" parent="." unique_id=1450576114 instance=ExtResource("1_kln2b")]
+[node name="PlayerShip" parent="." unique_id=1450576114 instance=ExtResource("1_idj7w")]
 
 [node name="EnemyShip" parent="." unique_id=761334852 instance=ExtResource("4_rgh2o")]
 position = Vector2(-156, 458)

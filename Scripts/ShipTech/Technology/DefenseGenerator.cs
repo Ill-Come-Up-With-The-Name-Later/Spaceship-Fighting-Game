@@ -90,4 +90,17 @@ public abstract partial class DefenseGenerator : ShipPart, IRegenerator, IPowerC
 
         return true;
     }
+
+    /// <summary>
+    /// The percentage of health missing on this
+    /// defense's shielding
+    /// </summary>
+    /// <returns>
+    /// The percentage of health missing on this
+    /// defense's shielding
+    /// </returns>
+    public double GetMissingDefenseHealthPercentage()
+    {
+        return CurrentDefenseHealth / DefenseGeneratorStats.DefenseHealth;
+    }
 }
