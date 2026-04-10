@@ -6,6 +6,8 @@ using Godot;
 /// </summary>
 public partial class WeaponSystem : Node2D
 {
+    public Ship ParentShip;
+    
     public List<List<Weapon>> Weapons;
     public Weapon ActiveWeapon;
 
@@ -16,6 +18,11 @@ public partial class WeaponSystem : Node2D
 
     public override void _Ready()
     {
+        ParentShip = GetParent() as Ship;
+        
+        if(ParentShip is null)
+            GD.PrintErr("Parent ship is null");
+        
         Weapons = new List<List<Weapon>>();
         ActiveWeaponTypeIndex = 0;
 
@@ -78,5 +85,18 @@ public partial class WeaponSystem : Node2D
         }
 
         return Weapons[typeIndex][0];
+    }
+    
+    public bool CanFireAt(Vector2 targetGlobalPosition)
+    {
+        Vector2 forward = -Transform.Y.Normalized().Rotated(ParentShip.Rotation);
+        Vector2 toTarget = (targetGlobalPosition - GlobalPosition).Normalized();
+
+        float dot = forward.Dot(toTarget);
+		
+        float halfFovRad = Mathf.DegToRad((float)ParentShip.Weapons.AttackFOV * 0.5f);
+        float threshold = Mathf.Cos(halfFovRad);
+
+        return dot >= threshold;
     }
 }

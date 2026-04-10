@@ -19,7 +19,7 @@ public partial class EnemyController : Controller
     public Faction Faction;
 
     [Export]
-    public double detectionRange;
+    public double DetectionRange;
     
     public double TimeInState { get; set; }
 
@@ -27,9 +27,12 @@ public partial class EnemyController : Controller
     public AIProfile Profile;
     
     public AIState CurrentState { get; private set; }
+    
+    public Vector2 MovementTarget { get; set; }
 	
     public override void _Ready()
     {
+        
         ParentShip = GetParent() as Ship;
         Eventbus = GetNode<Eventbus>("/root/Eventbus");
         
@@ -40,11 +43,13 @@ public partial class EnemyController : Controller
 		
         if (ParentShip is null)
             GD.PrintErr("Enemy Controller: no parent ship");
-        else
-        {
-            GD.Print("Enemy Controller: ship found");
-            ParentShip.Controller = Controllers.Computer;
-        }
+        
+        GD.Print("Enemy Controller: ship found");
+        MovementTarget = ParentShip.GlobalPosition;
+        ParentShip.Controller = Controllers.Computer;
+        
+        if(Profile is null)
+            GD.PrintErr("No AI found");
         
         ChangeState(Profile.InitialState);
     }
@@ -59,6 +64,27 @@ public partial class EnemyController : Controller
     public override void _PhysicsProcess(double delta)
     {
         CurrentState?.PhysicsProcess(this, delta);
+
+        Vector2 toTarget = MovementTarget - ParentShip.GlobalPosition;
+
+        if (toTarget.Length() < 5f)
+        {
+            ParentShip.Velocity = Vector2.Zero;
+            return;
+        }
+
+        float targetAngle = toTarget.Angle();
+        float maxTurn = (float)ParentShip.Engine.EngineStats.TurningRadius * (float)delta;
+
+        if (ParentShip.InWarp())
+            maxTurn *= (float)ParentShip.WarpDrive.WarpDriveStats.TurnRate;
+        
+        ParentShip.Rotation = Mathf.RotateToward(ParentShip.Rotation, targetAngle, maxTurn);
+
+        Vector2 forward = new Vector2(Mathf.Cos(ParentShip.Rotation), Mathf.Sin(ParentShip.Rotation));
+        ParentShip.Velocity = forward * (float)ParentShip.Speed();
+
+        ParentShip.MoveAndSlide();
     }
 
     /// <summary>
@@ -127,7 +153,7 @@ public partial class EnemyController : Controller
             if (ship == ParentShip)
                 continue;
 
-            if (ship.GlobalPosition.DistanceTo(ParentShip.GlobalPosition) > detectionRange)
+            if (ship.GlobalPosition.DistanceTo(ParentShip.GlobalPosition) > DetectionRange)
                 continue;
 
             if (ship.InWarp())

@@ -415,6 +415,17 @@ public partial class Ship : CharacterBody2D
 	}
 
 	/// <summary>
+	/// The ship's speed
+	/// </summary>
+	/// <returns>
+	/// The ship's speed
+	/// </returns>
+	public double Speed()
+	{
+		return Engine.TrueMoveSpeed();
+	}
+
+	/// <summary>
 	/// If the ship is in warp
 	/// </summary>
 	/// <returns>

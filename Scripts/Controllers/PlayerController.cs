@@ -160,7 +160,7 @@ public partial class PlayerController : Controller
 	{
 		//GD.Print("Player clicked " + position);
 		
-		if (!CanFireAt(position))
+		if (!ParentShip.Weapons.CanFireAt(position))
 			return;
 
 		if (ParentShip.ActiveWeapon is not null)
@@ -172,18 +172,5 @@ public partial class PlayerController : Controller
 			if (ParentShip.ActiveWeapon.CanFire)
 				ParentShip.ActiveWeapon.Fire(position);
 		}
-	}
-	
-	public bool CanFireAt(Vector2 targetGlobalPosition)
-	{
-		Vector2 forward = -Transform.Y.Normalized().Rotated(ParentShip.Rotation);
-		Vector2 toTarget = (targetGlobalPosition - GlobalPosition).Normalized();
-
-		float dot = forward.Dot(toTarget);
-		
-		float halfFovRad = Mathf.DegToRad((float)ParentShip.Weapons.AttackFOV * 0.5f);
-		float threshold = Mathf.Cos(halfFovRad);
-
-		return dot >= threshold;
 	}
 }
