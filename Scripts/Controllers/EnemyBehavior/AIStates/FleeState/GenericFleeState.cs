@@ -20,6 +20,7 @@ public partial class GenericFleeState : AIState
             }
         }
 
+        GD.Print(controller.ParentShip.CanWarp());
         if (controller.ParentShip.CanWarp())
             controller.ParentShip.WarpDrive.Toggle();
     }
@@ -34,5 +35,18 @@ public partial class GenericFleeState : AIState
 
     public override void ExitState(EnemyController controller, AIState nextState)
     {
+        if (controller.ParentShip.GetTechnology<CloakingDrive>() is not null)
+        {
+            CloakingDrive drive = controller.ParentShip.GetTechnology<CloakingDrive>();
+
+            if (drive.Active)
+            {
+                drive.Toggle();
+                return;
+            }
+        }
+        
+        if(controller.ParentShip.WarpDrive.Active)
+            controller.ParentShip.WarpDrive.DeactivateWarp();
     }
 }

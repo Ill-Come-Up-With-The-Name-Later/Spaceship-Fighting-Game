@@ -42,10 +42,10 @@ public partial class GenericAttackState : AIState
         {
             RandomNumberGenerator rand = new RandomNumberGenerator();
             
-            Vector2 offset = new Vector2(rand.RandfRange(-(float)controller.FiringRange * 0.3f,
-                (float)controller.FiringRange * 0.3f), 
-                rand.RandfRange(-(float)controller.FiringRange * 0.3f, 
-                    (float)controller.FiringRange * 0.3f));
+            Vector2 offset = new Vector2(rand.RandfRange(-(float)controller.FiringRange * 0.5f,
+                (float)controller.FiringRange * 0.5f), 
+                rand.RandfRange(-(float)controller.FiringRange * 0.5f, 
+                    (float)controller.FiringRange * 0.5f));
             
             controller.MovementTarget = target.GlobalPosition + offset;
             

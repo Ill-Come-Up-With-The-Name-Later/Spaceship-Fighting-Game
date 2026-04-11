@@ -70,6 +70,7 @@ public partial class Hurtbox : Area2D
 			damaged.DamageEngine(damage * 0.2);
 		}
 		
+		GD.Print("Damaged: " + damaged.GetName());
 		GD.Print("Hull health: " + damaged.Hull.CurrentHealth);
 		GD.Print("Shield Generator Health: " + damaged.DefenseSystem.CurrentHealth + " Shield Up: " + damaged.DefenseSystem.DefenseActive);
 		GD.Print("Shield Health: " + damaged.DefenseSystem.CurrentDefenseHealth);

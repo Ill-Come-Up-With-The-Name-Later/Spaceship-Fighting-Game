@@ -21,8 +21,8 @@ radius = 1.0
 script = ExtResource("1_kvqdo")
 
 [node name="ControlNode" parent="." unique_id=1151074664 instance=ExtResource("2_5obky")]
-DetectionRange = 2200.0
-FiringRange = 1000.0
+DetectionRange = 3000.0
+FiringRange = 1250.0
 Profile = ExtResource("3_cft70")
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_e6xtg")]
