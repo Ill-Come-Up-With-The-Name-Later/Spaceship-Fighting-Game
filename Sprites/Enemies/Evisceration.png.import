@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://p6ieis1a237m"
-path="res://.godot/imported/Paradox.png-925a9613a0a265afeb7d6f364a9ea002.ctex"
+path="res://.godot/imported/Evisceration.png-557ecf00562fb2953e73cffcecc06abc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemies/Paradox.png"
-dest_files=["res://.godot/imported/Paradox.png-925a9613a0a265afeb7d6f364a9ea002.ctex"]
+source_file="res://Sprites/Enemies/Evisceration.png"
+dest_files=["res://.godot/imported/Evisceration.png-557ecf00562fb2953e73cffcecc06abc.ctex"]
 
 [params]
 

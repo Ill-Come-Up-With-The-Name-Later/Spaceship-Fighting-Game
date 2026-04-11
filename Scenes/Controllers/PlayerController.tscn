@@ -4,3 +4,6 @@
 
 [node name="PlayerController" type="Node2D" unique_id=660101535]
 script = ExtResource("1_wui0q")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=496036695]
+one_shot = true

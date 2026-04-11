@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using SpaceshipFightingGame.Scripts.Controllers;
 using SpaceshipFightingGame.Scripts.Global;
@@ -76,7 +77,8 @@ public partial class EnemyController : Controller
     /// </summary>
     public Vector2 Forward
     {
-        get => new Vector2(Mathf.Cos(ParentShip.Rotation), Mathf.Sin(ParentShip.Rotation)).Normalized(); 
+        get => new Vector2(Mathf.Cos(ParentShip.Rotation - Mathf.Pi / 2), 
+            Mathf.Sin(ParentShip.Rotation - Mathf.Pi / 2)).Normalized(); 
     }
     
     public override void _Ready()
@@ -169,7 +171,9 @@ public partial class EnemyController : Controller
         float desiredTurnSpeed = Mathf.Clamp(angleDiff, -maxTurn, maxTurn);
 
         currentTurnSpeed = Mathf.MoveToward(currentTurnSpeed, desiredTurnSpeed, maxTurn);
-        ParentShip.Rotation += currentTurnSpeed * (float)delta;
+        
+        if(ParentShip.CanTurn)
+            ParentShip.Rotation += currentTurnSpeed * (float)delta;
 
         Vector2 forward = new Vector2(Mathf.Cos(ParentShip.Rotation - Mathf.Pi / 2),
             Mathf.Sin(ParentShip.Rotation - Mathf.Pi / 2));
@@ -178,10 +182,15 @@ public partial class EnemyController : Controller
 
         float alignment = forward.Dot(toTargetDir);
         alignment = Mathf.Clamp(alignment, 0.2f, 1f);
-        
-        float speed = (float)ParentShip.Speed() * alignment;
 
-        ParentShip.Velocity = forward * speed;
+        float speed = (float)ParentShip.Speed();
+        
+        if(ParentShip.CanTurn) 
+            speed *= alignment;
+        
+        if(!ParentShip.InWarp())
+            ParentShip.Velocity = forward * speed;
+        
         ParentShip.MoveAndSlide();
     }
 

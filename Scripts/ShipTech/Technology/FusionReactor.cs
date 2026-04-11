@@ -54,8 +54,8 @@ public partial class FusionReactor : ShipPart, IRegenerator, IResourceConsumer, 
         CanToggle = true;
 
         if(Regenerating)
-            if(Consuming && Regenerate(delta))
-                Consume(delta);
+            if (Consuming && Consume(delta))
+                Regenerate(delta);
     }
     
     public void Toggle()

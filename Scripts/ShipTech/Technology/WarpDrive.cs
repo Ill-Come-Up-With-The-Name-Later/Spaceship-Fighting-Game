@@ -87,7 +87,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     /// </summary>
     public virtual void EnterAcceleration()
     {
-        GD.Print("Started warping with " + GetType());
+        GD.Print(ParentShip.GetName() + " started warping with " + GetType());
         
         WarpDriveState = WarpDriveState.Accelerating;
         AccelerationTimer.Start();
@@ -101,7 +101,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     /// </summary>
     public virtual void TransitionToWarping()
     {
-        GD.Print("In main warp");
+        GD.Print(ParentShip.GetName() + " in main warp");
         
         WarpDriveState = WarpDriveState.Warping;
         WarpDriveTimer.Start();
@@ -112,7 +112,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     /// </summary>
     public virtual void TransitionToDeceleration()
     {
-        GD.Print("Decelerating");
+        GD.Print(ParentShip.GetName() + " is decelerating");
         
         WarpDriveState = WarpDriveState.Decelerating;
         AccelerationTimer.Stop();
@@ -124,7 +124,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     /// </summary>
     public virtual void ExitWarpState()
     {
-        GD.Print("Ended warp with " + GetType());
+        GD.Print(ParentShip.GetName() + " Ended warp with " + GetType());
         
         WarpDriveState = WarpDriveState.Inactive;
         ParentShip.Velocity = Vector2.Zero;
@@ -142,7 +142,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         {
             double speedMultiplier = 1;
             
-            if(!(ConsumePowerIfAvailable(ParentShip, delta) && CanActivate()))
+            if(!ConsumePowerIfAvailable(ParentShip, delta) && !LeavingWarp())
                 TransitionToDeceleration();
 
             if (WarpDriveState == WarpDriveState.Accelerating || WarpDriveState == WarpDriveState.Decelerating)
@@ -162,12 +162,13 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
                 speedMultiplier = WarpDriveStats.SpeedMultiplier;
                 CurrentConsumption = PowerConsumption.Amount;
                 
-                GD.Print("Warp velocity: " + ParentShip.Velocity.Length());
+                GD.Print(ParentShip.GetName() + 
+                         " Warp velocity: " + ParentShip.Velocity.Length());
             }
             
             ParentShip.Velocity =
-                (Vector2.Up * (float)ParentShip.Engine.TrueMoveSpeed() * (float)speedMultiplier).Rotated(ParentShip
-                    .GlobalRotation);
+                (Vector2.Up * (float)ParentShip.Engine.EngineStats.Speed
+                            * (float)speedMultiplier).Rotated(ParentShip.GlobalRotation);
         }
     }
 
@@ -204,6 +205,17 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         Counter = 0;
         
         TransitionToDeceleration();
+    }
+
+    /// <summary>
+    /// If the drive is exiting or has exited warp
+    /// </summary>
+    /// <returns>
+    /// If the drive is exiting or has exited warp
+    /// </returns>
+    public bool LeavingWarp()
+    {
+        return WarpDriveState == WarpDriveState.Decelerating ||  WarpDriveState == WarpDriveState.Inactive;
     }
     
     public bool ConsumePowerIfAvailable(Ship ship, double delta)

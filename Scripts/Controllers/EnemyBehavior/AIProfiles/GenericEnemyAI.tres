@@ -13,4 +13,4 @@ InitialState = ExtResource("1_yfqvv")
 Transitions = Array[Resource]([ExtResource("2_chk72"), ExtResource("3_aa06k"), ExtResource("4_aa06k"), ExtResource("5_7tk6q")])
 AttackDelay = 4.0
 TargetingDelay = 3.0
-PerAttackDelay = 0.25
+PerAttackDelay = 0.35

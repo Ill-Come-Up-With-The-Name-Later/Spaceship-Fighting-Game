@@ -7,8 +7,6 @@ public partial class GenericFleeState : AIState
     
     public override void EnterState(EnemyController controller, AIState previousState)
     {
-        controller.MovementTarget += controller.Forward * (float)FleeDistance;
-
         if (controller.ParentShip.GetTechnology<CloakingDrive>() is not null)
         {
             CloakingDrive drive = controller.ParentShip.GetTechnology<CloakingDrive>();
@@ -20,9 +18,10 @@ public partial class GenericFleeState : AIState
             }
         }
 
-        GD.Print(controller.ParentShip.CanWarp());
         if (controller.ParentShip.CanWarp())
             controller.ParentShip.WarpDrive.Toggle();
+        
+        controller.MovementTarget += controller.Forward * (float)FleeDistance;
     }
 
     public override void Process(EnemyController controller, double delta)

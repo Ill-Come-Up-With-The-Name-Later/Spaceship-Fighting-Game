@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_f0uic")
 SpeedMultiplier = 20.0
-MaxDuration = 60.0
+MaxDuration = 25.0
 AccelerationTime = 5.0
 DecelerationTime = 1.5
 TurnRate = 0.2

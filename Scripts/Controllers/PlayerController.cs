@@ -18,6 +18,13 @@ public partial class PlayerController : Controller
 
 	private float currentTurnSpeed = 0;
 	private float previousRotation;
+
+	public Timer AttackTimer;
+
+	[Export]
+	public double AttackCooldown;
+
+	public bool CanAttack;
 	
 	public override void _Ready()
 	{
@@ -44,7 +51,15 @@ public partial class PlayerController : Controller
 			Eventbus.MouseClick += TriggerAttack;
 		}
 
-		Faction = Faction.Player;
+		AttackTimer = GetNode<Timer>("AttackTimer");
+		
+		if(AttackTimer is null)
+			GD.PrintErr("No attack timer");
+
+		AttackTimer.WaitTime = AttackCooldown;
+		AttackTimer.Timeout += SetCanAttack;
+		
+		CanAttack = true;
 		
 		previousRotation = ParentShip.GlobalRotation;;
 	}
@@ -52,6 +67,7 @@ public partial class PlayerController : Controller
 	public override void _ExitTree()
 	{
 		Eventbus.MouseClick -= TriggerAttack;
+		AttackTimer.Timeout -= SetCanAttack;
 	}
 
 	public override void _Process(double delta)
@@ -83,7 +99,6 @@ public partial class PlayerController : Controller
 				turnInput += 1f;
 		}
 
-// Base turn speed
 		float turnSpeed = (float)ParentShip.Engine.EngineStats.TurningRadius;
 
 		if (ParentShip.WarpDrive.Active)
@@ -116,6 +131,11 @@ public partial class PlayerController : Controller
 	public override void _PhysicsProcess(double delta)
 	{
 		ParentShip.MoveAndSlide();
+	}
+
+	public void SetCanAttack()
+	{
+		CanAttack = true;
 	}
 
 	public void ListenForWarpDrive()
@@ -188,6 +208,9 @@ public partial class PlayerController : Controller
 	public void TriggerAttack(Vector2 position)
 	{
 		//GD.Print("Player clicked " + position);
+
+		if (!CanAttack)
+			return;
 		
 		if (!ParentShip.Weapons.CanFireAt(position))
 			return;
@@ -199,7 +222,11 @@ public partial class PlayerController : Controller
 					ParentShip.Weapons.NextAvailableOfType(ParentShip.Weapons.ActiveWeaponTypeIndex);
 
 			if (ParentShip.ActiveWeapon.CanFire)
+			{
 				ParentShip.ActiveWeapon.Fire(position);
+				CanAttack = false;
+				AttackTimer.Start();
+			}
 		}
 	}
 }
