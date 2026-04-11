@@ -80,7 +80,7 @@ public partial class Hurtbox : Area2D
 
 		if(damaged.Health() <= 0)
 		{
-			// Replace this with a die method
+			// Todo: Replace this with a die method
 			Eventbus.EmitSignal("ShipDestroyed", damaged, damager);
 			damaged.QueueFree();
 		}

@@ -122,6 +122,8 @@ public partial class EnemyController : Controller
         
         TargetingTimer.Start();
         AttackTimer.Start();
+
+        Eventbus.SimplifiedShipDamaged += OnHit;
     }
 
     public override void _ExitTree()
@@ -143,6 +145,12 @@ public partial class EnemyController : Controller
         CurrentState?.PhysicsProcess(this, delta);
 
        Movement(delta);
+    }
+
+    public void OnHit(Ship ship, Ship damager)
+    {
+        if(ship == ParentShip)
+            TargetingOrder.Enqueue(damager, -10);
     }
 
     /// <summary>

@@ -22,7 +22,7 @@ public partial class Eventbus : Node
     public delegate void EmpHitShipEventHandler(Ship hit, Ship user);
 
     [Signal]
-    public delegate void SimplifiedShipDamagedEventHandler(Ship damaged);
+    public delegate void SimplifiedShipDamagedEventHandler(Ship damaged, Ship damager);
     
     [Signal]
     public delegate void ShipEnterWarpEventHandler(Ship ship);

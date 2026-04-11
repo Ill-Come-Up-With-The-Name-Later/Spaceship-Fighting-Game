@@ -62,7 +62,6 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 	{
 		Eventbus.WeaponFired -= Disable;
 		CooldownTimer.Timeout -= Enable;
-		Eventbus.SimplifiedShipDamaged -= Disable;
 	}
 
 	public override void _Process(double delta)
@@ -71,7 +70,7 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		
 		if (ConsumingPower)
 			if(!ConsumePowerIfAvailable(ParentShip, delta))
-				Disable(ParentShip);
+				Disable(ParentShip, ParentShip);
 
 		if (Active)
 		{
@@ -99,10 +98,10 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 
 	public void Disable(Vector2 pos, Ship ship, Weapon weapon)
 	{
-		Disable(ship);
+		Disable(ship, ship);
 	}
 
-	public void Disable(Ship ship)
+	public void Disable(Ship ship, Ship damager)
 	{
 		Active = false;
 		var selfMod = ParentShip.Sprite.SelfModulate;
@@ -110,6 +109,7 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		ParentShip.Sprite.SelfModulate = selfMod;
 		CooldownTimer.Start();
 		CanToggle = false;
+		ConsumingPower = false;
 
 		Eventbus.EmitSignal("ShipDecloaked", ship);
 	}
@@ -133,7 +133,7 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 
 		if (!Active)
 		{
-			Disable(ParentShip);
+			Disable(ParentShip, ParentShip);
 		}
 	}
 }

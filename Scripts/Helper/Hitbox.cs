@@ -54,6 +54,8 @@ public partial class Hitbox : Area2D
 			Eventbus.EmitSignal("ShipDamaged", hurtbox.ParentShip, ParentShip, 
 				ParentProjectile.ParentWeaponStats.Damage, ParentProjectile.ParentWeaponStats.ShieldDamage,
 				ParentProjectile.ParentWeaponStats.PenetratingDamage);
+
+			Eventbus.EmitSignal("SimplifiedShipDamaged", hurtbox.ParentShip, ParentShip);
 			
 			ParentProjectile.QueueFree();
 		}
