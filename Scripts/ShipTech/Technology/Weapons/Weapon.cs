@@ -198,8 +198,9 @@ public partial class Weapon : Technology, IPowerConsumer
         projectile.ParentWeapon = this;
         projectile.ParentShip = ParentShip;
         projectile.ParentWeaponStats = WeaponStats;
-        projectile.GlobalPosition = ProjectileSource.GlobalPosition 
-                                    + (targetPosition - projectile.GlobalPosition).Normalized() * 25;
+        projectile.GlobalPosition = ProjectileSource.GlobalPosition
+                                    + (targetPosition - projectile.GlobalPosition).Normalized()
+                                    * ParentShip.Sprite.Texture.GetHeight() / 2;
         
         projectile.LookAt(targetPosition);
         projectile.Velocity = (targetPosition - projectile.GlobalPosition).Normalized()

@@ -22,7 +22,7 @@ script = ExtResource("1_s8xmf")
 [node name="ControlNode" parent="." unique_id=660101535 instance=ExtResource("4_rwtvl")]
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=2140110726]
-zoom = Vector2(0.2, 0.2)
+zoom = Vector2(0.5, 0.5)
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_rwtvl")]
 
@@ -49,7 +49,7 @@ editor_description = "The parent node for ship technologies that aren't standard
 [node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
 editor_description = "The parent node for all of a ship's weapons."
 script = ExtResource("9_qclkc")
-AttackFOV = 90.0
+AttackFOV = 110.0
 
 [node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("11_od1sp")]
 

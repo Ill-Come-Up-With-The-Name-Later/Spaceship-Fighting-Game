@@ -9,6 +9,9 @@ public partial class Eventbus : Node
     public delegate void WeaponFiredEventHandler(Vector2 position, Ship ship, Weapon weapon);
     
     [Signal]
+    public delegate void ShipSpawnedEventHandler(Ship ship);
+    
+    [Signal]
     public delegate void ShipDamagedEventHandler(Ship damaged, Ship damager,
         double damage, double shieldDamage, double penetrationDamage);
     

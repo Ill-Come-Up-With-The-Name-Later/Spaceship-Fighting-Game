@@ -21,8 +21,8 @@ radius = 1.0
 script = ExtResource("1_kvqdo")
 
 [node name="ControlNode" parent="." unique_id=1151074664 instance=ExtResource("2_5obky")]
-DetectionRange = 2000.0
-FiringRange = 500.0
+DetectionRange = 2200.0
+FiringRange = 900.0
 Profile = ExtResource("3_cft70")
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_e6xtg")]
@@ -50,6 +50,7 @@ editor_description = "The parent node for ship technologies that aren't standard
 [node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
 editor_description = "The parent node for all of a ship's weapons."
 script = ExtResource("9_psyiv")
+AttackFOV = 110.0
 
 [node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("11_d6dxf")]
 

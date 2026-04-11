@@ -11,3 +11,4 @@ one_shot = true
 [node name="TargetingTimer" type="Timer" parent="." unique_id=1201899459]
 
 [node name="PerAttackTimer" type="Timer" parent="." unique_id=166168217]
+one_shot = true

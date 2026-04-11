@@ -76,6 +76,15 @@ public partial class WeaponSystem : Node2D
         return count;
     }
 
+    /// <summary>
+    /// Gets the next available weapon of a type
+    /// </summary>
+    /// <param name="typeIndex">
+    /// The index of the current weapon type
+    /// </param>
+    /// <returns>
+    /// The next available weapon of the type
+    /// </returns>
     public Weapon NextAvailableOfType(int typeIndex)
     {
         if (typeIndex >= Weapons.Count)
@@ -89,7 +98,58 @@ public partial class WeaponSystem : Node2D
 
         return Weapons[typeIndex][0];
     }
+
+    /// <summary>
+    /// Finds a weapon type's index
+    /// </summary>
+    /// <typeparam name="T">
+    /// The type of weapon
+    /// </typeparam>
+    /// <returns>
+    /// The index of the weapon type or -1
+    /// if it is absent
+    /// </returns>
+    public int Find<T>() where T : Weapon
+    {
+        for(int i = 0; i < Weapons.Count; i++) {
+            if (Weapons[i][0].GetType() == typeof(T))
+                return i;
+        }
     
+        return -1;
+    }
+
+    /// <summary>
+    /// Finds the index of weapons of the same
+    /// type as passed in
+    /// </summary>
+    /// <param name="weapon">
+    /// A weapon
+    /// </param>
+    /// <returns>
+    /// The index of weapons of the same type
+    /// </returns>
+    public int FindOfSameType(Weapon weapon)
+    {
+        for (int i = 0; i < Weapons.Count; i++)
+        {
+            if(Weapons[i][0].GetType() == weapon.GetType())
+                return i;
+        }
+
+        return -1;
+    }
+    
+    /// <summary>
+    /// If the ship can fire on a position based
+    /// on FOV
+    /// </summary>
+    /// <param name="targetGlobalPosition">
+    /// The target position
+    /// </param>
+    /// <returns>
+    /// If the ship can fire at the target position
+    /// </returns>
     public bool CanFireAt(Vector2 targetGlobalPosition)
     {
         Vector2 forward = -Transform.Y.Normalized().Rotated(ParentShip.Rotation);

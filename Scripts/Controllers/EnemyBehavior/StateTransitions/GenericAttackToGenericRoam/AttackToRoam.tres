@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3 uid="uid://ctgqu68wf8dr5"]
+
+[ext_resource type="Resource" uid="uid://kygbll3viy38" path="res://Scripts/Controllers/EnemyBehavior/AIStates/AttackState/GenericAttackState.tres" id="1_htmte"]
+[ext_resource type="Resource" uid="uid://y73qit18gbh4" path="res://Scripts/Controllers/EnemyBehavior/AIStates/RoamState/GenericRoamState.tres" id="2_bpspe"]
+[ext_resource type="Script" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericAttackToGenericRoam/AttackToRoam.cs" id="3_c4up6"]
+
+[resource]
+script = ExtResource("3_c4up6")
+From = ExtResource("1_htmte")
+To = ExtResource("2_bpspe")

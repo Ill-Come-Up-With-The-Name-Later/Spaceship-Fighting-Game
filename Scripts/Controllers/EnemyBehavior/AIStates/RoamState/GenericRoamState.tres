@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_272io")
-RoamRange = 2250.0
+RoamRange = 2100.0
+TimeBetweenRetargets = 5.0

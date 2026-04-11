@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://kygbll3viy38"]
+
+[ext_resource type="Script" uid="uid://5f4xyqg6wn4r" path="res://Scripts/Controllers/EnemyBehavior/AIStates/AttackState/GenericAttackState.cs" id="1_7ch1m"]
+
+[resource]
+script = ExtResource("1_7ch1m")
+Type = 2

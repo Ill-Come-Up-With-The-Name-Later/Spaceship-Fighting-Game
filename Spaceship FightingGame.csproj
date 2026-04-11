@@ -7,6 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Scripts\Controllers\EnemyBehavior\AIProfiles\" />
-    <Folder Include="Scripts\Controllers\EnemyBehavior\StateTransitions\" />
+    <Folder Include="Scripts\Controllers\EnemyBehavior\AIStates\AttackState\" />
   </ItemGroup>
 </Project>

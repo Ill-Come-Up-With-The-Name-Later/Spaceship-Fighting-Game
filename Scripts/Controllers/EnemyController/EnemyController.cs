@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using SpaceshipFightingGame.Scripts.Controllers;
 using SpaceshipFightingGame.Scripts.Global;
@@ -67,11 +66,11 @@ public partial class EnemyController : Controller
 
     public PriorityQueue<Ship, double> TargetingOrder;
     public PriorityQueue<Weapon, double> WeaponFiringOrder;
-
-    public bool CanAttack = true;
     
     private float currentTurnSpeed;
-	
+
+    public bool CanAttack;
+    
     public override void _Ready()
     {
         ParentShip = GetParent() as Ship;
@@ -134,6 +133,12 @@ public partial class EnemyController : Controller
        Movement(delta);
     }
 
+    /// <summary>
+    /// The enemy's movement
+    /// </summary>
+    /// <param name="delta">
+    /// Delta time
+    /// </param>
     public void Movement(double delta)
     {
         Vector2 toTarget = MovementTarget - ParentShip.GlobalPosition;
@@ -162,7 +167,6 @@ public partial class EnemyController : Controller
         Vector2 toTargetDir = toTarget.Normalized();
 
         float alignment = forward.Dot(toTargetDir);
-        GD.Print(alignment);
         alignment = Mathf.Clamp(alignment, 0.2f, 1f);
         
         float speed = (float)ParentShip.Speed() * alignment;
@@ -238,6 +242,9 @@ public partial class EnemyController : Controller
             return false;
         
         AIState oldState = CurrentState;
+        GD.Print("Changed from " + (oldState is null ? "null" :
+            oldState.GetType()) + " to " + newState.GetType());
+        
         CurrentState?.ExitState(this, newState);
         
         CurrentState = newState;
@@ -265,6 +272,9 @@ public partial class EnemyController : Controller
             return false;
 
         if (target.GlobalPosition.DistanceTo(ParentShip.GlobalPosition) > FiringRange)
+            return false;
+
+        if (!ParentShip.Weapons.CanFireAt(target.GlobalPosition))
             return false;
         
         weapon.Fire(target);
