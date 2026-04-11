@@ -1,0 +1,12 @@
+[gd_resource type="Resource" format=3 uid="uid://buhr3hl45k218"]
+
+[ext_resource type="Script" uid="uid://dqptxmpnm73y7" path="res://Scripts/Controllers/EnemyBehavior/AIProfile.cs" id="1_itfp8"]
+[ext_resource type="Resource" uid="uid://y73qit18gbh4" path="res://Scripts/Controllers/EnemyBehavior/AIStates/RoamState/GenericRoamState.tres" id="1_yfqvv"]
+
+[resource]
+script = ExtResource("1_itfp8")
+InitialState = ExtResource("1_yfqvv")
+Transitions = Array[Resource]([])
+AttackDelay = 3.0
+TargetingDelay = 3.0
+PerAttackDelay = 0.25

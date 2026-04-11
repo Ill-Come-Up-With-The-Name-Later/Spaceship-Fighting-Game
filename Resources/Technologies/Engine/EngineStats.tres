@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_mv1uo")
-Speed = 300.0
-TurningRadius = 2.0
+Speed = 600.0
+TurningRadius = 160.0

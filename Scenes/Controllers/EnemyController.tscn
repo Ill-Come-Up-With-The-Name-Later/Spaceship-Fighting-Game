@@ -4,3 +4,10 @@
 
 [node name="EnemyController" type="Node2D" unique_id=1151074664]
 script = ExtResource("1_5x3uv")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=915001422]
+one_shot = true
+
+[node name="TargetingTimer" type="Timer" parent="." unique_id=1201899459]
+
+[node name="PerAttackTimer" type="Timer" parent="." unique_id=166168217]

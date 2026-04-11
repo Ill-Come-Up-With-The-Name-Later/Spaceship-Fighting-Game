@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b6d1ryne65trw" path="res://Scenes/Controllers/EnemyController.tscn" id="2_5obky"]
 [ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="2_e6xtg"]
 [ext_resource type="Texture2D" uid="uid://dv158k37mij23" path="res://Sprites/icon.svg" id="3_5obky"]
+[ext_resource type="Resource" uid="uid://buhr3hl45k218" path="res://Scripts/Controllers/EnemyBehavior/AIProfiles/GenericEnemyAI.tres" id="3_cft70"]
 [ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="4_d6dxf"]
 [ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="5_cft70"]
 [ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="6_w8ckj"]
@@ -20,6 +21,9 @@ radius = 1.0
 script = ExtResource("1_kvqdo")
 
 [node name="ControlNode" parent="." unique_id=1151074664 instance=ExtResource("2_5obky")]
+DetectionRange = 2000.0
+FiringRange = 500.0
+Profile = ExtResource("3_cft70")
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_e6xtg")]
 

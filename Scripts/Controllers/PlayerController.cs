@@ -3,6 +3,9 @@ using SpaceshipFightingGame.Scripts.Controllers;
 using SpaceshipFightingGame.Scripts.Controllers.EnemyController;
 using SpaceshipFightingGame.Scripts.Global;
 
+/// <summary>
+/// The controller for the player
+/// </summary>
 public partial class PlayerController : Controller
 {
 	/// <summary>
@@ -12,6 +15,9 @@ public partial class PlayerController : Controller
 	public Eventbus Eventbus;
 	
 	public GameManager GameManager;
+
+	private float currentTurnSpeed = 0;
+	private float previousRotation;
 	
 	public override void _Ready()
 	{
@@ -39,6 +45,8 @@ public partial class PlayerController : Controller
 		}
 
 		Faction = Faction.Player;
+		
+		previousRotation = ParentShip.GlobalRotation;;
 	}
 
 	public override void _ExitTree()
@@ -51,32 +59,50 @@ public partial class PlayerController : Controller
 		if (ParentShip.CanMove)
 		{
 			if (Input.IsActionPressed("accelerate"))
-				ParentShip.Velocity =
-					(Vector2.Up * (float)ParentShip.Engine.TrueMoveSpeed()).Rotated(ParentShip.GlobalRotation);
+			{
+				float speed = (float)ParentShip.Engine.TrueMoveSpeed();
+				
+				if (ParentShip.Velocity.Length() == 0)
+					ParentShip.Velocity =
+						(Vector2.Up * speed).Rotated(ParentShip.GlobalRotation);
+				else
+					ParentShip.Velocity = ParentShip.Velocity.Normalized() * speed;
+			}
 			else
 				ParentShip.Velocity = Vector2.Zero;
 		}
+		
+		float turnInput = 0f;
 
 		if (ParentShip.CanTurn)
 		{
 			if (Input.IsActionPressed("turn_left"))
-			{
-				if (ParentShip.WarpDrive.Active)
-					ParentShip.GlobalRotation -= Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius
-																* (float) ParentShip.WarpDrive.WarpDriveStats.TurnRate);
-				else
-					ParentShip.GlobalRotation -= Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius);
-			}
+				turnInput -= 1f;
 
 			if (Input.IsActionPressed("turn_right"))
-			{
-				if (ParentShip.WarpDrive.Active)
-					ParentShip.GlobalRotation += Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius
-					                                            * (float) ParentShip.WarpDrive.WarpDriveStats.TurnRate);
-				else
-					ParentShip.GlobalRotation += Mathf.DegToRad((float)ParentShip.Engine.EngineStats.TurningRadius);
-			}
+				turnInput += 1f;
 		}
+
+// Base turn speed
+		float turnSpeed = (float)ParentShip.Engine.EngineStats.TurningRadius;
+
+		if (ParentShip.WarpDrive.Active)
+			turnSpeed *= (float)ParentShip.WarpDrive.WarpDriveStats.TurnRate;
+		
+		float desiredTurnSpeed = turnInput * Mathf.DegToRad(turnSpeed);
+
+		currentTurnSpeed = Mathf.Lerp(
+			currentTurnSpeed,
+			desiredTurnSpeed,
+			0.5f
+		);
+
+		ParentShip.GlobalRotation += currentTurnSpeed * (float)delta;
+
+		float deltaRotation = ParentShip.GlobalRotation - previousRotation;
+		ParentShip.Velocity = ParentShip.Velocity.Rotated(deltaRotation);
+		
+		previousRotation = ParentShip.GlobalRotation;
 
 		ParentShip.ActiveWeapon = ParentShip.Weapons
 			.NextAvailableOfType(ParentShip.Weapons.ActiveWeaponTypeIndex);

@@ -7,6 +7,9 @@ using SpaceshipFightingGame.Scripts.Controllers.EnemyController;
 /// </summary>
 public abstract partial class AIState : Resource
 {
+    /// <summary>
+    /// The type of state
+    /// </summary>
     [Export]
     public AIStateType Type;
 

@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
+using SpaceshipFightingGame.Scripts.Controllers;
 using SpaceshipFightingGame.Scripts.Global;
 using SpaceshipFightingGame.Scripts.ShipTech;
 
-namespace SpaceshipFightingGame.Scripts.Controllers.EnemyController;
-
+/// <summary>
+/// The controller for enemies
+/// </summary>
 public partial class EnemyController : Controller
 {
     /// <summary>
@@ -15,17 +18,59 @@ public partial class EnemyController : Controller
     
     public GameManager Manager;
 
-    [Export]
+    /// <summary>
+    /// The range that the enemy can target
+    /// enemies from
+    /// </summary>
+    [Export] 
     public double DetectionRange;
+
+    /// <summary>
+    /// The range the enemy can fire at
+    /// other enemies from
+    /// </summary>
+    [Export]
+    public double FiringRange;
     
     public double TimeInState { get; set; }
 
+    /// <summary>
+    /// A counter that can be freely used by states.
+    /// Will reset when a state exits.
+    /// </summary>
+    public double ManipulableCounter { get; set; }
+
+    /// <summary>
+    /// The enemy's AI behaviors
+    /// </summary>
     [Export]
     public AIProfile Profile;
     
     public AIState CurrentState { get; private set; }
     
     public Vector2 MovementTarget { get; set; }
+
+    /// <summary>
+    /// Time between attack volleys
+    /// </summary>
+    public Timer AttackTimer;
+    
+    /// <summary>
+    /// Time between re-sequencing targets
+    /// </summary>
+    public Timer TargetingTimer;
+
+    /// <summary>
+    /// Time between firing each individual shot
+    /// </summary>
+    public Timer PerAttackTimer;
+
+    public PriorityQueue<Ship, double> TargetingOrder;
+    public PriorityQueue<Weapon, double> WeaponFiringOrder;
+
+    public bool CanAttack = true;
+    
+    private float currentTurnSpeed;
 	
     public override void _Ready()
     {
@@ -47,7 +92,32 @@ public partial class EnemyController : Controller
         if(Profile is null)
             GD.PrintErr("No AI found");
         
+        AttackTimer = GetNode<Timer>("AttackTimer");
+        TargetingTimer = GetNode<Timer>("TargetingTimer");
+        PerAttackTimer = GetNode<Timer>("PerAttackTimer");
+        
+        TargetingTimer.WaitTime = Profile.TargetingDelay;
+        AttackTimer.WaitTime = Profile.AttackDelay;
+        PerAttackTimer.WaitTime = Profile.PerAttackDelay;
+
+        TargetingTimer.Timeout += SetupTargeting;
+        AttackTimer.Timeout += SetupWeapons;
+        PerAttackTimer.Timeout += SetCanAttack;
+        
         ChangeState(Profile.InitialState);
+        
+        TargetingOrder = new PriorityQueue<Ship, double>();
+        WeaponFiringOrder = new PriorityQueue<Weapon, double>();
+        
+        TargetingTimer.Start();
+        AttackTimer.Start();
+    }
+
+    public override void _ExitTree()
+    {
+        TargetingTimer.Timeout -= SetupTargeting;
+        AttackTimer.Timeout -= SetupWeapons;
+        PerAttackTimer.Timeout -= SetCanAttack;
     }
 
     public override void _Process(double delta)
@@ -61,26 +131,68 @@ public partial class EnemyController : Controller
     {
         CurrentState?.PhysicsProcess(this, delta);
 
-        Vector2 toTarget = MovementTarget - ParentShip.GlobalPosition;
+       Movement(delta);
+    }
 
-        if (toTarget.Length() < 5f)
+    public void Movement(double delta)
+    {
+        Vector2 toTarget = MovementTarget - ParentShip.GlobalPosition;
+        
+        if (CloseToMoveTarget())
         {
             ParentShip.Velocity = Vector2.Zero;
             return;
         }
 
-        float targetAngle = toTarget.Angle();
-        float maxTurn = (float)ParentShip.Engine.EngineStats.TurningRadius * (float)delta;
+        float targetAngle = Vector2.Up.AngleTo(toTarget);
+        float maxTurn = (float)ParentShip.Engine.EngineStats.TurningRadius;
 
         if (ParentShip.InWarp())
             maxTurn *= (float)ParentShip.WarpDrive.WarpDriveStats.TurnRate;
         
-        ParentShip.Rotation = Mathf.RotateToward(ParentShip.Rotation, targetAngle, maxTurn);
+        float angleDiff = Mathf.Wrap(targetAngle - ParentShip.Rotation, -Mathf.Pi, Mathf.Pi);
+        float desiredTurnSpeed = Mathf.Clamp(angleDiff, -maxTurn, maxTurn);
 
-        Vector2 forward = new Vector2(Mathf.Cos(ParentShip.Rotation), Mathf.Sin(ParentShip.Rotation));
-        ParentShip.Velocity = forward * (float)ParentShip.Speed();
+        currentTurnSpeed = Mathf.MoveToward(currentTurnSpeed, desiredTurnSpeed, maxTurn);
+        ParentShip.Rotation += currentTurnSpeed * (float)delta;
 
+        Vector2 forward = new Vector2(Mathf.Cos(ParentShip.Rotation - Mathf.Pi / 2),
+            Mathf.Sin(ParentShip.Rotation - Mathf.Pi / 2));
+
+        Vector2 toTargetDir = toTarget.Normalized();
+
+        float alignment = forward.Dot(toTargetDir);
+        GD.Print(alignment);
+        alignment = Mathf.Clamp(alignment, 0.2f, 1f);
+        
+        float speed = (float)ParentShip.Speed() * alignment;
+
+        ParentShip.Velocity = forward * speed;
         ParentShip.MoveAndSlide();
+    }
+
+    /// <summary>
+    /// Sets the targeting for the enemy
+    /// </summary>
+    public void SetupTargeting()
+    {
+        TargetingOrder = TargetPriorities();
+    }
+
+    /// <summary>
+    /// Sets the weapon firing order
+    /// </summary>
+    public void SetupWeapons()
+    {
+        WeaponFiringOrder = WeaponPriorities();
+    }
+
+    /// <summary>
+    /// Allows the enemy to attack
+    /// </summary>
+    public void SetCanAttack()
+    {
+        CanAttack = true;
     }
 
     /// <summary>
@@ -130,8 +242,49 @@ public partial class EnemyController : Controller
         
         CurrentState = newState;
         TimeInState = 0;
+        ManipulableCounter = 0;
         CurrentState.EnterState(this, oldState);
         return true;
+    }
+
+    /// <summary>
+    /// Actually fires an attack
+    /// </summary>
+    /// <param name="weapon">
+    /// The weapon being fired
+    /// </param>
+    /// <param name="target">
+    /// The target ship
+    /// </param>
+    /// <returns>
+    /// If the weapon was fired
+    /// </returns>
+    public bool FireAt(Weapon weapon, Ship target)
+    {
+        if (!CanAttack)
+            return false;
+
+        if (target.GlobalPosition.DistanceTo(ParentShip.GlobalPosition) > FiringRange)
+            return false;
+        
+        weapon.Fire(target);
+        
+        PerAttackTimer.Start();
+        CanAttack = false;
+        return true;
+    }
+
+    /// <summary>
+    /// If the enemy is close to its target
+    /// position
+    /// </summary>
+    /// <returns>
+    /// If the enemy is close to its target
+    /// position
+    /// </returns>
+    public bool CloseToMoveTarget()
+    {
+        return GlobalPosition.DistanceTo(MovementTarget) <= 100;
     }
 
     /// <summary>

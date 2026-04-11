@@ -17,4 +17,24 @@ public partial class AIProfile : Resource
     /// </summary>
     [Export]
     public Array<StateTransition> Transitions;
+    
+    /// <summary>
+    /// Delay between attack volleys
+    /// </summary>
+    [Export]
+    public double AttackDelay;
+
+    /// <summary>
+    /// The delay between re-sequencing
+    /// targets
+    /// </summary>
+    [Export] 
+    public double TargetingDelay;
+
+    /// <summary>
+    /// The delay between each individual
+    /// attack firing
+    /// </summary>
+    [Export] 
+    public double PerAttackDelay;
 }

@@ -77,7 +77,7 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		{
 			counter += delta;
 			var selfMod = ParentShip.Sprite.SelfModulate;
-			selfMod.A = (float)(0.1f * Mathf.Sin(4f * Mathf.Pi * counter)) + 0.25f;
+			selfMod.A = (float)(0.1f * Mathf.Sin(2f * Mathf.Pi * counter)) + 0.2f;
 			ParentShip.Sprite.SelfModulate = selfMod;
 		}
 	}
