@@ -1,6 +1,5 @@
 using Godot;
 using SpaceshipFightingGame.Scripts.Controllers;
-using SpaceshipFightingGame.Scripts.Controllers.EnemyController;
 using SpaceshipFightingGame.Scripts.Global;
 
 /// <summary>
