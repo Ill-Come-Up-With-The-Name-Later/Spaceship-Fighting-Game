@@ -71,6 +71,14 @@ public partial class EnemyController : Controller
 
     public bool CanAttack;
     
+    /// <summary>
+    /// A normalized vector representing forwards
+    /// </summary>
+    public Vector2 Forward
+    {
+        get => new Vector2(Mathf.Cos(ParentShip.Rotation), Mathf.Sin(ParentShip.Rotation)).Normalized(); 
+    }
+    
     public override void _Ready()
     {
         ParentShip = GetParent() as Ship;

@@ -26,6 +26,6 @@ public partial class Engine : ShipPart
 	/// </returns>
 	public double TrueMoveSpeed()
 	{
-		return EngineStats.Speed * GetHealthPercentage();
+		return Mathf.Max(0.1, EngineStats.Speed * GetHealthPercentage());
 	}
 }

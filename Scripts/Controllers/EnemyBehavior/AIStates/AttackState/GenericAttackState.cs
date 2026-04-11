@@ -23,14 +23,14 @@ public partial class GenericAttackState : AIState
     public void SetMovementTarget(EnemyController controller, Ship target)
     {
         Vector2 offset = new Vector2((float)Mathf.Cos(controller.ManipulableCounter),
-            (float)Mathf.Sin(controller.ManipulableCounter));
+            (float)Mathf.Sin(controller.ManipulableCounter)).Normalized();
 
-        offset *= (float)controller.FiringRange * 0.85f;
+        offset *= (float)controller.FiringRange * 0.95f;
         
         if (!IsInstanceValid(target))
             return;
         
-        controller.MovementTarget = controller.TargetingOrder.Peek().GlobalPosition + offset;
+        controller.MovementTarget = target.GlobalPosition + offset;
     }
 
     public void Attack(EnemyController controller, Ship target)
@@ -40,15 +40,26 @@ public partial class GenericAttackState : AIState
         
         if(controller.CanAttack)
         {
+            RandomNumberGenerator rand = new RandomNumberGenerator();
+            
+            Vector2 offset = new Vector2(rand.RandfRange(-(float)controller.FiringRange * 0.3f,
+                (float)controller.FiringRange * 0.3f), 
+                rand.RandfRange(-(float)controller.FiringRange * 0.3f, 
+                    (float)controller.FiringRange * 0.3f));
+            
+            controller.MovementTarget = target.GlobalPosition + offset;
+            
             PriorityQueue<Weapon, double> weapons = controller.WeaponPriorities();
 
             if (weapons.Count == 0)
                 return;
 
             if (controller.FireAt(weapons.Peek(), target))
-            {
                 weapons.Dequeue();
-            }
+        }
+        else
+        {
+            SetMovementTarget(controller, target);
         }
     }
 

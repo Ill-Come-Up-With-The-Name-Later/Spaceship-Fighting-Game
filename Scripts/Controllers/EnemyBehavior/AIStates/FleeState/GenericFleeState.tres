@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://bwtw8fhhcnks3"]
+
+[ext_resource type="Script" uid="uid://r6b7xni5uvc" path="res://Scripts/Controllers/EnemyBehavior/AIStates/FleeState/GenericFleeState.cs" id="1_qwsk4"]
+
+[resource]
+script = ExtResource("1_qwsk4")
+FleeDistance = 10000.0
+Type = 3

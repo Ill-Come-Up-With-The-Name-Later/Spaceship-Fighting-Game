@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_kvqdo"]
 [ext_resource type="PackedScene" uid="uid://b6d1ryne65trw" path="res://Scenes/Controllers/EnemyController.tscn" id="2_5obky"]
 [ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="2_e6xtg"]
-[ext_resource type="Texture2D" uid="uid://dv158k37mij23" path="res://Sprites/icon.svg" id="3_5obky"]
 [ext_resource type="Resource" uid="uid://buhr3hl45k218" path="res://Scripts/Controllers/EnemyBehavior/AIProfiles/GenericEnemyAI.tres" id="3_cft70"]
 [ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="4_d6dxf"]
 [ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="5_cft70"]
+[ext_resource type="Texture2D" uid="uid://p6ieis1a237m" path="res://Sprites/Enemies/Paradox.png" id="5_w8ckj"]
 [ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="6_w8ckj"]
 [ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="7_7yw2p"]
 [ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="8_huokx"]
@@ -22,7 +22,7 @@ script = ExtResource("1_kvqdo")
 
 [node name="ControlNode" parent="." unique_id=1151074664 instance=ExtResource("2_5obky")]
 DetectionRange = 2200.0
-FiringRange = 900.0
+FiringRange = 1000.0
 Profile = ExtResource("3_cft70")
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_e6xtg")]
@@ -32,7 +32,7 @@ shape = SubResource("CircleShape2D_2b61m")
 disabled = true
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1715419656]
-texture = ExtResource("3_5obky")
+texture = ExtResource("5_w8ckj")
 
 [node name="Hull" parent="." unique_id=463253017 instance=ExtResource("4_d6dxf")]
 

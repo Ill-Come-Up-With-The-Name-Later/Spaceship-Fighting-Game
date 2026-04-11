@@ -481,6 +481,17 @@ public partial class Ship : CharacterBody2D
 	}
 
 	/// <summary>
+	/// If the ship can activate warp
+	/// </summary>
+	/// <returns>
+	/// If the ship can activate warp
+	/// </returns>
+	public bool CanWarp()
+	{
+		return WarpDrive.CanActivate() && !WarpDrive.Active;
+	}
+
+	/// <summary>
 	/// The amount of power the ship has
 	/// </summary>
 	/// <returns>

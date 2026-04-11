@@ -4,11 +4,13 @@
 [ext_resource type="Resource" uid="uid://y73qit18gbh4" path="res://Scripts/Controllers/EnemyBehavior/AIStates/RoamState/GenericRoamState.tres" id="1_yfqvv"]
 [ext_resource type="Resource" uid="uid://ck5tef6ufbrb4" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericRoamToGenericAttack/RoamToAttack.tres" id="2_chk72"]
 [ext_resource type="Resource" uid="uid://ctgqu68wf8dr5" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericAttackToGenericRoam/AttackToRoam.tres" id="3_aa06k"]
+[ext_resource type="Resource" uid="uid://d1anfx7nwnxy6" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericAttackToFlee/AttackToFlee.tres" id="4_aa06k"]
+[ext_resource type="Resource" uid="uid://cdd21q8wm3d1y" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericFleeToRoam/FleeToRoam.tres" id="5_7tk6q"]
 
 [resource]
 script = ExtResource("1_itfp8")
 InitialState = ExtResource("1_yfqvv")
-Transitions = Array[Resource]([ExtResource("2_chk72"), ExtResource("3_aa06k")])
+Transitions = Array[Resource]([ExtResource("2_chk72"), ExtResource("3_aa06k"), ExtResource("4_aa06k"), ExtResource("5_7tk6q")])
 AttackDelay = 4.0
 TargetingDelay = 3.0
 PerAttackDelay = 0.25

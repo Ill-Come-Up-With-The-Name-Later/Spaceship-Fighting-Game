@@ -22,7 +22,7 @@ script = ExtResource("1_s8xmf")
 [node name="ControlNode" parent="." unique_id=660101535 instance=ExtResource("4_rwtvl")]
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=2140110726]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.3, 0.3)
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_rwtvl")]
 
