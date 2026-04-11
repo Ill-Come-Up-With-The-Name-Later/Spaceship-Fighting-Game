@@ -9,6 +9,6 @@
 script = ExtResource("1_itfp8")
 InitialState = ExtResource("1_yfqvv")
 Transitions = Array[Resource]([ExtResource("2_chk72"), ExtResource("3_aa06k")])
-AttackDelay = 3.0
+AttackDelay = 4.0
 TargetingDelay = 3.0
-PerAttackDelay = 0.2
+PerAttackDelay = 0.25

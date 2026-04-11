@@ -103,10 +103,12 @@ public partial class EnemyController : Controller
         AttackTimer.Timeout += SetupWeapons;
         PerAttackTimer.Timeout += SetCanAttack;
         
-        ChangeState(Profile.InitialState);
-        
         TargetingOrder = new PriorityQueue<Ship, double>();
         WeaponFiringOrder = new PriorityQueue<Weapon, double>();
+
+        CanAttack = true;
+        
+        ChangeState(Profile.InitialState);
         
         TargetingTimer.Start();
         AttackTimer.Start();
