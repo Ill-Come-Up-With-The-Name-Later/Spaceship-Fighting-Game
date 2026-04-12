@@ -14,7 +14,6 @@ public partial class GenericFleeState : AIState
             if (drive.CanToggle && !drive.Active)
             {
                 drive.Toggle();
-                return;
             }
         }
 

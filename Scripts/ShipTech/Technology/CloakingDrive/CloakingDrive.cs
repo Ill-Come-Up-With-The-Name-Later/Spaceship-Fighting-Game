@@ -126,9 +126,6 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		if (!CanToggle)
 			return;
 
-		if (ParentShip.InWarp())
-			return;
-
 		if (ParentShip.HasShield())
 			return;
 		
