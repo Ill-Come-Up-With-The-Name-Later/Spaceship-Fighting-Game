@@ -53,14 +53,14 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		if(ParentShip is null)
 			GD.PrintErr("Parent ship not found");
 
-		Eventbus.WeaponFired += Disable;
+		Eventbus.WeaponFired += DisableOnFiring;
 		CooldownTimer.Timeout += Enable;
 		Eventbus.SimplifiedShipDamaged += Disable;
 	}
 
 	public override void _ExitTree()
 	{
-		Eventbus.WeaponFired -= Disable;
+		Eventbus.WeaponFired -= DisableOnFiring;
 		CooldownTimer.Timeout -= Enable;
 	}
 
@@ -86,8 +86,7 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		if (CurrentConsumption * delta > ship.CurrentPower)
 			return false;
         
-		ship.FusionReactor.CurrentPower -= CurrentConsumption * delta;
-
+		ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.CurrentPower - CurrentConsumption * delta);
 		return true;
 	}
 
@@ -96,22 +95,30 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		CanToggle = true;
 	}
 
-	public void Disable(Vector2 pos, Ship ship, Weapon weapon)
+	public void DisableOnFiring(Vector2 pos, Ship ship, Weapon weapon)
 	{
-		Disable(ship, ship);
+		if (Active && ship == ParentShip)
+		{
+			Disable(ship, ship);
+		}
 	}
 
 	public void Disable(Ship ship, Ship damager)
 	{
-		Active = false;
-		var selfMod = ParentShip.Sprite.SelfModulate;
-		selfMod.A = 1;
-		ParentShip.Sprite.SelfModulate = selfMod;
-		CooldownTimer.Start();
-		CanToggle = false;
-		ConsumingPower = false;
+		if (Active && ship == ParentShip)
+		{
+			GD.Print("Cloak has been disabled");
+			
+			Active = false;
+			var selfMod = ParentShip.Sprite.SelfModulate;
+			selfMod.A = 1;
+			ParentShip.Sprite.SelfModulate = selfMod;
+			CooldownTimer.Start();
+			CanToggle = false;
+			ConsumingPower = false;
 
-		Eventbus.EmitSignal("ShipDecloaked", ship);
+			Eventbus.EmitSignal("ShipDecloaked", ship);
+		}
 	}
 
 	public void Toggle()
@@ -125,15 +132,14 @@ public partial class CloakingDrive : Technology, IPowerConsumer, IToggleable
 		if (ParentShip.HasShield())
 			return;
 		
-		Active = !Active;
-		GD.Print("Cloaking drive is active: " + Active);
-		
 		if(Active)
-			Eventbus.EmitSignal("ShipCloaked", ParentShip);
-
-		if (!Active)
+			Disable(ParentShip, null);
+		else
 		{
-			Disable(ParentShip, ParentShip);
+			Active = !Active;
+			
+			if (Active)
+				Eventbus.EmitSignal("ShipCloaked", ParentShip);
 		}
 	}
 }

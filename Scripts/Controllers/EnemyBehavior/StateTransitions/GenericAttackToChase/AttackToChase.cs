@@ -6,6 +6,9 @@
 
         if (target is not null)
         {
+            if (target.Cloaked() && !controller.ParentShip.HasUpgrade<AntiCloakScanner>())
+                return false;
+            
             if (target.ControlNode is EnemyController targetController)
             {
                 if(targetController.CurrentState.Type == AIStateType.Flee)

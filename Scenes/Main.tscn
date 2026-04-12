@@ -9,4 +9,4 @@
 position = Vector2(192, -326)
 
 [node name="EnemyShip4" parent="." unique_id=2004979430 instance=ExtResource("4_rgh2o")]
-position = Vector2(1342, 351)
+position = Vector2(1808, 275)

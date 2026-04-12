@@ -99,9 +99,12 @@ public partial class GenericAttackState : AIState
         if (nextState.Type == AIStateType.Chase)
         {
             controller.TargetingOrder.TryPeek(out Ship target, out double priority);
-
-            if (target is not null)
+            
+            if (target is not null && controller.ParentShip.CanTarget(target) && !target.Cloaked())
             {
+                if (!IsInstanceValid(target))
+                    return;
+                
                 controller.MovementTarget = target.GlobalPosition;
                 controller.PursuitTarget = target;
             }

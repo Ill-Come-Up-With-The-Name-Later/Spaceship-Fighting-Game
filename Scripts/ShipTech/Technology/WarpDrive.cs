@@ -161,9 +161,6 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
             {
                 speedMultiplier = WarpDriveStats.SpeedMultiplier;
                 CurrentConsumption = PowerConsumption.Amount;
-                
-                GD.Print(ParentShip.GetName() + 
-                         " Warp velocity: " + ParentShip.Velocity.Length());
             }
             
             ParentShip.Velocity =

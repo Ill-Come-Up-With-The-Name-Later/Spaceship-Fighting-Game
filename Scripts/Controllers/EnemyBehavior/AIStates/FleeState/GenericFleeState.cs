@@ -10,8 +10,8 @@ public partial class GenericFleeState : AIState
         if (controller.ParentShip.GetTechnology<CloakingDrive>() is not null)
         {
             CloakingDrive drive = controller.ParentShip.GetTechnology<CloakingDrive>();
-
-            if (drive.CanToggle)
+            
+            if (drive.CanToggle && !drive.Active)
             {
                 drive.Toggle();
                 return;
