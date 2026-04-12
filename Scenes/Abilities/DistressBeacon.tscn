@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bmvo7hc1o768j"]
+
+[ext_resource type="Script" uid="uid://ba6mq53ci0x57" path="res://Scripts/ShipTech/Technology/Abilities/DistressBeacon/DistressBeacon.cs" id="1_jhnfb"]
+[ext_resource type="Resource" uid="uid://d26q1dhjp107" path="res://Resources/Technologies/Abilities/DistressBeaconWeights.tres" id="2_kle1y"]
+
+[node name="DistressBeacon" type="Node2D" unique_id=541791397]
+script = ExtResource("1_jhnfb")
+Range = 7500.0
+ActivationDelay = 5.0
+Cooldown = 120.0
+Weights = ExtResource("2_kle1y")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=714927758]
+one_shot = true
+
+[node name="ActivationTimer" type="Timer" parent="." unique_id=1410810441]
+one_shot = true

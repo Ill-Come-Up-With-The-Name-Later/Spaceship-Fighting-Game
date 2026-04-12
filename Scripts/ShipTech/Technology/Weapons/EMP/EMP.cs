@@ -64,11 +64,15 @@ public partial class EMP : Weapon
                                 if(drive.Active)
                                     drive.Toggle();
                         }
+
+                        if (ship.HasAbility<DistressBeacon>())
+                        {
+                            DistressBeacon beacon = ship.GetAbility<DistressBeacon>();
+                            beacon.Range /= 2;
+                        }
                         
                         GD.Print("EMP Hit " + ship.GetName());
                         Eventbus.EmitSignal("EmpHitShip", ship, ParentShip);
-                        
-                        // Todo: Halving distress beacon range
                     }
                 }
             }

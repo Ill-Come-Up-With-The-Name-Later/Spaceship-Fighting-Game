@@ -3,6 +3,9 @@ using Godot.Collections;
 
 namespace SpaceshipFightingGame.Scripts.Global;
 
+/// <summary>
+/// The enemy spawn manager. Must be a node in a scene.
+/// </summary>
 public partial class EnemySpawnManager : Node2D
 {
     public Array<Marker2D> Spawnpoints;

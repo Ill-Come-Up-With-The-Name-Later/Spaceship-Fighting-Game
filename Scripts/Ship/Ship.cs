@@ -36,6 +36,12 @@ public partial class Ship : CharacterBody2D
 	public Node2D TechnologyNode;
 	public Node2D UpgradeNode;
 	public Node2D AbilityNode;
+
+	public Vector2 Forward
+	{
+		get => new Vector2(Mathf.Cos(Rotation - Mathf.Pi / 2),
+			Mathf.Sin(Rotation - Mathf.Pi / 2)).Normalized();
+	}
 	
 	/// <summary>
 	/// Amount of materials the ship has
@@ -284,6 +290,38 @@ public partial class Ship : CharacterBody2D
 	}
 
 	/// <summary>
+	/// Gets an ability if the ship has it
+	/// </summary>
+	/// <typeparam name="T">
+	/// The ability to get
+	/// </typeparam>
+	/// <returns>
+	/// An ability or null if absent
+	/// </returns>
+	public T GetAbility<T>() where T : Ability
+	{
+		foreach(Node child in AbilityNode.GetChildren())
+			if(child is T ability)
+				return ability;
+
+		return null;
+	}
+
+	/// <summary>
+	/// If the ship has an ability
+	/// </summary>
+	/// <typeparam name="T">
+	/// The ability
+	/// </typeparam>
+	/// <returns>
+	/// If the ship has the ability
+	/// </returns>
+	public bool HasAbility<T>() where T : Ability
+	{
+		return GetAbility<T>() is not null;
+	}
+
+	/// <summary>
 	/// If the ship has an instance of a part
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
@@ -293,11 +331,7 @@ public partial class Ship : CharacterBody2D
 	/// </returns>
 	public bool HasPart<T>() where T : ShipPart
 	{
-		foreach(Node child in GetChildren())
-			if(child is T part)
-				return true;
-		
-		return false;
+		return GetPart<T>() is not null;
 	}
 
 	/// <summary>

@@ -14,6 +14,16 @@ public partial class ShieldGenerator : DefenseGenerator
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
+        
+        if (CurrentHealth <= 0)
+        {
+            DefenseActive = false;
+            CurrentDefenseHealth = 0;
+        }
+        
+        if(CurrentDefenseHealth <= 0)
+            DefenseActive = false;
+        
         ConsumingPower = DefenseActive;
 
         if (ConsumingPower) {

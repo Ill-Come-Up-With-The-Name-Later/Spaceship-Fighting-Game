@@ -5,6 +5,11 @@ public partial class GenericAttackState : AIState
 {
     public override void EnterState(EnemyController controller, AIState previousState)
     {
+        if (!controller.ParentShip.HasShield())
+        {
+            if(controller.ParentShip.DefenseSystem.CanToggle)
+                controller.ParentShip.DefenseSystem.Toggle();
+        }
     }
 
     public override void Process(EnemyController controller, double delta)
@@ -16,24 +21,37 @@ public partial class GenericAttackState : AIState
         
         Ship target = controller.TargetingOrder.Peek();
         
-        SetMovementTarget(controller, target);
-        Attack(controller, target);
+        SetMovementTarget(controller, target, delta);
+        Attack(controller, target, delta);
     }
 
-    public void SetMovementTarget(EnemyController controller, Ship target)
+    public void SetMovementTarget(EnemyController controller, Ship target, double delta)
     {
-        Vector2 offset = new Vector2((float)Mathf.Cos(controller.ManipulableCounter),
-            (float)Mathf.Sin(controller.ManipulableCounter)).Normalized();
-
-        offset *= (float)controller.FiringRange * 0.95f;
-        
         if (!IsInstanceValid(target))
             return;
-        
-        controller.MovementTarget = target.GlobalPosition + offset;
+
+        if (target.Velocity.Length() <= controller.ParentShip.Engine.EngineStats.TurningRadius)
+        {
+            Vector2 behind = -target.Forward;
+            behind *= (float)controller.FiringRange * 0.8f;
+            
+            controller.MovementTarget = target.GlobalPosition + behind;
+            
+            if(controller.CloseToMoveTarget())
+                controller.TurnToFace(target.GlobalPosition, delta);
+        }
+        else
+        {
+            Vector2 offset = new Vector2((float)Mathf.Cos(controller.ManipulableCounter),
+                (float)Mathf.Sin(controller.ManipulableCounter)).Normalized();
+
+            offset *= (float)controller.FiringRange * 0.95f;
+
+            controller.MovementTarget = target.GlobalPosition + offset;
+        }
     }
 
-    public void Attack(EnemyController controller, Ship target)
+    public void Attack(EnemyController controller, Ship target, double delta)
     {
         if (!IsInstanceValid(target))
             return;
@@ -41,14 +59,17 @@ public partial class GenericAttackState : AIState
         if(controller.CanAttack)
         {
             RandomNumberGenerator rand = new RandomNumberGenerator();
-            
-            Vector2 offset = new Vector2(rand.RandfRange(-(float)controller.FiringRange * 0.5f,
-                (float)controller.FiringRange * 0.5f), 
-                rand.RandfRange(-(float)controller.FiringRange * 0.5f, 
-                    (float)controller.FiringRange * 0.5f));
-            
-            controller.MovementTarget = target.GlobalPosition + offset;
-            
+
+            if (target.Velocity.Length() >= controller.ParentShip.Engine.EngineStats.TurningRadius)
+            {
+                Vector2 offset = new Vector2(rand.RandfRange(-(float)controller.FiringRange * 0.5f,
+                        (float)controller.FiringRange * 0.5f),
+                    rand.RandfRange(-(float)controller.FiringRange * 0.5f,
+                        (float)controller.FiringRange * 0.5f));
+
+                controller.MovementTarget = target.GlobalPosition + offset;
+            }
+
             PriorityQueue<Weapon, double> weapons = controller.WeaponPriorities();
 
             if (weapons.Count == 0)
@@ -56,10 +77,13 @@ public partial class GenericAttackState : AIState
 
             if (controller.FireAt(weapons.Peek(), target))
                 weapons.Dequeue();
+
+            if (weapons.Count > 0 && controller.TargetingOrder.Count > 1)
+                controller.TargetingOrder.Dequeue();
         }
         else
         {
-            SetMovementTarget(controller, target);
+            SetMovementTarget(controller, target, delta);
         }
     }
 

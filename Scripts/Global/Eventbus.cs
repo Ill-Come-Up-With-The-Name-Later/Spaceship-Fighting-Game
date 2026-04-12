@@ -43,7 +43,7 @@ public partial class Eventbus : Node
     public delegate void AbilityUsedEventHandler(Ability ability, Ship user);
     
     [Signal]
-    public delegate void DistressBeaconUsedEventHandler(Ship user);
+    public delegate void DistressBeaconUsedEventHandler(Ship user, DistressBeacon used);
     
     [Signal]
     public delegate void TranswarpExitedEventHandler(Ship user);
