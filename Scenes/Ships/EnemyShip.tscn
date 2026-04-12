@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="9_psyiv"]
 [ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="11_d6dxf"]
 [ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="12_cft70"]
+[ext_resource type="PackedScene" uid="uid://bx6cbcls4d6n1" path="res://Scenes/Weapons/PhotonTorpedo.tscn" id="14_w8ckj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
 radius = 1.0
@@ -59,6 +60,10 @@ AttackFOV = 110.0
 [node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("12_cft70")]
 
 [node name="LaserCannon2" parent="WeaponSystem" unique_id=318728043 instance=ExtResource("12_cft70")]
+
+[node name="PhotonTorpedo" parent="WeaponSystem" unique_id=2134654481 instance=ExtResource("14_w8ckj")]
+
+[node name="PhotonTorpedo2" parent="WeaponSystem" unique_id=472414684 instance=ExtResource("14_w8ckj")]
 
 [node name="Upgrades" type="Node2D" parent="." unique_id=1621237522]
 

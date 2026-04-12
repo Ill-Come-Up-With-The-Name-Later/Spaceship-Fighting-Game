@@ -71,6 +71,8 @@ public partial class EnemyController : Controller
     private float currentTurnSpeed;
 
     public bool CanAttack;
+
+    public Ship PursuitTarget;
     
     /// <summary>
     /// A normalized vector representing forwards
@@ -208,7 +210,10 @@ public partial class EnemyController : Controller
     /// <param name="position">
     /// The position to face
     /// </param>
-    public void TurnToFace(Vector2 position, double delta)
+    /// <returns>
+    /// The required turn angle
+    /// </returns>
+    public float TurnToFace(Vector2 position, double delta)
     {
         Vector2 toTarget = position - ParentShip.GlobalPosition;
         
@@ -225,6 +230,8 @@ public partial class EnemyController : Controller
 
         if (ParentShip.CanTurn)
             ParentShip.Rotation += currentTurnSpeed * (float)delta;
+
+        return angleDiff;
     }
 
     /// <summary>

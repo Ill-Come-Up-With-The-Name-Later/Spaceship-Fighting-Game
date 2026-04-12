@@ -6,6 +6,7 @@ public enum AIStateType
     Roam,
     Approach,
     Attack,
+    Chase,
     Flee,
     WarpIn,
     Rescue

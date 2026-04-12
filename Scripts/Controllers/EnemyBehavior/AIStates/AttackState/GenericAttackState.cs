@@ -10,6 +10,9 @@ public partial class GenericAttackState : AIState
             if(controller.ParentShip.DefenseSystem.CanToggle)
                 controller.ParentShip.DefenseSystem.Toggle();
         }
+
+        if (controller.ParentShip.WarpDrive.Active)
+            controller.ParentShip.WarpDrive.Toggle();
     }
 
     public override void Process(EnemyController controller, double delta)
@@ -93,5 +96,15 @@ public partial class GenericAttackState : AIState
 
     public override void ExitState(EnemyController controller, AIState nextState)
     {
+        if (nextState.Type == AIStateType.Chase)
+        {
+            controller.TargetingOrder.TryPeek(out Ship target, out double priority);
+
+            if (target is not null)
+            {
+                controller.MovementTarget = target.GlobalPosition;
+                controller.PursuitTarget = target;
+            }
+        }
     }
 }

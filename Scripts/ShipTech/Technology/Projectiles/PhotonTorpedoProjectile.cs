@@ -9,7 +9,7 @@ public partial class PhotonTorpedoProjectile : Projectile
     {
         Vector2 targetPosition;
         
-        if (Target is not null && !Target.Cloaked())
+        if (IsInstanceValid(Target) && !Target.Cloaked())
         {
             targetPosition = Target.GlobalPosition;
         }

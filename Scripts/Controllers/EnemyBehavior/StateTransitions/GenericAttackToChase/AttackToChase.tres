@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3 uid="uid://dpv8nwmb405k0"]
+
+[ext_resource type="Resource" uid="uid://kygbll3viy38" path="res://Scripts/Controllers/EnemyBehavior/AIStates/AttackState/GenericAttackState.tres" id="1_cl74g"]
+[ext_resource type="Resource" uid="uid://dr0f36ybib6i5" path="res://Scripts/Controllers/EnemyBehavior/AIStates/ChaseState/GenericChaseState.tres" id="2_5k45d"]
+[ext_resource type="Script" uid="uid://de8yd4nix7pew" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericAttackToChase/AttackToChase.cs" id="3_a4mhh"]
+
+[resource]
+script = ExtResource("3_a4mhh")
+From = ExtResource("1_cl74g")
+To = ExtResource("2_5k45d")
