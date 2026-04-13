@@ -5,12 +5,13 @@
 [ext_resource type="Resource" uid="uid://drv3sks8dacvd" path="res://Resources/Weapons/MetaphasicDisruptor/MetaphasicDisruptorPowerConsumption.tres" id="3_0m574"]
 [ext_resource type="Resource" uid="uid://cwpgsbwmejdbc" path="res://Resources/Weapons/MetaphasicDisruptor/MetaphasicDisruptorWeights.tres" id="4_0m574"]
 
-[node name="MetaphasicDisruptor" type="Node2D" unique_id=189030110]
+[node name="MetaphasicDisruptor" type="Node2D" unique_id=189030110 node_paths=PackedStringArray("ProjectileSource")]
 script = ExtResource("1_0m574")
 HitEffectRadius = 75.0
 Color = Color(0.627451, 0, 1, 1)
 WeaponStats = ExtResource("2_8m6xi")
 PowerConsumption = ExtResource("3_0m574")
+ProjectileSource = NodePath("ProjectileSource")
 Weights = ExtResource("4_0m574")
 
 [node name="EffectTimer" type="Timer" parent="." unique_id=530172594]
@@ -22,3 +23,5 @@ one_shot = true
 [node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
 
 [node name="DisruptorBeam" type="Line2D" parent="." unique_id=565697137]
+
+[node name="ProjectileSource" type="Marker2D" parent="." unique_id=2075049708]

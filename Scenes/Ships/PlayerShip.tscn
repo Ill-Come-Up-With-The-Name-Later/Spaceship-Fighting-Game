@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_s8xmf"]
 [ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="2_rwtvl"]
-[ext_resource type="Texture2D" uid="uid://ctnepl25xorsn" path="res://Sprites/Enemies/Radiance.png" id="4_6yjpb"]
+[ext_resource type="Texture2D" uid="uid://bsmbyw6j1ey1x" path="res://Sprites/Player/PlayerShip.png" id="4_6yjpb"]
 [ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="4_46e37"]
 [ext_resource type="PackedScene" uid="uid://b28vrjkh228m3" path="res://Scenes/Controllers/PlayerController.tscn" id="4_rwtvl"]
 [ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="5_6yjpb"]
@@ -21,6 +21,7 @@ script = ExtResource("1_s8xmf")
 
 [node name="ControlNode" parent="." unique_id=660101535 instance=ExtResource("4_rwtvl")]
 AttackCooldown = 0.25
+AttackRange = 1200.0
 Faction = 1
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=2140110726]

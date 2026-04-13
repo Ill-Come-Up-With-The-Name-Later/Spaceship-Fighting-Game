@@ -67,7 +67,7 @@ public partial class EnemyController : Controller
 
     public PriorityQueue<Ship, double> TargetingOrder;
     public PriorityQueue<Weapon, double> WeaponFiringOrder;
-    
+
     private float currentTurnSpeed;
 
     public bool CanAttack;
@@ -202,36 +202,6 @@ public partial class EnemyController : Controller
             ParentShip.Velocity = forward * speed;
         
         ParentShip.MoveAndSlide();
-    }
-
-    /// <summary>
-    /// Turns to face a position
-    /// </summary>
-    /// <param name="position">
-    /// The position to face
-    /// </param>
-    /// <returns>
-    /// The required turn angle
-    /// </returns>
-    public float TurnToFace(Vector2 position, double delta)
-    {
-        Vector2 toTarget = position - ParentShip.GlobalPosition;
-        
-        float targetAngle = Vector2.Up.AngleTo(toTarget);
-        float maxTurn = (float)ParentShip.Engine.EngineStats.TurningRadius;
-        
-        if (ParentShip.InWarp())
-            maxTurn *= (float)ParentShip.WarpDrive.WarpDriveStats.TurnRate;
-        
-        float angleDiff = Mathf.Wrap(targetAngle - ParentShip.Rotation, -Mathf.Pi, Mathf.Pi);
-        float desiredTurnSpeed = Mathf.Clamp(angleDiff, -maxTurn, maxTurn);
-
-        currentTurnSpeed = Mathf.MoveToward(currentTurnSpeed, desiredTurnSpeed, maxTurn);
-
-        if (ParentShip.CanTurn)
-            ParentShip.Rotation += currentTurnSpeed * (float)delta;
-
-        return angleDiff;
     }
 
     /// <summary>

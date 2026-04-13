@@ -39,8 +39,9 @@ public partial class MetaphasicDisruptor : Weapon
     {
         base.Fire(targetPosition);
         
-        Line.Points = new Vector2[] { Line.ToLocal(targetPosition - ParentShip.GlobalPosition).Normalized()
-                                      * ParentShip.Sprite.Texture.GetHeight() / 2, Line.ToLocal(targetPosition) };
+        Line.Points = new Vector2[] { Line.ToLocal(ProjectileSource.GlobalPosition + ParentShip.Forward
+                * ParentShip.Sprite.Texture.GetHeight() / 2),
+            Line.ToLocal(targetPosition) };
         Line.Visible = true;
         
         EffectTimer.Start();

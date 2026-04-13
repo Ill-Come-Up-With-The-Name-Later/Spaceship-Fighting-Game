@@ -23,6 +23,9 @@ public partial class PlayerController : Controller
 	[Export]
 	public double AttackCooldown;
 
+	[Export]
+	public double AttackRange;
+
 	public bool CanAttack;
 	
 	public override void _Ready()
@@ -212,6 +215,9 @@ public partial class PlayerController : Controller
 			return;
 		
 		if (!ParentShip.Weapons.CanFireAt(position))
+			return;
+
+		if (!(ParentShip.GlobalPosition.DistanceTo(position) <= AttackRange))
 			return;
 
 		if (ParentShip.ActiveWeapon is not null)

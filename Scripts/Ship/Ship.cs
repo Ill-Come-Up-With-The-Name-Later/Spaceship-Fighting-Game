@@ -74,6 +74,8 @@ public partial class Ship : CharacterBody2D
 	{
 		Controller = Controllers.None;
 	}
+	
+	private float currentTurnSpeed;
 
 	public override void _Ready()
 	{
@@ -163,6 +165,36 @@ public partial class Ship : CharacterBody2D
 	public override void _ExitTree()
 	{
 		Manager.Ships.Remove(this);
+	}
+	
+	/// <summary>
+	/// Turns to face a position
+	/// </summary>
+	/// <param name="position">
+	/// The position to face
+	/// </param>
+	/// <returns>
+	/// The required turn angle
+	/// </returns>
+	public float TurnToFace(Vector2 position, double delta)
+	{
+		Vector2 toTarget = position - GlobalPosition;
+        
+		float targetAngle = Vector2.Up.AngleTo(toTarget);
+		float maxTurn = (float)Engine.EngineStats.TurningRadius;
+        
+		if (InWarp())
+			maxTurn *= (float)WarpDrive.WarpDriveStats.TurnRate;
+        
+		float angleDiff = Mathf.Wrap(targetAngle - Rotation, -Mathf.Pi, Mathf.Pi);
+		float desiredTurnSpeed = Mathf.Clamp(angleDiff, -maxTurn, maxTurn);
+
+		currentTurnSpeed = Mathf.MoveToward(currentTurnSpeed, desiredTurnSpeed, maxTurn);
+
+		if (CanTurn)
+			Rotation += currentTurnSpeed * (float)delta;
+
+		return angleDiff;
 	}
 
 	/// <summary>
