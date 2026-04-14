@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_qwsk4")
-FleeDistance = 10000.0
-Type = 3
+FleeDistance = 7500.0
+Type = 4

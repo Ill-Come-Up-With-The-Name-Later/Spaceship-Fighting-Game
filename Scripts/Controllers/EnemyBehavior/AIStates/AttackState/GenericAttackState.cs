@@ -39,9 +39,7 @@ public partial class GenericAttackState : AIState
             behind *= (float)controller.FiringRange * 0.8f;
             
             controller.MovementTarget = target.GlobalPosition + behind;
-            
-            if(controller.CloseToMoveTarget())
-                controller.ParentShip.TurnToFace(target.GlobalPosition, delta);
+            controller.ParentShip.TurnToFace(target.GlobalPosition, delta);
         }
         else
         {
