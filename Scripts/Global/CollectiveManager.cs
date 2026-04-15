@@ -18,21 +18,24 @@ public partial class CollectiveManager : Node
         
         if(Eventbus is null)
             GD.PrintErr("Eventbus not found");
-
-        Eventbus.ShipSpawned += AddCollectiveShip;
+        
         Eventbus.DistressBeaconUsed += RespondToDistressBeacon;
+        Eventbus.ShipSpawned += ReceiveSpawn;
     }
 
     /// <summary>
-    /// Adds a ship to the collective
+    /// Deals with ship spawning and hooking in
+    /// ships to the collective
     /// </summary>
     /// <param name="ship">
-    /// The ship
+    /// The ship that has spawned
     /// </param>
-    public void AddCollectiveShip(Ship ship)
+    public void ReceiveSpawn(Ship ship)
     {
-        if(ship.ControlNode.Faction == Faction.Collective)
-            CollectiveShips.Add(ship);
+        if(ship.ControlNode.Faction != Faction.Collective)
+            return;
+        
+        CollectiveShips.Add(ship);
     }
     
     /// <summary>
@@ -62,7 +65,7 @@ public partial class CollectiveManager : Node
 
     public void RespondToDistressBeacon(Ship user, DistressBeacon used)
     {
-        if (!CollectiveShips.Contains(user))
+        if (!CollectiveShips.Contains(user) || user.ControlNode is not EnemyController)
             return;
 
         Array<Ship> nearby = NearbyShips(user.GlobalPosition, used.Range);
@@ -74,7 +77,8 @@ public partial class CollectiveManager : Node
             if (controller.Faction != Faction.Collective)
                 return;
             
-            // Todo: Transwarp response state
+            if(controller.ChangeState(controller.Profile.FindState(AIStateType.WarpIn)))
+                controller.TargetingOrder = ((EnemyController)user.ControlNode).TargetingOrder;
         }
     }
 }

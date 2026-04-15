@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cxj5tn5boe2rr"]
 
 [ext_resource type="Script" uid="uid://bb3v1m4qnpref" path="res://Scripts/ShipTech/Technology/Upgrades/AntiCloakScanner/AntiCloakScanner.cs" id="1_r5ls6"]
+[ext_resource type="Resource" uid="uid://j8a8bu1m1wlr" path="res://Resources/Technologies/Upgrades/AntiCloakScanner/AntiCloakScannerWeights.tres" id="2_5mksm"]
 
 [node name="AntiCloakScanner" type="Node2D" unique_id=1952495609]
 script = ExtResource("1_r5ls6")
+Weights = ExtResource("2_5mksm")

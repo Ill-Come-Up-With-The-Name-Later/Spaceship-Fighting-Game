@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3 uid="uid://db4yb8v220174"]
+
+[ext_resource type="Resource" uid="uid://bw26in0ce2fch" path="res://Scripts/Controllers/EnemyBehavior/AIStates/WarpToPosition/GenericWarpToPositionState.tres" id="1_weub2"]
+[ext_resource type="Resource" uid="uid://kygbll3viy38" path="res://Scripts/Controllers/EnemyBehavior/AIStates/AttackState/GenericAttackState.tres" id="2_20ng5"]
+[ext_resource type="Script" uid="uid://qd66drl6cokm" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/WarpToPositionToChase/WarpToPositionToAttack.cs" id="3_paia1"]
+
+[resource]
+script = ExtResource("3_paia1")
+From = ExtResource("1_weub2")
+To = ExtResource("2_20ng5")

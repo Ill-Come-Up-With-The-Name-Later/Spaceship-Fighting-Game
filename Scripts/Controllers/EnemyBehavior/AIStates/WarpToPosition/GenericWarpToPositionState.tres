@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://bw26in0ce2fch"]
+
+[ext_resource type="Script" uid="uid://bdso6mdsgl1kh" path="res://Scripts/Controllers/EnemyBehavior/AIStates/WarpToPosition/GenericWarpToPositionState.cs" id="1_j3evw"]
+
+[resource]
+script = ExtResource("1_j3evw")
+Type = 5

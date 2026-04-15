@@ -19,13 +19,13 @@ radius = 1.0
 [node name="PlayerShip" type="CharacterBody2D" unique_id=1450576114]
 script = ExtResource("1_s8xmf")
 
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=2140110726]
+zoom = Vector2(0.33, 0.33)
+
 [node name="ControlNode" parent="." unique_id=660101535 instance=ExtResource("4_rwtvl")]
 AttackCooldown = 0.25
 AttackRange = 1200.0
 Faction = 1
-
-[node name="PlayerCamera" type="Camera2D" parent="." unique_id=2140110726]
-zoom = Vector2(0.33, 0.33)
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("2_rwtvl")]
 

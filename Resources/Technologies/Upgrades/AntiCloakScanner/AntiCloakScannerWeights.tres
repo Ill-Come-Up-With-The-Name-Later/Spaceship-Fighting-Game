@@ -1,0 +1,6 @@
+[gd_resource type="Resource" format=3 uid="uid://j8a8bu1m1wlr"]
+
+[ext_resource type="Script" uid="uid://dyrgecp50vcvf" path="res://Scripts/Resources/TechWeightData.cs" id="1_prxuq"]
+
+[resource]
+script = ExtResource("1_prxuq")

@@ -13,10 +13,26 @@ public partial class EnemySpawnManager : Node2D
     public Timer SpawnTimer;
 
     [Export]
+    public int MinSpawns;
+    
+    [Export]
+    public int MaxSpawns;
+
+    [Export]
+    public float MinSpawnTime;
+    
+    [Export]
+    public float MaxSpawnTime;
+    
+    [Export]
     public Array<PackedScene> Enemies;
+    
+    private RandomNumberGenerator generator;
 
     public override void _Ready()
     {
+        generator = new RandomNumberGenerator();
+        
         Spawnpoints = new Array<Marker2D>();
 
         foreach (Node child in GetChildren())
@@ -37,5 +53,31 @@ public partial class EnemySpawnManager : Node2D
         
         if(Eventbus is null)
             GD.PrintErr("Eventbus not found");
+        
+        SpawnTimer.WaitTime = generator.RandfRange(MinSpawnTime, MaxSpawnTime);
+        SpawnTimer.Timeout += Spawn;
+        SpawnTimer.Start();
+    }
+
+    /// <summary>
+    /// Spawns an enemy
+    /// </summary>
+    public void Spawn()
+    {
+        int spawns = generator.RandiRange(MinSpawns, MaxSpawns + 1);
+
+        for (int i = 0; i < spawns; i++)
+        {
+            Marker2D spawnpoint = Spawnpoints[generator.RandiRange(0, Spawnpoints.Count)];
+            
+            // Todo: Replace this with weighted selection
+            Ship ship = (Ship)Enemies[generator.RandiRange(0, Enemies.Count)].Instantiate();
+            ship.GlobalPosition = spawnpoint.GlobalPosition;
+
+            Eventbus.EmitSignal("EnemySpawned");
+        }
+        
+        SpawnTimer.WaitTime = generator.RandfRange(MinSpawnTime, MaxSpawnTime);
+        SpawnTimer.Start();
     }
 }

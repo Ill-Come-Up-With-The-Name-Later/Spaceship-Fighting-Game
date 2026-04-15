@@ -9,5 +9,4 @@ public enum AIStateType
     Chase,
     Flee,
     WarpIn,
-    Rescue
 }

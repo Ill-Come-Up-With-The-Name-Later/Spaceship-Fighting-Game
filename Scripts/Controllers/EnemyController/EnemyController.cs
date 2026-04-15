@@ -152,7 +152,7 @@ public partial class EnemyController : Controller
     public void OnHit(Ship ship, Ship damager)
     {
         if(ship == ParentShip)
-            TargetingOrder.Enqueue(damager, -10);
+            TargetingOrder.Enqueue(damager, -20);
     }
 
     /// <summary>
@@ -271,7 +271,7 @@ public partial class EnemyController : Controller
             return false;
         
         AIState oldState = CurrentState;
-        GD.Print("Changed from " + (oldState is null ? "null" :
+        GD.Print(ParentShip.Name + " changed from " + (oldState is null ? "null" :
             oldState.GetType()) + " to " + newState.GetType());
         
         CurrentState?.ExitState(this, newState);
@@ -377,6 +377,7 @@ public partial class EnemyController : Controller
     /// </returns>
     public PriorityQueue<Weapon, double> WeaponPriorities()
     {
+        RandomNumberGenerator generator = new RandomNumberGenerator();
         PriorityQueue<Weapon, double> queue = new PriorityQueue<Weapon, double>();
         
         foreach(Weapon weapon in ParentShip.GetWeapons())
@@ -384,7 +385,8 @@ public partial class EnemyController : Controller
             if (!weapon.CanFire)
                 continue;
 
-            double priority = weapon.WeaponStats.Damage / weapon.WeaponStats.FiringCooldown;
+            double priority = ((weapon.WeaponStats.Damage + (3 * weapon.WeaponStats.PenetratingDamage))
+                               / weapon.WeaponStats.FiringCooldown);
             queue.Enqueue(weapon, -priority);
         }
 

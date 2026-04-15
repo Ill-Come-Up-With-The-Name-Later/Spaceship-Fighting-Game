@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_4v8h3")
-Damage = 350.0
-FiringCooldown = 0.2
+Damage = 400.0
+FiringCooldown = 0.3

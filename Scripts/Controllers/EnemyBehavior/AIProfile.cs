@@ -37,4 +37,27 @@ public partial class AIProfile : Resource
     /// </summary>
     [Export] 
     public double PerAttackDelay;
+
+    /// <summary>
+    /// Gets the first AI state by its type
+    /// </summary>
+    /// <param name="type">
+    /// An AI state type
+    /// </param>
+    /// <returns>
+    /// An AI state or null if none is found
+    /// </returns>
+    public AIState FindState(AIStateType type)
+    {
+        foreach(StateTransition transition in Transitions)
+        {
+            if(transition.From.Type == type)
+                return transition.From;
+            
+            if(transition.To.Type == type)
+                return transition.To;
+        }
+
+        return null;
+    }
 }
