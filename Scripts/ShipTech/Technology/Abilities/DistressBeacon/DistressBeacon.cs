@@ -10,6 +10,8 @@ public partial class DistressBeacon : Ability
 
     public Timer ActivationTimer;
 
+    public bool CanUse;
+
     public override void _Ready()
     {
         base._Ready();
@@ -20,6 +22,8 @@ public partial class DistressBeacon : Ability
         
         ActivationTimer.WaitTime = ActivationDelay;
         ActivationTimer.Timeout += Emit;
+
+        CanUse = true;
     }
 
     public override void _ExitTree()
@@ -29,7 +33,11 @@ public partial class DistressBeacon : Ability
 
     public override void Use()
     {
+        if (!CanUse)
+            return;
+        
         ActivationTimer.Start();
+        CanUse = false;
     }
 
     public void Emit()

@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_5p3oh")
-PerSecondRate = 200.0
+PerSecondRate = 250.0
