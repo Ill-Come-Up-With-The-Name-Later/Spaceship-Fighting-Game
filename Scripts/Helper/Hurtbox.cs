@@ -82,6 +82,8 @@ public partial class Hurtbox : Area2D
 		{
 			Die(damaged, damager);
 		}
+		
+		Eventbus.EmitSignal("SimplifiedShipDamaged", damaged, damager);
 	}
 
 	public void Die(Ship damaged, Ship damager)
