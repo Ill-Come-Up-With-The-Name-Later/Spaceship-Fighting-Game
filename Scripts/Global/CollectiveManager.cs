@@ -149,6 +149,9 @@ public partial class CollectiveManager : Node2D
         foreach (Ship ship in nearby)
         {
             EnemyController controller = (EnemyController) ship.ControlNode;
+            
+            if(ship == user)
+                continue;
 
             if (controller.Faction != Faction.Collective)
                 return;

@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://bmraug80pu27k"]
+
+[ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_mi215"]
+[ext_resource type="PackedScene" uid="uid://b28vrjkh228m3" path="res://Scenes/Controllers/PlayerController.tscn" id="2_arcs4"]
+[ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="3_o873b"]
+[ext_resource type="Texture2D" uid="uid://bsmbyw6j1ey1x" path="res://Sprites/Player/PlayerShip.png" id="4_g7p2q"]
+[ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="5_uunar"]
+[ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="6_fmkl6"]
+[ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="7_647td"]
+[ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="8_jnqyk"]
+[ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="9_qvpbw"]
+[ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="10_1o7ax"]
+[ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="11_f8m34"]
+[ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="12_w64k6"]
+[ext_resource type="PackedScene" uid="uid://5nso24wt66e2" path="res://Scenes/Weapons/MetaphasicDisruptor.tscn" id="13_01dfe"]
+[ext_resource type="PackedScene" uid="uid://bx6cbcls4d6n1" path="res://Scenes/Weapons/PhotonTorpedo.tscn" id="14_vi1ye"]
+[ext_resource type="PackedScene" uid="uid://d2iutew7v6wpv" path="res://Scenes/Weapons/PlasmaCannon.tscn" id="15_ioqb1"]
+[ext_resource type="PackedScene" uid="uid://hlxbe4lcjjl4" path="res://Scenes/Weapons/SpatialCharge.tscn" id="16_a3vt3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
+radius = 1.0
+
+[node name="PlayerShip" type="CharacterBody2D" unique_id=1450576114]
+script = ExtResource("1_mi215")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=2140110726]
+zoom = Vector2(0.33, 0.33)
+
+[node name="ControlNode" parent="." unique_id=660101535 instance=ExtResource("2_arcs4")]
+AttackCooldown = 0.25
+AttackRange = 1200.0
+Faction = 1
+
+[node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("3_o873b")]
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
+shape = SubResource("CircleShape2D_2b61m")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1715419656]
+texture = ExtResource("4_g7p2q")
+
+[node name="Hull" parent="." unique_id=463253017 instance=ExtResource("5_uunar")]
+
+[node name="FusionReactor" parent="." unique_id=854488899 instance=ExtResource("6_fmkl6")]
+
+[node name="Engine" parent="." unique_id=512023654 instance=ExtResource("7_647td")]
+
+[node name="ShieldGenerator" parent="." unique_id=769759841 instance=ExtResource("8_jnqyk")]
+
+[node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("9_qvpbw")]
+
+[node name="Technology" type="Node2D" parent="." unique_id=1603245376]
+editor_description = "The parent node for ship technologies that aren't standard ship parts."
+
+[node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
+editor_description = "The parent node for all of a ship's weapons."
+script = ExtResource("10_1o7ax")
+AttackFOV = 110.0
+
+[node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("11_f8m34")]
+
+[node name="Phaser2" parent="WeaponSystem" unique_id=2129313817 instance=ExtResource("11_f8m34")]
+
+[node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("12_w64k6")]
+
+[node name="LaserCannon2" parent="WeaponSystem" unique_id=534786323 instance=ExtResource("12_w64k6")]
+
+[node name="MetaphasicDisruptor" parent="WeaponSystem" unique_id=969566921 instance=ExtResource("13_01dfe")]
+
+[node name="MetaphasicDisruptor2" parent="WeaponSystem" unique_id=1841846044 instance=ExtResource("13_01dfe")]
+
+[node name="PhotonTorpedo" parent="WeaponSystem" unique_id=1520432583 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo2" parent="WeaponSystem" unique_id=1516423267 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo3" parent="WeaponSystem" unique_id=1665584446 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo4" parent="WeaponSystem" unique_id=50795345 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo5" parent="WeaponSystem" unique_id=824122590 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo6" parent="WeaponSystem" unique_id=1403784440 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo7" parent="WeaponSystem" unique_id=1052300977 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo8" parent="WeaponSystem" unique_id=155034359 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo9" parent="WeaponSystem" unique_id=1385587481 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo10" parent="WeaponSystem" unique_id=1226111626 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo11" parent="WeaponSystem" unique_id=1878858671 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo12" parent="WeaponSystem" unique_id=1236941950 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo13" parent="WeaponSystem" unique_id=893442559 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo14" parent="WeaponSystem" unique_id=126088684 instance=ExtResource("14_vi1ye")]
+
+[node name="PhotonTorpedo15" parent="WeaponSystem" unique_id=222024399 instance=ExtResource("14_vi1ye")]
+
+[node name="PlasmaCannon" parent="WeaponSystem" unique_id=2080466829 instance=ExtResource("15_ioqb1")]
+
+[node name="PlasmaCannon2" parent="WeaponSystem" unique_id=568983569 instance=ExtResource("15_ioqb1")]
+
+[node name="PlasmaCannon3" parent="WeaponSystem" unique_id=318524702 instance=ExtResource("15_ioqb1")]
+
+[node name="SpatialCharge" parent="WeaponSystem" unique_id=150558460 instance=ExtResource("16_a3vt3")]
+
+[node name="SpatialCharge2" parent="WeaponSystem" unique_id=152549104 instance=ExtResource("16_a3vt3")]
+
+[node name="Upgrades" type="Node2D" parent="." unique_id=440772113]
+
+[node name="Abilities" type="Node2D" parent="." unique_id=1882847984]
