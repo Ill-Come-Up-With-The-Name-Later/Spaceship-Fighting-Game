@@ -59,8 +59,13 @@ public partial class Phaser : Weapon
                 if (ship.GlobalPosition.DistanceTo(targetPosition) <= HitEffectRadius)
                 {
                     if (ship != ParentShip)
-                        ship.Hurtbox.ApplyDamage(ship, ParentShip, WeaponStats.Damage,
+                    {
+                        Eventbus.EmitSignal("ShipDamaged", ship, ParentShip, WeaponStats.Damage,
                             WeaponStats.ShieldDamage, WeaponStats.PenetratingDamage);
+                        
+                        //ship.Hurtbox.ApplyDamage(ship, ParentShip, WeaponStats.Damage,
+                        //    WeaponStats.ShieldDamage, WeaponStats.PenetratingDamage);
+                    }
                 }
             }
         }
