@@ -70,6 +70,13 @@ public partial class EMP : Weapon
                             DistressBeacon beacon = ship.GetAbility<DistressBeacon>();
                             beacon.Range /= 2;
                         }
+
+                        if (ship.HasPart<CollectiveLinkNode>())
+                        {
+                            CollectiveLinkNode link = ship.GetPart<CollectiveLinkNode>();
+                            link.Range *= 0.8;
+                            link.DrainRate *= 0.75;
+                        }
                         
                         GD.Print("EMP Hit " + ship.GetName());
                         Eventbus.EmitSignal("EmpHitShip", ship, ParentShip);

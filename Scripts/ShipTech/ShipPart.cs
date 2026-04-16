@@ -15,6 +15,8 @@ public partial class ShipPart : Technology
     public GenericShipPartData GenericStats;
 
     public Ship ParentShip;
+    
+    public ShipPartRegenerator Regenerator;
 
     /// <summary>
     /// The health of the part itself
@@ -28,6 +30,11 @@ public partial class ShipPart : Technology
 
         if (ParentShip is null)
             GD.PrintErr("Parent ship is null");
+        
+        Regenerator = GetNode<ShipPartRegenerator>("ShipPartRegenerator");
+        
+        if (Regenerator is null)
+            GD.PrintErr("Regenerator is null");
     }
 
     /// <summary>

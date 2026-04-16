@@ -4,19 +4,30 @@
 [ext_resource type="PackedScene" uid="uid://b6d1ryne65trw" path="res://Scenes/Controllers/EnemyController.tscn" id="2_iufn6"]
 [ext_resource type="Resource" uid="uid://b7j25vi4qs4ri" path="res://Scripts/Controllers/EnemyBehavior/AIProfiles/CollectiveAI.tres" id="3_iyj3k"]
 [ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="4_oxmnm"]
+[ext_resource type="PackedScene" uid="uid://0ibyfx12f0lg" path="res://Scenes/ShipTech/CollectiveLinkNode.tscn" id="4_u2hu6"]
 [ext_resource type="Texture2D" uid="uid://bjeqh6jq72nwp" path="res://Sprites/Enemies/Collective/CollectiveShip1.png" id="5_iyj3k"]
 [ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="6_vvbe0"]
 [ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="7_1jcuo"]
+[ext_resource type="Resource" uid="uid://d3qhxjdqux3dh" path="res://Resources/ShipSpecific/Collective/CollectiveHullMaterialStats.tres" id="7_vvbe0"]
+[ext_resource type="Resource" uid="uid://bo2l746jhmrom" path="res://Resources/ShipSpecific/Collective/CollectiveHullHealthStats.tres" id="8_1jcuo"]
 [ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="8_8b6qn"]
 [ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="9_pgudo"]
+[ext_resource type="Resource" uid="uid://ixf4uw6pi6c" path="res://Resources/ShipSpecific/Collective/CollectiveFusionReactorStats.tres" id="10_8b6qn"]
 [ext_resource type="PackedScene" uid="uid://bimqa1vr0q33y" path="res://Scenes/ShipTech/TranswarpDrive.tscn" id="10_vvbe0"]
+[ext_resource type="Resource" uid="uid://cmh73t0ja57pb" path="res://Resources/ShipSpecific/Collective/CollectivePowerRegeneration.tres" id="11_pgudo"]
 [ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="11_yr8ef"]
 [ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="12_scypd"]
+[ext_resource type="Resource" uid="uid://35lcr1g4yk2y" path="res://Resources/ShipSpecific/Collective/CollectiveFusionReactorHealth.tres" id="12_vpl8f"]
 [ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="13_tebu4"]
 [ext_resource type="PackedScene" uid="uid://bx6cbcls4d6n1" path="res://Scenes/Weapons/PhotonTorpedo.tscn" id="14_1jcuo"]
+[ext_resource type="Resource" uid="uid://dk28mbx8kxuqw" path="res://Resources/ShipSpecific/Collective/CollectiveEngineStats.tres" id="14_yr8ef"]
 [ext_resource type="PackedScene" uid="uid://5nso24wt66e2" path="res://Scenes/Weapons/MetaphasicDisruptor.tscn" id="15_8b6qn"]
+[ext_resource type="Resource" uid="uid://cpqqmpj0mttvi" path="res://Resources/ShipSpecific/Collective/CollectiveEngineHealthStats.tres" id="15_scypd"]
 [ext_resource type="PackedScene" uid="uid://cxj5tn5boe2rr" path="res://Scenes/Upgrades/AntiCloakScanner.tscn" id="16_pgudo"]
+[ext_resource type="Resource" uid="uid://8erncnjmp8pt" path="res://Resources/ShipSpecific/Collective/CollectiveShieldStats.tres" id="17_tebu4"]
 [ext_resource type="PackedScene" uid="uid://bmvo7hc1o768j" path="res://Scenes/Abilities/DistressBeacon.tscn" id="17_vpl8f"]
+[ext_resource type="Resource" uid="uid://cmc2ci3cjx8s4" path="res://Resources/ShipSpecific/Collective/CollectiveShieldRegeneration.tres" id="18_46j2q"]
+[ext_resource type="Resource" uid="uid://c1odx420m4aho" path="res://Resources/ShipSpecific/Collective/CollectiveShieldGeneratorHealth.tres" id="19_u2hu6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
 radius = 1.0
@@ -26,9 +37,11 @@ script = ExtResource("1_02xs0")
 
 [node name="ControlNode" parent="." unique_id=1151074664 instance=ExtResource("2_iufn6")]
 DetectionRange = 3600.0
-FiringRange = 1000.0
+FiringRange = 1300.0
 Profile = ExtResource("3_iyj3k")
 Faction = 2
+
+[node name="CollectiveLinkNode" parent="." unique_id=1625662502 instance=ExtResource("4_u2hu6")]
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("4_oxmnm")]
 
@@ -40,12 +53,22 @@ disabled = true
 texture = ExtResource("5_iyj3k")
 
 [node name="Hull" parent="." unique_id=463253017 instance=ExtResource("6_vvbe0")]
+HullStats = ExtResource("7_vvbe0")
+GenericStats = ExtResource("8_1jcuo")
 
 [node name="FusionReactor" parent="." unique_id=854488899 instance=ExtResource("7_1jcuo")]
+ReactorStats = ExtResource("10_8b6qn")
+RegenerationRate = ExtResource("11_pgudo")
+GenericStats = ExtResource("12_vpl8f")
 
 [node name="Engine" parent="." unique_id=512023654 instance=ExtResource("8_8b6qn")]
+EngineStats = ExtResource("14_yr8ef")
+GenericStats = ExtResource("15_scypd")
 
 [node name="ShieldGenerator" parent="." unique_id=769759841 instance=ExtResource("9_pgudo")]
+DefenseGeneratorStats = ExtResource("17_tebu4")
+RegenerationRate = ExtResource("18_46j2q")
+GenericStats = ExtResource("19_u2hu6")
 
 [node name="TranswarpDrive" parent="." unique_id=1280896902 instance=ExtResource("10_vvbe0")]
 

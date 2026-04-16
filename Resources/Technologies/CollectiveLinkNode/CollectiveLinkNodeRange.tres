@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://bfyjfaecc67vl"]
+
+[ext_resource type="Script" uid="uid://oq8j6edirlt" path="res://Scripts/Resources/Technology/CollectiveNodeLinkRange.cs" id="1_mi6yk"]
+
+[resource]
+script = ExtResource("1_mi6yk")
+LinkRange = 10000.0
+MaxDrainRate = 4000.0

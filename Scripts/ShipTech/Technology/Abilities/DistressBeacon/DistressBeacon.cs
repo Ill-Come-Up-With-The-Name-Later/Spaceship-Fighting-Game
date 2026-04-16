@@ -42,7 +42,10 @@ public partial class DistressBeacon : Ability
 
     public void Emit()
     {
-        Eventbus.EmitSignal("DistressBeaconUsed", ParentShip, this);
-        QueueFree();
+        if (ParentShip is not null)
+        {
+            Eventbus.EmitSignal("DistressBeaconUsed", ParentShip, this);
+            QueueFree();
+        }
     }
 }

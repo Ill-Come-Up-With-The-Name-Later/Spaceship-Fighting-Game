@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3 uid="uid://xtiptfybpaoy"]
+
+[ext_resource type="Resource" uid="uid://cu8j3qwh8f6s3" path="res://Scripts/Controllers/EnemyBehavior/AIStates/UseDistressBeacon/UseDistressBeacon.tres" id="1_iv6xr"]
+[ext_resource type="Resource" uid="uid://kygbll3viy38" path="res://Scripts/Controllers/EnemyBehavior/AIStates/AttackState/GenericAttackState.tres" id="2_tlx2p"]
+[ext_resource type="Script" uid="uid://cxipvgdrm7i7q" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/UseBeaconToAttack/UseBeaconToAttack.cs" id="3_kmwx5"]
+
+[resource]
+script = ExtResource("3_kmwx5")
+From = ExtResource("1_iv6xr")
+To = ExtResource("2_tlx2p")

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://ixf4uw6pi6c"]
+
+[ext_resource type="Script" uid="uid://ddobgiv4wog5a" path="res://Scripts/Resources/Technology/FusionReactorData.cs" id="1_3ni1v"]
+
+[resource]
+script = ExtResource("1_3ni1v")
+PowerCapacity = 200000.0
+Fuel = 12000.0

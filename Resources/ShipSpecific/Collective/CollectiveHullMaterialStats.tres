@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://d3qhxjdqux3dh"]
+
+[ext_resource type="Script" uid="uid://b1ljqwaqm2xld" path="res://Scripts/Resources/Technology/HullData.cs" id="1_y723c"]
+
+[resource]
+script = ExtResource("1_y723c")
+Materials = 30000.0

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://0ibyfx12f0lg"]
+
+[ext_resource type="Script" uid="uid://bo6da8idtok8r" path="res://Scripts/ShipTech/Technology/CollectiveLinkNode.cs" id="1_45qx2"]
+[ext_resource type="Resource" uid="uid://bfyjfaecc67vl" path="res://Resources/Technologies/CollectiveLinkNode/CollectiveLinkNodeRange.tres" id="2_metoj"]
+[ext_resource type="Resource" uid="uid://cdwahkj0tqgm3" path="res://Resources/Technologies/CollectiveLinkNode/CollectiveLinkNodeWeights.tres" id="3_l6ved"]
+[ext_resource type="Resource" uid="uid://bamdjp27fj0dm" path="res://Resources/Technologies/CollectiveLinkNode/CollectiveNodeHealthStats.tres" id="3_shrvk"]
+
+[node name="CollectiveLinkNode" type="Node2D" unique_id=1625662502]
+script = ExtResource("1_45qx2")
+LinkRange = ExtResource("2_metoj")
+GenericStats = ExtResource("3_shrvk")
+Weights = ExtResource("3_l6ved")
