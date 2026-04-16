@@ -6,6 +6,6 @@
             return true;
         
         return controller.ParentShip.GlobalPosition.DistanceTo(controller.MovementTarget)
-            <= controller.ParentShip.Velocity.Length() / 2 || controller.TimeInState >= 10;
+            <= controller.ParentShip.Velocity.Length() / 3 || controller.TimeInState >= 12;
     }
 }

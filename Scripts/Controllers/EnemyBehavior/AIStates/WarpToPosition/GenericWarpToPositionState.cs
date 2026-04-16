@@ -28,6 +28,8 @@ public partial class GenericWarpToPositionState : AIState
                     controller.ParentShip.WarpDrive.Toggle();
             }
         }
+        
+        GD.Print("Distance to position: " + controller.GlobalPosition.DistanceTo(controller.MovementTarget));
     }
 
     public override void PhysicsProcess(EnemyController controller, double delta)

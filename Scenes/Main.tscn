@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://ygqdmjrt3bdx" path="res://Scenes/Ships/PlayerShip.tscn" id="1_idj7w"]
 [ext_resource type="PackedScene" uid="uid://d3j4ktdra4gg1" path="res://Scenes/Ships/CollectiveShip.tscn" id="2_kln2b"]
-[ext_resource type="PackedScene" uid="uid://xf58wic0uscr" path="res://Scenes/Ships/EnemyShip.tscn" id="4_rgh2o"]
 
 [node name="Main" type="Node2D" unique_id=1968216983]
 
@@ -12,14 +11,5 @@ position = Vector2(259, -422)
 [node name="CollectiveShip" parent="." unique_id=2146189462 instance=ExtResource("2_kln2b")]
 position = Vector2(-329, 293)
 
-[node name="EnemyShip" parent="." unique_id=1012254946 instance=ExtResource("4_rgh2o")]
-position = Vector2(-598, 458)
-
-[node name="EnemyShip2" parent="." unique_id=1067396157 instance=ExtResource("4_rgh2o")]
-position = Vector2(-113, 238)
-
-[node name="EnemyShip3" parent="." unique_id=1133658943 instance=ExtResource("4_rgh2o")]
-position = Vector2(-550, 194)
-
-[node name="EnemyShip4" parent="." unique_id=1610227068 instance=ExtResource("4_rgh2o")]
-position = Vector2(27, 467)
+[node name="CollectiveShip2" parent="." unique_id=1217359615 instance=ExtResource("2_kln2b")]
+position = Vector2(7704, 2997)

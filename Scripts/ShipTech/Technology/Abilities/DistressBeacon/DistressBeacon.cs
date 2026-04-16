@@ -36,6 +36,8 @@ public partial class DistressBeacon : Ability
         if (!CanUse)
             return;
         
+        GD.Print("Using distress beacon");
+        
         ActivationTimer.Start();
         CanUse = false;
     }
@@ -44,6 +46,8 @@ public partial class DistressBeacon : Ability
     {
         if (ParentShip is not null)
         {
+            GD.Print("Emitting distress signal");
+            
             Eventbus.EmitSignal("DistressBeaconUsed", ParentShip, this);
             QueueFree();
         }

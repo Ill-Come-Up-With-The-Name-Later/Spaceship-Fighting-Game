@@ -23,6 +23,8 @@ public partial class CollectiveLinkNode : ShipPart
 		
 		if(collectiveManager is null)
 			GD.PrintErr("Collective Manager not found");
+
+		collectiveManager.CollectiveShips.Add(ParentShip);
 	}
 
 	public override void _Process(double delta)

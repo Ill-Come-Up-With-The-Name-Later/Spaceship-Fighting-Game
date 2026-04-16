@@ -99,3 +99,5 @@ AttackFOV = 160.0
 [node name="Abilities" type="Node2D" parent="." unique_id=1831618945]
 
 [node name="DistressBeacon" parent="Abilities" unique_id=541791397 instance=ExtResource("17_vpl8f")]
+Range = 10000.0
+ActivationDelay = 4.0

@@ -1,17 +1,18 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 using Godot.Collections;
 using SpaceshipFightingGame.Scripts.Controllers.EnemyController;
 
 public partial class CollectiveManager : Node2D
 {
-    public Array<Ship> CollectiveShips;
+    public HashSet<Ship> CollectiveShips;
     public Eventbus Eventbus;
 
     public double MaterialPool;
     
     public override void _EnterTree()
     {
-        CollectiveShips = new Array<Ship>();
+        CollectiveShips = new HashSet<Ship>();
     }
 
     public override void _Ready()
@@ -43,8 +44,14 @@ public partial class CollectiveManager : Node2D
     /// </param>
     public void ShipDestroyed(Ship ship, Ship killer)
     {
-        if(killer.ControlNode.Faction == Faction.Collective)
+        if (killer is null)
+            return;
+
+        if (killer.HasPart<CollectiveLinkNode>())
+        {
             MaterialPool += ship.Hull.GenericStats.Health * 0.05;
+            GD.Print("Material Pool: " + MaterialPool);
+        }
     }
 
     public void DistributeMaterial(double delta)
@@ -129,7 +136,8 @@ public partial class CollectiveManager : Node2D
 
             if (controller.Faction != Faction.Collective)
                 return;
-            
+
+            controller.PursuitTarget = user;
             if(controller.ChangeState(controller.Profile.FindState(AIStateType.WarpIn)))
                 controller.TargetingOrder = ((EnemyController)user.ControlNode).TargetingOrder;
         }

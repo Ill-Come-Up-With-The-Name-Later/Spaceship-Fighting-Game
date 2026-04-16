@@ -5,8 +5,8 @@
 
 [node name="DistressBeacon" type="Node2D" unique_id=541791397]
 script = ExtResource("1_jhnfb")
-Range = 7500.0
-ActivationDelay = 5.0
+Range = 20000.0
+ActivationDelay = 3.0
 Cooldown = 120.0
 Weights = ExtResource("2_kle1y")
 

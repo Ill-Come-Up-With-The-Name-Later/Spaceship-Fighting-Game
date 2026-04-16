@@ -4,9 +4,16 @@
 [ext_resource type="Resource" uid="uid://bfyjfaecc67vl" path="res://Resources/Technologies/CollectiveLinkNode/CollectiveLinkNodeRange.tres" id="2_metoj"]
 [ext_resource type="Resource" uid="uid://cdwahkj0tqgm3" path="res://Resources/Technologies/CollectiveLinkNode/CollectiveLinkNodeWeights.tres" id="3_l6ved"]
 [ext_resource type="Resource" uid="uid://bamdjp27fj0dm" path="res://Resources/Technologies/CollectiveLinkNode/CollectiveNodeHealthStats.tres" id="3_shrvk"]
+[ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="5_rmu6u"]
+[ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="6_3ioa5"]
+[ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="7_e13yg"]
 
 [node name="CollectiveLinkNode" type="Node2D" unique_id=1625662502]
 script = ExtResource("1_45qx2")
 LinkRange = ExtResource("2_metoj")
 GenericStats = ExtResource("3_shrvk")
 Weights = ExtResource("3_l6ved")
+
+[node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("5_rmu6u")]
+RegenerationRate = ExtResource("6_3ioa5")
+ConsumptionRate = ExtResource("7_e13yg")
