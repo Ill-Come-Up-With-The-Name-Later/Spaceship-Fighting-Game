@@ -54,6 +54,12 @@ public partial class CollectiveManager : Node2D
         }
     }
 
+    /// <summary>
+    /// Distributes material from the global material pool
+    /// </summary>
+    /// <param name="delta">
+    /// Delta time
+    /// </param>
     public void DistributeMaterial(double delta)
     {
         foreach (Ship ship in CollectiveShips)
@@ -123,6 +129,16 @@ public partial class CollectiveManager : Node2D
         return nearby;
     }
 
+    
+    /// <summary>
+    /// Controlls response to distress beacons
+    /// </summary>
+    /// <param name="user">
+    /// The ship activating the distress beacon
+    /// </param>
+    /// <param name="used">
+    /// The distress beacon used
+    /// </param>
     public void RespondToDistressBeacon(Ship user, DistressBeacon used)
     {
         if (!CollectiveShips.Contains(user) || user.ControlNode is not EnemyController)
