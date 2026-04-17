@@ -41,6 +41,8 @@ public partial class Projectile : CharacterBody2D
         
         LifespanTimer.Timeout += OnLifespanEnded;
         LifespanTimer.Start();
+        
+        Sprite.GlobalRotation = Velocity.Angle() - Mathf.Pi / 2;
     }
 
     public override void _ExitTree()
@@ -63,6 +65,9 @@ public partial class Projectile : CharacterBody2D
     /// </param>
     public virtual void Travel(double delta)
     {
+        if (Sprite is not null)
+            Sprite.GlobalRotation = Velocity.Angle() - Mathf.Pi / 2;
+
         MoveAndCollide(Velocity);
     }
 

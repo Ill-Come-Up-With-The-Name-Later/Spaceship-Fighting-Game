@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://xpocc10hah2" path="res://Scripts/ShipTech/Technology/Projectiles/LaserCannonProjectile.cs" id="1_kv6ed"]
 [ext_resource type="Resource" uid="uid://cs8mc6gmwsd6y" path="res://Resources/Weapons/LaserCannon/LaserCannonProjectileStats.tres" id="2_36xy1"]
 [ext_resource type="PackedScene" uid="uid://cf8clhua5hocf" path="res://Scenes/Helper/Hitbox.tscn" id="2_iale8"]
-[ext_resource type="Texture2D" uid="uid://l41bq4unypfb" path="res://Sprites/Projectiles/LaserCannonProjectile.png" id="4_36xy1"]
+[ext_resource type="Texture2D" uid="uid://sdsogtgvt40b" path="res://Sprites/Projectiles/RedLaser.png" id="4_36xy1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_36xy1"]
 
@@ -12,9 +12,9 @@ script = ExtResource("1_kv6ed")
 ProjectileStats = ExtResource("2_36xy1")
 
 [node name="Hitbox" parent="." unique_id=1252924844 instance=ExtResource("2_iale8")]
+scale = Vector2(1.4, 1.4)
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=985900745]
-scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_36xy1")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=796148450]
