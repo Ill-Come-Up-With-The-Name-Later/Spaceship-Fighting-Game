@@ -8,6 +8,17 @@ public partial class SpatialChargeProjectile : Projectile
     
     public Ship Target;
 
+    [Export]
+    public Color Color;
+
+    [Export]
+    public PackedScene ExplosionParticles;
+    
+    public override void _Ready()
+    { 
+        GetNode<Sprite2D>("Sprite").Modulate = Color;
+    }
+
     public override void Travel(double delta)
     {
         Target = FindTarget();
@@ -68,6 +79,14 @@ public partial class SpatialChargeProjectile : Projectile
     public void Explode()
     {
         GD.Print("Spatial charge exploded.");
+        
+        GpuParticles2D explosion = ExplosionParticles.Instantiate<GpuParticles2D>();
+        GetTree().CurrentScene.AddChild(explosion);
+
+        explosion.GlobalPosition = GlobalPosition;
+        explosion.Restart();
+        explosion.Emitting = true;
+        
         QueueFree();
     }
 }

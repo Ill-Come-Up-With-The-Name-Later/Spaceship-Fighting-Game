@@ -4,8 +4,11 @@
     {
         if (controller.PursuitTarget is null)
             return true;
+
+        if (!IsInstanceValid(controller.PursuitTarget))
+            return true;
         
         return controller.ParentShip.GlobalPosition.DistanceTo(controller.MovementTarget)
-            <= controller.ParentShip.Velocity.Length() / 3 || controller.TimeInState >= 12;
+            <= controller.ParentShip.Velocity.Length() / 3 || controller.TimeInState >= 15;
     }
 }

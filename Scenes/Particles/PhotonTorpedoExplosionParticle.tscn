@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bmnyluhrtl5oc"]
+
+[ext_resource type="Texture2D" uid="uid://d0avvk5wlyiyx" path="res://Sprites/Particles/Shockwave.png" id="1_18g5w"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_optgk"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_18g5w"]
+_data = [Vector2(0, 0.022471905), 0.0, 0.0, 0, 0, Vector2(0.29054055, 0.97752815), 0.120501384, 0.120501384, 0, 0, Vector2(0.8378379, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.37078655), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_optgk"]
+curve = SubResource("Curve_18g5w")
+
+[sub_resource type="Gradient" id="Gradient_2enod"]
+offsets = PackedFloat32Array(0, 0.28688523, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.08196721, 0.08196721, 0.08196721, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iu5bi"]
+gradient = SubResource("Gradient_2enod")
+
+[sub_resource type="Curve" id="Curve_2g8qi"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0.0067567676, 0.08988774), 0.0, 0.0, 0, 0, Vector2(0.97297287, 5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1b7ab"]
+curve = SubResource("Curve_2g8qi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rfsdc"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_1b7ab")
+color = Color(0.9843137, 1, 0.28627452, 0.6117647)
+color_ramp = SubResource("GradientTexture1D_iu5bi")
+alpha_curve = SubResource("CurveTexture_optgk")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.049999975
+
+[node name="PhotonTorpedoExplosionParticle" type="GPUParticles2D" unique_id=1395722812]
+material = SubResource("CanvasItemMaterial_optgk")
+emitting = false
+amount = 1
+texture = ExtResource("1_18g5w")
+lifetime = 0.33
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rfsdc")

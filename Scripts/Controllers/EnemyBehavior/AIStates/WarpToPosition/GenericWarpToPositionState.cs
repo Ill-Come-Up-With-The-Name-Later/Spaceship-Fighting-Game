@@ -14,6 +14,9 @@ public partial class GenericWarpToPositionState : AIState
     {
         if (controller.PursuitTarget is null)
             return;
+
+        if (!IsInstanceValid(controller.PursuitTarget))
+            return;
         
         controller.MovementTarget = controller.PursuitTarget.GlobalPosition;
 
@@ -28,8 +31,6 @@ public partial class GenericWarpToPositionState : AIState
                     controller.ParentShip.WarpDrive.Toggle();
             }
         }
-        
-        GD.Print("Distance to position: " + controller.GlobalPosition.DistanceTo(controller.MovementTarget));
     }
 
     public override void PhysicsProcess(EnemyController controller, double delta)

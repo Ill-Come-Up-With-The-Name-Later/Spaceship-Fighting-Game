@@ -2,20 +2,34 @@
 
 [ext_resource type="Script" uid="uid://cm027v3ucn54v" path="res://Scripts/ShipTech/Technology/Projectiles/SpatialChargeProjectile.cs" id="1_goj3c"]
 [ext_resource type="Resource" uid="uid://i14c07ndu2pb" path="res://Resources/Weapons/SpatialCharge/SpatialChargeProjectileStats.tres" id="2_rdopv"]
+[ext_resource type="PackedScene" uid="uid://rhwlodnqbsjf" path="res://Scenes/Particles/SpatialChargeParticle.tscn" id="3_fulj2"]
 [ext_resource type="PackedScene" uid="uid://cf8clhua5hocf" path="res://Scenes/Helper/Hitbox.tscn" id="3_iirxu"]
 [ext_resource type="Texture2D" uid="uid://buapv504idkgd" path="res://Sprites/Projectiles/PhotonTorpedoProjectile.png" id="4_ejp5y"]
+[ext_resource type="PackedScene" uid="uid://858dwneagrv1" path="res://Scenes/Particles/SpatialChargeExplosionParticle.tscn" id="4_iirxu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fulj2"]
+resource_local_to_scene = true
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_36xy1"]
 
 [node name="SpatialChargeProjectile" type="CharacterBody2D" unique_id=436161286]
 script = ExtResource("1_goj3c")
 TargetingRadius = 250.0
+ExplosionParticles = ExtResource("4_iirxu")
 ProjectileStats = ExtResource("2_rdopv")
+
+[node name="SpatialChargeParticle" parent="." unique_id=308575216 instance=ExtResource("3_fulj2")]
+material = SubResource("CanvasItemMaterial_fulj2")
 
 [node name="Hitbox" parent="." unique_id=1252924844 instance=ExtResource("3_iirxu")]
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=985900745]
-scale = Vector2(0.01, 0.01)
+modulate = Color(0, 1, 1, 0.6627451)
 texture = ExtResource("4_ejp5y")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=796148450]

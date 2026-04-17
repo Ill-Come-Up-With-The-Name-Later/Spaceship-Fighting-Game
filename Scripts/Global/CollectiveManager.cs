@@ -49,6 +49,7 @@ public partial class CollectiveManager : Node2D
 
         if (killer.HasPart<CollectiveLinkNode>())
         {
+            // Temporary value
             MaterialPool += ship.Hull.GenericStats.Health * 0.05;
             GD.Print("Material Pool: " + MaterialPool);
         }
@@ -131,7 +132,7 @@ public partial class CollectiveManager : Node2D
 
     
     /// <summary>
-    /// Controlls response to distress beacons
+    /// Controls response to distress beacons
     /// </summary>
     /// <param name="user">
     /// The ship activating the distress beacon

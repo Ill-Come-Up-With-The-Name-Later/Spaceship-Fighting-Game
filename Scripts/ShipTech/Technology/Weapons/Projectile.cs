@@ -45,7 +45,8 @@ public partial class Projectile : CharacterBody2D
 
     public override void _ExitTree()
     {
-        LifespanTimer.Timeout -= OnLifespanEnded;
+        if(LifespanTimer is not null)
+            LifespanTimer.Timeout -= OnLifespanEnded;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -79,6 +80,8 @@ public partial class Projectile : CharacterBody2D
         {
             if (hurtbox.ParentShip == ParentShip)
                 return;
+            
+            QueueFree();
         }
     }
 

@@ -2,19 +2,33 @@
 
 [ext_resource type="Script" uid="uid://cipko3lfipxyr" path="res://Scripts/ShipTech/Technology/Projectiles/PhotonTorpedoProjectile.cs" id="1_5a2x1"]
 [ext_resource type="Resource" uid="uid://mb5anw2q4h1f" path="res://Resources/Weapons/PhotonTorpedo/PhotonTorpedoProjectileStats.tres" id="2_hqy7h"]
+[ext_resource type="PackedScene" uid="uid://b1lolf32yn380" path="res://Scenes/Particles/PhotonTorpedoParticle.tscn" id="3_xn0fa"]
 [ext_resource type="PackedScene" uid="uid://cf8clhua5hocf" path="res://Scenes/Helper/Hitbox.tscn" id="3_yhuyo"]
 [ext_resource type="Texture2D" uid="uid://buapv504idkgd" path="res://Sprites/Projectiles/PhotonTorpedoProjectile.png" id="4_hqy7h"]
+[ext_resource type="PackedScene" uid="uid://bmnyluhrtl5oc" path="res://Scenes/Particles/PhotonTorpedoExplosionParticle.tscn" id="4_yhuyo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xn0fa"]
+resource_local_to_scene = true
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_36xy1"]
 
 [node name="PhotonTorpedoProjectile" type="CharacterBody2D" unique_id=436161286]
 script = ExtResource("1_5a2x1")
+ExplosionParticles = ExtResource("4_yhuyo")
 ProjectileStats = ExtResource("2_hqy7h")
+
+[node name="PhotonTorpedoParticle" parent="." unique_id=308575216 instance=ExtResource("3_xn0fa")]
+material = SubResource("CanvasItemMaterial_xn0fa")
 
 [node name="Hitbox" parent="." unique_id=1252924844 instance=ExtResource("3_yhuyo")]
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=985900745]
-scale = Vector2(0.01, 0.01)
+modulate = Color(1, 1, 0, 0.8392157)
 texture = ExtResource("4_hqy7h")
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=796148450]
