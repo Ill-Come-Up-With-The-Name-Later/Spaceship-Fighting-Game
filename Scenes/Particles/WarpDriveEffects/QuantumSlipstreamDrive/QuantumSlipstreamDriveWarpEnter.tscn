@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dkksa8b3pupia"]
+
+[ext_resource type="Texture2D" uid="uid://cbvtlrhb5hnj7" path="res://Sprites/Particles/WarpDrives/Ring.png" id="1_ka8vh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m5uxx"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_iuj1i"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 182.02248), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c4t7c"]
+resource_local_to_scene = true
+curve = SubResource("Curve_iuj1i")
+
+[sub_resource type="Curve" id="Curve_5srxb"]
+_limits = [3.0, 6.0, 0.0, 2.0]
+_data = [Vector2(0.0067567676, 3), 0.0, 0.0, 0, 0, Vector2(2, 6), 1.5050848, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qokm3"]
+curve = SubResource("Curve_5srxb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8s6oh"]
+inherit_velocity_ratio = 1.0
+gravity = Vector3(0, 0, 0)
+linear_accel_curve = SubResource("CurveTexture_c4t7c")
+scale_curve = SubResource("CurveTexture_qokm3")
+color = Color(3.272891e-06, 0.57319534, 0.7124335, 0.64705884)
+
+[node name="QuantumSlipstreamDriveWarpEnter" type="GPUParticles2D" unique_id=2085523287]
+material = SubResource("CanvasItemMaterial_m5uxx")
+emitting = false
+amount = 2
+texture = ExtResource("1_ka8vh")
+lifetime = 0.66
+one_shot = true
+fixed_fps = 60
+trail_lifetime = 0.55
+process_material = SubResource("ParticleProcessMaterial_8s6oh")

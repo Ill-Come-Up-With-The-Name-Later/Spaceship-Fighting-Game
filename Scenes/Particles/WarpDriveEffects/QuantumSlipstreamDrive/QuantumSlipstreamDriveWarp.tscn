@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b855l58i85qyl"]
+
+[ext_resource type="Texture2D" uid="uid://ci0tkcrue8vqm" path="res://Sprites/Particles/WarpDrives/BrokenRing.png" id="1_w5a2f"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yvd1p"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_8obgs"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0.12162161, -200), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b0e6b"]
+curve = SubResource("Curve_8obgs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fr4sy"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+gravity = Vector3(0, 40, 0)
+linear_accel_curve = SubResource("CurveTexture_b0e6b")
+scale_min = 1.5
+scale_max = 2.0
+color = Color(0, 0.57254905, 0.7137255, 0.64705884)
+
+[node name="QuantumSlipstreamDriveWarp" type="GPUParticles2D" unique_id=1980102093]
+material = SubResource("CanvasItemMaterial_yvd1p")
+emitting = false
+amount = 6
+texture = ExtResource("1_w5a2f")
+randomness = 0.65
+visibility_rect = Rect2(0, 0, 200, 200)
+trail_enabled = true
+trail_sections = 6
+trail_section_subdivisions = 7
+process_material = SubResource("ParticleProcessMaterial_fr4sy")

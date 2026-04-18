@@ -9,10 +9,12 @@
 [ext_resource type="Resource" uid="uid://dy5jk8117f23s" path="res://Resources/Technologies/QuatumSlipstreamDrive/QuantumDriveFuelConsumption.tres" id="4_wa5ix"]
 [ext_resource type="Resource" uid="uid://q5t6yovv84rd" path="res://Resources/Technologies/QuatumSlipstreamDrive/QuantumDriveWeights.tres" id="5_mxjnf"]
 [ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="6_wa5ix"]
+[ext_resource type="PackedScene" uid="uid://dkksa8b3pupia" path="res://Scenes/Particles/WarpDriveEffects/QuantumSlipstreamDrive/QuantumSlipstreamDriveWarpEnter.tscn" id="7_l8rhb"]
 [ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="7_x5nnn"]
 [ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="8_lu0fx"]
+[ext_resource type="PackedScene" uid="uid://b855l58i85qyl" path="res://Scenes/Particles/WarpDriveEffects/QuantumSlipstreamDrive/QuantumSlipstreamDriveWarp.tscn" id="13_wa5ix"]
 
-[node name="QuantumSlipstreamDrive" type="Node2D" unique_id=1280896902]
+[node name="QuantumSlipstreamDrive" type="Node2D" unique_id=1280896902 node_paths=PackedStringArray("WarpParticles")]
 script = ExtResource("1_p454g")
 Stats = ExtResource("2_dp7vj")
 RegenerationRate = ExtResource("3_l8rhb")
@@ -20,12 +22,16 @@ ConsumptionRate = ExtResource("4_wa5ix")
 ShieldDamagingRadius = 200.0
 WarpDriveStats = ExtResource("2_mxjnf")
 PowerConsumption = ExtResource("3_4ijql")
+EnterExitParticles = ExtResource("7_l8rhb")
+WarpParticles = NodePath("QuantumSlipstreamDriveWarp")
 GenericStats = ExtResource("4_dp7vj")
 Weights = ExtResource("5_mxjnf")
 
 [node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("6_wa5ix")]
 RegenerationRate = ExtResource("7_x5nnn")
 ConsumptionRate = ExtResource("8_lu0fx")
+
+[node name="QuantumSlipstreamDriveWarp" parent="." unique_id=1980102093 instance=ExtResource("13_wa5ix")]
 
 [node name="DriveTimer" type="Timer" parent="." unique_id=196391210]
 one_shot = true
