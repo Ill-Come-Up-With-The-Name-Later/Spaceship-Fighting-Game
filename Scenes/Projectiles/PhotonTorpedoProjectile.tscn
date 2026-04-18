@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cipko3lfipxyr" path="res://Scripts/ShipTech/Technology/Projectiles/PhotonTorpedoProjectile.cs" id="1_5a2x1"]
 [ext_resource type="Resource" uid="uid://mb5anw2q4h1f" path="res://Resources/Weapons/PhotonTorpedo/PhotonTorpedoProjectileStats.tres" id="2_hqy7h"]
-[ext_resource type="PackedScene" uid="uid://b1lolf32yn380" path="res://Scenes/Particles/PhotonTorpedoParticle.tscn" id="3_xn0fa"]
+[ext_resource type="PackedScene" uid="uid://b1lolf32yn380" path="res://Scenes/Particles/Projectiles/PhotonTorpedoParticle.tscn" id="3_xn0fa"]
 [ext_resource type="PackedScene" uid="uid://cf8clhua5hocf" path="res://Scenes/Helper/Hitbox.tscn" id="3_yhuyo"]
 [ext_resource type="Texture2D" uid="uid://buapv504idkgd" path="res://Sprites/Projectiles/PhotonTorpedoProjectile.png" id="4_hqy7h"]
-[ext_resource type="PackedScene" uid="uid://bmnyluhrtl5oc" path="res://Scenes/Particles/PhotonTorpedoExplosionParticle.tscn" id="4_yhuyo"]
+[ext_resource type="PackedScene" uid="uid://bmnyluhrtl5oc" path="res://Scenes/Particles/Projectiles/PhotonTorpedoExplosionParticle.tscn" id="4_yhuyo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xn0fa"]
 resource_local_to_scene = true

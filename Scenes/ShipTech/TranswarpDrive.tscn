@@ -4,17 +4,23 @@
 [ext_resource type="Resource" uid="uid://v2l26liasjhn" path="res://Resources/Technologies/TranswarpDrive/TranswarpDriveStats.tres" id="2_bd628"]
 [ext_resource type="Resource" uid="uid://mck3lj8x62c6" path="res://Resources/Technologies/TranswarpDrive/TranswarpDrivePowerConsumption.tres" id="3_d5bhm"]
 [ext_resource type="Resource" uid="uid://edojmubepvhv" path="res://Resources/WarpDriveHealthStats.tres" id="4_cvf2t"]
+[ext_resource type="PackedScene" uid="uid://ddcvdroj6yo8q" path="res://Scenes/Particles/WarpDriveEffects/TranswarpDrive/TranswarpDriveWarpEnter.tscn" id="4_d5bhm"]
 [ext_resource type="Resource" uid="uid://eiqeppwmxikr" path="res://Resources/Technologies/TranswarpDrive/TranswarpDriveWeights.tres" id="5_cvf2t"]
 [ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="6_pehj1"]
+[ext_resource type="PackedScene" uid="uid://cga8e2mgkcp3j" path="res://Scenes/Particles/WarpDriveEffects/TranswarpDrive/TranswarpDriveWarp.tscn" id="7_cvf2t"]
 [ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="7_jjg54"]
 [ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="8_qoj3r"]
 
-[node name="TranswarpDrive" type="Node2D" unique_id=1280896902]
+[node name="TranswarpDrive" type="Node2D" unique_id=1280896902 node_paths=PackedStringArray("WarpParticles")]
 script = ExtResource("1_co4u1")
 WarpDriveStats = ExtResource("2_bd628")
 PowerConsumption = ExtResource("3_d5bhm")
+EnterExitParticles = ExtResource("4_d5bhm")
+WarpParticles = NodePath("TranswarpDriveWarp")
 GenericStats = ExtResource("4_cvf2t")
 Weights = ExtResource("5_cvf2t")
+
+[node name="TranswarpDriveWarp" parent="." unique_id=1980102093 instance=ExtResource("7_cvf2t")]
 
 [node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("6_pehj1")]
 RegenerationRate = ExtResource("7_jjg54")

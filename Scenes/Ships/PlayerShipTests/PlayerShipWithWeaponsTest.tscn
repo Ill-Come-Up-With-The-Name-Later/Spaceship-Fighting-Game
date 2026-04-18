@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="6_fmkl6"]
 [ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="7_647td"]
 [ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="8_jnqyk"]
-[ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="9_qvpbw"]
+[ext_resource type="PackedScene" uid="uid://bimqa1vr0q33y" path="res://Scenes/ShipTech/TranswarpDrive.tscn" id="9_vi1ye"]
 [ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="10_1o7ax"]
 [ext_resource type="PackedScene" uid="uid://cwbq7flx436bf" path="res://Scenes/ShipTech/CloakingDrive.tscn" id="10_vi1ye"]
 [ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="11_f8m34"]
@@ -25,7 +25,7 @@ radius = 1.0
 script = ExtResource("1_mi215")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=2140110726]
-zoom = Vector2(0.33, 0.33)
+zoom = Vector2(0.35, 0.35)
 
 [node name="ControlNode" parent="." unique_id=660101535 instance=ExtResource("2_arcs4")]
 AttackCooldown = 0.25
@@ -49,7 +49,7 @@ texture = ExtResource("4_g7p2q")
 
 [node name="ShieldGenerator" parent="." unique_id=769759841 instance=ExtResource("8_jnqyk")]
 
-[node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("9_qvpbw")]
+[node name="TranswarpDrive" parent="." unique_id=1280896902 instance=ExtResource("9_vi1ye")]
 
 [node name="Technology" type="Node2D" parent="." unique_id=1603245376]
 editor_description = "The parent node for ship technologies that aren't standard ship parts."

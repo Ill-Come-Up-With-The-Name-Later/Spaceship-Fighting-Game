@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cm027v3ucn54v" path="res://Scripts/ShipTech/Technology/Projectiles/SpatialChargeProjectile.cs" id="1_goj3c"]
 [ext_resource type="Resource" uid="uid://i14c07ndu2pb" path="res://Resources/Weapons/SpatialCharge/SpatialChargeProjectileStats.tres" id="2_rdopv"]
-[ext_resource type="PackedScene" uid="uid://rhwlodnqbsjf" path="res://Scenes/Particles/SpatialChargeParticle.tscn" id="3_fulj2"]
+[ext_resource type="PackedScene" uid="uid://rhwlodnqbsjf" path="res://Scenes/Particles/Projectiles/SpatialChargeParticle.tscn" id="3_fulj2"]
 [ext_resource type="PackedScene" uid="uid://cf8clhua5hocf" path="res://Scenes/Helper/Hitbox.tscn" id="3_iirxu"]
 [ext_resource type="Texture2D" uid="uid://buapv504idkgd" path="res://Sprites/Projectiles/PhotonTorpedoProjectile.png" id="4_ejp5y"]
-[ext_resource type="PackedScene" uid="uid://858dwneagrv1" path="res://Scenes/Particles/SpatialChargeExplosionParticle.tscn" id="4_iirxu"]
+[ext_resource type="PackedScene" uid="uid://858dwneagrv1" path="res://Scenes/Particles/Projectiles/SpatialChargeExplosionParticle.tscn" id="4_iirxu"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fulj2"]
 resource_local_to_scene = true

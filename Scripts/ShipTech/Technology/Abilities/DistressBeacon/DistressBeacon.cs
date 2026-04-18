@@ -12,6 +12,9 @@ public partial class DistressBeacon : Ability
 
     public bool CanUse;
 
+    [Export]
+    public PackedScene DistressBeaconParticles;
+
     public override void _Ready()
     {
         base._Ready();
@@ -47,6 +50,14 @@ public partial class DistressBeacon : Ability
         if (ParentShip is not null)
         {
             GD.Print("Emitting distress signal");
+            
+            GpuParticles2D transmit = DistressBeaconParticles.Instantiate<GpuParticles2D>();
+            GetTree().CurrentScene.AddChild(transmit);
+
+            transmit.GlobalPosition = GlobalPosition;
+            transmit.Restart();
+            transmit.Emitting = true;
+            transmit.Finished += QueueFree;
             
             Eventbus.EmitSignal("DistressBeaconUsed", ParentShip, this);
             QueueFree();

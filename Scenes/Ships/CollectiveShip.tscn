@@ -84,9 +84,13 @@ AttackFOV = 160.0
 
 [node name="Phaser2" parent="WeaponSystem" unique_id=1957323810 instance=ExtResource("12_scypd")]
 
+[node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("13_tebu4")]
+
+[node name="LaserCannon2" parent="WeaponSystem" unique_id=2115135072 instance=ExtResource("13_tebu4")]
+
 [node name="MetaphasicDisruptor" parent="WeaponSystem" unique_id=1955331938 instance=ExtResource("15_8b6qn")]
 
-[node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("13_tebu4")]
+[node name="MetaphasicDisruptor2" parent="WeaponSystem" unique_id=808339188 instance=ExtResource("15_8b6qn")]
 
 [node name="PhotonTorpedo" parent="WeaponSystem" unique_id=757337324 instance=ExtResource("14_1jcuo")]
 

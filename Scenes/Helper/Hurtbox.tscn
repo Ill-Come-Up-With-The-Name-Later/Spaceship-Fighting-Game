@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://34w2xgnjccse" path="res://Scripts/Helper/Hurtbox.cs" id="1_nnlri"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1830s"]
-radius = 64.12488
+radius = 49.09175
 
 [node name="Hurtbox" type="Area2D" unique_id=736045038]
 collision_mask = 2

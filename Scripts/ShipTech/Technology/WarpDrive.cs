@@ -32,6 +32,12 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     
     public Eventbus Eventbus;
 
+    [Export]
+    public PackedScene EnterExitParticles;
+    
+    [Export]
+    public GpuParticles2D WarpParticles;
+
     public override void _Ready()
     {
         base._Ready();
@@ -93,6 +99,17 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         AccelerationTimer.Start();
         ParentShip.CanMove = false;
         ConsumingPower = true;
+        
+        GpuParticles2D enterWarp = EnterExitParticles.Instantiate<GpuParticles2D>();
+        GetTree().CurrentScene.AddChild(enterWarp);
+
+        enterWarp.GlobalPosition = GlobalPosition;
+        enterWarp.GlobalRotation = ParentShip.GlobalRotation;
+        enterWarp.Restart();
+        enterWarp.Emitting = true;
+        enterWarp.Finished += QueueFree;
+        
+        WarpParticles.Emitting = true;
     }
 
     /// <summary>
@@ -134,6 +151,17 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
         Eventbus.EmitSignal("ShipLeaveWarp", ParentShip);
         CanToggle = false;
         CooldownTimer.Start();
+        
+        WarpParticles.Emitting = false;
+        
+        GpuParticles2D exitWarp = EnterExitParticles.Instantiate<GpuParticles2D>();
+        GetTree().CurrentScene.AddChild(exitWarp);
+
+        exitWarp.GlobalPosition = GlobalPosition;
+        exitWarp.GlobalRotation = ParentShip.GlobalRotation;
+        exitWarp.Restart();
+        exitWarp.Emitting = true;
+        exitWarp.Finished += QueueFree;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -160,6 +188,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
             else if (WarpDriveState == WarpDriveState.Warping)
             {
                 speedMultiplier = WarpDriveStats.SpeedMultiplier;
+                Warping();
                 CurrentConsumption = PowerConsumption.Amount;
             }
             
@@ -181,6 +210,21 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     {
         return ParentShip.CurrentPower >= CurrentConsumption * 1.5
                && CurrentHealth > 0 && ParentShip.Engine.CurrentHealth > 0;
+    }
+
+    /// <summary>
+    /// Happens every frame of warp
+    /// </summary>
+    public virtual void Warping()
+    {
+        GpuParticles2D enterWarp = EnterExitParticles.Instantiate<GpuParticles2D>();
+        GetTree().CurrentScene.AddChild(enterWarp);
+
+        enterWarp.GlobalPosition = GlobalPosition + ParentShip.Forward * enterWarp.Texture.GetHeight();
+        enterWarp.GlobalRotation = ParentShip.GlobalRotation;
+        enterWarp.Restart();
+        enterWarp.Emitting = true;
+        enterWarp.Finished += QueueFree;
     }
 
     /// <summary>
