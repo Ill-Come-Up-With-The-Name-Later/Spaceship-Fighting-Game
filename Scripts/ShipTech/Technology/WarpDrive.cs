@@ -188,7 +188,7 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
             else if (WarpDriveState == WarpDriveState.Warping)
             {
                 speedMultiplier = WarpDriveStats.SpeedMultiplier;
-                Warping();
+                Warping(delta);
                 CurrentConsumption = PowerConsumption.Amount;
             }
             
@@ -215,12 +215,12 @@ public partial class WarpDrive : ShipPart, IPowerConsumer, IToggleable
     /// <summary>
     /// Happens every frame of warp
     /// </summary>
-    public virtual void Warping()
+    public virtual void Warping(double delta)
     {
         GpuParticles2D enterWarp = EnterExitParticles.Instantiate<GpuParticles2D>();
         GetTree().CurrentScene.AddChild(enterWarp);
 
-        enterWarp.GlobalPosition = GlobalPosition + ParentShip.Forward * enterWarp.Texture.GetHeight();
+        enterWarp.GlobalPosition = GlobalPosition + ParentShip.Velocity * (float)delta;
         enterWarp.GlobalRotation = ParentShip.GlobalRotation;
         enterWarp.Restart();
         enterWarp.Emitting = true;
