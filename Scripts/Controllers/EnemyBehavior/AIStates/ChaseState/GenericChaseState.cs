@@ -9,6 +9,12 @@ public partial class GenericChaseState : AIState
     
     public override void Process(EnemyController controller, double delta)
     {
+        if (!IsInstanceValid(controller.PursuitTarget))
+            return;
+        
+        if (controller.PursuitTarget is null)
+            return;
+        
         controller.MovementTarget = controller.PursuitTarget.GlobalPosition;
         
         if(controller.ParentShip.Forward.Dot(controller.PursuitTarget.Forward.Normalized()) < 0.985)

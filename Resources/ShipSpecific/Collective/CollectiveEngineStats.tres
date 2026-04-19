@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_637mp")
-Speed = 500.0
+Speed = 570.0
 TurningRadius = 175.0

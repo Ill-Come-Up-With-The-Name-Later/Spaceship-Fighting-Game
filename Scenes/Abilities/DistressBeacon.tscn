@@ -6,7 +6,7 @@
 
 [node name="DistressBeacon" type="Node2D" unique_id=541791397]
 script = ExtResource("1_jhnfb")
-Range = 20000.0
+Range = 24000.0
 ActivationDelay = 3.0
 DistressBeaconParticles = ExtResource("2_hojsd")
 Cooldown = 120.0

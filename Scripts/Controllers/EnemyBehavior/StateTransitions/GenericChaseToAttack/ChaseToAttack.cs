@@ -2,6 +2,9 @@
 {
     public override bool ShouldTransition(EnemyController controller, double deltaTime)
     {
+        if (!IsInstanceValid(controller.PursuitTarget))
+            return true;
+        
         if (controller.PursuitTarget is null)
             return true;
 

@@ -126,6 +126,8 @@ public partial class EnemyController : Controller
         AttackTimer.Start();
 
         Eventbus.SimplifiedShipDamaged += OnHit;
+        
+        CallDeferred(nameof(SetupTargeting));
     }
 
     public override void _ExitTree()
