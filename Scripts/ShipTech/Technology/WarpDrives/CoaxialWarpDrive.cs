@@ -3,7 +3,7 @@
     public override bool CanActivate()
     {
         return ParentShip.CurrentPower >= 
-               CurrentConsumption * 1.5 && CurrentHealth > 0 &&
+               CurrentConsumption * 1.2 && CurrentHealth > 0 &&
                ParentShip.Engine.GetHealthPercentage() >= 0.1;
     }
     

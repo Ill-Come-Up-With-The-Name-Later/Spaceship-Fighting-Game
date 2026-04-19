@@ -6,19 +6,16 @@ using Godot;
 /// </summary>
 public partial class Hitbox : Area2D
 {
-	public Ship ParentShip;
 	public Projectile ParentProjectile;
 	public CollisionShape2D Collider;
 	public Eventbus Eventbus;
-	
+
 	public override void _Ready()
 	{
 		ParentProjectile = GetParent() as Projectile;
 		
 		if(ParentProjectile is null)
 			GD.PrintErr("Parent projectile is null");
-
-		ParentShip = ParentProjectile.ParentShip;
 		
 		Collider = GetNode<CollisionShape2D>("Collision");
 		
@@ -51,13 +48,15 @@ public partial class Hitbox : Area2D
 			if (hurtbox.ParentShip == ParentProjectile.ParentShip)
 				return;
 			
-			Eventbus.EmitSignal("ShipDamaged", hurtbox.ParentShip, ParentShip, 
+			GD.Print("Projectile has entered a hurtbox");
+			
+			Eventbus.EmitSignal("SimplifiedShipDamaged", hurtbox.ParentShip, ParentProjectile.ParentShip);
+			
+			Eventbus.EmitSignal("ShipDamaged", hurtbox.ParentShip, ParentProjectile.ParentShip, 
 				ParentProjectile.ParentWeaponStats.Damage, ParentProjectile.ParentWeaponStats.ShieldDamage,
 				ParentProjectile.ParentWeaponStats.PenetratingDamage);
 
-			Eventbus.EmitSignal("SimplifiedShipDamaged", hurtbox.ParentShip, ParentShip);
-			
-			ParentProjectile.OnHit(area);
+			//ParentProjectile.QueueFree();
 		}
 	}
 }

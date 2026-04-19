@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://ukt8rnrvr4yg"]
+
+[ext_resource type="Texture2D" uid="uid://d0avvk5wlyiyx" path="res://Sprites/Particles/Shockwave.png" id="1_kjk77"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f6p1v"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_03bao"]
+_data = [Vector2(0, 0.3146068), 0.0, 0.0, 0, 0, Vector2(0.5135135, 0.8876405), 0.0, 0.0, 0, 0, Vector2(1, 0.34831464), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7utsy"]
+curve = SubResource("Curve_03bao")
+
+[sub_resource type="Curve" id="Curve_kquyc"]
+_limits = [2.494382, 4.0, 0.0, 1.0]
+_data = [Vector2(0.020270273, 2.5393257), 0.0, 0.0, 0, 0, Vector2(0.5472973, 4), 0.0, 0.0, 0, 0, Vector2(1, 2.494382), 0.16629256, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7n3uw"]
+curve = SubResource("Curve_kquyc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cy0b1"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_7n3uw")
+color = Color(0.18039216, 0.5529412, 1, 0.5294118)
+alpha_curve = SubResource("CurveTexture_7utsy")
+
+[node name="ShieldDamageParticle" type="GPUParticles2D" unique_id=832335561]
+material = SubResource("CanvasItemMaterial_f6p1v")
+emitting = false
+amount = 1
+texture = ExtResource("1_kjk77")
+lifetime = 0.5
+one_shot = true
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_cy0b1")

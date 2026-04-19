@@ -137,7 +137,7 @@ public partial class Weapon : Technology, IPowerConsumer
         if (ProjectileSource is null)
             return null;
 
-        if (ProjectileSource is null)
+        if (ProjectileScene is null)
             return null;
 
         if (ParentShip.Cloaked())
@@ -152,7 +152,7 @@ public partial class Weapon : Technology, IPowerConsumer
         Projectile proj = (Projectile)ProjectileScene.Instantiate();
         SetupProjectile(proj, targetPosition);
         Eventbus.EmitSignal("WeaponFired", ParentShip.GlobalPosition, ParentShip, this);
-        GD.Print("Fired projectile");
+        GD.Print(ParentShip.GetName() + " fired projectile: " + proj.GetName());
 
         return proj;
     }

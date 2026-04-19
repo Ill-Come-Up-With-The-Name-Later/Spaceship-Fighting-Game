@@ -54,11 +54,11 @@ AttackFOV = 110.0
 
 [node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("11_d6dxf")]
 
-[node name="Phaser2" parent="WeaponSystem" unique_id=1314836428 instance=ExtResource("11_d6dxf")]
+[node name="Phaser2" parent="WeaponSystem" unique_id=206033348 instance=ExtResource("11_d6dxf")]
 
 [node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("12_cft70")]
 
-[node name="LaserCannon2" parent="WeaponSystem" unique_id=318728043 instance=ExtResource("12_cft70")]
+[node name="LaserCannon2" parent="WeaponSystem" unique_id=1852429376 instance=ExtResource("12_cft70")]
 
 [node name="Upgrades" type="Node2D" parent="." unique_id=1621237522]
 

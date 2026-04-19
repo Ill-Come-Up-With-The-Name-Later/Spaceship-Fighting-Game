@@ -13,6 +13,7 @@ public partial class PhotonTorpedoProjectile : Projectile
 
     public override void _Ready()
     { 
+        base._Ready();
         GetNode<Sprite2D>("Sprite").Modulate = Color;
     }
     
@@ -35,25 +36,24 @@ public partial class PhotonTorpedoProjectile : Projectile
         Velocity = velocity;
 
         if (Target is null && GlobalPosition.DistanceTo(targetPosition) <= 20)
+        {
             Explode();
-        
+            QueueFree();
+        }
+
         base.Travel(delta);
     }
 
-    public override void OnHit(Area2D area)
+    public override void OnHit(Ship damaged, Ship damager)
     {
-        if (area is Hurtbox hurtbox)
-        {
-            if (hurtbox.ParentShip == ParentShip)
-                return;
-            
-            Explode();
-        }
+        Explode();
+        base.OnHit(damaged, damager);
     }
 
     public override void OnLifespanEnded()
     {
         Explode();
+        base.OnLifespanEnded();
     }
 
     public void Explode()
@@ -66,7 +66,6 @@ public partial class PhotonTorpedoProjectile : Projectile
         explosion.GlobalPosition = GlobalPosition;
         explosion.Restart();
         explosion.Emitting = true;
-        
-        QueueFree();
+        explosion.Finished += explosion.QueueFree;
     }
 }

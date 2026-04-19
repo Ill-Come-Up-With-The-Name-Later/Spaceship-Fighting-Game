@@ -20,6 +20,7 @@ curve = SubResource("Curve_8obgs")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fr4sy"]
 particle_flag_align_y = true
+particle_flag_rotate_y = true
 particle_flag_disable_z = true
 inherit_velocity_ratio = 1.0
 gravity = Vector3(0, 40, 0)

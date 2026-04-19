@@ -16,6 +16,7 @@ public partial class SpatialChargeProjectile : Projectile
     
     public override void _Ready()
     { 
+        base._Ready();
         GetNode<Sprite2D>("Sprite").Modulate = Color;
     }
 
@@ -60,20 +61,16 @@ public partial class SpatialChargeProjectile : Projectile
         return null;
     }
     
-    public override void OnHit(Area2D area)
+    public override void OnHit(Ship damaged, Ship damager)
     {
-        if (area is Hurtbox hurtbox)
-        {
-            if (hurtbox.ParentShip == ParentShip)
-                return;
-            
-            Explode();
-        }
+        Explode();
+        base.OnHit(damaged, damager);
     }
 
     public override void OnLifespanEnded()
     {
         Explode();
+        base.OnLifespanEnded();
     }
 
     public void Explode()
@@ -86,7 +83,6 @@ public partial class SpatialChargeProjectile : Projectile
         explosion.GlobalPosition = GlobalPosition;
         explosion.Restart();
         explosion.Emitting = true;
-        
-        QueueFree();
+        explosion.Finished += explosion.QueueFree;
     }
 }

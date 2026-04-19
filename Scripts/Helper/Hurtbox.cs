@@ -9,6 +9,12 @@ public partial class Hurtbox : Area2D
 	public Ship ParentShip;
 	public CollisionShape2D Collider;
 	public Eventbus Eventbus;
+
+	[Export]
+	public PackedScene ShieldDamageParticles;
+	
+	[Export]
+	public PackedScene HullDamageParticles;
 	
 	public override void _Ready()
 	{
@@ -52,8 +58,6 @@ public partial class Hurtbox : Area2D
 
 		if (damager == damaged)
 			return;
-		
-		GD.Print("Applying damage to " + damaged.GetName());
 
 		if (damaged.HasShield())
 		{
@@ -61,6 +65,15 @@ public partial class Hurtbox : Area2D
 			damaged.CurrentPower = Mathf.Max(0, damaged.CurrentPower - (damage + (shieldDamage / 3)));
 			damaged.DamageHull((penetratingDamage * 0.5) + Mathf.Max(0, damage - damaged.DefenseSystem.CurrentDefenseHealth) +
 			                   (damage * (1 - damaged.DefenseSystem.DefensePercentage)));
+
+			GpuParticles2D shieldDamageEffect = (GpuParticles2D)ShieldDamageParticles.Instantiate();
+			AddChild(shieldDamageEffect);
+			
+			shieldDamageEffect.GlobalPosition = damaged.GlobalPosition;
+			
+			shieldDamageEffect.Emitting = true;
+			shieldDamageEffect.Restart();
+			shieldDamageEffect.Finished += shieldDamageEffect.QueueFree;
 		}
 		else
 		{
@@ -68,9 +81,18 @@ public partial class Hurtbox : Area2D
 			damaged.DamageShield(damage * 0.1);
 			damaged.DamageReactor(damage * 0.1);
 			damaged.DamageEngine(damage * 0.2);
+			
+			GpuParticles2D hullDamageEffect = (GpuParticles2D)HullDamageParticles.Instantiate();
+			AddChild(hullDamageEffect);
+			
+			hullDamageEffect.GlobalPosition = damaged.GlobalPosition;
+
+			hullDamageEffect.Emitting = true;
+			hullDamageEffect.Restart();
+			hullDamageEffect.Finished += hullDamageEffect.QueueFree;
 		}
 		
-		GD.Print("Damaged: " + damaged.GetName());
+		GD.Print("Damaged: " + damaged.GetName() + " Damager: " + damager.GetName());
 		GD.Print("Hull health: " + damaged.Hull.CurrentHealth);
 		GD.Print("Shield Generator Health: " + damaged.DefenseSystem.CurrentHealth + " Shield Up: " + damaged.DefenseSystem.DefenseActive);
 		GD.Print("Shield Health: " + damaged.DefenseSystem.CurrentDefenseHealth);
@@ -82,8 +104,6 @@ public partial class Hurtbox : Area2D
 		{
 			Die(damaged, damager);
 		}
-		
-		Eventbus.EmitSignal("SimplifiedShipDamaged", damaged, damager);
 	}
 
 	public void Die(Ship damaged, Ship damager)

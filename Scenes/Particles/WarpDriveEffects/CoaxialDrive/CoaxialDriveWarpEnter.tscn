@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cycev7agvh0cg"]
+
+[ext_resource type="Texture2D" uid="uid://brjwuaw5y2u5m" path="res://Sprites/Particles/WarpDrives/Zap.png" id="1_vpdrv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_svvmo"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_vpdrv"]
+_data = [Vector2(0.020270273, 0), 0.0, 0.0, 0, 0, Vector2(0.5608108, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3146068), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_svvmo"]
+curve = SubResource("Curve_vpdrv")
+
+[sub_resource type="Curve" id="Curve_rqdwy"]
+_data = [Vector2(0, 0.34831464), 0.0, 0.0, 0, 0, Vector2(0.5202703, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3820225), -1.2881784, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mm011"]
+curve = SubResource("Curve_rqdwy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rqdwy"]
+lifetime_randomness = 0.53
+particle_flag_disable_z = true
+angle_min = -179.99998
+angle_max = 180.00002
+initial_velocity_min = -400.0
+initial_velocity_max = 400.0
+angular_velocity_min = -100.000015
+angular_velocity_max = 99.999985
+orbit_velocity_min = -2.0
+orbit_velocity_max = 2.0000002
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 59.999977
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 35.479996
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 40.859997
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = 30.109997
+scale_curve = SubResource("CurveTexture_mm011")
+color = Color(1, 0.7551627, 0.9704117, 0.49411765)
+alpha_curve = SubResource("CurveTexture_svvmo")
+hue_variation_min = -0.31
+hue_variation_max = 0.36999997
+anim_speed_min = 3.01
+anim_speed_max = 9.04
+
+[node name="CoaxialDriveWarpEnter" type="GPUParticles2D" unique_id=278705033]
+material = SubResource("CanvasItemMaterial_svvmo")
+emitting = false
+amount = 4
+texture = ExtResource("1_vpdrv")
+lifetime = 0.2
+one_shot = true
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_rqdwy")
