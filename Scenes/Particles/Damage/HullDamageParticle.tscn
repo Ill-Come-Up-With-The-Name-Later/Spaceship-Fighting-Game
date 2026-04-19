@@ -24,7 +24,8 @@ point_count = 3
 curve = SubResource("Curve_kuq7m")
 
 [sub_resource type="Curve" id="Curve_ur3ox"]
-_data = [Vector2(0.02702704, 0.28089893), 0.0, 0.0, 0, 0, Vector2(0.47972977, 0.79775286), 0.0, 0.0, 0, 0, Vector2(0.9797298, 0.28089893), 0.0, 0.0, 0, 0]
+_limits = [0.5, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.8707863), 0.0, 0.0, 0, 0, Vector2(0.4662162, 1.9662919), 0.0, 0.0, 0, 0, Vector2(1, 1.3932582), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_lt38u"]
@@ -34,15 +35,15 @@ curve = SubResource("Curve_ur3ox")
 particle_flag_align_y = true
 particle_flag_rotate_y = true
 particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 5)
 emission_shape = 1
 emission_sphere_radius = 5.0
 angle_min = -179.99998
 angle_max = 180.00002
+direction = Vector3(0, 0, 0)
 spread = 1.0
 angular_velocity_min = -60.000015
 angular_velocity_max = 59.99998
-orbit_velocity_min = -2.0
-orbit_velocity_max = 2.0000002
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_lt38u")
 color = Color(0.9607843, 0.8745098, 0, 0.90588236)
@@ -56,4 +57,5 @@ amount = 4
 texture = ExtResource("1_uqi4t")
 lifetime = 0.5
 one_shot = true
+fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_kuq7m")

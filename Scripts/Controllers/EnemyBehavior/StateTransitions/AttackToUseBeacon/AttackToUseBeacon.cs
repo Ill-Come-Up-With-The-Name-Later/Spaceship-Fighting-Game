@@ -11,6 +11,6 @@
             return false;
         
         return !controller.ParentShip.DefenseSystem.DefenseActive &&
-               controller.ParentShip.GetMissingHealthPercentage() >= 0.3;
+               controller.ParentShip.GetMissingHealthPercentage() >= 0.2;
     }
 }

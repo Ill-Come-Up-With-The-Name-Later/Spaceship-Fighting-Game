@@ -9,16 +9,16 @@
 [node name="PlayerShip" parent="." unique_id=1450576114 instance=ExtResource("1_idj7w")]
 
 [node name="EnemyShip" parent="." unique_id=157009173 instance=ExtResource("2_idj7w")]
-position = Vector2(1142, 659)
+position = Vector2(1794, 1240)
 
 [node name="EnemyShip2" parent="." unique_id=466547903 instance=ExtResource("2_idj7w")]
-position = Vector2(429, 542)
+position = Vector2(484, 1229)
 
 [node name="EnemyShip3" parent="." unique_id=1963572342 instance=ExtResource("2_idj7w")]
-position = Vector2(-855, 901)
+position = Vector2(-2214, 1235)
 
 [node name="CollectiveShip" parent="." unique_id=1872768779 instance=ExtResource("3_kln2b")]
-position = Vector2(-917, 651)
+position = Vector2(-260, 1242)
 
 [node name="CollectiveShip2" parent="." unique_id=1847762804 instance=ExtResource("3_kln2b")]
 position = Vector2(6590, 4466)

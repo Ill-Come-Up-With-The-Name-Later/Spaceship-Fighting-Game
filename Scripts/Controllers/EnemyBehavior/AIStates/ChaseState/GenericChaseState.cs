@@ -4,6 +4,11 @@ public partial class GenericChaseState : AIState
 {
     public override void EnterState(EnemyController controller, AIState previousState)
     {
+        if (!IsInstanceValid(controller.PursuitTarget))
+            return;
+        
+        if (controller.PursuitTarget is null)
+            return;
         controller.MovementTarget = controller.PursuitTarget.GlobalPosition;
     }
     
