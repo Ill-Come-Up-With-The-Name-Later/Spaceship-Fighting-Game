@@ -23,10 +23,13 @@ public partial class QuantumSlipstreamDrive : WarpDrive, IResourceConsumer, IReg
     public bool Consuming { get; set; }
 
     public bool Regenerating { get; set; }
+
+    public Eventbus Eventbus;
     
     public override void _Ready()
     {
         base._Ready();
+        Eventbus = GetNode<Eventbus>("/root/Eventbus");
         SlipstreamPower = Stats.SlipstreamPower;
     }
 
@@ -43,6 +46,9 @@ public partial class QuantumSlipstreamDrive : WarpDrive, IResourceConsumer, IReg
         base.ActivateWarp();
         Consuming = true;
         Regenerating = false;
+        
+        if(ParentShip.HasPart<ShieldGenerator>() && ParentShip.DefenseSystem.DefenseActive)
+            ParentShip.DefenseSystem.Toggle();
     }
 
     public override void ExitWarpState()
@@ -94,8 +100,11 @@ public partial class QuantumSlipstreamDrive : WarpDrive, IResourceConsumer, IReg
                     GD.Print("Out of slipstream power");
                 }
 
-        if(Active && WarpDriveState is WarpDriveState.Warping)
-            ParentShip.DamageHull(ParentShip.Hull.GenericStats.Health * 0.1 * delta);
+        if (Active && WarpDriveState is WarpDriveState.Warping)
+        {
+            Eventbus.EmitSignal("ShipDamaged", ParentShip, ParentShip, 0, 0,
+                ParentShip.Hull.GenericStats.Health * 0.1 * delta);
+        }
 
         if (ParentShip.Hull.GetHealthPercentage() < 0.6 && Active && 
             WarpDriveState is WarpDriveState.Warping or WarpDriveState.Accelerating)

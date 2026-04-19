@@ -11,13 +11,14 @@ public partial class GenericChaseState : AIState
     {
         controller.MovementTarget = controller.PursuitTarget.GlobalPosition;
         
-        if(Mathf.Abs(controller.ParentShip.TurnToFace(controller.MovementTarget, delta)) < Mathf.DegToRad(5))
+        if(controller.ParentShip.Forward.Dot(controller.PursuitTarget.Forward.Normalized()) < 0.985)
         {
-            if (!controller.ParentShip.InWarp())
-            {
-                if (controller.ParentShip.CanWarp())
-                    controller.ParentShip.WarpDrive.Toggle();
-            }
+            controller.ParentShip.TurnToFace(controller.MovementTarget, delta);
+        }
+        else if (!controller.ParentShip.InWarp())
+        {
+            if (controller.ParentShip.CanWarp())
+                controller.ParentShip.WarpDrive.Toggle();
         }
     }
 

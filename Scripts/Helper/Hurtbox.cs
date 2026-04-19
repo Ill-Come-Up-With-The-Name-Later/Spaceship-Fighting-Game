@@ -56,9 +56,6 @@ public partial class Hurtbox : Area2D
 		if (damaged != ParentShip)
 			return;
 
-		if (damager == damaged)
-			return;
-
 		if (damaged.HasShield())
 		{
 			damaged.DamageShield(damage + shieldDamage);
