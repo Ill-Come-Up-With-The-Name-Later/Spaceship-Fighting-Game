@@ -13,7 +13,8 @@ public partial class GenericChaseState : AIState
         
         if(controller.ParentShip.Forward.Dot(controller.PursuitTarget.Forward.Normalized()) < 0.985)
         {
-            controller.ParentShip.TurnToFace(controller.MovementTarget, delta);
+            if(!controller.ParentShip.InWarp())
+                controller.ParentShip.TurnToFace(controller.MovementTarget, delta);
         }
         else if (!controller.ParentShip.InWarp())
         {
