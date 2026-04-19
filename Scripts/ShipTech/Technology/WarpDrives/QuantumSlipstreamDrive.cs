@@ -72,12 +72,11 @@ public partial class QuantumSlipstreamDrive : WarpDrive, IResourceConsumer, IReg
                 {
                     if (ship != ParentShip)
                     {
-                        ship.DamageShield(ship.DefenseSystem.DefenseGeneratorStats.DefenseHealth * 0.95);
+                        Eventbus.EmitSignal("ShipDamaged", ship, ParentShip, 0, 
+                            ship.DefenseSystem.DefenseGeneratorStats.DefenseHealth * 0.95, 0);
                         
                         if(ship.HasShield())
                             ship.DefenseSystem.Toggle();
-                        
-                        GD.Print("Damaged shield of " + ship);
                     }
                 }
             }
