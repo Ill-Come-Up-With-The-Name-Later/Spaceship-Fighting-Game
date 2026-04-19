@@ -21,6 +21,15 @@ public partial class GenericChaseState : AIState
             if (controller.ParentShip.CanWarp())
                 controller.ParentShip.WarpDrive.Toggle();
         }
+
+        if (controller.ParentShip.Velocity.Length() > controller.PursuitTarget.Velocity.Length()
+            && controller.PursuitTarget.InWarp() 
+            && controller.ParentShip.GlobalPosition.DistanceTo(controller.MovementTarget) 
+            < controller.ParentShip.Velocity.Length() * 0.15)
+        {
+            controller.ParentShip.Velocity = controller.ParentShip.Velocity
+                .Normalized() * controller.PursuitTarget.Velocity.Length();
+        }
     }
 
     public override void PhysicsProcess(EnemyController controller, double delta)
