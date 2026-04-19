@@ -78,6 +78,14 @@ public partial class Hurtbox : Area2D
 			damaged.DamageShield(damage * 0.1);
 			damaged.DamageReactor(damage * 0.1);
 			damaged.DamageEngine(damage * 0.2);
+
+			if (damaged.HasPart<CollectiveLinkNode>())
+			{
+				CollectiveLinkNode node = damaged.GetPart<CollectiveLinkNode>();
+				
+				if(node is not null)
+					damaged.DamageShipPart(node, damage * 0.1);
+			}
 			
 			GpuParticles2D hullDamageEffect = (GpuParticles2D)HullDamageParticles.Instantiate();
 			AddChild(hullDamageEffect);

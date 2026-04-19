@@ -40,7 +40,7 @@ public partial class CollectiveLinkNode : ShipPart
 			if (ship == ParentShip)
 				continue;
 			
-			if(ship.GlobalPosition.DistanceTo(ParentShip.GlobalPosition) <= Range)
+			if(ship.GlobalPosition.DistanceTo(ParentShip.GlobalPosition) <= Range * GetHealthPercentage())
 				nearby.Add(ship);
 		}
 		

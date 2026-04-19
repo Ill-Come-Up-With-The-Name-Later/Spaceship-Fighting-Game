@@ -619,6 +619,20 @@ public partial class Ship : CharacterBody2D
 	}
 
 	/// <summary>
+	/// Damages a ship part
+	/// </summary>
+	/// <param name="part">
+	/// The part to damage
+	/// </param>
+	/// <param name="damage">
+	/// The amount of damage to deal
+	/// </param>
+	public void DamageShipPart(ShipPart part, double damage)
+	{
+		part.CurrentHealth = Mathf.Max(0, part.CurrentHealth - damage);
+	}
+
+	/// <summary>
 	/// The ship's health
 	/// </summary>
 	/// <returns>

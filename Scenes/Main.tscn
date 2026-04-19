@@ -1,21 +1,11 @@
 [gd_scene format=3 uid="uid://cmvkih6fr2gv8"]
 
 [ext_resource type="PackedScene" uid="uid://bmraug80pu27k" path="res://Scenes/Ships/PlayerShipTests/PlayerShipWithWeaponsTest.tscn" id="1_idj7w"]
-[ext_resource type="PackedScene" uid="uid://xf58wic0uscr" path="res://Scenes/Ships/EnemyShip.tscn" id="2_idj7w"]
 [ext_resource type="PackedScene" uid="uid://d3j4ktdra4gg1" path="res://Scenes/Ships/CollectiveShip.tscn" id="3_kln2b"]
 
 [node name="Main" type="Node2D" unique_id=1968216983]
 
 [node name="PlayerShip" parent="." unique_id=1450576114 instance=ExtResource("1_idj7w")]
-
-[node name="EnemyShip" parent="." unique_id=157009173 instance=ExtResource("2_idj7w")]
-position = Vector2(1794, 1240)
-
-[node name="EnemyShip2" parent="." unique_id=466547903 instance=ExtResource("2_idj7w")]
-position = Vector2(484, 1229)
-
-[node name="EnemyShip3" parent="." unique_id=1963572342 instance=ExtResource("2_idj7w")]
-position = Vector2(-2214, 1235)
 
 [node name="CollectiveShip" parent="." unique_id=1872768779 instance=ExtResource("3_kln2b")]
 position = Vector2(-260, 1242)
