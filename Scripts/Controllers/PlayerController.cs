@@ -124,6 +124,7 @@ public partial class PlayerController : Controller
 		ParentShip.ActiveWeapon = ParentShip.Weapons
 			.NextAvailableOfType(ParentShip.Weapons.ActiveWeaponTypeIndex);
 		
+		ListenForAttack();
 		ListenForCloaking();
 		ListenForShieldToggle();
 		ListenForWarpDrive();
@@ -138,6 +139,15 @@ public partial class PlayerController : Controller
 	public void SetCanAttack()
 	{
 		CanAttack = true;
+	}
+
+	public void ListenForAttack()
+	{
+		if (Input.IsActionPressed("attack"))
+		{
+			if(CanAttack)
+				Eventbus.EmitSignal("MouseClick", GetGlobalMousePosition());
+		}
 	}
 
 	public void ListenForWarpDrive()
@@ -192,13 +202,8 @@ public partial class PlayerController : Controller
 			ParentShip.Weapons.ActiveWeaponTypeIndex = 8;
 		else if (Input.IsActionJustPressed("select_weapon_9"))
 			ParentShip.Weapons.ActiveWeaponTypeIndex = 9;
-	}
-	
-	public override void _Input(InputEvent @event)
-	{
-		if (@event is InputEventMouseButton mouseEvent)
-			if (mouseEvent.ButtonIndex == MouseButton.Left && mouseEvent.Pressed)
-				Eventbus.EmitSignal("MouseClick", GetGlobalMousePosition());
+		
+		GD.Print("Player selected " + ParentShip.ActiveWeapon.GetName());
 	}
 
 	/// <summary>

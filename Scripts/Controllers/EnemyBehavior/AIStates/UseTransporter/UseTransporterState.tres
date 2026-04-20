@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://8gxe8belf517"]
+
+[ext_resource type="Script" uid="uid://bc5lrw3oqsc70" path="res://Scripts/Controllers/EnemyBehavior/AIStates/UseTransporter/UseTransporterState.cs" id="1_k3pty"]
+
+[resource]
+script = ExtResource("1_k3pty")
+Type = 6

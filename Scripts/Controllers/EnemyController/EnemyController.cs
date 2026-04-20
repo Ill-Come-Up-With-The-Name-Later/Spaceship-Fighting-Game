@@ -334,7 +334,7 @@ public partial class EnemyController : Controller
     /// <returns>
     /// The targeting priorities
     /// </returns>
-    public PriorityQueue<Ship, double> TargetPriorities()
+    public virtual PriorityQueue<Ship, double> TargetPriorities()
     {
         PriorityQueue<Ship, double> queue = new PriorityQueue<Ship, double>();
 

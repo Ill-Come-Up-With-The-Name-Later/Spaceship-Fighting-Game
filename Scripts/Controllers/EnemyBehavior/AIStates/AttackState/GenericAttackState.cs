@@ -68,6 +68,9 @@ public partial class GenericAttackState : AIState
                     rand.RandfRange(-(float)controller.FiringRange * 0.5f,
                         (float)controller.FiringRange * 0.5f));
 
+                if (rand.Randf() < 0.1)
+                    offset *= 0.2f;
+
                 controller.MovementTarget = target.GlobalPosition + offset;
             }
 
