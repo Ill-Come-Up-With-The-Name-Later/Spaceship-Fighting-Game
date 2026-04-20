@@ -123,6 +123,9 @@ public partial class CollectiveManager : Node2D
         
         foreach (Ship ship in CollectiveShips)
         {
+            if (!IsInstanceValid(ship))
+                continue;
+            
             if(ship.GlobalPosition.DistanceTo(pos) <= distance)
                 nearby.Add(ship);
         }

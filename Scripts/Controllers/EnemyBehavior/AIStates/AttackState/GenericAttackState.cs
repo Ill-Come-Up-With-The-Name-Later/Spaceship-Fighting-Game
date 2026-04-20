@@ -33,7 +33,7 @@ public partial class GenericAttackState : AIState
         if (!IsInstanceValid(target))
             return;
 
-        if (target.Velocity.Length() <= controller.ParentShip.Engine.EngineStats.TurningRadius)
+        if (target.Velocity.Length() <= controller.ParentShip.Velocity.Length())
         {
             Vector2 behind = -target.Forward;
             behind *= (float)controller.FiringRange * 0.8f;
@@ -60,20 +60,17 @@ public partial class GenericAttackState : AIState
         if(controller.CanAttack)
         {
             RandomNumberGenerator rand = new RandomNumberGenerator();
+            
+            Vector2 offset = new Vector2(rand.RandfRange(-(float)controller.FiringRange * 0.75f,
+                    (float)controller.FiringRange * 0.75f),
+                rand.RandfRange(-(float)controller.FiringRange * 0.75f,
+                    (float)controller.FiringRange * 0.75f));
 
-            if (target.Velocity.Length() >= controller.ParentShip.Engine.EngineStats.TurningRadius)
-            {
-                Vector2 offset = new Vector2(rand.RandfRange(-(float)controller.FiringRange * 0.5f,
-                        (float)controller.FiringRange * 0.5f),
-                    rand.RandfRange(-(float)controller.FiringRange * 0.5f,
-                        (float)controller.FiringRange * 0.5f));
+            if (rand.Randf() < 0.075)
+                offset *= 0.2f;
 
-                if (rand.Randf() < 0.1)
-                    offset *= 0.2f;
-
-                controller.MovementTarget = target.GlobalPosition + offset;
-            }
-
+            controller.MovementTarget = target.GlobalPosition + offset;
+            
             PriorityQueue<Weapon, double> weapons = controller.WeaponPriorities();
 
             if (weapons.Count == 0)

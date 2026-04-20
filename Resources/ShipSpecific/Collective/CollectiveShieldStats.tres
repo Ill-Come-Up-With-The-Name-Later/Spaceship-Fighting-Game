@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_irelx")
-DefenseHealth = 200000.0
+DefenseHealth = 160000.0
 DamageReductionPercent = 1.0

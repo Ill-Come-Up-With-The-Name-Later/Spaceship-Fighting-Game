@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource("1_es2ly")
 SlipstreamPower = 300000.0
+HealthDrain = 0.05

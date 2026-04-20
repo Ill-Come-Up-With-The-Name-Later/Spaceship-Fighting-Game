@@ -56,6 +56,15 @@ public partial class Hurtbox : Area2D
 		if (damaged != ParentShip)
 			return;
 
+		if (damager != damaged)
+		{
+			if (damager.HasUpgrade<DamageRemodulator>())
+			{
+				damage -= damage * damager.GetUpgrade<DamageRemodulator>().ConversionPercent;
+				penetratingDamage += damage * damager.GetUpgrade<DamageRemodulator>().ConversionPercent;
+			}
+		}
+
 		if (damaged.HasShield())
 		{
 			damaged.DamageShield(damage + shieldDamage);

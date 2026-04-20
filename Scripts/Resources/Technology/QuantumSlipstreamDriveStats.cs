@@ -6,4 +6,7 @@ public partial class QuantumSlipstreamDriveStats : Resource
 {
     [Export]
     public double SlipstreamPower;
+
+    [Export]
+    public double HealthDrain;
 }

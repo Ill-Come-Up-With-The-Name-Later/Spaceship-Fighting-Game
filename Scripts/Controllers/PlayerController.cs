@@ -202,8 +202,6 @@ public partial class PlayerController : Controller
 			ParentShip.Weapons.ActiveWeaponTypeIndex = 8;
 		else if (Input.IsActionJustPressed("select_weapon_9"))
 			ParentShip.Weapons.ActiveWeaponTypeIndex = 9;
-		
-		GD.Print("Player selected " + ParentShip.ActiveWeapon.GetName());
 	}
 
 	/// <summary>

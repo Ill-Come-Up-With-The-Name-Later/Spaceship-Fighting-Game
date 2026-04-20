@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://e6aj12t805fe"]
+
+[ext_resource type="Script" uid="uid://dmks0g5t55m84" path="res://Scripts/Resources/Technology/DefenseGeneratorData.cs" id="1_4wdmd"]
+
+[resource]
+script = ExtResource("1_4wdmd")
+DefenseHealth = 120000.0
+DamageReductionPercent = 0.95

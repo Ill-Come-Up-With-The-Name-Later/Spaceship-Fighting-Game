@@ -73,7 +73,7 @@ public partial class QuantumSlipstreamDrive : WarpDrive, IResourceConsumer, IReg
                     if (ship != ParentShip)
                     {
                         Eventbus.EmitSignal("ShipDamaged", ship, ParentShip, 0, 
-                            ship.DefenseSystem.DefenseGeneratorStats.DefenseHealth * 0.95, 0);
+                            ship.DefenseSystem.DefenseGeneratorStats.DefenseHealth * (1 - Stats.HealthDrain), 0);
                         
                         if(ship.HasShield())
                             ship.DefenseSystem.Toggle();

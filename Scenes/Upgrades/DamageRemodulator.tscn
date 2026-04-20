@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://chwyslpw8ogwv"]
+
+[ext_resource type="Script" uid="uid://8i3jv36iuom7" path="res://Scripts/ShipTech/Technology/Upgrades/DanageRemodulator/DamageRemodulator.cs" id="1_v2qnp"]
+[ext_resource type="Resource" uid="uid://cojgv83nbbbb" path="res://Resources/Technologies/Upgrades/DamageRemodulator/DamageRemodulatorWeights.tres" id="2_no63u"]
+
+[node name="DamageRemodulator" type="Node2D" unique_id=1160783281]
+script = ExtResource("1_v2qnp")
+ConversionPercent = 0.5
+Weights = ExtResource("2_no63u")

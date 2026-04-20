@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://btnt0my45ndo5"]
+
+[ext_resource type="Script" uid="uid://cj2xo5j4nqo17" path="res://Scripts/Controllers/EnemyController/EnemyController.cs" id="1_5ilvg"]
+[ext_resource type="Resource" uid="uid://bbleulvsj4rfj" path="res://Scripts/Controllers/EnemyBehavior/AIProfiles/HunterAI.tres" id="2_ep6s6"]
+
+[node name="HunterController" type="Node2D" unique_id=1151074664]
+script = ExtResource("1_5ilvg")
+DetectionRange = 2000.0
+FiringRange = 850.0
+Profile = ExtResource("2_ep6s6")
+Faction = 3
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=915001422]
+one_shot = true
+
+[node name="TargetingTimer" type="Timer" parent="." unique_id=1201899459]
+
+[node name="PerAttackTimer" type="Timer" parent="." unique_id=166168217]
+one_shot = true

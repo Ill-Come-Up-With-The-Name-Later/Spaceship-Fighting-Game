@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://divyexl2fg26f"]
+
+[ext_resource type="Script" uid="uid://b51c5bnhgkwf8" path="res://Scripts/Resources/Technology/EngineData.cs" id="1_hbxb5"]
+
+[resource]
+script = ExtResource("1_hbxb5")
+Speed = 850.0
+TurningRadius = 360.0

@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://h8po2e5dauq8"]
+
+[ext_resource type="Script" uid="uid://dq05b2jl6oqug" path="res://Scripts/Ship/Ship.cs" id="1_vfitk"]
+[ext_resource type="PackedScene" uid="uid://btnt0my45ndo5" path="res://Scenes/Controllers/HunterController.tscn" id="2_3uyec"]
+[ext_resource type="Script" uid="uid://xoo63wkhjj4k" path="res://Scripts/Controllers/EnemyController/HunterController.cs" id="3_wu4er"]
+[ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="4_rapxy"]
+[ext_resource type="Texture2D" uid="uid://btphkgur15o25" path="res://Sprites/Enemies/Hunter/HunterShip.png" id="4_vfitk"]
+[ext_resource type="PackedScene" uid="uid://1t35au06htep" path="res://Scenes/ShipTech/AblativeArmor.tscn" id="6_3uyec"]
+[ext_resource type="Resource" uid="uid://d0uq7ppoyf68i" path="res://Resources/ShipSpecific/Hunter/HunterHullHealth.tres" id="6_vfitk"]
+[ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="6_yvynb"]
+[ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="7_v8qs2"]
+[ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="8_6k2g3"]
+[ext_resource type="Resource" uid="uid://e6aj12t805fe" path="res://Resources/ShipSpecific/Hunter/HunterAblativeArmorStats.tres" id="8_rapxy"]
+[ext_resource type="PackedScene" uid="uid://cmrk2msrgml0n" path="res://Scenes/ShipTech/QuantumSlipstreamDrive.tscn" id="9_3uyec"]
+[ext_resource type="Resource" uid="uid://n6l1mv5caojv" path="res://Resources/ShipSpecific/Hunter/HunterReactorStats.tres" id="9_p2p5u"]
+[ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="11_ct2jf"]
+[ext_resource type="Resource" uid="uid://divyexl2fg26f" path="res://Resources/ShipSpecific/Hunter/HunterEngineStats.tres" id="11_pnhcl"]
+[ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="12_3po4p"]
+[ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="13_70u6s"]
+[ext_resource type="Resource" uid="uid://dg0fe5fmku0co" path="res://Resources/ShipSpecific/Hunter/HunterSlipstreamDriveStats.tres" id="15_ct2jf"]
+[ext_resource type="Resource" uid="uid://cmbxnp1prh43e" path="res://Resources/ShipSpecific/Hunter/HunterSlipstreamWarpDriveStats.tres" id="16_3po4p"]
+[ext_resource type="Resource" uid="uid://xuc4pd6v3uhy" path="res://Resources/ShipSpecific/Hunter/HunterPhaserStats.tres" id="16_uk6xp"]
+[ext_resource type="Resource" uid="uid://m7gce82jma40" path="res://Resources/ShipSpecific/Hunter/HunterLaserCannonStats.tres" id="18_yvynb"]
+[ext_resource type="PackedScene" uid="uid://bx6cbcls4d6n1" path="res://Scenes/Weapons/PhotonTorpedo.tscn" id="19_v8qs2"]
+[ext_resource type="Resource" uid="uid://b111owsd3okg" path="res://Resources/ShipSpecific/Hunter/HunterPhotonTorpedoStats.tres" id="20_6k2g3"]
+[ext_resource type="PackedScene" uid="uid://chwyslpw8ogwv" path="res://Scenes/Upgrades/DamageRemodulator.tscn" id="22_1fnp2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
+radius = 1.0
+
+[node name="HunterShip" type="CharacterBody2D" unique_id=1450576114]
+script = ExtResource("1_vfitk")
+
+[node name="ControlNode" parent="." unique_id=1151074664 instance=ExtResource("2_3uyec")]
+script = ExtResource("3_wu4er")
+DetectionRange = 24000.0
+FiringRange = 1000.0
+
+[node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("4_rapxy")]
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
+shape = SubResource("CircleShape2D_2b61m")
+disabled = true
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1715419656]
+texture = ExtResource("4_vfitk")
+
+[node name="Hull" parent="." unique_id=463253017 instance=ExtResource("6_yvynb")]
+GenericStats = ExtResource("6_vfitk")
+
+[node name="AblativeArmor" parent="." unique_id=240673768 instance=ExtResource("6_3uyec")]
+DefenseGeneratorStats = ExtResource("8_rapxy")
+
+[node name="FusionReactor" parent="." unique_id=854488899 instance=ExtResource("7_v8qs2")]
+ReactorStats = ExtResource("9_p2p5u")
+
+[node name="Engine" parent="." unique_id=512023654 instance=ExtResource("8_6k2g3")]
+EngineStats = ExtResource("11_pnhcl")
+
+[node name="QuantumSlipstreamDrive" parent="." unique_id=1280896902 instance=ExtResource("9_3uyec")]
+Stats = ExtResource("15_ct2jf")
+WarpDriveStats = ExtResource("16_3po4p")
+
+[node name="Technology" type="Node2D" parent="." unique_id=1603245376]
+editor_description = "The parent node for ship technologies that aren't standard ship parts."
+
+[node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
+editor_description = "The parent node for all of a ship's weapons."
+script = ExtResource("11_ct2jf")
+AttackFOV = 120.0
+
+[node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("12_3po4p")]
+WeaponStats = ExtResource("16_uk6xp")
+
+[node name="Phaser2" parent="WeaponSystem" unique_id=1182635682 instance=ExtResource("12_3po4p")]
+WeaponStats = ExtResource("16_uk6xp")
+
+[node name="Phaser3" parent="WeaponSystem" unique_id=307861685 instance=ExtResource("12_3po4p")]
+WeaponStats = ExtResource("16_uk6xp")
+
+[node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("13_70u6s")]
+WeaponStats = ExtResource("18_yvynb")
+
+[node name="LaserCannon2" parent="WeaponSystem" unique_id=1908203804 instance=ExtResource("13_70u6s")]
+WeaponStats = ExtResource("18_yvynb")
+
+[node name="PhotonTorpedo" parent="WeaponSystem" unique_id=1599774898 instance=ExtResource("19_v8qs2")]
+WeaponStats = ExtResource("20_6k2g3")
+
+[node name="PhotonTorpedo2" parent="WeaponSystem" unique_id=1872664723 instance=ExtResource("19_v8qs2")]
+WeaponStats = ExtResource("20_6k2g3")
+
+[node name="PhotonTorpedo3" parent="WeaponSystem" unique_id=1787111031 instance=ExtResource("19_v8qs2")]
+WeaponStats = ExtResource("20_6k2g3")
+
+[node name="Upgrades" type="Node2D" parent="." unique_id=1621237522]
+
+[node name="DamageRemodulator" parent="Upgrades" unique_id=1160783281 instance=ExtResource("22_1fnp2")]
+
+[node name="Abilities" type="Node2D" parent="." unique_id=1831618945]

@@ -45,6 +45,12 @@ public partial class CameraShake : Camera2D
         Offset += offset * (float)delta;
         ShakeStrength = Mathf.Max(0, ShakeStrength - ShakeDecay);
         //GD.Print("Shake Strength: " + ShakeStrength);
+        
+        if(ShakeStrength == 0) 
+        {
+            if(GetParent() is not null) 
+                GlobalPosition = ((Node2D)GetParent()).GlobalPosition;
+        }
     }
 
     public void ShakeCamera(Ship damaged, Ship damager, double damage,
