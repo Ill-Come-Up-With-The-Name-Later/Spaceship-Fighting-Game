@@ -20,21 +20,6 @@ public partial class GameManager : Node
         Eventbus.ShipDestroyed += ShipDestroyed;
     }
 
-    public override void _Process(double delta)
-    {
-        if (PlayerShip is null)
-        {
-            foreach (Ship ship in Ships)
-            {
-                if (ship.ControlNode.Faction == Faction.Player)
-                {
-                    PlayerShip = ship;
-                    break;
-                }
-            }
-        }
-    }
-
     /// <summary>
     /// Finds all ships of a faction
     /// </summary>
@@ -65,6 +50,7 @@ public partial class GameManager : Node
     /// </param>
     public void ShipSpawned(Ship ship)
     {
+        GD.Print("Ship spawned: " + ship.GetName() + " Active ships: " + Ships.Count);
         Ships.Add(ship);
     }
 
@@ -79,6 +65,7 @@ public partial class GameManager : Node
     /// </param>
     public void ShipDestroyed(Ship ship, Ship destroyer)
     {
+        GD.Print("Ship destroyed: " + ship.GetName() + " Active ships: " + Ships.Count);
         if(Ships.Contains(ship))
             Ships.Remove(ship);
     }
