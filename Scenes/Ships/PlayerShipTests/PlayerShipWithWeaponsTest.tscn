@@ -26,7 +26,7 @@ radius = 1.0
 script = ExtResource("1_mi215")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=2140110726]
-zoom = Vector2(0.35, 0.35)
+zoom = Vector2(0.4, 0.4)
 script = ExtResource("2_ioqb1")
 ShakeDecay = 65.0
 
