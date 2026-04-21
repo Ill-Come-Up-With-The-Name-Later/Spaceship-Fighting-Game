@@ -43,7 +43,7 @@ public abstract partial class Ability : Technology
         CooldownTimer.Timeout -= ReEnable;
     }
 
-    public void Activate()
+    protected void Activate()
     {
         if (!CanUse)
             return;

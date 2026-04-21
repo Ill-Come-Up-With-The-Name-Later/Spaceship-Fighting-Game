@@ -341,6 +341,25 @@ public partial class Ship : CharacterBody2D
 	}
 
 	/// <summary>
+	/// Gets a list of all abilities of a type
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of ability
+	/// </typeparam>
+	/// <returns>
+	/// A list of all abilities of the type
+	/// </returns>
+	public List<T> GetAllAbilities<T>() where T : Ability
+	{
+		List<T> abilities = new List<T>();
+		foreach(Node child in AbilityNode.GetChildren())
+			if(child is T ability)
+				abilities.Add(ability);
+		
+		return abilities;
+	}
+
+	/// <summary>
 	/// If the ship has an ability
 	/// </summary>
 	/// <typeparam name="T">

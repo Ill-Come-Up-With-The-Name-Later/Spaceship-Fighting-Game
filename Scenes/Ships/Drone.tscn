@@ -31,6 +31,9 @@ radius = 1.0
 
 [node name="Drone" type="CharacterBody2D" unique_id=1450576114]
 script = ExtResource("1_1tns1")
+Lifespan = 60.0
+
+[node name="LifespanTimer" type="Timer" parent="." unique_id=622338802]
 
 [node name="ControlNode" parent="." unique_id=1717359737 instance=ExtResource("2_s5acn")]
 DetectionRange = 1500.0

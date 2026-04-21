@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://u25d5u2n2dmp"]
+
+[ext_resource type="Script" uid="uid://ceu0mrudkpn20" path="res://Scripts/ShipTech/Technology/Abilities/DroneMaterializer/DroneMaterializer.cs" id="1_dpgfy"]
+[ext_resource type="Resource" uid="uid://d2knpoc5vrat2" path="res://Resources/Technologies/Abilities/DroneMaterializerWeights.tres" id="2_wt3y4"]
+
+[node name="DroneMaterializer" type="Node2D" unique_id=284819564]
+script = ExtResource("1_dpgfy")
+Cooldown = 120.0
+Weights = ExtResource("2_wt3y4")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=266982986]
+one_shot = true

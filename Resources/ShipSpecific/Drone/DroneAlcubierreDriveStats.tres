@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_h167t")
-SpeedMultiplier = 2.5
+SpeedMultiplier = 2.0
 MaxDuration = 10.0
 AccelerationTime = 0.4
 DecelerationTime = 0.2
