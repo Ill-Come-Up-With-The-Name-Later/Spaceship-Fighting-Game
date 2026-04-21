@@ -6,4 +6,4 @@
 script = ExtResource("1_s026q")
 Damage = 50000.0
 PenetratingDamage = 15000.0
-FiringCooldown = 8.5
+FiringCooldown = 8.0

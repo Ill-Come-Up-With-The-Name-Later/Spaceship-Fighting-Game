@@ -153,6 +153,7 @@ public partial class Ship : CharacterBody2D
 		DefenseSystem.DefenseActive = true;
 
 		AllTechnologies = GetAllTechnologies();
+		Eventbus.EmitSignal("ShipSpawned", this);
 	}
 	
 	public override void _Process(double delta)

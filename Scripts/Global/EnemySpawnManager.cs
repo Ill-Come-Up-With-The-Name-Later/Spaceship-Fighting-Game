@@ -73,8 +73,6 @@ public partial class EnemySpawnManager : Node2D
             // Todo: Replace this with weighted selection
             Ship ship = (Ship)Enemies[generator.RandiRange(0, Enemies.Count)].Instantiate();
             ship.GlobalPosition = spawnpoint.GlobalPosition;
-
-            Eventbus.EmitSignal("EnemySpawned");
         }
         
         SpawnTimer.WaitTime = generator.RandfRange(MinSpawnTime, MaxSpawnTime);

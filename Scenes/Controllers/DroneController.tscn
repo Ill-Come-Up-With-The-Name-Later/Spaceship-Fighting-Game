@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cjbyghrbd7psp"]
+
+[ext_resource type="Script" uid="uid://d3re2xd4y68gc" path="res://Scripts/Controllers/DroneController/DroneController.cs" id="1_6g5pi"]
+
+[node name="DroneController" type="Node2D" unique_id=1717359737]
+script = ExtResource("1_6g5pi")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=2112561157]
+
+[node name="TargetingTimer" type="Timer" parent="." unique_id=1530427718]
+
+[node name="PerAttackTimer" type="Timer" parent="." unique_id=2083182148]

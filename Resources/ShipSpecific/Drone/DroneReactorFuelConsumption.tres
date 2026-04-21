@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://c8stmkbxu7brm"]
+
+[ext_resource type="Script" uid="uid://jvsc74xbadpj" path="res://Scripts/Resources/ConsumptionData.cs" id="1_j15g6"]
+
+[resource]
+script = ExtResource("1_j15g6")
+PerSecondRate = 20.0

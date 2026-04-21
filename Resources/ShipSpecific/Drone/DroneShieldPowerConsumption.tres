@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://khkkx0qkgu2t"]
+
+[ext_resource type="Script" uid="uid://c2gtwr00ga23s" path="res://Scripts/Resources/PowerConsumptionData.cs" id="1_ql4x5"]
+
+[resource]
+script = ExtResource("1_ql4x5")
+Amount = 250.0

@@ -73,7 +73,7 @@ public partial class HunterManager : Node2D
     public void RespondToTranswarpExit(Ship user)
     {
         // Temporary value
-        Array<Ship> nearby = NearbyShips(user.GlobalPosition, 18000);
+        Array<Ship> nearby = NearbyShips(user.GlobalPosition, 28000);
 
         foreach (Ship ship in nearby)
         {

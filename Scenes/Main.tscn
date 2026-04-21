@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cmvkih6fr2gv8"]
 
 [ext_resource type="PackedScene" uid="uid://bmraug80pu27k" path="res://Scenes/Ships/PlayerShipTests/PlayerShipWithWeaponsTest.tscn" id="1_idj7w"]
-[ext_resource type="PackedScene" uid="uid://h8po2e5dauq8" path="res://Scenes/Ships/HunterShip.tscn" id="4_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://ce0a18ol41h12" path="res://Scenes/Ships/Drone.tscn" id="4_pbw6q"]
 
 [node name="Main" type="Node2D" unique_id=1968216983]
 
 [node name="PlayerShip" parent="." unique_id=1450576114 instance=ExtResource("1_idj7w")]
 
-[node name="HunterShip" parent="." unique_id=1386924450 instance=ExtResource("4_rgh2o")]
-position = Vector2(1539, -1026)
+[node name="Drone" parent="." unique_id=594957873 instance=ExtResource("4_pbw6q")]
+position = Vector2(681, 784)

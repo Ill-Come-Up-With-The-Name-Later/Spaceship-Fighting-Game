@@ -100,7 +100,6 @@ public partial class Projectile : CharacterBody2D
         if(!IsInstanceValid(this))
             GD.PrintErr("Projectile couldn't find itself");
         
-        GD.Print(damager.GetName() + "'s " + GetName() + " hit " + damaged.GetName());
         QueueFree();
     }
 

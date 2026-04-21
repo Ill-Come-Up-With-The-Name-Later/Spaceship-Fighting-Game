@@ -67,10 +67,22 @@ public partial class Hurtbox : Area2D
 
 		if (damaged.HasShield())
 		{
+			double shieldHealth = damaged.DefenseSystem.CurrentDefenseHealth;
 			damaged.DamageShield(damage + shieldDamage);
-			damaged.CurrentPower = Mathf.Max(0, damaged.CurrentPower - (damage + (shieldDamage / 3)));
-			damaged.DamageHull((penetratingDamage * 0.5) + Mathf.Max(0, damage - damaged.DefenseSystem.CurrentDefenseHealth) +
-			                   (damage * (1 - damaged.DefenseSystem.DefensePercentage)));
+
+			damaged.CurrentPower = Mathf.Max(0, damaged.CurrentPower - ((damage + shieldDamage) / 3));
+			
+			if(damage + shieldDamage > damaged.DefenseSystem.CurrentDefenseHealth)
+				damaged.DefenseSystem.Toggle();
+			
+			damage -= shieldHealth;
+			
+			if(damaged.HasShield())
+				damaged.DamageHull((penetratingDamage * 0.5) + 
+				                   (Mathf.Max(0, damage) * (1 - damaged.DefenseSystem.DefensePercentage)));
+			else
+				damaged.DamageHull((penetratingDamage * 0.5) + (Mathf.Max(0, damage)));
+			
 
 			GpuParticles2D shieldDamageEffect = (GpuParticles2D)ShieldDamageParticles.Instantiate();
 			AddChild(shieldDamageEffect);

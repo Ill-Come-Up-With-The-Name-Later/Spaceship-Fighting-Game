@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_pv6e7")
-Damage = 750.0
+Damage = 800.0
+PenetratingDamage = 100.0
 FiringCooldown = 0.3
