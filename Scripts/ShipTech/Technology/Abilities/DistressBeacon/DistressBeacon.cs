@@ -47,7 +47,7 @@ public partial class DistressBeacon : Ability
 
     public void Emit()
     {
-        if (ParentShip is not null)
+        if (ParentShip is not null && !ParentShip.ControlNode.Dead)
         {
             GD.Print("Emitting distress signal");
             
