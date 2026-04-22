@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bro3dph3qouor"]
+
+[ext_resource type="Texture2D" uid="uid://ci62sagt8rn6e" path="res://Sprites/Particles/WarpDrives/FlareDriveEnter.png" id="1_2k00i"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_svvmo"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_vpdrv"]
+_data = [Vector2(0.020270273, 0), 0.0, 0.0, 0, 0, Vector2(0.5608108, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.3146068), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_svvmo"]
+curve = SubResource("Curve_vpdrv")
+
+[sub_resource type="Curve" id="Curve_rqdwy"]
+_limits = [0.99, 3.0, 0.0, 1.0]
+_data = [Vector2(0.0067567676, 2.006292), 0.0, 0.0, 0, 0, Vector2(0.5675676, 3), 0.0, 0.0, 0, 0, Vector2(1, 2.074045), -1.2881784, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mm011"]
+curve = SubResource("Curve_rqdwy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rqdwy"]
+lifetime_randomness = 0.53
+particle_flag_align_y = true
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_mm011")
+color = Color(1, 0.7294118, 0.0627451, 0.6745098)
+alpha_curve = SubResource("CurveTexture_svvmo")
+anim_speed_min = 3.01
+anim_speed_max = 9.04
+
+[node name="FlareDriveWarpEnter" type="GPUParticles2D" unique_id=278705033]
+material = SubResource("CanvasItemMaterial_svvmo")
+emitting = false
+amount = 3
+texture = ExtResource("1_2k00i")
+lifetime = 0.25
+one_shot = true
+randomness = 1.0
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_rqdwy")

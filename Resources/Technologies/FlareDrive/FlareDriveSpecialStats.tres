@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://dlf1w7auy8qy4"]
+
+[ext_resource type="Script" uid="uid://bakfdowaauj0t" path="res://Scripts/Resources/Technology/FlareDriveStats.cs" id="1_ct2jx"]
+
+[resource]
+script = ExtResource("1_ct2jx")
+DamagingRadius = 600.0
+Damage = 20000.0

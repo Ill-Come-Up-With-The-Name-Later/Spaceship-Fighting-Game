@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bnd45plt2eplw"]
+
+[ext_resource type="PackedScene" uid="uid://bac0hnuexvwnb" path="res://Scenes/Particles/WarpDriveEffects/FlareDrive/FlareDriveWarp.tscn" id="1_bqcsi"]
+[ext_resource type="Script" uid="uid://b2xmejt8rsh2a" path="res://Scripts/ShipTech/Technology/WarpDrives/FlareDrive.cs" id="1_xl7dt"]
+[ext_resource type="PackedScene" uid="uid://bro3dph3qouor" path="res://Scenes/Particles/WarpDriveEffects/FlareDrive/FlareDriveWarpEnter.tscn" id="2_2eemw"]
+[ext_resource type="Resource" uid="uid://dlf1w7auy8qy4" path="res://Resources/Technologies/FlareDrive/FlareDriveSpecialStats.tres" id="2_facfi"]
+[ext_resource type="Resource" uid="uid://bkyrhl4s0bn52" path="res://Resources/Technologies/FlareDrive/FlareDriveStats.tres" id="2_hitit"]
+[ext_resource type="Resource" uid="uid://0oel4gc6yjkt" path="res://Resources/Technologies/FlareDrive/FlareDrivePowerConsumption.tres" id="3_t8khs"]
+[ext_resource type="Resource" uid="uid://dfnvorehvu6xn" path="res://Resources/Technologies/FlareDrive/FlareDriveWeights.tres" id="4_2eemw"]
+[ext_resource type="Resource" uid="uid://edojmubepvhv" path="res://Resources/WarpDriveHealthStats.tres" id="5_7da1e"]
+[ext_resource type="PackedScene" uid="uid://c3gkvmakpow7" path="res://Scenes/ShipTech/ShipPartRegenerator.tscn" id="7_gvcts"]
+[ext_resource type="Resource" uid="uid://csf21wosh4l7i" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenRate.tres" id="8_1hgat"]
+[ext_resource type="Resource" uid="uid://6fkoxisssd56" path="res://Resources/Technologies/ShipPartRegenerator/GeneralPartRegenConsumptionRate.tres" id="9_g2go5"]
+
+[node name="FlareDrive" type="Node2D" unique_id=1280896902 node_paths=PackedStringArray("WarpParticles")]
+script = ExtResource("1_xl7dt")
+Stats = ExtResource("2_facfi")
+WarpDriveStats = ExtResource("2_hitit")
+PowerConsumption = ExtResource("3_t8khs")
+EnterExitParticles = ExtResource("2_2eemw")
+WarpParticles = NodePath("FlareDriveWarp")
+GenericStats = ExtResource("5_7da1e")
+Weights = ExtResource("4_2eemw")
+
+[node name="FlareDriveWarp" parent="." unique_id=278705033 instance=ExtResource("1_bqcsi")]
+
+[node name="ShipPartRegenerator" parent="." unique_id=1712902516 instance=ExtResource("7_gvcts")]
+RegenerationRate = ExtResource("8_1hgat")
+ConsumptionRate = ExtResource("9_g2go5")
+
+[node name="DriveTimer" type="Timer" parent="." unique_id=196391210]
+one_shot = true
+
+[node name="AccelerationTimer" type="Timer" parent="." unique_id=701595543]
+one_shot = true
+
+[node name="DecelerationTimer" type="Timer" parent="." unique_id=217691203]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1895495104]
