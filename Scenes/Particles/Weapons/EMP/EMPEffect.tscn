@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dwunchl5yxeec"]
+
+[ext_resource type="Texture2D" uid="uid://c16ci5ikp45uv" path="res://Sprites/Particles/ElectricalBurst.png" id="1_v4vjv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0j0kj"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_r4ksr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.23595512), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dc6tp"]
+curve = SubResource("Curve_r4ksr")
+
+[sub_resource type="Gradient" id="Gradient_7ebtf"]
+colors = PackedColorArray(0, 0.75686276, 1, 0.6862745, 0.6745098, 1, 1, 0.77254903)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3rim2"]
+gradient = SubResource("Gradient_7ebtf")
+
+[sub_resource type="Gradient" id="Gradient_8ody0"]
+offsets = PackedFloat32Array(0, 0.73770493, 1)
+colors = PackedColorArray(0, 0.75686276, 1, 0.6862745, 0.73770493, 0.73770493, 0.73770493, 1, 0.6745098, 1, 1, 0.77254903)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lefuv"]
+gradient = SubResource("Gradient_8ody0")
+
+[sub_resource type="Curve" id="Curve_5e55p"]
+_data = [Vector2(0, 0.48314613), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48314613), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6yxdi"]
+curve = SubResource("Curve_5e55p")
+
+[sub_resource type="Curve" id="Curve_lwbh1"]
+_limits = [0.5, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.5405406, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g4non"]
+curve = SubResource("Curve_lwbh1")
+
+[sub_resource type="Curve" id="Curve_o7033"]
+_data = [Vector2(0, 0.23595512), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.24719107), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6etoi"]
+curve = SubResource("Curve_o7033")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tyab4"]
+lifetime_randomness = 0.65
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 160.0
+orbit_velocity_min = -2.0
+orbit_velocity_max = 2.0000002
+radial_velocity_min = 19.999977
+radial_velocity_max = 19.999977
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_g4non")
+color = Color(0.61960787, 1, 1, 0.8)
+color_ramp = SubResource("GradientTexture1D_lefuv")
+color_initial_ramp = SubResource("GradientTexture1D_3rim2")
+alpha_curve = SubResource("CurveTexture_dc6tp")
+emission_curve = SubResource("CurveTexture_6yxdi")
+turbulence_enabled = true
+turbulence_influence_over_life = SubResource("CurveTexture_6etoi")
+
+[node name="EMPEffect" type="GPUParticles2D" unique_id=209333595]
+material = SubResource("CanvasItemMaterial_0j0kj")
+emitting = false
+amount = 50
+amount_ratio = 0.3
+texture = ExtResource("1_v4vjv")
+lifetime = 0.5
+one_shot = true
+speed_scale = 0.75
+explosiveness = 0.75
+randomness = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_tyab4")
