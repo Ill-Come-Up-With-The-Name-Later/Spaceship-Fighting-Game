@@ -139,6 +139,9 @@ public partial class EnemyController : Controller
 
     public override void _Process(double delta)
     {
+        if (Dead)
+            return;
+        
         TimeInState += delta;
         CurrentState?.Process(this, delta);
         EvaluateTransitions(delta);
@@ -146,6 +149,9 @@ public partial class EnemyController : Controller
 
     public override void _PhysicsProcess(double delta)
     {
+        if (Dead)
+            return;
+        
         CurrentState?.PhysicsProcess(this, delta);
 
        Movement(delta);

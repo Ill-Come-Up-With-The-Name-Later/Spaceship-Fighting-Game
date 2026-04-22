@@ -16,6 +16,8 @@ public partial class Hurtbox : Area2D
 	[Export]
 	public PackedScene HullDamageParticles;
 	
+	public AnimationPlayer ShipDestroyedAnimation;
+	
 	public override void _Ready()
 	{
 		ParentShip = GetParent() as Ship;
@@ -32,6 +34,11 @@ public partial class Hurtbox : Area2D
 		
 		if(Eventbus is null)
 			GD.PrintErr("Eventbus is null");
+		
+		ShipDestroyedAnimation = GetNode<AnimationPlayer>("ShipDestroyedEffect");
+		
+		if(ShipDestroyedAnimation is null)
+			GD.PrintErr("Ship destruction animation is null");
 		
 		Eventbus.ShipDamaged += ApplyDamage;
 	}
@@ -132,9 +139,34 @@ public partial class Hurtbox : Area2D
 		}
 	}
 
-	public void Die(Ship damaged, Ship damager)
+	/// <summary>
+	/// Ship death
+	/// </summary>
+	/// <param name="damaged">
+	/// The ship that is dead
+	/// </param>
+	/// <param name="damager">
+	/// The ship that killed the other
+	/// </param>
+	public async void Die(Ship damaged, Ship damager)
 	{
+		foreach (var child in damaged.Hurtbox.ShipDestroyedAnimation.GetChildren())
+		{
+			if(child is GpuParticles2D particle)
+				particle.GlobalPosition = damaged.GlobalPosition;
+		}
+		
+		damaged.Hurtbox.ShipDestroyedAnimation.Play("ShipDestroyed");
+
+		damaged.ControlNode.Dead = true;
+		
+		var damagedSelfMod = damaged.Sprite.SelfModulate;
+		damagedSelfMod.A = 0;
+		damaged.Sprite.SelfModulate = damagedSelfMod;
+		
 		Eventbus.EmitSignal("ShipDestroyed", damaged, damager);
+		
+		await ToSignal(ShipDestroyedAnimation, AnimationPlayer.SignalName.AnimationFinished);
 		damaged.QueueFree();
 	}
 }

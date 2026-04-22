@@ -5,4 +5,6 @@ public partial class Controller : Node2D
 {
     [Export]
     public Faction Faction;
+
+    public bool Dead = false;
 }

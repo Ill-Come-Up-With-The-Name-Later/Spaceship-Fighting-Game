@@ -74,6 +74,9 @@ public partial class PlayerController : Controller
 
 	public override void _Process(double delta)
 	{
+		if (Dead)
+			return;
+		
 		if (ParentShip.CanMove)
 		{
 			if (Input.IsActionPressed("accelerate"))
@@ -133,6 +136,9 @@ public partial class PlayerController : Controller
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (Dead)
+			return;
+		
 		ParentShip.MoveAndSlide();
 	}
 

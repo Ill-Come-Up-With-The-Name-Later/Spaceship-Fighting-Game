@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://bkt4alxsljrpp"]
+
+[ext_resource type="Texture2D" uid="uid://ba47j6xxkqlta" path="res://Sprites/Particles/ExplosionOutward.png" id="1_4jsge"]
+[ext_resource type="Texture2D" uid="uid://f0um8fu2htyv" path="res://Sprites/Particles/ExplosionShockwave.png" id="2_syxw6"]
+[ext_resource type="Texture2D" uid="uid://cv3gcsbqnduoa" path="res://Sprites/Particles/ExplosionCloud.png" id="3_syxw6"]
+
+[sub_resource type="Animation" id="Animation_m7wxr"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_syxw6"]
+resource_name = "ShipDestroyed"
+length = 3.000002
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShipDestroyedEffect/OutwardBurst:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.083333336),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShipDestroyedEffect/Shockwave:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShipDestroyedEffect/Smoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShipDestroyedEffect/OutwardBurst")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShipDestroyedEffect/Shockwave")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShipDestroyedEffect/Smoke")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m7wxr"]
+_data = {
+&"RESET": SubResource("Animation_m7wxr"),
+&"ShipDestroyed": SubResource("Animation_syxw6")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_m7wxr"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_ttyrj"]
+_limits = [0.0, 2.5, 0.0, 1.0]
+_data = [Vector2(0.033783793, 0.2696631), 0.0, 0.0, 0, 0, Vector2(1, 2.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7jpdb"]
+curve = SubResource("Curve_ttyrj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yg4c5"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_7jpdb")
+color = Color(1, 0.69803923, 0.25490198, 0.5568628)
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nyvf4"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_v6pcx"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0.01351352, 0), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4ivvb"]
+curve = SubResource("Curve_v6pcx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dmkqg"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_4ivvb")
+color = Color(0.70380783, 0.70380783, 0.70380783, 0.69803923)
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ttyrj"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_7jpdb"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.04494381), 0.0, 0.0, 0, 0, Vector2(0.57432437, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yg4c5"]
+curve = SubResource("Curve_7jpdb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nyvf4"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_yg4c5")
+color = Color(0.46618116, 0.46618068, 0.46618092, 0.59607846)
+
+[node name="ShipDestroyedEffect" type="AnimationPlayer" unique_id=2050342506]
+libraries/ = SubResource("AnimationLibrary_m7wxr")
+
+[node name="OutwardBurst" type="GPUParticles2D" parent="." unique_id=1324118978]
+material = SubResource("CanvasItemMaterial_m7wxr")
+emitting = false
+amount = 1
+texture = ExtResource("1_4jsge")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yg4c5")
+
+[node name="Shockwave" type="GPUParticles2D" parent="." unique_id=583949625]
+material = SubResource("CanvasItemMaterial_nyvf4")
+emitting = false
+amount = 1
+texture = ExtResource("2_syxw6")
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_dmkqg")
+
+[node name="Smoke" type="GPUParticles2D" parent="." unique_id=648093209]
+material = SubResource("CanvasItemMaterial_ttyrj")
+emitting = false
+amount = 2
+texture = ExtResource("3_syxw6")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_nyvf4")

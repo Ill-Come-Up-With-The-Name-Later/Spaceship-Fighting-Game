@@ -501,6 +501,9 @@ public partial class Ship : CharacterBody2D
 		if (other == this)
 			return false;
 
+		if (other.ControlNode.Dead)
+			return false;
+
 		if (ControlNode is EnemyController enemyController 
 		    && other.ControlNode is EnemyController otherController)
 		{
