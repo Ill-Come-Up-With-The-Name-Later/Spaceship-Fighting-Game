@@ -153,6 +153,13 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
+[sub_resource type="Curve" id="Curve_syxw6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.13483155), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m7wxr"]
+curve = SubResource("Curve_syxw6")
+
 [sub_resource type="Curve" id="Curve_7jpdb"]
 _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.04494381), 0.0, 0.0, 0, 0, Vector2(0.57432437, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -168,6 +175,7 @@ emission_sphere_radius = 10.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_yg4c5")
 color = Color(0.46618116, 0.46618068, 0.46618092, 0.59607846)
+alpha_curve = SubResource("CurveTexture_m7wxr")
 
 [node name="ShipDestroyedEffect" type="AnimationPlayer" unique_id=2050342506]
 libraries/ = SubResource("AnimationLibrary_m7wxr")
@@ -177,7 +185,6 @@ material = SubResource("CanvasItemMaterial_m7wxr")
 emitting = false
 amount = 1
 texture = ExtResource("1_4jsge")
-lifetime = 0.6
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_yg4c5")
@@ -187,6 +194,7 @@ material = SubResource("CanvasItemMaterial_nyvf4")
 emitting = false
 amount = 1
 texture = ExtResource("2_syxw6")
+lifetime = 1.5
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_dmkqg")
 

@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_fq6h7")
-SpeedMultiplier = 25.0
+SpeedMultiplier = 30.0
 MaxDuration = 0.35
-AccelerationTime = 0.2
-DecelerationTime = 0.2
-TurnRate = 0.8
+AccelerationTime = 0.16
+DecelerationTime = 0.16
+TurnRate = 0.75
 Cooldown = 45.0
