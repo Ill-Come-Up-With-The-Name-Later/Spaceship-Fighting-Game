@@ -59,6 +59,10 @@ public partial class GenericAttackState : AIState
         
         if(controller.CanAttack)
         {
+            if(controller.Forward.Dot(target.Forward) >
+               Mathf.Cos(Mathf.DegToRad(controller.ParentShip.Weapons.AttackFOV)))
+                controller.ParentShip.TurnToFace(target.GlobalPosition, delta);
+            
             RandomNumberGenerator rand = new RandomNumberGenerator();
             
             Vector2 offset = new Vector2(rand.RandfRange(-(float)controller.FiringRange * 0.75f,

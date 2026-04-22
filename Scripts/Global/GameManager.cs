@@ -8,7 +8,7 @@ public partial class GameManager : Node
 {
     public Eventbus Eventbus;
     
-    public List<Ship> Ships = new List<Ship>();
+    public HashSet<Ship> Ships = new HashSet<Ship>();
 
     public Ship PlayerShip;
 

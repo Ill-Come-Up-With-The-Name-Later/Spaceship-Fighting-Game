@@ -67,6 +67,8 @@ public partial class EnemyController : Controller
 
     public PriorityQueue<Ship, double> TargetingOrder;
     public PriorityQueue<Weapon, double> WeaponFiringOrder;
+    
+    public PriorityQueue<Ship, double> TargetingBuffer = new PriorityQueue<Ship, double>();
 
     private float currentTurnSpeed;
 
@@ -160,7 +162,7 @@ public partial class EnemyController : Controller
     public void OnHit(Ship ship, Ship damager)
     {
         if(ship == ParentShip)
-            TargetingOrder.Enqueue(damager, -20);
+            TargetingOrder.Enqueue(damager, -25);
     }
 
     /// <summary>
@@ -342,6 +344,12 @@ public partial class EnemyController : Controller
     /// </returns>
     public virtual PriorityQueue<Ship, double> TargetPriorities()
     {
+        while (TargetingOrder.Count > 0)
+        {
+            TargetingOrder.TryDequeue(out Ship ship, out double priority);
+            TargetingBuffer.Enqueue(ship, priority);
+        }
+        
         PriorityQueue<Ship, double> queue = new PriorityQueue<Ship, double>();
 
         foreach (Ship ship in Manager.Ships)
@@ -372,6 +380,12 @@ public partial class EnemyController : Controller
             priority += ship.GetMissingShieldPercentage() * 2;
             
             queue.Enqueue(ship, -priority);
+        }
+
+        while (TargetingBuffer.Count > 0)
+        {
+            TargetingBuffer.TryDequeue(out Ship ship, out double priority);
+            TargetingOrder.Enqueue(ship, priority);
         }
 
         return queue;
