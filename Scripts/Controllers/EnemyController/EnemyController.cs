@@ -161,8 +161,11 @@ public partial class EnemyController : Controller
 
     public void OnHit(Ship ship, Ship damager)
     {
-        if(ship == ParentShip)
-            TargetingOrder.Enqueue(damager, -25);
+        if (damager is null)
+            return;
+        
+        if (ship == ParentShip)
+            TargetingBuffer.Enqueue(damager, -25);
     }
 
     /// <summary>
@@ -344,11 +347,7 @@ public partial class EnemyController : Controller
     /// </returns>
     public virtual PriorityQueue<Ship, double> TargetPriorities()
     {
-        while (TargetingOrder.Count > 0)
-        {
-            TargetingOrder.TryDequeue(out Ship ship, out double priority);
-            TargetingBuffer.Enqueue(ship, priority);
-        }
+        FlushTargetingToBuffer();
         
         PriorityQueue<Ship, double> queue = new PriorityQueue<Ship, double>();
 
@@ -382,13 +381,43 @@ public partial class EnemyController : Controller
             queue.Enqueue(ship, -priority);
         }
 
-        while (TargetingBuffer.Count > 0)
-        {
-            TargetingBuffer.TryDequeue(out Ship ship, out double priority);
-            TargetingOrder.Enqueue(ship, priority);
-        }
-
+        RepopulateFromBuffer(ref queue);
         return queue;
+    }
+
+    /// <summary>
+    /// Repopulates the targeting buffer into the
+    /// targeting order
+    /// </summary>
+    protected void RepopulateFromBuffer(ref PriorityQueue<Ship, double> queue)
+    {
+        while (TargetingBuffer.TryDequeue(out Ship ship, out double priority))
+        {
+            if (ship is null)
+                continue;
+            
+            if (ship.ControlNode.Dead)
+                continue;
+            
+            queue.Enqueue(ship, priority);
+        }
+    }
+
+    /// <summary>
+    /// Places the targeting order into buffer
+    /// </summary>
+    protected void FlushTargetingToBuffer()
+    {
+        while (TargetingOrder.TryDequeue(out Ship ship, out double priority))
+        {
+            if (ship is null)
+                continue;
+            
+            if (ship.ControlNode.Dead)
+                continue;
+            
+            TargetingBuffer.Enqueue(ship, priority);
+        }
     }
 
     /// <summary>

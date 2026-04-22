@@ -83,8 +83,8 @@ public partial class GenericAttackState : AIState
             if (controller.FireAt(weapons.Peek(), target))
                 weapons.Dequeue();
 
-            if (weapons.Count > 0 && controller.TargetingOrder.Count > 1)
-                controller.TargetingOrder.Dequeue();
+            if (weapons.Count > 0 && controller.TargetingOrder.Count >= 1)
+                controller.TargetingBuffer.Enqueue(controller.TargetingOrder.Dequeue(), -50);
         }
         else
         {

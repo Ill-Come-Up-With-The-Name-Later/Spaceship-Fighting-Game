@@ -5,11 +5,7 @@ public partial class HunterController : EnemyController
 {
     public override PriorityQueue<Ship, double> TargetPriorities()
     {
-        while (TargetingOrder.Count > 0)
-        {
-            TargetingOrder.TryDequeue(out Ship ship, out double priority);
-            TargetingBuffer.Enqueue(ship, priority);
-        }
+        FlushTargetingToBuffer();
         
         PriorityQueue<Ship, double> queue = new PriorityQueue<Ship, double>();
 
@@ -46,12 +42,7 @@ public partial class HunterController : EnemyController
             queue.Enqueue(ship, -priority);
         }
         
-        while (TargetingBuffer.Count > 0)
-        {
-            TargetingBuffer.TryDequeue(out Ship ship, out double priority);
-            TargetingOrder.Enqueue(ship, priority);
-        }
-
+        RepopulateFromBuffer(ref queue);
         return queue;
     }
 }

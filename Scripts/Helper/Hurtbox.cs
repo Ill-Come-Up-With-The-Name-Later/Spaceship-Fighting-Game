@@ -125,6 +125,8 @@ public partial class Hurtbox : Area2D
 			hullDamageEffect.Finished += hullDamageEffect.QueueFree;
 		}
 		
+		Eventbus.EmitSignal("SimplifiedShipDamaged", damaged, damager);
+		
 		GD.Print("Damaged: " + damaged.GetName() + " Damager: " + damager.GetName());
 		GD.Print("Hull health: " + damaged.Hull.CurrentHealth);
 		GD.Print("Shield Generator Health: " + damaged.DefenseSystem.CurrentHealth + " Shield Up: " + damaged.DefenseSystem.DefenseActive);
