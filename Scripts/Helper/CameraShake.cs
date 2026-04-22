@@ -48,6 +48,9 @@ public partial class CameraShake : Camera2D
         
         if(ShakeStrength == 0) 
         {
+            if(offset.X != 0 || offset.Y != 0)
+                Offset = Vector2.Zero;
+            
             if(GetParent() is not null) 
                 GlobalPosition = ((Node2D)GetParent()).GlobalPosition;
         }
@@ -62,6 +65,6 @@ public partial class CameraShake : Camera2D
         if (damaged != ParentShip)
             return;
         
-        ShakeStrength = (float)damage * 0.33f;
+        ShakeStrength = (float)damage * 0.25f;
     }
 }
