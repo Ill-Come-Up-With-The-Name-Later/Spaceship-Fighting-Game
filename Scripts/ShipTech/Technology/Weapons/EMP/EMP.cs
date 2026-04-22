@@ -1,5 +1,6 @@
 ﻿using Godot;
 using Godot.Collections;
+using SpaceshipFightingGame.Scripts.Global;
 
 public partial class EMP : Weapon
 {
@@ -9,7 +10,12 @@ public partial class EMP : Weapon
     [Export]
     public double PowerDrainHit;
 
+    [Export]
+    public PackedScene BurstParticle;
+
     public Timer ChargeTimer;
+    
+    public GameManager GameManager;
 
     public override void _Ready()
     {
@@ -21,6 +27,8 @@ public partial class EMP : Weapon
             GD.PrintErr("No charge timer");
 
         ChargeTimer.Timeout += HitTargetsNear;
+        
+        GameManager = GetNode<GameManager>("/root/GameManager");
     }
 
     public override void _ExitTree()
@@ -38,49 +46,55 @@ public partial class EMP : Weapon
 
     public void HitTargetsNear()
     {
-        Array<Node> nodes = GetTree().GetNodesInGroup("Ship");
+        GpuParticles2D burst = BurstParticle.Instantiate<GpuParticles2D>();
+        GetTree().CurrentScene.AddChild(burst);
+
+        burst.GlobalPosition = GlobalPosition;
+        burst.GlobalRotation = ParentShip.GlobalRotation;
+        burst.Restart();
+        burst.Emitting = true;
+        burst.Finished += burst.QueueFree;
+
+        Array<Ship> ships = new Array<Ship>(GameManager.Ships);
         Eventbus.EmitSignal("EmpFired", ParentShip);
-
-        foreach (Node node in nodes)
+        
+        foreach (Ship ship in ships)
         {
-            if (node is Ship ship)
+            if (ship.GlobalPosition.DistanceTo(ParentShip.GlobalPosition) <= HitEffectRadius)
             {
-                if (ship.GlobalPosition.DistanceTo(ParentShip.GlobalPosition) <= HitEffectRadius)
+                if (ship != ParentShip)
                 {
-                    if (ship != ParentShip)
+                    if(ship.HasUpgrade<ElectromagneticInsulator>())
+                        ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.FusionReactor.CurrentPower - (PowerDrainHit / 2));
+                    else
+                        ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.FusionReactor.CurrentPower - PowerDrainHit);
+                        
+                    Eventbus.EmitSignal("ShipDamaged", ship, ParentShip, 
+                        WeaponStats.Damage, WeaponStats.ShieldDamage, WeaponStats.PenetratingDamage);
+                        
+                    if (ship.Cloaked())
                     {
-                        if(ship.HasUpgrade<ElectromagneticInsulator>())
-                            ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.FusionReactor.CurrentPower - (PowerDrainHit / 2));
-                        else
-                            ship.FusionReactor.CurrentPower = Mathf.Max(0, ship.FusionReactor.CurrentPower - PowerDrainHit);
-                        
-                        ship.Hurtbox.ApplyDamage(ship, ParentShip, WeaponStats.Damage,
-                            WeaponStats.ShieldDamage, WeaponStats.PenetratingDamage);
-                        
-                        if (ship.Cloaked())
-                        {
-                            CloakingDrive drive = ship.GetTechnology<CloakingDrive>();
-                            if(drive is not null)
-                                if(drive.Active)
-                                    drive.Toggle();
-                        }
-
-                        if (ship.HasAbility<DistressBeacon>())
-                        {
-                            DistressBeacon beacon = ship.GetAbility<DistressBeacon>();
-                            beacon.Range /= 2;
-                        }
-
-                        if (ship.HasPart<CollectiveLinkNode>())
-                        {
-                            CollectiveLinkNode link = ship.GetPart<CollectiveLinkNode>();
-                            link.Range *= 0.8;
-                            link.DrainRate *= 0.75;
-                        }
-                        
-                        GD.Print("EMP Hit " + ship.GetName());
-                        Eventbus.EmitSignal("EmpHitShip", ship, ParentShip);
+                        CloakingDrive drive = ship.GetTechnology<CloakingDrive>();
+                        if(drive is not null)
+                            if(drive.Active)
+                                drive.Toggle();
                     }
+
+                    if (ship.HasAbility<DistressBeacon>())
+                    {
+                        DistressBeacon beacon = ship.GetAbility<DistressBeacon>();
+                        beacon.Range /= 2;
+                    }
+
+                    if (ship.HasPart<CollectiveLinkNode>())
+                    {
+                        CollectiveLinkNode link = ship.GetPart<CollectiveLinkNode>();
+                        link.Range *= 0.8;
+                        link.DrainRate *= 0.75;
+                    }
+                        
+                    GD.Print("EMP Hit " + ship.GetName());
+                    Eventbus.EmitSignal("EmpHitShip", ship, ParentShip);
                 }
             }
         }

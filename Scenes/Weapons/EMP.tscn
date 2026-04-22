@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cdmp4ko7ct6ko"]
 
 [ext_resource type="Script" uid="uid://bdmnpi01sorxk" path="res://Scripts/ShipTech/Technology/Weapons/EMP/EMP.cs" id="1_jqrho"]
+[ext_resource type="PackedScene" uid="uid://dwunchl5yxeec" path="res://Scenes/Particles/Weapons/EMP/EMPBurstEffect.tscn" id="2_2n237"]
 [ext_resource type="Resource" uid="uid://c50vsoqn707dy" path="res://Resources/Weapons/EMP/EMPStats.tres" id="2_uqkqp"]
 [ext_resource type="Resource" uid="uid://o1rtvdy062jy" path="res://Resources/Weapons/EMP/EMPPowerConsumption.tres" id="3_2n237"]
 [ext_resource type="Resource" uid="uid://3axvdirhutmf" path="res://Resources/Weapons/EMP/EMPWeights.tres" id="4_asx8n"]
@@ -9,6 +10,7 @@
 script = ExtResource("1_jqrho")
 HitEffectRadius = 400.0
 PowerDrainHit = 20000.0
+BurstParticle = ExtResource("2_2n237")
 WeaponStats = ExtResource("2_uqkqp")
 PowerConsumption = ExtResource("3_2n237")
 ProjectileSource = NodePath("ProjectileSource")
