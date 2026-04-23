@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bmraug80pu27k" path="res://Scenes/Ships/PlayerShipTests/PlayerShipWithWeaponsTest.tscn" id="1_idj7w"]
 [ext_resource type="PackedScene" uid="uid://h8po2e5dauq8" path="res://Scenes/Ships/HunterShip.tscn" id="2_kln2b"]
+[ext_resource type="PackedScene" uid="uid://d3j4ktdra4gg1" path="res://Scenes/Ships/CollectiveShip.tscn" id="3_rgh2o"]
 [ext_resource type="PackedScene" uid="uid://xf58wic0uscr" path="res://Scenes/Ships/EnemyShip.tscn" id="4_rgh2o"]
 
 [node name="Main" type="Node2D" unique_id=1968216983]
@@ -13,3 +14,6 @@ position = Vector2(1410, 425)
 
 [node name="HunterShip" parent="." unique_id=979157586 instance=ExtResource("2_kln2b")]
 position = Vector2(720, -97)
+
+[node name="CollectiveShip" parent="." unique_id=161494632 instance=ExtResource("3_rgh2o")]
+position = Vector2(212, 981)
