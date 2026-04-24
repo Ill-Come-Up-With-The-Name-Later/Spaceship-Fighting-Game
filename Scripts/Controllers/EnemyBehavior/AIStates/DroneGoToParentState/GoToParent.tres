@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://bw3oamhra0gqn"]
+
+[ext_resource type="Script" uid="uid://cdqhlcs5qxv1k" path="res://Scripts/Controllers/EnemyBehavior/AIStates/DroneGoToParentState/GoToParent.cs" id="1_jsboc"]
+
+[resource]
+script = ExtResource("1_jsboc")
+Type = 7

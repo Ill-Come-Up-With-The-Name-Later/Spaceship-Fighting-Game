@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://cgpb63q3oqyxl"]
+
+[ext_resource type="Resource" uid="uid://y73qit18gbh4" path="res://Scripts/Controllers/EnemyBehavior/AIStates/RoamState/GenericRoamState.tres" id="1_ua3ea"]
+[ext_resource type="Resource" uid="uid://bw3oamhra0gqn" path="res://Scripts/Controllers/EnemyBehavior/AIStates/DroneGoToParentState/GoToParent.tres" id="2_5wfgq"]
+[ext_resource type="Script" uid="uid://dxd64lvfgsgjy" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/RoamToReturnToParent/RoamToReturn.cs" id="3_laf7x"]
+
+[resource]
+script = ExtResource("3_laf7x")
+minRecallDistance = 3000.0
+From = ExtResource("1_ua3ea")
+To = ExtResource("2_5wfgq")

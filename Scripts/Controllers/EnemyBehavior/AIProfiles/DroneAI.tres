@@ -3,14 +3,16 @@
 [ext_resource type="Resource" uid="uid://y73qit18gbh4" path="res://Scripts/Controllers/EnemyBehavior/AIStates/RoamState/GenericRoamState.tres" id="1_w0mlo"]
 [ext_resource type="Resource" uid="uid://ck5tef6ufbrb4" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericRoamToGenericAttack/RoamToAttack.tres" id="2_rd60p"]
 [ext_resource type="Resource" uid="uid://ctgqu68wf8dr5" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericAttackToGenericRoam/AttackToRoam.tres" id="3_3y3ax"]
+[ext_resource type="Resource" uid="uid://byvrocxaigw43" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/ReturnToRoam/ReturnToRoam.tres" id="6_w0mlo"]
 [ext_resource type="Resource" uid="uid://dpv8nwmb405k0" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericAttackToChase/AttackToChase.tres" id="6_xwesw"]
+[ext_resource type="Resource" uid="uid://cgpb63q3oqyxl" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/RoamToReturnToParent/RoamToReturn.tres" id="7_rd60p"]
 [ext_resource type="Resource" uid="uid://bm2qetkik8bj0" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/GenericChaseToAttack/ChaseToAttack.tres" id="7_uc2d2"]
 [ext_resource type="Script" uid="uid://dqptxmpnm73y7" path="res://Scripts/Controllers/EnemyBehavior/AIProfile.cs" id="8_jp73m"]
 
 [resource]
 script = ExtResource("8_jp73m")
 InitialState = ExtResource("1_w0mlo")
-Transitions = Array[Resource]([ExtResource("2_rd60p"), ExtResource("3_3y3ax"), ExtResource("6_xwesw"), ExtResource("7_uc2d2")])
+Transitions = Array[Resource]([ExtResource("2_rd60p"), ExtResource("3_3y3ax"), ExtResource("6_xwesw"), ExtResource("7_uc2d2"), ExtResource("6_w0mlo"), ExtResource("7_rd60p")])
 AttackDelay = 2.0
 TargetingDelay = 1.0
 PerAttackDelay = 0.2

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" format=3 uid="uid://byvrocxaigw43"]
+
+[ext_resource type="Resource" uid="uid://bw3oamhra0gqn" path="res://Scripts/Controllers/EnemyBehavior/AIStates/DroneGoToParentState/GoToParent.tres" id="1_aprwn"]
+[ext_resource type="Resource" uid="uid://y73qit18gbh4" path="res://Scripts/Controllers/EnemyBehavior/AIStates/RoamState/GenericRoamState.tres" id="2_7q4cf"]
+[ext_resource type="Script" uid="uid://cwbejegqmdrms" path="res://Scripts/Controllers/EnemyBehavior/StateTransitions/ReturnToRoam/ReturnToRoam.cs" id="3_j45j3"]
+
+[resource]
+script = ExtResource("3_j45j3")
+proximity = 1000.0
+From = ExtResource("1_aprwn")
+To = ExtResource("2_7q4cf")

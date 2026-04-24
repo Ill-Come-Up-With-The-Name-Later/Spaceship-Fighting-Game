@@ -10,4 +10,5 @@ public enum AIStateType
     Flee,
     WarpIn,
     Special,
+    Recall
 }
