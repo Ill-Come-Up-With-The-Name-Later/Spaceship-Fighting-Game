@@ -1,6 +1,5 @@
 ﻿using Godot;
-
-namespace SpaceshipFightingGame.Scripts.Helper;
+using SpaceshipFightingGame.Scripts.Global;
 
 public partial class CameraShake : Camera2D
 {
@@ -15,6 +14,8 @@ public partial class CameraShake : Camera2D
 
     public Ship ParentShip;
     
+    private GameManager GameManager;
+    
     public override void _Ready()
     {
         Eventbus = GetNode<Eventbus>("/root/Eventbus");
@@ -23,6 +24,10 @@ public partial class CameraShake : Camera2D
             GD.PrintErr("Eventbus is null");
 
         Eventbus.ShipDamaged += ShakeCamera;
+        
+        GameManager = GetNode<GameManager>("/root/GameManager");
+        if (GameManager is null)
+            GD.PrintErr("GameManager is null");
         
         generator = new RandomNumberGenerator();
         
@@ -56,6 +61,24 @@ public partial class CameraShake : Camera2D
         }
     }
 
+    /// <summary>
+    /// Shakes the camera
+    /// </summary>
+    /// <param name="damaged">
+    /// The damaged ship
+    /// </param>
+    /// <param name="damager">
+    /// The attacking ship
+    /// </param>
+    /// <param name="damage">
+    /// The damage dealt
+    /// </param>
+    /// <param name="shieldDamage">
+    /// The shield damage dealt
+    /// </param>
+    /// <param name="penetratingDamage">
+    /// The penetrating damage dealt
+    /// </param>
     public void ShakeCamera(Ship damaged, Ship damager, double damage,
         double shieldDamage, double penetratingDamage)
     {
@@ -64,7 +87,10 @@ public partial class CameraShake : Camera2D
 
         if (damaged != ParentShip)
             return;
+
+        if (damaged != GameManager.PlayerShip)
+            return;
         
-        ShakeStrength = (float)damage * 0.25f;
+        ShakeStrength += (float)(damage + shieldDamage + penetratingDamage) * 0.25f;
     }
 }
