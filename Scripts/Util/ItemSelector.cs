@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 /// A structure used for weighted random selection
@@ -9,11 +10,11 @@ using System.Collections.Generic;
 /// </typeparam>
 public class ItemSelector<T> where T : notnull
 {
-    private readonly Random random = new();
-    private readonly Dictionary<T, int> entries;
-    private int totalWeight;
+    private readonly RandomNumberGenerator random = new();
+    private readonly Dictionary<T, double> entries;
+    private double totalWeight;
 
-    public int TotalWeight { get { return totalWeight; } }
+    public double TotalWeight { get { return totalWeight; } }
 
     public int Size { get { return entries.Count; } }
 
@@ -21,7 +22,7 @@ public class ItemSelector<T> where T : notnull
 
     public ItemSelector()
     {
-        entries = new Dictionary<T, int>();
+        entries = new Dictionary<T, double>();
         totalWeight = 0;
     }
 
@@ -37,7 +38,7 @@ public class ItemSelector<T> where T : notnull
     /// <exception cref="ArgumentException">
     /// If the provided weight is less than or equal to 0
     /// </exception>
-    public void AddItem(T item, int weight)
+    public void AddItem(T item, double weight)
     {
         if (entries.ContainsKey(item))
         {
@@ -77,7 +78,7 @@ public class ItemSelector<T> where T : notnull
     /// <returns>
     /// The weight of the item
     /// </returns>
-    public long Weight(T item)
+    public double Weight(T item)
     {
         if (!Contains(item))
             return -1;
@@ -110,17 +111,15 @@ public class ItemSelector<T> where T : notnull
     /// </exception>
     public T Roll()
     {
-        long value = random.Next(totalWeight);
+        double value = random.RandfRange(0, (float)totalWeight);
 
         foreach (var item in entries.Keys)
         {
-            long weight = entries[item];
+            double weight = entries[item];
             value -= weight;
 
             if (value < 0)
-            {
                 return item;
-            }
         }
 
         throw new Exception("Impossible state");
@@ -135,11 +134,11 @@ public class ItemSelector<T> where T : notnull
     /// <returns>
     /// The percent chance of the item being rolled
     /// </returns>
-    public float Chance(T item)
+    public double Chance(T item)
     {
         if (!Contains(item))
             return 0;
 
-        return (float)entries[item] / totalWeight;
+        return entries[item] / totalWeight;
     }        
 }

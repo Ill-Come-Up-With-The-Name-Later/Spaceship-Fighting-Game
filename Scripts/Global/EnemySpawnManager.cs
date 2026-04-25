@@ -23,9 +23,9 @@ public partial class EnemySpawnManager : Node2D
     
     [Export]
     public float MaxSpawnTime;
-    
+
     [Export]
-    public Array<PackedScene> Enemies;
+    public EnemySpawnSet SpawnSet;
     
     private RandomNumberGenerator generator;
 
@@ -70,8 +70,12 @@ public partial class EnemySpawnManager : Node2D
         {
             Marker2D spawnpoint = Spawnpoints[generator.RandiRange(0, Spawnpoints.Count)];
             
-            // Todo: Replace this with weighted selection
-            Ship ship = (Ship)Enemies[generator.RandiRange(0, Enemies.Count)].Instantiate();
+            ItemSelector<PackedScene> selector = new ItemSelector<PackedScene>();
+
+            foreach (PackedScene enemy in SpawnSet.EnemyScenes.Keys)
+                selector.AddItem(enemy, SpawnSet.EnemyScenes[enemy]);
+            
+            Ship ship = selector.Roll().Instantiate<Ship>();
             ship.GlobalPosition = spawnpoint.GlobalPosition;
         }
         
