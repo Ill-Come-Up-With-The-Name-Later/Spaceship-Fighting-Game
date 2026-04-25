@@ -4,6 +4,14 @@
 [ext_resource type="Resource" uid="uid://n57wuvken05k" path="res://Resources/Weapons/Phaser/PhaserStats.tres" id="2_kkhta"]
 [ext_resource type="Resource" uid="uid://d2rmaqgxqfoub" path="res://Resources/Weapons/Phaser/PhaserPowerConsumption.tres" id="3_44mus"]
 [ext_resource type="Resource" uid="uid://6v6e83n2xun7" path="res://Resources/Weapons/Phaser/PhaserWeights.tres" id="4_44mus"]
+[ext_resource type="Shader" uid="uid://d0ykcpmd7rf5t" path="res://Shaders/LaserBeam.gdshader" id="5_eocjm"]
+[ext_resource type="Texture2D" uid="uid://btlomh5qcdd2n" path="res://Sprites/Effects/Beam.png" id="5_kah8b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kah8b"]
+shader = ExtResource("5_eocjm")
+shader_parameter/glow_intensity = 5.0000002375
+shader_parameter/core_width = 1.0
+shader_parameter/core_length = 1.0
 
 [node name="Phaser" type="Node2D" unique_id=189030110 node_paths=PackedStringArray("ProjectileSource")]
 script = ExtResource("1_44mus")
@@ -23,5 +31,8 @@ one_shot = true
 [node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
 
 [node name="PhaserBeam" type="Line2D" parent="." unique_id=565697137]
+material = SubResource("ShaderMaterial_kah8b")
+texture = ExtResource("5_kah8b")
+texture_mode = 2
 
 [node name="ProjectileSource" type="Marker2D" parent="." unique_id=1294447164]

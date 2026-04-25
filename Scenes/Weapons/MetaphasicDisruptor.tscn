@@ -4,6 +4,14 @@
 [ext_resource type="Resource" uid="uid://d0ps8i82f62in" path="res://Resources/Weapons/MetaphasicDisruptor/MetaphasicDisruptorStats.tres" id="2_8m6xi"]
 [ext_resource type="Resource" uid="uid://drv3sks8dacvd" path="res://Resources/Weapons/MetaphasicDisruptor/MetaphasicDisruptorPowerConsumption.tres" id="3_0m574"]
 [ext_resource type="Resource" uid="uid://cwpgsbwmejdbc" path="res://Resources/Weapons/MetaphasicDisruptor/MetaphasicDisruptorWeights.tres" id="4_0m574"]
+[ext_resource type="Shader" uid="uid://d0ykcpmd7rf5t" path="res://Shaders/LaserBeam.gdshader" id="5_kkn4u"]
+[ext_resource type="Texture2D" uid="uid://btlomh5qcdd2n" path="res://Sprites/Effects/Beam.png" id="5_x24ff"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x24ff"]
+shader = ExtResource("5_kkn4u")
+shader_parameter/glow_intensity = 6.0
+shader_parameter/core_width = 0.5
+shader_parameter/core_length = 0.5
 
 [node name="MetaphasicDisruptor" type="Node2D" unique_id=189030110 node_paths=PackedStringArray("ProjectileSource")]
 script = ExtResource("1_0m574")
@@ -23,5 +31,8 @@ one_shot = true
 [node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
 
 [node name="DisruptorBeam" type="Line2D" parent="." unique_id=565697137]
+material = SubResource("ShaderMaterial_x24ff")
+texture = ExtResource("5_x24ff")
+texture_mode = 2
 
 [node name="ProjectileSource" type="Marker2D" parent="." unique_id=2075049708]
