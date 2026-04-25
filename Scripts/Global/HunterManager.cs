@@ -79,7 +79,7 @@ public partial class HunterManager : Node2D
         {
             EnemyController controller = (EnemyController) ship.ControlNode;
             
-            if(ship == user)
+            if(ship != user)
                 continue;
 
             controller.PursuitTarget = user;
