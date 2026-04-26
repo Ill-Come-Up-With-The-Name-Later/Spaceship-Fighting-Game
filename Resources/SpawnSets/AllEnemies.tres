@@ -1,0 +1,12 @@
+[gd_resource type="Resource" format=3 uid="uid://cgqryx4uh4tby"]
+
+[ext_resource type="Script" uid="uid://g0nlpu8uvar" path="res://Scripts/Resources/EnemySpawnSet/EnemySpawnSet.cs" id="1_ffy72"]
+[ext_resource type="PackedScene" uid="uid://xf58wic0uscr" path="res://Scenes/Ships/Enemy/EnemyShip.tscn" id="1_v8qu2"]
+[ext_resource type="PackedScene" uid="uid://h8po2e5dauq8" path="res://Scenes/Ships/Enemy/Hunter/HunterShip.tscn" id="2_v56yh"]
+
+[resource]
+script = ExtResource("1_ffy72")
+EnemyScenes = Dictionary[PackedScene, float]({
+ExtResource("1_v8qu2"): 10.0,
+ExtResource("2_v56yh"): 1.0
+})

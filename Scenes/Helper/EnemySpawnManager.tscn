@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://4530c5ka7rqp"]
 
 [ext_resource type="Script" uid="uid://c5vrnugl632sk" path="res://Scripts/Global/EnemySpawnManager.cs" id="1_ehm6c"]
+[ext_resource type="Resource" uid="uid://cgqryx4uh4tby" path="res://Resources/SpawnSets/AllEnemies.tres" id="2_uvgc8"]
 
 [node name="EnemySpawnManager" type="Node2D" unique_id=487236972]
 script = ExtResource("1_ehm6c")
+MinSpawns = 5
+MaxSpawns = 10
+MinSpawnTime = 30.0
+MaxSpawnTime = 120.0
+SpawnSet = ExtResource("2_uvgc8")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=75939067]
