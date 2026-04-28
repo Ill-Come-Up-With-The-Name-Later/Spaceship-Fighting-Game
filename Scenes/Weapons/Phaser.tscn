@@ -7,11 +7,11 @@
 [ext_resource type="Shader" uid="uid://d0ykcpmd7rf5t" path="res://Shaders/LaserBeam.gdshader" id="5_eocjm"]
 [ext_resource type="Texture2D" uid="uid://btlomh5qcdd2n" path="res://Sprites/Effects/Beam.png" id="5_kah8b"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kah8b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eocjm"]
 shader = ExtResource("5_eocjm")
-shader_parameter/glow_intensity = 5.0000002375
-shader_parameter/core_width = 1.0
-shader_parameter/core_length = 1.0
+shader_parameter/glow_intensity = 6.0
+shader_parameter/core_width = 0.5
+shader_parameter/core_length = 0.5
 
 [node name="Phaser" type="Node2D" unique_id=189030110 node_paths=PackedStringArray("ProjectileSource")]
 script = ExtResource("1_44mus")
@@ -31,7 +31,10 @@ one_shot = true
 [node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
 
 [node name="PhaserBeam" type="Line2D" parent="." unique_id=565697137]
-material = SubResource("ShaderMaterial_kah8b")
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+self_modulate = Color(1, 1, 1, 0.68235296)
+material = SubResource("ShaderMaterial_eocjm")
+points = PackedVector2Array(-2, -7)
 texture = ExtResource("5_kah8b")
 texture_mode = 2
 

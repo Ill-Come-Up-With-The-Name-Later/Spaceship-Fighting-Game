@@ -31,6 +31,8 @@ one_shot = true
 [node name="RayCast" type="RayCast2D" parent="." unique_id=1312753705]
 
 [node name="DisruptorBeam" type="Line2D" parent="." unique_id=565697137]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
+self_modulate = Color(1, 1, 1, 0.68235296)
 material = SubResource("ShaderMaterial_x24ff")
 texture = ExtResource("5_x24ff")
 texture_mode = 2
