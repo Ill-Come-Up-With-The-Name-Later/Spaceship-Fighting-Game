@@ -18,6 +18,8 @@ public partial class PlayerController : Controller
 	private float currentTurnSpeed = 0;
 	private float previousRotation;
 
+	public float Throttle = 1.0f;
+
 	public Timer AttackTimer;
 
 	[Export]
@@ -126,7 +128,10 @@ public partial class PlayerController : Controller
 
 		ParentShip.ActiveWeapon = ParentShip.Weapons
 			.NextAvailableOfType(ParentShip.Weapons.ActiveWeaponTypeIndex);
+
+		ParentShip.Velocity *= Throttle;
 		
+		ListenForThrottle(delta);
 		ListenForAttack();
 		ListenForCloaking();
 		ListenForShieldToggle();
@@ -145,6 +150,15 @@ public partial class PlayerController : Controller
 	public void SetCanAttack()
 	{
 		CanAttack = true;
+	}
+
+	public void ListenForThrottle(double delta)
+	{
+		if (Input.IsActionPressed("throttle_up"))
+			Throttle = (float)Mathf.Min(1f, Throttle + 0.5 * delta);
+		
+		if(Input.IsActionPressed("throttle_down"))
+			Throttle = (float)Mathf.Max(0f, Throttle - 0.5 * delta);
 	}
 
 	public void ListenForAttack()
