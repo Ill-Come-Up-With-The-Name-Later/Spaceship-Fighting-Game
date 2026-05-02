@@ -8,6 +8,7 @@ public partial class Hurtbox : Area2D
 {
 	public Ship ParentShip;
 	public CollisionShape2D Collider;
+	public Sprite2D ActiveShieldSprite;
 	public Eventbus Eventbus;
 
 	[Export]
@@ -30,6 +31,8 @@ public partial class Hurtbox : Area2D
 		if(Collider is null)
 			GD.PrintErr("Collider is null");
 		
+		ActiveShieldSprite = Collider.GetNode<Sprite2D>("ActiveShield");
+		
 		Eventbus = GetNode<Eventbus>("/root/Eventbus");
 		
 		if(Eventbus is null)
@@ -41,6 +44,11 @@ public partial class Hurtbox : Area2D
 			GD.PrintErr("Ship destruction animation is null");
 		
 		Eventbus.ShipDamaged += ApplyDamage;
+	}
+
+	public override void _Process(double delta)
+	{
+		ActiveShieldSprite.Visible = ParentShip.DefenseSystem.DefenseActive;
 	}
 
 	/// <summary>

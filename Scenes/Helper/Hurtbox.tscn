@@ -4,18 +4,31 @@
 [ext_resource type="PackedScene" uid="uid://ukt8rnrvr4yg" path="res://Scenes/Particles/Damage/ShieldDamageParticle.tscn" id="2_s3f4r"]
 [ext_resource type="PackedScene" uid="uid://15hxy2nwn8ew" path="res://Scenes/Particles/Damage/HullDamageParticle.tscn" id="3_bkbn2"]
 [ext_resource type="PackedScene" uid="uid://bkt4alxsljrpp" path="res://Scenes/Particles/Damage/ShipDestroyedParticle.tscn" id="4_06j8r"]
+[ext_resource type="Shader" uid="uid://c1x1xsrymf04f" path="res://Shaders/ActiveShield.gdshader" id="4_q8yj1"]
+[ext_resource type="Texture2D" uid="uid://b1wwnftqnbbhw" path="res://Sprites/Effects/ActiveShield.png" id="5_luvj0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1830s"]
 radius = 49.09175
 
-[node name="Hurtbox" type="Area2D" unique_id=736045038 node_paths=PackedStringArray("ShipDestroyedAnimation")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25ca1"]
+shader = ExtResource("4_q8yj1")
+shader_parameter/active = true
+shader_parameter/time_scale = 2.0
+shader_parameter/edge_strength = 2.0
+
+[node name="Hurtbox" type="Area2D" unique_id=736045038]
 collision_mask = 2
 script = ExtResource("1_nnlri")
 ShieldDamageParticles = ExtResource("2_s3f4r")
 HullDamageParticles = ExtResource("3_bkbn2")
-ShipDestroyedAnimation = NodePath("ShipDestroyedEffect")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2022072615]
+scale = Vector2(1.2, 1.2)
 shape = SubResource("CircleShape2D_1830s")
+
+[node name="ActiveShield" type="Sprite2D" parent="Collision" unique_id=1031468124]
+material = SubResource("ShaderMaterial_25ca1")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_luvj0")
 
 [node name="ShipDestroyedEffect" parent="." unique_id=2050342506 instance=ExtResource("4_06j8r")]
