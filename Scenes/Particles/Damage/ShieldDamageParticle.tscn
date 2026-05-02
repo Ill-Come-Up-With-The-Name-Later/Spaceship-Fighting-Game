@@ -30,7 +30,7 @@ particle_flag_rotate_y = true
 particle_flag_disable_z = true
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_7n3uw")
-color = Color(0.18039216, 0.5529412, 1, 0.5294118)
+color = Color(0.18039216, 0.7529412, 1, 0.5294118)
 alpha_curve = SubResource("CurveTexture_7utsy")
 
 [node name="ShieldDamageParticle" type="GPUParticles2D" unique_id=832335561]
