@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://b1gjwx08q3gnj"]
+
+[ext_resource type="Script" uid="uid://cmn3f8kn7bv0o" path="res://Scripts/Ship/Drone.cs" id="1_l183c"]
+[ext_resource type="PackedScene" uid="uid://cjbyghrbd7psp" path="res://Scenes/Controllers/DroneController.tscn" id="2_8q3xm"]
+[ext_resource type="Resource" uid="uid://pqry1p82uc64" path="res://Scripts/Controllers/EnemyBehavior/AIProfiles/DroneAI.tres" id="3_gskhi"]
+[ext_resource type="PackedScene" uid="uid://bcans8mw8tnvk" path="res://Scenes/Helper/Hurtbox.tscn" id="4_0o56w"]
+[ext_resource type="Texture2D" uid="uid://bt6lqs3e0gxe" path="res://Sprites/Drone/Mockery.png" id="5_l183c"]
+[ext_resource type="PackedScene" uid="uid://ba521m501oaf" path="res://Scenes/ShipTech/Hull.tscn" id="6_5bvio"]
+[ext_resource type="Resource" uid="uid://cf8jvcrjg76vi" path="res://Resources/ShipSpecific/Drone/DroneHullMaterials.tres" id="7_t84c3"]
+[ext_resource type="Resource" uid="uid://jac5slb1evc4" path="res://Resources/ShipSpecific/Drone/DroneHullHealth.tres" id="8_ngeih"]
+[ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="9_w0alf"]
+[ext_resource type="Resource" uid="uid://cl4loedgdwmp1" path="res://Resources/ShipSpecific/Drone/DroneReactorStats.tres" id="10_rxyrs"]
+[ext_resource type="Resource" uid="uid://b3m4b3dyu7p0v" path="res://Resources/ShipSpecific/Drone/DroneReactorRegen.tres" id="11_pxu6r"]
+[ext_resource type="Resource" uid="uid://c8stmkbxu7brm" path="res://Resources/ShipSpecific/Drone/DroneReactorFuelConsumption.tres" id="12_ttome"]
+[ext_resource type="Resource" uid="uid://dd6ail00qhvya" path="res://Resources/ShipSpecific/Drone/DroneShipPartHealth.tres" id="13_yvagc"]
+[ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="14_djpo2"]
+[ext_resource type="Resource" uid="uid://c7aop1mpu8nfm" path="res://Resources/ShipSpecific/Drone/DroneEngineStats.tres" id="15_uq1ko"]
+[ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="16_y0qer"]
+[ext_resource type="Resource" uid="uid://caj7843pdlh42" path="res://Resources/ShipSpecific/Drone/DroneShieldHealth.tres" id="17_k8att"]
+[ext_resource type="Resource" uid="uid://kpb1q6w85ljq" path="res://Resources/ShipSpecific/Drone/DroneShieldRegen.tres" id="18_f1bqj"]
+[ext_resource type="Resource" uid="uid://khkkx0qkgu2t" path="res://Resources/ShipSpecific/Drone/DroneShieldPowerConsumption.tres" id="19_b7jaa"]
+[ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="20_u3x4v"]
+[ext_resource type="Resource" uid="uid://c7vefgl17m7ll" path="res://Resources/ShipSpecific/Drone/DroneAlcubierreDriveStats.tres" id="21_6h5q8"]
+[ext_resource type="Resource" uid="uid://b3a0o0xiee62w" path="res://Resources/ShipSpecific/Drone/DroneAlcubierreDrivePowerConsumption.tres" id="22_rwqrs"]
+[ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="23_vnuxr"]
+[ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="24_4vcd3"]
+[ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="25_v7fjn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
+radius = 1.0
+
+[node name="Mockery" type="CharacterBody2D" unique_id=1450576114]
+script = ExtResource("1_l183c")
+Lifespan = 60.0
+
+[node name="LifespanTimer" type="Timer" parent="." unique_id=622338802]
+
+[node name="ControlNode" parent="." unique_id=1717359737 instance=ExtResource("2_8q3xm")]
+DetectionRange = 1500.0
+FiringRange = 700.0
+Profile = ExtResource("3_gskhi")
+
+[node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("4_0o56w")]
+scale = Vector2(0.66, 0.66)
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1041736181]
+shape = SubResource("CircleShape2D_2b61m")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1715419656]
+texture = ExtResource("5_l183c")
+
+[node name="Hull" parent="." unique_id=463253017 instance=ExtResource("6_5bvio")]
+HullStats = ExtResource("7_t84c3")
+GenericStats = ExtResource("8_ngeih")
+
+[node name="FusionReactor" parent="." unique_id=854488899 instance=ExtResource("9_w0alf")]
+ReactorStats = ExtResource("10_rxyrs")
+RegenerationRate = ExtResource("11_pxu6r")
+ConsumptionRate = ExtResource("12_ttome")
+GenericStats = ExtResource("13_yvagc")
+
+[node name="Engine" parent="." unique_id=512023654 instance=ExtResource("14_djpo2")]
+EngineStats = ExtResource("15_uq1ko")
+GenericStats = ExtResource("13_yvagc")
+
+[node name="ShieldGenerator" parent="." unique_id=769759841 instance=ExtResource("16_y0qer")]
+DefenseGeneratorStats = ExtResource("17_k8att")
+RegenerationRate = ExtResource("18_f1bqj")
+PowerConsumption = ExtResource("19_b7jaa")
+GenericStats = ExtResource("13_yvagc")
+
+[node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("20_u3x4v")]
+WarpDriveStats = ExtResource("21_6h5q8")
+PowerConsumption = ExtResource("22_rwqrs")
+GenericStats = ExtResource("13_yvagc")
+
+[node name="Technology" type="Node2D" parent="." unique_id=1603245376]
+editor_description = "The parent node for ship technologies that aren't standard ship parts."
+
+[node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
+editor_description = "The parent node for all of a ship's weapons."
+script = ExtResource("23_vnuxr")
+AttackFOV = 140.0
+
+[node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("24_4vcd3")]
+
+[node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("25_v7fjn")]
+
+[node name="Upgrades" type="Node2D" parent="." unique_id=1621237522]
+
+[node name="Abilities" type="Node2D" parent="." unique_id=1831618945]

@@ -1,14 +1,26 @@
 [gd_resource type="Resource" format=3 uid="uid://cgqryx4uh4tby"]
 
 [ext_resource type="Script" uid="uid://g0nlpu8uvar" path="res://Scripts/Resources/EnemySpawnSet/EnemySpawnSet.cs" id="1_ffy72"]
-[ext_resource type="PackedScene" uid="uid://xf58wic0uscr" path="res://Scenes/Ships/Enemy/EnemyShip.tscn" id="1_v8qu2"]
 [ext_resource type="PackedScene" uid="uid://h8po2e5dauq8" path="res://Scenes/Ships/Enemy/Hunter/HunterShip.tscn" id="2_v56yh"]
+[ext_resource type="PackedScene" uid="uid://dajprn244hn4p" path="res://Scenes/Ships/Enemy/Eccentricity.tscn" id="3_103x0"]
 [ext_resource type="PackedScene" uid="uid://d3j4ktdra4gg1" path="res://Scenes/Ships/Enemy/Collective/CollectiveShip.tscn" id="3_v56yh"]
+[ext_resource type="PackedScene" uid="uid://eqy6lxb8jw1a" path="res://Scenes/Ships/Enemy/Enceladus.tscn" id="4_pq6f0"]
+[ext_resource type="PackedScene" uid="uid://chwropkqqhdg0" path="res://Scenes/Ships/Enemy/Evisceration.tscn" id="5_gm5wo"]
+[ext_resource type="PackedScene" uid="uid://xq50bn3kb8ff" path="res://Scenes/Ships/Enemy/Hypocrisy.tscn" id="6_fbpbr"]
+[ext_resource type="PackedScene" uid="uid://b3v03vprciihu" path="res://Scenes/Ships/Enemy/Malevolent.tscn" id="7_w6mgy"]
+[ext_resource type="PackedScene" uid="uid://dj1flvl446xer" path="res://Scenes/Ships/Enemy/Paradox.tscn" id="8_bku1n"]
+[ext_resource type="PackedScene" uid="uid://brs6jdodcame8" path="res://Scenes/Ships/Enemy/Radiance.tscn" id="9_o8kj3"]
 
 [resource]
 script = ExtResource("1_ffy72")
 EnemyScenes = Dictionary[PackedScene, float]({
-ExtResource("1_v8qu2"): 10.0,
 ExtResource("2_v56yh"): 1.0,
-ExtResource("3_v56yh"): 1.2
+ExtResource("3_v56yh"): 1.2,
+ExtResource("3_103x0"): 10.0,
+ExtResource("4_pq6f0"): 10.0,
+ExtResource("5_gm5wo"): 10.0,
+ExtResource("6_fbpbr"): 10.0,
+ExtResource("7_w6mgy"): 10.0,
+ExtResource("8_bku1n"): 6.7,
+ExtResource("9_o8kj3"): 10.0
 })
