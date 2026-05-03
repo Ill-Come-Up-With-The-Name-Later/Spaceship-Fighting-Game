@@ -16,7 +16,7 @@ shader_parameter/core_length = 0.5
 [node name="MetaphasicDisruptor" type="Node2D" unique_id=189030110 node_paths=PackedStringArray("ProjectileSource")]
 script = ExtResource("1_0m574")
 HitEffectRadius = 75.0
-Color = Color(0.627451, 0, 1, 1)
+Color = Color(0, 0.89351046, 0.900905, 1)
 WeaponStats = ExtResource("2_8m6xi")
 PowerConsumption = ExtResource("3_0m574")
 ProjectileSource = NodePath("ProjectileSource")

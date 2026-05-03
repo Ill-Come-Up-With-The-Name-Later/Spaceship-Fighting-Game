@@ -16,7 +16,7 @@ shader_parameter/core_length = 0.5
 [node name="Phaser" type="Node2D" unique_id=189030110 node_paths=PackedStringArray("ProjectileSource")]
 script = ExtResource("1_44mus")
 HitEffectRadius = 75.0
-Color = Color(1, 1, 0, 1)
+Color = Color(0.9764706, 0.38039216, 0, 1)
 WeaponStats = ExtResource("2_kkhta")
 PowerConsumption = ExtResource("3_44mus")
 ProjectileSource = NodePath("ProjectileSource")
