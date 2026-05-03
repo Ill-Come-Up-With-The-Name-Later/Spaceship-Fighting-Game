@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://g0nlpu8uvar" path="res://Scripts/Resources/EnemySpawnSet/EnemySpawnSet.cs" id="1_ffy72"]
 [ext_resource type="PackedScene" uid="uid://xf58wic0uscr" path="res://Scenes/Ships/Enemy/EnemyShip.tscn" id="1_v8qu2"]
 [ext_resource type="PackedScene" uid="uid://h8po2e5dauq8" path="res://Scenes/Ships/Enemy/Hunter/HunterShip.tscn" id="2_v56yh"]
+[ext_resource type="PackedScene" uid="uid://d3j4ktdra4gg1" path="res://Scenes/Ships/Enemy/Collective/CollectiveShip.tscn" id="3_v56yh"]
 
 [resource]
 script = ExtResource("1_ffy72")
 EnemyScenes = Dictionary[PackedScene, float]({
 ExtResource("1_v8qu2"): 10.0,
-ExtResource("2_v56yh"): 1.0
+ExtResource("2_v56yh"): 1.0,
+ExtResource("3_v56yh"): 1.2
 })
