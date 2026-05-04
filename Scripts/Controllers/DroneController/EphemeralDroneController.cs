@@ -12,7 +12,7 @@ public partial class EphemeralDroneController : DroneController
         var selfMod = ParentShip.Sprite.SelfModulate;
         selfMod.A -= (float)(FadeRate * delta);
         ParentShip.Sprite.SelfModulate = selfMod;
-
+        
         if (selfMod.A <= 0)
             QueueFree();
     }

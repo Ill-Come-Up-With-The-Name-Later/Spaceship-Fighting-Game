@@ -13,6 +13,18 @@ public partial class GenericAttackState : AIState
 
         if (controller.ParentShip.WarpDrive.Active)
             controller.ParentShip.WarpDrive.Toggle();
+
+        if (controller.ParentShip.HasAbility<DroneMaterializer>())
+        {
+            List<DroneMaterializer> materializers = controller.ParentShip
+                .GetAllAbilities<DroneMaterializer>();
+
+            foreach (DroneMaterializer materializer in materializers)
+            {
+                if (materializer.CanUse)
+                    materializer.Activate();
+            }
+        }
     }
 
     public override void Process(EnemyController controller, double delta)

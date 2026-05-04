@@ -17,7 +17,8 @@ public partial class DroneMaterializer : Ability
         GetTree().GetRoot().AddChild(drone);
         
         drone.GlobalPosition = ParentShip.GlobalPosition;
-        drone.ParentShip = ParentShip;
+        DroneController droneController = (DroneController)drone.ControlNode;
+        droneController.SpawningShip = ParentShip;
         drone.ParentMaterializer = this;
         drone.ControlNode.Faction = ParentShip.ControlNode.Faction;
         DroneActive = true;

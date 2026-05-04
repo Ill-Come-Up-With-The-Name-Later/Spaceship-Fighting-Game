@@ -9,10 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://b3fko4a7w6hgi" path="res://Scenes/ShipTech/FusionReactor.tscn" id="7_fhb01"]
 [ext_resource type="PackedScene" uid="uid://c427n2d7xonmv" path="res://Scenes/ShipTech/Engine.tscn" id="8_ptrhc"]
 [ext_resource type="PackedScene" uid="uid://uvvdt3wtu4w2" path="res://Scenes/ShipTech/ShieldGenerator.tscn" id="9_sg3rh"]
-[ext_resource type="PackedScene" uid="uid://cw2iv13byneef" path="res://Scenes/ShipTech/AlcubierreWarpDrive.tscn" id="10_tnu8r"]
+[ext_resource type="PackedScene" uid="uid://bnd45plt2eplw" path="res://Scenes/ShipTech/FlareDrive.tscn" id="10_ovtcv"]
 [ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="11_r7iv6"]
 [ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="12_sdnxv"]
 [ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="13_wyh11"]
+[ext_resource type="PackedScene" uid="uid://u25d5u2n2dmp" path="res://Scenes/Abilities/DroneMaterializer.tscn" id="14_fhb01"]
+[ext_resource type="PackedScene" uid="uid://ddpqf0uiv0k5j" path="res://Scenes/Ships/Drones/Ephemeral.tscn" id="15_ptrhc"]
+[ext_resource type="PackedScene" uid="uid://byjx8lqqdchvo" path="res://Scenes/Ships/Drones/Incompetence.tscn" id="16_sg3rh"]
+[ext_resource type="PackedScene" uid="uid://b1gjwx08q3gnj" path="res://Scenes/Ships/Drones/Mockery.tscn" id="17_tnu8r"]
+[ext_resource type="PackedScene" uid="uid://clmj1pr6yroik" path="res://Scenes/Ships/Drones/Transgression.tscn" id="18_r7iv6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
 radius = 1.0
@@ -45,7 +50,7 @@ texture = ExtResource("5_gb1jb")
 [node name="Technology" type="Node2D" parent="." unique_id=1603245376]
 editor_description = "The parent node for ship technologies that aren't standard ship parts."
 
-[node name="AlcubierreWarpDrive" parent="." unique_id=1280896902 instance=ExtResource("10_tnu8r")]
+[node name="FlareDrive" parent="." unique_id=1280896902 instance=ExtResource("10_ovtcv")]
 
 [node name="WeaponSystem" type="Node2D" parent="." unique_id=862552960]
 editor_description = "The parent node for all of a ship's weapons."
@@ -63,3 +68,15 @@ AttackFOV = 110.0
 [node name="Upgrades" type="Node2D" parent="." unique_id=1621237522]
 
 [node name="Abilities" type="Node2D" parent="." unique_id=1831618945]
+
+[node name="DroneMaterializer" parent="Abilities" unique_id=284819564 instance=ExtResource("14_fhb01")]
+Drone = ExtResource("15_ptrhc")
+
+[node name="DroneMaterializer2" parent="Abilities" unique_id=808832465 instance=ExtResource("14_fhb01")]
+Drone = ExtResource("16_sg3rh")
+
+[node name="DroneMaterializer3" parent="Abilities" unique_id=1722516662 instance=ExtResource("14_fhb01")]
+Drone = ExtResource("17_tnu8r")
+
+[node name="DroneMaterializer4" parent="Abilities" unique_id=1635120294 instance=ExtResource("14_fhb01")]
+Drone = ExtResource("18_r7iv6")

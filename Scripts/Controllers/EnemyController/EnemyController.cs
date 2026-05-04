@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using SpaceshipFightingGame.Scripts.Controllers;
 using SpaceshipFightingGame.Scripts.Global;
@@ -369,6 +368,14 @@ public partial class EnemyController : Controller
             // Prevent ships of the same faction from targeting each other
             if(!ParentShip.CanTarget(ship))
                 continue;
+
+            if (ship is Drone drone)
+            {
+                DroneController droneController = (DroneController)drone.ControlNode;
+                
+                if(droneController.SpawningShip == ParentShip)
+                    continue;
+            }
             
             double priority = 0;
             
