@@ -9,4 +9,7 @@
     <Folder Include="Scripts\Controllers\EnemyBehavior\AIProfiles\" />
     <Folder Include="Scripts\Controllers\EnemyBehavior\AIStates\AttackState\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.md" />
+  </ItemGroup>
 </Project>
