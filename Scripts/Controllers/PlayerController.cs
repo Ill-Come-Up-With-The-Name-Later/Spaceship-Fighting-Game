@@ -28,6 +28,9 @@ public partial class PlayerController : Controller
 	[Export]
 	public double AttackRange;
 
+	[Export]
+	public double AutoAimRadius;
+
 	public bool CanAttack;
 	
 	public override void _Ready()
@@ -165,8 +168,13 @@ public partial class PlayerController : Controller
 	{
 		if (Input.IsActionPressed("attack"))
 		{
-			if(CanAttack)
-				Eventbus.EmitSignal("MouseClick", GetGlobalMousePosition());
+			if (CanAttack)
+			{
+				Vector2 attackPos = GetGlobalMousePosition();
+				Ship nearby = GameManager.GetNearbyShip(GetGlobalMousePosition(), (float)AutoAimRadius);
+				
+				Eventbus.EmitSignal("MouseClick", (nearby is null) ? attackPos : nearby.GlobalPosition);
+			}
 		}
 	}
 

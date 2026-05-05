@@ -43,6 +43,29 @@ public partial class GameManager : Node
     }
 
     /// <summary>
+    /// Finds the first ship within a radius of a position
+    /// </summary>
+    /// <param name="position">
+    /// The starting position
+    /// </param>
+    /// <param name="radius">
+    /// The radius to search
+    /// </param>
+    /// <returns>
+    /// The nearest ship or null
+    /// </returns>
+    public Ship GetNearbyShip(Vector2 position, float radius)
+    {
+        foreach (Ship ship in Ships)
+        {
+            if(ship.GlobalPosition.DistanceTo(position) <= radius)
+                return ship;
+        }
+        
+        return null;
+    }
+
+    /// <summary>
     /// Adds ship to spawned list
     /// </summary>
     /// <param name="ship">

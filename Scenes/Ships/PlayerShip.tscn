@@ -28,6 +28,7 @@ ShakeDecay = 65.0
 [node name="ControlNode" parent="." unique_id=660101535 instance=ExtResource("3_dok0c")]
 AttackCooldown = 0.25
 AttackRange = 1200.0
+AutoAimRadius = 250.0
 Faction = 1
 
 [node name="Hurtbox" parent="." unique_id=736045038 instance=ExtResource("4_fgv2n")]

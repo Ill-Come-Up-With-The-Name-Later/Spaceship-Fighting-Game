@@ -48,6 +48,9 @@ public partial class DroneController : EnemyController
 
             if (ship is Drone drone)
             {
+                if(drone.ParentShip == ParentShip)
+                    continue;
+                
                 if (drone.ControlNode is DroneController otherController)
                 {
                     if (otherController.SpawningShip == SpawningShip)

@@ -21,6 +21,7 @@ public partial class DroneMaterializer : Ability
         droneController.SpawningShip = ParentShip;
         drone.ParentMaterializer = this;
         drone.ControlNode.Faction = ParentShip.ControlNode.Faction;
+        drone.ParentShip = ParentShip;
         DroneActive = true;
     }
 }
