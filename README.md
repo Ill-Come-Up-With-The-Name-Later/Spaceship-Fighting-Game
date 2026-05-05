@@ -32,6 +32,7 @@ I solo developed the project, everything was me, myself, and I.
   We need competence, not another person to just ask AI the solution as soon
   as something doesn't work the first time.)
   - Paradox and The "A Team":
+    - Animosity 
     - Mockery
     - Transgression
     - Ephemeral

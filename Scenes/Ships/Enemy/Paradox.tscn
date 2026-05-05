@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://byjx8lqqdchvo" path="res://Scenes/Ships/Drones/Incompetence.tscn" id="16_sg3rh"]
 [ext_resource type="PackedScene" uid="uid://b1gjwx08q3gnj" path="res://Scenes/Ships/Drones/Mockery.tscn" id="17_tnu8r"]
 [ext_resource type="PackedScene" uid="uid://clmj1pr6yroik" path="res://Scenes/Ships/Drones/Transgression.tscn" id="18_r7iv6"]
+[ext_resource type="PackedScene" uid="uid://na134dd154yi" path="res://Scenes/Ships/Drones/Animosity.tscn" id="19_fhb01"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
 radius = 1.0
@@ -80,3 +81,6 @@ Drone = ExtResource("17_tnu8r")
 
 [node name="DroneMaterializer4" parent="Abilities" unique_id=1635120294 instance=ExtResource("14_fhb01")]
 Drone = ExtResource("18_r7iv6")
+
+[node name="DroneMaterializer5" parent="Abilities" unique_id=568699307 instance=ExtResource("14_fhb01")]
+Drone = ExtResource("19_fhb01")
