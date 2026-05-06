@@ -25,7 +25,6 @@
 [ext_resource type="Resource" uid="uid://b3a0o0xiee62w" path="res://Resources/ShipSpecific/Drone/DroneAlcubierreDrivePowerConsumption.tres" id="22_rj10m"]
 [ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="23_6t5de"]
 [ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="24_82lkr"]
-[ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="25_n5us0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
 radius = 1.0
@@ -86,8 +85,6 @@ script = ExtResource("23_6t5de")
 AttackFOV = 140.0
 
 [node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("24_82lkr")]
-
-[node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("25_n5us0")]
 
 [node name="Upgrades" type="Node2D" parent="." unique_id=1621237522]
 

@@ -24,6 +24,7 @@
 [ext_resource type="Resource" uid="uid://b3a0o0xiee62w" path="res://Resources/ShipSpecific/Drone/DroneAlcubierreDrivePowerConsumption.tres" id="22_rwqrs"]
 [ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="23_vnuxr"]
 [ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="24_4vcd3"]
+[ext_resource type="PackedScene" uid="uid://5nso24wt66e2" path="res://Scenes/Weapons/MetaphasicDisruptor.tscn" id="25_8q3xm"]
 [ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="25_v7fjn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
@@ -83,6 +84,8 @@ script = ExtResource("23_vnuxr")
 AttackFOV = 140.0
 
 [node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("24_4vcd3")]
+
+[node name="MetaphasicDisruptor" parent="WeaponSystem" unique_id=128565933 instance=ExtResource("25_8q3xm")]
 
 [node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("25_v7fjn")]
 

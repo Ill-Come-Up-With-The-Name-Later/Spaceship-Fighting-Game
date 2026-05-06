@@ -24,7 +24,6 @@
 [ext_resource type="Resource" uid="uid://c7vefgl17m7ll" path="res://Resources/ShipSpecific/Drone/DroneAlcubierreDriveStats.tres" id="21_1eqp2"]
 [ext_resource type="Resource" uid="uid://b3a0o0xiee62w" path="res://Resources/ShipSpecific/Drone/DroneAlcubierreDrivePowerConsumption.tres" id="22_hfh5r"]
 [ext_resource type="Script" uid="uid://dw31kjusd3ccb" path="res://Scripts/Ship/WeaponSystem.cs" id="23_10fke"]
-[ext_resource type="PackedScene" uid="uid://btufjt3b5at2k" path="res://Scenes/Weapons/Phaser.tscn" id="24_vk0k0"]
 [ext_resource type="PackedScene" uid="uid://donwana8rbid6" path="res://Scenes/Weapons/LaserCannon.tscn" id="25_2j4od"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b61m"]
@@ -84,8 +83,6 @@ editor_description = "The parent node for ship technologies that aren't standard
 editor_description = "The parent node for all of a ship's weapons."
 script = ExtResource("23_10fke")
 AttackFOV = 140.0
-
-[node name="Phaser" parent="WeaponSystem" unique_id=189030110 instance=ExtResource("24_vk0k0")]
 
 [node name="LaserCannon" parent="WeaponSystem" unique_id=1826866972 instance=ExtResource("25_2j4od")]
 

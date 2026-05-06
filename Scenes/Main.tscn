@@ -9,4 +9,4 @@
 position = Vector2(151, -65)
 
 [node name="Paradox" parent="." unique_id=401585605 instance=ExtResource("5_pbw6q")]
-position = Vector2(288, 597)
+position = Vector2(1423, 698)
