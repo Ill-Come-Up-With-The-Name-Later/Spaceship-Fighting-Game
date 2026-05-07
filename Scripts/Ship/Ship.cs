@@ -154,6 +154,8 @@ public partial class Ship : CharacterBody2D
 
 		AllTechnologies = GetAllTechnologies();
 		Eventbus.EmitSignal("ShipSpawned", this);
+		
+		GD.Print(GetName() + " has spawned in.");
 	}
 	
 	public override void _Process(double delta)

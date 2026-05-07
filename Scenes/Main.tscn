@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://cmvkih6fr2gv8"]
 
 [ext_resource type="PackedScene" uid="uid://bmraug80pu27k" path="res://Scenes/Ships/PlayerShipTests/PlayerShipWithWeaponsTest.tscn" id="1_idj7w"]
-[ext_resource type="PackedScene" uid="uid://dj1flvl446xer" path="res://Scenes/Ships/Enemy/Paradox.tscn" id="5_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://4530c5ka7rqp" path="res://Scenes/Helper/EnemySpawnManager.tscn" id="2_idj7w"]
 
 [node name="Main" type="Node2D" unique_id=1968216983]
 
+[node name="EnemySpawnManager" parent="." unique_id=487236972 instance=ExtResource("2_idj7w")]
+MinSpawns = 9
+MaxSpawns = 18
+MinSpawnTime = 20.0
+MaxSpawnTime = 50.0
+SpawnpointRadius = 3000.0
+
 [node name="PlayerShip" parent="." unique_id=1450576114 instance=ExtResource("1_idj7w")]
 position = Vector2(151, -65)
-
-[node name="Paradox" parent="." unique_id=401585605 instance=ExtResource("5_pbw6q")]
-position = Vector2(1423, 698)

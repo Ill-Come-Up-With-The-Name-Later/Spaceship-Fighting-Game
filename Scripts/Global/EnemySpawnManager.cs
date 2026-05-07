@@ -29,20 +29,16 @@ public partial class EnemySpawnManager : Node2D
     
     private RandomNumberGenerator generator;
 
+    [Export]
+    public float SpawnpointRadius;
+
+    private GameManager gameManager;
+
     public override void _Ready()
     {
         generator = new RandomNumberGenerator();
         
         Spawnpoints = new Array<Marker2D>();
-
-        foreach (Node child in GetChildren())
-        {
-            if (child is Marker2D)
-                Spawnpoints.Add((Marker2D)child);
-        }
-        
-        if(Spawnpoints.Count == 0)
-            GD.PrintErr("No spawn points found");
         
         SpawnTimer = GetNode<Timer>("SpawnTimer");
         
@@ -54,9 +50,41 @@ public partial class EnemySpawnManager : Node2D
         if(Eventbus is null)
             GD.PrintErr("Eventbus not found");
         
+        gameManager = GetNode<GameManager>("/root/GameManager");
+        
+        if(gameManager is null)
+            GD.PrintErr("GameManager not found");
+        
         SpawnTimer.WaitTime = generator.RandfRange(MinSpawnTime, MaxSpawnTime);
         SpawnTimer.Timeout += Spawn;
         SpawnTimer.Start();
+        
+        CallDeferred(nameof(Spawn));
+    }
+
+    /// <summary>
+    /// Creates random spawns
+    /// </summary>
+    public void CreateSpawns(int spawns = 20)
+    {
+        Spawnpoints.Clear();
+        
+        foreach(Node node in GetChildren())
+            node.QueueFree();
+        
+        for (int i = 0; i < spawns; i++)
+        {
+            Marker2D spawnpoint = new Marker2D();
+            Vector2 spawnpointPos = gameManager.PlayerShip.GlobalPosition + new Vector2(
+                generator.RandfRange(-SpawnpointRadius, SpawnpointRadius),
+                generator.RandfRange(-SpawnpointRadius, SpawnpointRadius));
+            
+            spawnpoint.GlobalPosition = spawnpointPos;
+            AddChild(spawnpoint);
+            Spawnpoints.Add(spawnpoint);
+            
+            GD.Print("Spawnpoint created at " + spawnpoint.GlobalPosition);
+        }
     }
 
     /// <summary>
@@ -64,11 +92,12 @@ public partial class EnemySpawnManager : Node2D
     /// </summary>
     public void Spawn()
     {
-        int spawns = generator.RandiRange(MinSpawns, MaxSpawns + 1);
+        int spawns = generator.RandiRange(MinSpawns, MaxSpawns);
+        CreateSpawns(spawns * 2);
 
         for (int i = 0; i < spawns; i++)
         {
-            Marker2D spawnpoint = Spawnpoints[generator.RandiRange(0, Spawnpoints.Count)];
+            Marker2D spawnpoint = Spawnpoints[generator.RandiRange(0, Spawnpoints.Count - 1)];
             
             ItemSelector<PackedScene> selector = new ItemSelector<PackedScene>();
 
@@ -77,6 +106,7 @@ public partial class EnemySpawnManager : Node2D
             
             Ship ship = selector.Roll().Instantiate<Ship>();
             ship.GlobalPosition = spawnpoint.GlobalPosition;
+            GetTree().CurrentScene.AddChild(ship);
         }
         
         SpawnTimer.WaitTime = generator.RandfRange(MinSpawnTime, MaxSpawnTime);

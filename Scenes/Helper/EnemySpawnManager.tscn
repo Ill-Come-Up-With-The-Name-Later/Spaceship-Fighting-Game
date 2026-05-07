@@ -5,10 +5,11 @@
 
 [node name="EnemySpawnManager" type="Node2D" unique_id=487236972]
 script = ExtResource("1_ehm6c")
-MinSpawns = 5
-MaxSpawns = 10
-MinSpawnTime = 30.0
-MaxSpawnTime = 120.0
+MinSpawns = 7
+MaxSpawns = 25
+MinSpawnTime = 25.0
+MaxSpawnTime = 80.0
 SpawnSet = ExtResource("2_uvgc8")
+SpawnpointRadius = 2500.0
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=75939067]
