@@ -51,13 +51,19 @@ public partial class GameManager : Node
     /// <param name="radius">
     /// The radius to search
     /// </param>
+    /// <param name="origin">
+    /// The ship needing a nearby ship
+    /// </param>
     /// <returns>
     /// The nearest ship or null
     /// </returns>
-    public Ship GetNearbyShip(Vector2 position, float radius)
+    public Ship GetNearbyShip(Vector2 position, float radius, Ship origin)
     {
         foreach (Ship ship in Ships)
         {
+            if (ship.Cloaked() && !origin.HasUpgrade<AntiCloakScanner>())
+                continue;
+            
             if(ship.GlobalPosition.DistanceTo(position) <= radius)
                 return ship;
         }

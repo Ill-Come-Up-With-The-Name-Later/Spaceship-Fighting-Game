@@ -171,7 +171,7 @@ public partial class PlayerController : Controller
 			if (CanAttack)
 			{
 				Vector2 attackPos = GetGlobalMousePosition();
-				Ship nearby = GameManager.GetNearbyShip(GetGlobalMousePosition(), (float)AutoAimRadius);
+				Ship nearby = GameManager.GetNearbyShip(GetGlobalMousePosition(), (float)AutoAimRadius, ParentShip);
 				
 				Eventbus.EmitSignal("MouseClick", (nearby is null) ? attackPos : nearby.GlobalPosition);
 			}
