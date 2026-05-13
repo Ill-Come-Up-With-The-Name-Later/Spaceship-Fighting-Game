@@ -27,7 +27,7 @@ I solo developed the project, everything was me, myself, and I.
 
 - Boredom
 - Someone who is problematic that I cannot name in the credits of a GitHub repo
-  (Thanks (not really though) for giving me the energy and invigoration to 
+  (Thanks (not really though) for giving me the energy and motivation to 
   work on this. Get out of computer science for the good of us all, thanks.
   We need competence, not another person to just ask AI the solution as soon
   as something doesn't work the first time.)
