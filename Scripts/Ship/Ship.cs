@@ -160,6 +160,8 @@ public partial class Ship : CharacterBody2D
 	
 	public override void _Process(double delta)
 	{
+		MoveAndSlide();
+		
 		foreach (Upgrade upgrade in GetUpgrades())
 			if (!upgrade.Applied.Contains(this) && upgrade.GetParent().GetParent() == this)
 				upgrade.Apply(this);

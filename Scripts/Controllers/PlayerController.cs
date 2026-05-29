@@ -87,7 +87,7 @@ public partial class PlayerController : Controller
 			if (Input.IsActionPressed("accelerate"))
 			{
 				float speed = (float)ParentShip.Engine.TrueMoveSpeed();
-				
+
 				if (ParentShip.Velocity.Length() == 0)
 					ParentShip.Velocity =
 						(Vector2.Up * speed).Rotated(ParentShip.GlobalRotation);
@@ -95,7 +95,8 @@ public partial class PlayerController : Controller
 					ParentShip.Velocity = ParentShip.Velocity.Normalized() * speed;
 			}
 			else
-				ParentShip.Velocity = Vector2.Zero;
+				ParentShip.Velocity *= 
+					ParentShip.Velocity.Length() > 20 ? (float)(0.98 * delta) : 0;
 		}
 		
 		float turnInput = 0f;

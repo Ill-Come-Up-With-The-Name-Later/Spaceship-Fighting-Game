@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://ct16gunqhdgca"]
+
+[ext_resource type="Script" uid="uid://bbu5853qcis5w" path="res://Scripts/Environment/BlackHole.cs" id="1_bf07k"]
+[ext_resource type="Texture2D" uid="uid://ba7s2hq6goea3" path="res://Sprites/Effects/Singularity.png" id="1_xih13"]
+[ext_resource type="Texture2D" uid="uid://b6405pt83l6kf" path="res://Sprites/Effects/AccretionDisk.png" id="2_bf07k"]
+[ext_resource type="Script" uid="uid://k0ak10nls1pc" path="res://Scripts/Environment/GravityWell.cs" id="4_ktj5t"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ktj5t"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_ptklp"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, -360), 0.0, 0.0, 0, 0, Vector2(0.48648655, 360), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2kvts"]
+curve = SubResource("Curve_ptklp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7t67l"]
+particle_flag_disable_z = true
+angular_velocity_min = -720.0
+angular_velocity_max = 719.99994
+angular_velocity_curve = SubResource("CurveTexture_2kvts")
+orbit_velocity_min = -2.0
+orbit_velocity_max = 2.0000002
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 0.40392157, 0.3882353)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xih13"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bf07k"]
+
+[node name="BlackHole" type="CharacterBody2D" unique_id=585877118]
+script = ExtResource("1_bf07k")
+
+[node name="Singularity" type="Sprite2D" parent="." unique_id=499322136]
+self_modulate = Color(0.07450981, 0.023529412, 0.12156863, 0.5803922)
+texture = ExtResource("1_xih13")
+
+[node name="AccretionDisk" type="GPUParticles2D" parent="." unique_id=707450750]
+material = SubResource("CanvasItemMaterial_ktj5t")
+amount = 1
+texture = ExtResource("2_bf07k")
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_7t67l")
+
+[node name="Gravity" type="Area2D" parent="." unique_id=145437083]
+collision_layer = 2
+gravity_point = true
+script = ExtResource("4_ktj5t")
+GravityStrength = 5000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gravity" unique_id=577687181]
+scale = Vector2(60, 60)
+shape = SubResource("CircleShape2D_xih13")
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1021554558]
+scale = Vector2(60, 60)
+shape = SubResource("CircleShape2D_bf07k")
