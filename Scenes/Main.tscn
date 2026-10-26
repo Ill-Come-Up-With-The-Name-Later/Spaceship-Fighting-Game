@@ -2,8 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bmraug80pu27k" path="res://Scenes/Ships/PlayerShipTests/PlayerShipWithWeaponsTest.tscn" id="1_idj7w"]
 [ext_resource type="PackedScene" uid="uid://ct16gunqhdgca" path="res://Scenes/Environment/BlackHole.tscn" id="1_kln2b"]
+[ext_resource type="PackedScene" uid="uid://4530c5ka7rqp" path="res://Scenes/Helper/EnemySpawnManager.tscn" id="1_rgh2o"]
 
 [node name="Main" type="Node2D" unique_id=1968216983]
+
+[node name="EnemySpawnManager" parent="." unique_id=487236972 instance=ExtResource("1_rgh2o")]
 
 [node name="BlackHole" parent="." unique_id=585877118 instance=ExtResource("1_kln2b")]
 position = Vector2(1779, -745)
